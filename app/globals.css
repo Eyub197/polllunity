@@ -2,7 +2,8 @@
     --background-color: #F8F9FA;
     --text-color: #343A40;
     --primary-color: #007BFF;
-    
+    --secondary-color:  #28A745;
+    --accent-color: #FFC107
 }
 
 *{
@@ -22,7 +23,8 @@ ul, li {
 }
 
 a{
-    list-style: none;
+    text-decoration: none;
+    color: inherit;
 }
 
 button, input {

@@ -17,9 +17,9 @@ const Header = () => {
             </div>
             <nav>
             <ul className={styles.nav}>
-                    <li>Начаоло</li>
-                    <li>Контакти</li>
-                    <li>Анкети</li>
+                    <li><Link href="/">Начаоло</Link></li>
+                    <li><Link href={"/контакти"} >Контакти</Link></li>
+                    <li><Link href={"/анкети"}>Анкети</Link></li>
                 </ul>
             </nav>
            <div>
