@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Header from "@/ui/header";
+import "./globals.css"
+import Header from "@/ui/header/header"
+import { roboto } from "@/lib/fonts"
 
 export const metadata: Metadata = {
-  title: "",
+  title: "PollUnity",
   description: "",
-};
+}
 
 export default function RootLayout({
   children,
@@ -15,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
   
-      <body>
+      <body className={roboto.className}>
 
         <Header/>
         {children}
