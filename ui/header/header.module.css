@@ -1,18 +1,8 @@
 .header{
     display: flex;
     justify-content: space-between;
-    padding: 0.5em;
-    padding-block: 1em;
-}
-
-.logo{ 
-    animation: logo_rotate 40s infinite ease;
-    transform:  rotate(0deg);
-}
-
-@keyframes logo_rotate {
-    from{transform: rotate(0deg);}
-    to{transform:  rotate(360deg);}
+    align-items: center;
+    padding: 1em 0.5em ;
 }
 
 .logoContainer{
@@ -20,9 +10,55 @@
     align-items: center;
 }
 
-.nav{
+.buttonsContainer {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 }
 
+.logo{ 
+    margin-right: 0.7em;
+    animation: logo_rotate 40s infinite ease;
+    transform:  rotate(0deg);
+}
+
+.logoText{
+    margin-right: 0.5em;
+}
+
+.navPageLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.5rem;
+    gap:4em
+}
+
+.link{
+    color: var(--text-color);
+    letter-spacing: 2px;
+    transition: color 0.6s;
+}
+
+.link:hover, .link:focus {
+    color: var(--accent-color);
+}
+
+@keyframes logo_rotate {
+    from{transform: rotate(0deg);}
+    to{transform:  rotate(360deg);}
+}
+
+.register{
+    font-size: 1rem;
+    margin-right: 1em;
+    padding: 1.2em 2.5em;
+    background-color: #65E4FB;
+    color:var(--text-color);
+}
+
+.LogIn {
+    font-size: 1rem;
+    padding: 1.2em 3em;
+    background-color: #FEFBD8;
+}

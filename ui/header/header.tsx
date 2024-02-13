@@ -1,31 +1,36 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from '@/ui/header/header.module.css'
+import NavigationButton from "@/ui/header/navButton/navButton"
 
 const Header = () => {
+   
     return(
         <header className={styles.header}>
+
             <div className={styles.logoContainer}>
+            <h3 className={styles.logoText}>Poll <br/>
+                Unity</h3>
                 <Image 
                 className={styles.logo}
                 src={"logo.svg"}
                 alt="website logo"
-                width={72}
-                height={62}>
+                width={50}
+                height={46}>
                 </Image>
-                <h3>PollUnity</h3>
             </div>
-            <nav>
-            <ul className={styles.nav}>
-                    <li><Link href="/">Начаоло</Link></li>
-                    <li><Link href={"/контакти"} >Контакти</Link></li>
-                    <li><Link href={"/анкети"}>Анкети</Link></li>
+
+            <NavigationButton>
+                <ul className={styles.navPageLinks}>
+                        <li><Link className={styles.link} href="/">Начаоло</Link></li>
+                        <li><Link className={styles.link} href={"/контакти"} >Контакти</Link></li>
+                        <li><Link className={styles.link} href={"/анкети"}>Анкети</Link></li>
+                        <div>
+                            <button className={styles.register}>Регистрирай се</button>
+                            <button className={styles.LogIn}>Вход</button>
+                        </div>
                 </ul>
-            </nav>
-           <div>
-            <button>Регистрирай се</button>
-            <button>Вход</button>
-           </div>
+            </NavigationButton>
         </header>
     )
 }

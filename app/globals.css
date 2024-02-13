@@ -14,6 +14,8 @@ body{
    background-color: var(--background-color);
    color: var(--text-color);
    font-size: 1rem;
+   margin: 0;
+   padding:0;
 }
 
 ul, li {
@@ -29,4 +31,12 @@ a{
 
 button, input {
     font-family: inherit;
+    border-radius: 4pt;
+    cursor: pointer;
 }
+
+button{
+    border: none;
+    background-color: none;
+}
+
