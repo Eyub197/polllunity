@@ -1,14 +1,14 @@
 :root{
+    --primary-color: #007BFF;
+    --primary-color-light:#65E4FB;
+    --secondary-color:  #28A745;
+    --secondary-color-light: #A4F7C2;
+    --accent-color: #FFC107;
     --background-color: #F8F9FA;
     --text-color: #343A40;
-    --primary-color: #007BFF;
-    --secondary-color:  #28A745;
-    --accent-color: #FFC107
 }
 
-*{
-    box-sizing: border-box;
-}
+*{ box-sizing: border-box; }
 
 body{
    background-color: var(--background-color);
@@ -33,10 +33,15 @@ button, input {
     font-family: inherit;
     border-radius: 4pt;
     cursor: pointer;
+    border: none;
 }
 
 button{
     border: none;
     background-color: none;
+    transition: opacity 250ms ease;
 }
 
+button:hover , button:focus {
+    opacity: 0.8;
+}

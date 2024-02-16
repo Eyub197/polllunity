@@ -1,36 +1,62 @@
+"use client"
 import Link from "next/link"
-import Image from "next/image"
 import styles from '@/ui/header/header.module.css'
-import NavigationButton from "@/ui/header/navButton/navButton"
+import Logo from "../logo"
+import { IoMenu } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
+import {usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 const Header = () => {
-   
+   const [isOpen, setIsOpen] = useState(false)
+   const pathname = usePathname()
+   const manageIsOpen = isOpen ? styles.nav_open : styles.nav_close 
+   const isActive = (path:string) : boolean => pathname === path 
+   const redirect = 
+    
+    useEffect( ()=> { setIsOpen(false) } , [pathname])
+
     return(
         <header className={styles.header}>
-
-            <div className={styles.logoContainer}>
-            <h3 className={styles.logoText}>Poll <br/>
-                Unity</h3>
-                <Image 
-                className={styles.logo}
-                src={"logo.svg"}
-                alt="website logo"
-                width={50}
-                height={46}>
-                </Image>
-            </div>
-
-            <NavigationButton>
-                <ul className={styles.navPageLinks}>
-                        <li><Link className={styles.link} href="/">Начаоло</Link></li>
-                        <li><Link className={styles.link} href={"/контакти"} >Контакти</Link></li>
-                        <li><Link className={styles.link} href={"/анкети"}>Анкети</Link></li>
-                        <div>
-                            <button className={styles.register}>Регистрирай се</button>
-                            <button className={styles.LogIn}>Вход</button>
-                        </div>
+           <Logo  />
+            <nav className={`${styles.nav}  ${manageIsOpen}`}>
+            <ul className={styles.nav_links_container}>
+                    <li>
+                        <Link 
+                        className={`${styles.link} ${isActive("/") && styles.active}`} 
+                        href="/">Начаоло
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                        className={`${styles.link} ${isActive("/co") && styles.active}`} 
+                        href="/co">Контакти</Link>
+                    </li>
+                    <li>
+                        <Link 
+                        className={`${styles.link} ${isActive("/анкети") && styles.active}`}
+                        href="/анкети"
+                        >
+                         Анкети
+                        </Link>
+                    </li>
+                
                 </ul>
-            </NavigationButton>
+                <div className={styles.buttons_container}>
+                    <button className={styles.register}> <Link href="/register"> Регистрирай се</Link></button>
+                    <button className={styles.login}><Link href="/sign"> Вход </Link></button>
+
+                </div>
+            </nav>
+            
+            <button 
+                onClick={() => setIsOpen(prevIsOpen => !prevIsOpen)}
+                className={styles.menu}
+                >
+                    {
+                        isOpen ? <IoClose /> :  <IoMenu />
+                    }   
+            </button>
         </header>
     )
 }

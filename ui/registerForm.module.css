@@ -1,0 +1,29 @@
+.form_style{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: var(--secondary-color-light); 
+    padding: 0.5em;
+    grid-gap: 0.5em;
+}
+
+.first_name, .last_name{
+    grid-row: 2;
+}
+
+.username{
+    grid-row: 3;
+    grid-column: span 2;
+}
+
+.email{
+    grid-row: 4;
+}
+
+.password {
+    grid-row: 5;
+}
+
+.input_style{
+   padding: 0.4em;
+   width: 100%;
+}
