@@ -2,3 +2,14 @@
     display: grid;
     grid-template-rows: auto 1fr;
 }
+
+.image_container{
+    margin: 0;
+}
+
+.form_image{
+    display: block;
+    object-fit: cover;
+    width: 100%;
+   min-height: 40dvh;
+}

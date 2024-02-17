@@ -1,29 +1,65 @@
 .form_style{
+    overflow: hidden;
+    margin: 0;
+}
+
+.form_container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     background-color: var(--secondary-color-light); 
     padding: 0.5em;
-    grid-gap: 0.5em;
+    margin: 0;
+    row-gap: 1em;
+    overflow: hidden;
+    height: 60dvh;
+    height: 60vh;
+
 }
 
-.first_name, .last_name{
-    grid-row: 2;
+.logo{
+  grid-row: 1;
+  grid-column: 2 / 6;
+  justify-self: center;
+  align-self: center;
 }
 
-.username{
-    grid-row: 3;
-    grid-column: span 2;
+.password, .email{
+    grid-column: span 6;
+    
 }
 
 .email{
-    grid-row: 4;
+    grid-row: 2;
+    margin-bottom: 1em;
 }
 
 .password {
-    grid-row: 5;
+    grid-row: 3;
 }
 
 .input_style{
-   padding: 0.4em;
+    margin-top: 0.4em;
+   padding: 0.7em;
    width: 100%;
+}
+
+.submit{
+    grid-row: 5;
+    justify-self: end;
+    grid-column: 6;
+    padding: 0.7em 2em;
+    background-color: var(--secondary-color);
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.google{
+    grid-row: 4;
+}
+
+.apple{
+    grid-row: 4;
+    grid-column: 3;
 }

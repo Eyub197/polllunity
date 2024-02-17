@@ -5,12 +5,14 @@ import styles from "@/app/register/register.module.css"
 const RegisterFormPage = () => {
     return(
         <main className={styles.main}>
-            <section>
+            <section className={styles.image_container}>
                 <Image
+                className={styles.form_image}
                 src={"/form-image.png"}
+                alt="cool image of form poll related stuff"
                 width={378}
                 height={230}
-                alt="cool image of form poll related stuff"
+                layout="responsive"
                 />
             </section>
 
