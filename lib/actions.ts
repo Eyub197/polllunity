@@ -5,17 +5,10 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
+import { AuthData, actions } from './types' 
 
+const performAuthAction = async ( action : actions, formData: FormData) => {
 
-interface AuthData {
-  email : string,
-  password: string
-}
-
-const performAuthAction = async (
-  action : "login" | "signup" | "signout",
-  formData: FormData
-) => {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
@@ -45,7 +38,7 @@ const performAuthAction = async (
   }
 
   if(error) {
-    redirect("/login")
+    redirect("/")
   }
 
   revalidatePath("/", "layout")
