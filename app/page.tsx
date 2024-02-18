@@ -1,8 +1,12 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { getOne } from "@/lib/actions";
 
-export default function Home() {
+
+export default async function Home() {
+ 
   return (
-   <h1>Getting started</h1>
+    
+   <button onClick={getOne}>Getting started</button>
   )
 }

@@ -1,9 +1,12 @@
 import Image from "next/image"
 import styles from "@/ui/logo.module.css"
+import {prisma} from "@/lib/prisma"
+
 
 const Logo = () => {
     return(
     <>
+    
         <div className={styles.logo_container}>
       
             <h3 className={styles.logo_text}>Poll <span className={styles.logo_text_detail}>Unity</span></h3>
@@ -19,6 +22,7 @@ const Logo = () => {
         </div>
     </>
     )
+
 }
 
 export default Logo

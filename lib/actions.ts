@@ -1,4 +1,6 @@
 "use server"
+import {prisma} from "@/lib/prisma"
+
 
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
@@ -8,6 +10,7 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
+    console.log(prisma.user.fields)
     await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {
@@ -20,4 +23,9 @@ export async function authenticate(
     }
     throw error;
   }
+}
+
+export const getOne = async () => {
+  const email = await prisma.user.findMany()
+  console.log(email)
 }
