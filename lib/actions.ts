@@ -26,8 +26,7 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
     
     case "signup":
         ({error} = await supabase.auth.signUp(data))
-      break
-    
+      break    
     case "signout":
         ({error} = await supabase.auth.signOut())
       break
@@ -35,10 +34,6 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
     default:
       throw new Error('Invalid action type')
 
-  }
-
-  if(error) {
-    redirect("/")
   }
 
   revalidatePath("/", "layout")
@@ -57,3 +52,10 @@ export const signup = async (formData: FormData) => {
 export const signout = async () => {
   await performAuthAction("signout", new FormData)
 }
+
+export const logWthGoogle = async () => {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+  const { error } = await supabase.auth.signInWithOAuth({provider: "google"})
+  revalidatePath("/", "layout")
+} 

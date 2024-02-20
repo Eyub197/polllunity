@@ -1,15 +1,22 @@
 import Logo from "./logo"
 import styles from "@/ui/registerForm.module.css"
-import { signup } from "@/lib/actions"
+import { signup, logWthGoogle } from "@/lib/actions"
 
 
 const RegisterForm = () => {
     return(
          
-        <form className={styles.form_style} >
-            <div className={styles.form_container}>
+        <main className={styles.form_container}>
+            
+           <section>
+            <img
+            className={styles.form_image}
+             src="/form-image.png" 
+             alt="cool poll image stuff" />
+           </section>
 
-            <div className={styles.logo}><Logo /></div>
+            <form className={styles.inputs_container}>
+                <div className={styles.logo}><Logo /></div>
 
                 <div className={styles.email}>
                     <label className={styles.bold} htmlFor="email">email</label>
@@ -21,13 +28,12 @@ const RegisterForm = () => {
                     <input className={styles.input_style} name="password"  type="text" id="password" />
                 </div>
 
-                 <p className={styles.google}>Google</p>
-                  <p className={styles.apple}>Apple</p>
-                  
-                 <button formAction={signup} className={styles.submit}>Submit</button>
-            </div>
-            
-        </form>
+              
+                    <button formAction={logWthGoogle} className={styles.google}>Google</button>
+                    <p className={styles.apple}>Apple</p>
+                <button formAction={signup} className={styles.submit}>Submit</button>
+            </form>
+        </main> 
     )
 }
 

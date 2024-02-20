@@ -1,65 +1,133 @@
-.form_style{
-    overflow: hidden;
-    margin: 0;
+.form_container, .inputs_container, .social {
+    display: flex;
+}
+
+.form_image, .input_style {
+    width: 100%;
 }
 
 .form_container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    background-color: var(--secondary-color-light); 
-    padding: 0.5em;
-    margin: 0;
-    row-gap: 1em;
+    flex-direction: column;
+    min-height: 100dvh;
+    min-height: 100vh;
+    background-color: var(--background-color);
     overflow: hidden;
-    height: 60dvh;
-    height: 60vh;
+}
 
+.inputs_container{
+    flex: 1 1 50%;
+    flex-direction: column;
+    padding: 0.5em;
+    background-color: var(--secondary-color-light); 
+    min-height: 50dvh;
+}
+
+.social{
+    justify-content: space-between;
+}
+
+.form_image{
+    display: block;
+    height: 50vh;
+    flex: 1 1 50%;
+    object-fit: cover;
 }
 
 .logo{
-  grid-row: 1;
-  grid-column: 2 / 6;
-  justify-self: center;
-  align-self: center;
+    align-self: center;
 }
 
-.password, .email{
-    grid-column: span 6;
-    
-}
-
-.email{
-    grid-row: 2;
-    margin-bottom: 1em;
-}
-
-.password {
-    grid-row: 3;
+.email, .password{
+    margin-bottom: 2em;
 }
 
 .input_style{
-    margin-top: 0.4em;
+   margin-top: 0.4em;
    padding: 0.7em;
-   width: 100%;
 }
 
 .submit{
-    grid-row: 5;
-    justify-self: end;
-    grid-column: 6;
+    margin-top: 2em;
     padding: 0.7em 2em;
     background-color: var(--secondary-color);
+}
+
+.google{
+    margin-right: auto;
+}
+
+.apple{
+    margin-left: auto;
 }
 
 .bold{
     font-weight: bold;
 }
 
-.google{
-    grid-row: 4;
+@media (min-width: 600px) {
+
+    .form_container, .inputs_container{
+        justify-content: center;
+    }
+
+    .inputs_container, .form_image{
+        min-height: 90dvh;
+        min-height: 90vh;
+    }
+
+    .form_container{
+        flex-direction: row;
+        align-items: center;
+        padding: 2em;
+    }   
+
+    .inputs_container{
+     
+        padding: 1em;
+        border-radius: 0 5pt 5pt 0;
+        height: unset;
+        flex: 1 1 200%;
+    }
+
+    .form_image{
+        height: unset;
+        max-height: 90vh;
+        border-radius: 5pt 0 0 5pt;
+    }
+
+    .email {
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
 }
 
-.apple{
-    grid-row: 4;
-    grid-column: 3;
+@media (min-width: 960px) {
+
+    .submit{
+        text-align: center;
+        align-self: center;
+        padding: 1.5em 4.5em;
+        margin-bottom: 2em;
+    }
+
+
+    .inputs_container{
+        flex:  1 1 80%;
+    }
+
 }
+
+@media (min-width: 1300px) {
+
+      .form_container{
+        font-size: 1.1rem;
+    }
+
+    .inputs_container{
+        padding-inline: 7em;
+        max-height: 70vh;
+    }
+
+}
+
+

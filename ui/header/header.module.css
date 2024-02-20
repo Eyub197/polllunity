@@ -1,7 +1,10 @@
+
+
 .link{
     color: var(--text-color);
     letter-spacing: 2px;
     transition: color 0.25s ease;
+    font-size: 0.75rem;
 }
 
 .link:hover, .link:focus {
@@ -70,7 +73,8 @@
     text-align: center;
     transition: transform 0.5s ease;
     transform: translateX(0%);
-    gap:3.125em
+    gap:3.125em;
+    z-index: 1;
 }
 
 .nav_open {
