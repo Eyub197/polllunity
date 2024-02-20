@@ -44,8 +44,7 @@ const Header = () => {
                 </ul>
                 <div className={styles.buttons_container}>
                     <button className={styles.register}> <Link href="/register"> Регистрирай се</Link></button>
-                    <button className={styles.login}><Link href="/sign"> Вход </Link></button>
-
+                    <button className={styles.login}><Link href="/sign-in"> Вход </Link></button>
                 </div>
             </nav>
             

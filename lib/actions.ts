@@ -21,7 +21,21 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
 
   switch (action) {
     case "login":
-        ({error} = await supabase.auth.signInWithPassword(data))
+        ({ error } = await supabase.auth.signInWithPassword(data))
+        const { data: users} = await supabase
+        .from("auth.users")
+        .select("id")
+        .eq("role","admin")
+        .limit(1)
+
+        if(users?.length === 0 ){
+          await supabase 
+            .from("auth.users")
+            .update({"role": "admin"})
+            .eq("id", users[0].id)
+        }
+
+
       break
     
     case "signup":
