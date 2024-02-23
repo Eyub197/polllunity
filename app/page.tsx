@@ -3,13 +3,13 @@ import styles from "./page.module.css";
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { signout } from "@/lib//actions"
+import { signout } from "@/lib/actions"
 
 export default async function Home() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
-  const { data, error } = await supabase.auth.getUser()
 
+  const { data, error } = await supabase.auth.getUser()
 
 
   return (

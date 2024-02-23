@@ -1,9 +1,9 @@
 :root{
-    --primary-color: #007BFF;
+    --primary-color: #02BEFE;
     --primary-color-light:#65E4FB;
     --secondary-color:  #45DFC9;
     --secondary-color-light: #A4F7C2;
-    --accent-color: #FFC107;
+    --accent-color: #FFD776;
     --background-color: #F8F9FA;
     --text-color: #343A40;
 }
@@ -50,3 +50,5 @@ button:hover , button:focus {
 .bold{
     font-weight: bold;
 }
+
+

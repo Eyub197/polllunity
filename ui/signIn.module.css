@@ -1,6 +1,43 @@
 .main{
     display: grid;
     place-items: center;
-    border: 1px solid black;
-    height: 100vh;
+    height: 80dvh;
+    height: 80vh;
+}
+
+.form_styles{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: var(--primary-color);
+    padding-bottom: 1em;
+    justify-content: center;
+    border-radius: 4pt;
+    grid-template-areas: 
+        ". text text text text ."
+        ". email email email email."
+        ". password password password password ."
+        ". google google apple apple ."
+        ". button button button button .";
+}
+
+.input_style{
+    margin-top: 0.5em;
+    width: 100%;
+    padding: 0.6em;
+}
+
+.bold{
+    display: block;
+    font-weight: bold;
+}
+
+.text { grid-area:  text; margin-top: 2em; }
+.email { grid-area: email; margin-bottom: 1.2em; }
+.password { grid-area: password; margin-bottom: 1.2em; }
+.google { grid-area: google; }
+.apple { grid-area: apple; justify-self: end;}
+.submit { 
+    grid-area: button; 
+    background-color:var(--accent-color);
+    padding: 1em;
 }

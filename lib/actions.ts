@@ -12,35 +12,22 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
-  const data : AuthData = {
+  const userData : AuthData = {
     email: formData.get("email") as string,
     password: formData.get("password") as string
   }
 
-  let error
+  let error, user
 
   switch (action) {
     case "login":
-        ({ error } = await supabase.auth.signInWithPassword(data))
-        const { data: users} = await supabase
-        .from("auth.users")
-        .select("id")
-        .eq("role","admin")
-        .limit(1)
-
-        if(users?.length === 0 ){
-          await supabase 
-            .from("auth.users")
-            .update({"role": "admin"})
-            .eq("id", users[0].id)
-        }
-
-
+      ({ error } = await supabase.auth.signInWithPassword(userData))
       break
     
     case "signup":
-        ({error} = await supabase.auth.signUp(data))
-      break    
+      ({ error } = await supabase.auth.signUp(userData))
+      break 
+
     case "signout":
         ({error} = await supabase.auth.signOut())
       break
