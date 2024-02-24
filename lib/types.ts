@@ -3,4 +3,4 @@ export interface AuthData {
     password: string
 }
 
-export type actions = "login" | "signup" | "signout" | "logWithGoogle"
+export type actions = "signIn" | "signUp" | "signOut" 

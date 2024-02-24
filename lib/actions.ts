@@ -1,16 +1,13 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-
 import { createClient } from '@/lib/supabase/server'
 import { AuthData, actions } from './types' 
 
 const performAuthAction = async ( action : actions, formData: FormData) => {
 
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createClient()
 
   const userData : AuthData = {
     email: formData.get("email") as string,
@@ -20,15 +17,15 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
   let error, user
 
   switch (action) {
-    case "login":
+    case "signIn":
       ({ error } = await supabase.auth.signInWithPassword(userData))
       break
     
-    case "signup":
-      ({ error } = await supabase.auth.signUp(userData))
+    case "signUp":
+      const { data, error: signUpError } = await supabase.auth.signUp(userData)
       break 
 
-    case "signout":
+    case "signOut":
         ({error} = await supabase.auth.signOut())
       break
 
@@ -41,22 +38,14 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
   redirect("/")
 }
 
-export const login = async (formData: FormData) => {
-  await performAuthAction("login", formData)
-}
+export const signIn = async (formData: FormData) =>  await performAuthAction("signIn", formData)
 
-export const signup = async (formData: FormData) => {
-  await performAuthAction("signup", formData)
+export const signUp = async (formData: FormData) =>  await performAuthAction("signUp", formData)
 
-}
-
-export const signout = async () => {
-  await performAuthAction("signout", new FormData)
-}
+export const signOut = async () => await performAuthAction("signOut", new FormData)
 
 export const logWthGoogle = async () => {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createClient()
   const { error } = await supabase.auth.signInWithOAuth({provider: "google"})
   revalidatePath("/", "layout")
 } 
