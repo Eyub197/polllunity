@@ -7,7 +7,7 @@ import { AuthData, actions } from './types'
 
 const performAuthAction = async ( action : actions, formData: FormData) => {
 
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const userData : AuthData = {
     email: formData.get("email") as string,
@@ -48,7 +48,7 @@ export const signUp = async (formData: FormData) => {
 export const signOut = async () => await performAuthAction("signOut", new FormData)
 
 export const logWthGoogle = async () => {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { error } = await supabase.auth.signInWithOAuth({provider: "google"})
   revalidatePath("/", "layout")
 } 

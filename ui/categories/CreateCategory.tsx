@@ -11,6 +11,7 @@ const CreateCategory = async () => {
         if(categories?.length! > 0){
 
         return( categories?.map(category =>
+
             <div className={styles.container} key={category.id}>
                 <h1>{category.name}</h1>
                 <p>{category.description}</p>
