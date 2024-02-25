@@ -1,4 +1,4 @@
-import { login } from "@/lib/actions"; 
+import { signIn } from "@/lib/actions"; 
 import styles from "@/ui/signIn.module.css"
 import { prisma } from "@/lib/prisma";
 import Logo from "./logo";
@@ -24,7 +24,7 @@ const SignInForm = () : JSX.Element => {
             <p className={styles.google}>Google</p>
             <p className={styles.apple}>Apple</p>
                         
-            <button formAction={login} className={styles.submit}>Submit</button>
+            <button formAction={signIn} className={styles.submit}>Submit</button>
         </form>
     </main>
     

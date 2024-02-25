@@ -57,8 +57,6 @@ const Header = () => {
                         isOpen ? <IoClose /> :  <IoMenu />
                     }   
             </button>
-
-            <button onClick={()=> createCategory("name", "description")}></button>
         </header>
     )
 }
