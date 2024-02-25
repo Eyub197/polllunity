@@ -1,4 +1,5 @@
 "use client"
+
 import Link from "next/link"
 import styles from '@/ui/header/header.module.css'
 import Logo from "../logo"
@@ -6,15 +7,15 @@ import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import {usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { createCategory } from "@/lib/utils/utils";
 
 const Header = () => {
    const [isOpen, setIsOpen] = useState(false)
    const pathname = usePathname()
    const manageIsOpen = isOpen ? styles.nav_open : styles.nav_close 
    const isActive = (path:string) : boolean => pathname === path 
-   const redirect = 
     
-    useEffect( ()=> { setIsOpen(false) } , [pathname])
+    useEffect( ()=> {setIsOpen(false) } , [pathname])
 
     return(
         <header className={styles.header}>
@@ -56,6 +57,8 @@ const Header = () => {
                         isOpen ? <IoClose /> :  <IoMenu />
                     }   
             </button>
+
+            <button onClick={()=> createCategory("name", "description")}></button>
         </header>
     )
 }
