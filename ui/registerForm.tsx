@@ -1,6 +1,6 @@
 import Logo from "./logo"
 import styles from "@/ui/registerForm.module.css"
-import { signIn, logWthGoogle } from "@/lib/actions"
+import { signUp, logWthGoogle } from "@/lib/actions"
 
 
 const RegisterForm = () => {
@@ -31,7 +31,7 @@ const RegisterForm = () => {
                     <button formAction={logWthGoogle} className={styles.google}>Google</button>
                     <p className={styles.apple}>Apple</p>
                     
-                <button formAction={signIn} className={styles.submit}>Submit</button>
+                <button formAction={signUp} className={styles.submit}>Submit</button>
             </form>
         </main> 
     )

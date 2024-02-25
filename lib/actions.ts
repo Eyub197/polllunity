@@ -22,7 +22,7 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
       break
     
     case "signUp":
-      const { data, error: signUpError } = await supabase.auth.signUp(userData)
+       ({ error } = await supabase.auth.signUp(userData))
       break 
 
     case "signOut":
@@ -38,9 +38,12 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
   redirect("/")
 }
 
-export const signIn = async (formData: FormData) =>  await performAuthAction("signIn", formData)
-
-export const signUp = async (formData: FormData) =>  await performAuthAction("signUp", formData)
+export const signIn = async (formData: FormData) => {
+   await performAuthAction("signIn", formData)
+} 
+export const signUp = async (formData: FormData) => {
+   await performAuthAction("signUp", formData)
+}
 
 export const signOut = async () => await performAuthAction("signOut", new FormData)
 

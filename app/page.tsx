@@ -3,19 +3,16 @@ import styles from "./page.module.css";
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { signout } from "@/lib/actions"
+import { signOut } from "@/lib/actions"
 
 export default async function Home() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-
+  const supabase = createClient()
   const { data, error } = await supabase.auth.getUser()
-
 
   return (
     <>
     <form>
-    <button formAction={signout}>signout</button>
+    <button formAction={signOut}>signout</button>
 
     </form>
      <p>Hello {data.user?.email || "none"}</p>
