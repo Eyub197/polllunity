@@ -1,16 +1,17 @@
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { IoCloseCircle } from "react-icons/io5";
-import { deleteCategory } from "@/lib/utils/utils";
+import { deleteCategory } from "@/lib/utils/category";
 import Link from "next/link";
+import { deletePoll } from "@/lib/utils/polls";
+
+
 
 export const EditCategoryButton = ({ id }: { id: string }) : JSX.Element => {
 
 return(
-    <>
     <Link href={`/admin/categories/${id}/edit`}  >
         <HiOutlinePencilAlt/>
     </Link>
-    </>
 )}
 
 export const DeleteCategoryButton = ({ id }: { id: string }) => {
@@ -23,5 +24,25 @@ export const DeleteCategoryButton = ({ id }: { id: string }) => {
                 <IoCloseCircle/>
             </button> 
         </form>
-    )
-}
+)}
+
+
+export const EditPollButton = ({ id }: { id: string }) : JSX.Element => {
+
+    return(
+        <Link href={`/admin/polls/${id}/edit`}  >
+            <HiOutlinePencilAlt/>
+        </Link>
+    )}
+    
+    export const DeletePollButton = ({ id }: { id: string }) => {
+    
+        const deletePollWithId = deletePoll.bind(null, id)
+    
+        return(
+            <form action={deletePollWithId}>
+                <button type="submit">
+                    <IoCloseCircle/>
+                </button> 
+            </form>
+    )}

@@ -1,7 +1,6 @@
-import { createCategory } from "@/lib/utils/utils"
-import { getCategories } from "@/lib/utils/utils"
-import styles from "@/ui/categories/categories.module.css"
+import { createCategory, getCategories } from "@/lib/utils/category"
 import { EditCategoryButton, DeleteCategoryButton} from "../buttons"
+import styles from "@/ui/categories/categories.module.css"
 
 const CreateCategory = async () => {
     const categories = await getCategories()

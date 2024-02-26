@@ -1,4 +1,4 @@
-import { getCategoryById} from "@/lib/utils/test"
+import { getCategoryById} from "@/lib/utils/category"
 import UpdateCategory from "@/ui/categories/UpdateCategory"
 
 

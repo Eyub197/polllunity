@@ -1,4 +1,4 @@
-import { updateCategoryById } from "@/lib/utils/test"
+import { updateCategoryById } from "@/lib/utils/category"
 
 type UpdateCategoryProps = {
     id:string,
@@ -13,9 +13,9 @@ const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
     return(
         <form action={updateCategory}>
         name
-        <input type="text" name="category_name" id=""/>
+        <input type="text" name="category_name" id="" value={name}/>
         description
-        <input type="text" name="description" id="" />
+        <input type="text" name="description" id="" value={description}/>
         <button type="submit">Action</button>
     </form>
     )

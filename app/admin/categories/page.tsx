@@ -1,13 +1,6 @@
 import CreateCategory from "@/ui/categories/CreateCategory"
-import { createClient } from "@/lib/supabase/server"
 
-const CategoryForm = () => {
-    const supabase = createClient()
-
-    return (
-        <CreateCategory/>
-    )
-    
-} 
+const CategoryForm = () => <CreateCategory/>
+  
 
 export default CategoryForm

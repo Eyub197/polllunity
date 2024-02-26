@@ -1,6 +1,6 @@
-import Logo from "./logo"
+import Logo from "../logo"
 import styles from "@/ui/registerForm.module.css"
-import { signUp, logWthGoogle } from "@/lib/actions"
+import { signUp, logWthGoogle } from "@/lib/auth"
 
 
 const RegisterForm = () => {

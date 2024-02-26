@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { signOut } from "@/lib/actions"
+import { signOut } from "@/lib/auth"
 import { createCategory } from "@/lib/utils/utils";
 
 export default async function Home() {
