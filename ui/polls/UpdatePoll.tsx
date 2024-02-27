@@ -1,29 +1,13 @@
-import { createPoll } from "@/lib/utils/polls"
-import { getPolls } from "@/lib/utils/polls"
-import { DeletePollButton, EditPollButton } from "../buttons"
+import { updatePollById } from "@/lib/utils/polls"
 
 
-const CreatePoll = async () => {
-    
-    const polls = await getPolls()
+const UpdatePoll = ({id}: {id:string}) => {
 
-    const createPollsElements = () => {
-        if(polls?.length! > 0){
-            return polls?.map(poll => 
-            <div>
-                <h2>title: {poll.title}</h2>
-                <h3>{poll.categories.name}</h3>
-                <p>starts at: {poll.starts_at}</p>
-                <p>ends at :{poll.ends_at}</p>
-                <DeletePollButton id={poll.id}/>
-                <EditPollButton id= {poll.id}/>
-            </div>)
-        }
-    }
+    const updatePoll = updatePollById.bind(null, id)
 
     return(
         <>
-        <form action={createPoll}>
+        <form action={updatePoll}>
             <div>
                 <label htmlFor="title">title</label>
                 <input type="text" id="title" name="title" />
@@ -47,11 +31,8 @@ const CreatePoll = async () => {
 
             <button>action</button>
         </form>
-        <main>
-            {createPollsElements()}
-        </main>
-        </>
+    </>
     )
 }
 
-export default CreatePoll
+export default UpdatePoll

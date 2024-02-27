@@ -7,15 +7,13 @@ import { redirect } from "next/navigation"
 export const createCategory = async (formData:FormData) : Promise<void> => {
     const supabase =  await createClient()
     const categoryData = {
-        category_name : formData.get("category_name") as string,
+        name : formData.get("category_name") as string,
         description : formData.get("description") as string
     }
 
-    const { category_name, description } = categoryData
-
-    const { data, error } = await supabase.
-    from("categories")
-    .insert([{name: category_name, description}])
+    const { data, error } = await supabase
+    .from("categories")
+    .insert(categoryData)
     console.log(categoryData)
     
     if (error) {
@@ -34,32 +32,17 @@ export const getCategories = async () : Promise<any[] | null> => {
     return categories
 }
 
-export const deleteCategory = async (id:string) : Promise<any> => {
-    const supabase = await createClient()
-
-    const { data, error } = await supabase
-    .from("categories")
-    .delete()
-    .eq("id", id)
-
-    revalidatePath("/admin/categories")
-    redirect("/admin/categories")
-}
-
-
 export const updateCategoryById = async (identity:string, formData: FormData) : Promise<any> => {
     const supabase = await createClient()
 
     const categoryData = {
-        category_name : formData.get("category_name") as string,
+        name : formData.get("category_name") as string,
         description : formData.get("description") as string
     }
 
-    const { category_name, description } = categoryData
-
     const {data, error} = await supabase
     .from("categories")
-    .update([{name: category_name, description}])
+    .update(categoryData)
     .eq("id", identity)
     
     revalidatePath("/admin/categories")
@@ -79,3 +62,19 @@ export const getCategoryById = async (id:string) => {
     
     return categories
 }
+
+export const deleteCategory = async (id:string) : Promise<any> => {
+    const supabase = await createClient()
+
+    const { data, error } = await supabase
+    .from("categories")
+    .delete()
+    .eq("id", id)
+
+    revalidatePath("/admin/categories")
+    redirect("/admin/categories")
+}
+
+
+
+

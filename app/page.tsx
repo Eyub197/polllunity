@@ -4,7 +4,6 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { signOut } from "@/lib/auth"
-import { createCategory } from "@/lib/utils/utils";
 
 export default async function Home() {
   const supabase = await createClient()

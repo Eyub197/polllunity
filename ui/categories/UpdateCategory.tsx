@@ -13,9 +13,9 @@ const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
     return(
         <form action={updateCategory}>
         name
-        <input type="text" name="category_name" id="" value={name}/>
+        <input type="text" name="category_name" id="" />
         description
-        <input type="text" name="description" id="" value={description}/>
+        <input type="text" name="description" id="" />
         <button type="submit">Action</button>
     </form>
     )

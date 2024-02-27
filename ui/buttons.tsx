@@ -3,8 +3,9 @@ import { IoCloseCircle } from "react-icons/io5";
 import { deleteCategory } from "@/lib/utils/category";
 import Link from "next/link";
 import { deletePoll } from "@/lib/utils/polls";
+import { deleteOption } from "@/lib/utils/options";
 
-
+// ** ===Category===
 
 export const EditCategoryButton = ({ id }: { id: string }) : JSX.Element => {
 
@@ -26,6 +27,7 @@ export const DeleteCategoryButton = ({ id }: { id: string }) => {
         </form>
 )}
 
+// ** ===Poll===
 
 export const EditPollButton = ({ id }: { id: string }) : JSX.Element => {
 
@@ -35,14 +37,36 @@ export const EditPollButton = ({ id }: { id: string }) : JSX.Element => {
         </Link>
     )}
     
-    export const DeletePollButton = ({ id }: { id: string }) => {
+export const DeletePollButton = ({ id }: { id: string }) => {
     
-        const deletePollWithId = deletePoll.bind(null, id)
+    const deletePollWithId = deletePoll.bind(null, id)
     
-        return(
-            <form action={deletePollWithId}>
-                <button type="submit">
-                    <IoCloseCircle/>
-                </button> 
-            </form>
+    return(
+        <form action={deletePollWithId}>
+            <button type="submit">
+                <IoCloseCircle/>
+            </button> 
+        </form>
+    )}
+
+// ** ===Option===
+
+export const EditOptionButton = ({ id }: { id: string }) : JSX.Element => {
+
+    return(
+        <Link href={`/admin/options/${id}/edit`}  >
+            <HiOutlinePencilAlt/>
+        </Link>
+    )}
+    
+export const DeleteOptionButton = ({ id }: { id: string }) => {
+    
+    const deleteOptionWithId = deleteOption.bind(null, id)
+    
+    return(
+        <form action={deleteOptionWithId}>
+            <button type="submit">
+                <IoCloseCircle/>
+            </button> 
+        </form>
     )}
