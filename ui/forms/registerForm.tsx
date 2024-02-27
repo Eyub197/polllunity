@@ -1,5 +1,5 @@
 import Logo from "../logo"
-import styles from "@/ui/registerForm.module.css"
+import styles from "@/ui/forms/registerForm.module.css"
 import { signUp, logWthGoogle } from "@/lib/auth"
 
 

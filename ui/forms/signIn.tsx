@@ -1,7 +1,5 @@
 import { signIn } from "@/lib/auth"; 
-import styles from "@/ui/signIn.module.css"
-import { prisma } from "@/lib/prisma";
-import Logo from "../logo";
+import styles from "@/ui/forms/signIn.module.css"
 
 const SignInForm = () : JSX.Element => {
 
