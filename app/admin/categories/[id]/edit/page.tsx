@@ -1,18 +1,20 @@
+import { Category } from "@/lib/types"
 import { getCategoryById} from "@/lib/utils/category"
 import UpdateCategory from "@/ui/categories/UpdateCategory"
 
 
 const EditCategory = async ({ params }: { params: { id: string } }) => {
     const { id } = params    
-    const { name, description } = await getCategoryById(id)
+    const category = await getCategoryById(id)
 
     return(
         <>
-        <p>{name} {description}</p>
-        <UpdateCategory 
-        id={id} 
-        name={name} 
-        description = {description}/>
+            <p>
+            {category?.name} {category?.description}</p>
+            <UpdateCategory 
+            id={id} 
+            name={category?.name!} 
+            description = {category?.description!}/>
         </>
     ) 
 }

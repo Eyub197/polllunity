@@ -2,6 +2,18 @@ export interface AuthData {
     email : string,
     password: string
 }
+export type actions = "signIn" | "signUp" | "signOut" 
+
+export type Category ={
+  id:string
+  name:string,
+  description: string | null
+}
+
+export type Id = {
+  id: string
+}
+
 
 export type Json =
   | string

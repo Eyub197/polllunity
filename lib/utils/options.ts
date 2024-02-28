@@ -37,16 +37,14 @@ export const getOptions = async () : Promise<any[] | null> => {
 
 export const updateOptionById = async (identity:string, formData: FormData) : Promise<any> => {
     const supabase = await createClient()
+    
     const optionData = {
-        title : formData.get("title") as string,
-        starts_at: formData.get("starts_at") as string,
-        ends_at: formData.get("starts_at") as string,
-        category_id: formData.get("category_id") as string,
-        description : formData.get("description") as string,
+        poll_id : formData.get("poll_id") as string,
+        option_text : formData.get("option_text") as string,
     }
 
     const {data, error} = await supabase
-    .from("Options")
+    .from("options")
     .update(optionData)
     .eq("id", identity)
     

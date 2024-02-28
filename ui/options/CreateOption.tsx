@@ -1,6 +1,6 @@
 import { createOption, getOptions } from "@/lib/utils/options"
 import { DeleteOptionButton } from "../buttons"
-
+import { EditOptionButton } from "../buttons"
 
 const CreateOption = async () => {
     const options = await getOptions()
@@ -14,6 +14,7 @@ const CreateOption = async () => {
                     <p>{option.option_text}</p>
                     <p>{option.polls.title}</p>
                     <DeleteOptionButton id={option.id}/>
+                    <EditOptionButton id={option.id}/>
                 </div> ))
         }
 
@@ -32,7 +33,7 @@ const CreateOption = async () => {
                 </div>
                 <button>action</button>
             </form>
-            <>
+        <>
                 {createOptionElements() || <p>Не сте създали опции</p>}
             </>
         </>

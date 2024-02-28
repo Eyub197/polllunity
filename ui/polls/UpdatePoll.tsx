@@ -1,7 +1,8 @@
+import { Id } from "@/lib/types"
 import { updatePollById } from "@/lib/utils/polls"
 
 
-const UpdatePoll = ({id}: {id:string}) => {
+const UpdatePoll = ({id}: Id) => {
 
     const updatePoll = updatePollById.bind(null, id)
 

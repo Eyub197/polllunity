@@ -1,12 +1,7 @@
 import { updateCategoryById } from "@/lib/utils/category"
+import { Category } from "@/lib/types"
 
-type UpdateCategoryProps = {
-    id:string,
-    name:string,
-    description:string
-}
-
-const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
+const UpdateCategory = ({id, name, description}: Category) => {
 
     const updateCategory = updateCategoryById.bind(null, id)
 

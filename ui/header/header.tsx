@@ -7,7 +7,6 @@ import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import {usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-import { createCategory } from "@/lib/utils/utils";
 
 const Header = () => {
    const [isOpen, setIsOpen] = useState(false)
@@ -35,8 +34,8 @@ const Header = () => {
                     </li>
                     <li>
                         <Link 
-                        className={`${styles.link} ${isActive("/анкети") && styles.active}`}
-                        href="/анкети"
+                        className={`${styles.link} ${isActive("/anketi") && styles.active}`}
+                        href="/anketi"
                         >
                          Анкети
                         </Link>
