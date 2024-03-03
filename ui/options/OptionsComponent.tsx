@@ -27,7 +27,7 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
           <label htmlFor={option.id}>{option.option_text}</label> 
         </div>
        ))}
-      <Link href={}>
+      <Link href={`opcii/ready`}>
         <button>action</button>
       </Link>
 
