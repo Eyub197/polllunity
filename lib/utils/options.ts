@@ -1,9 +1,9 @@
 "use server"
 
 import { createClient } from "@/lib/supabase/server"
-import { strict } from "assert"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
+
 
 export const createOption = async (formData:FormData) : Promise<void> => {
     const supabase =  await createClient()
@@ -64,6 +64,34 @@ export const getOptionById = async (id:string) => {
     console.log(options)
     
     return options
+}
+
+export const getOptionsByFk = async (fk:string) => {
+    const supabase = await createClient()
+    const { data: options, error } = await supabase
+    .from("options")
+    .select("*")
+    .eq("poll_id", fk)
+
+    return options
+}
+
+export const updateOptionCount = async (formData : FormData) => {
+    const supabase = await createClient()
+
+    const option_text = formData.get("option_text")
+
+    const params = { option_text_param: option_text }
+
+    const { error } = await supabase.rpc("increment_votes_count", params)
+    
+    if(error){
+        console.log(error)
+    } 
+    else{
+        console.log("it worked")
+        redirect("/")
+    }
 }
 
 export const deleteOption = async (id:string) : Promise<any> => {

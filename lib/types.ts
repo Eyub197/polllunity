@@ -14,6 +14,13 @@ export type Id = {
   id: string
 }
 
+export type Option = {
+  id: string;
+  option_text: string;
+  poll_id: string;
+  votes_count: number | null;
+}
+
 
 export type Json =
   | string

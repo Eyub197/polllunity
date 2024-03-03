@@ -1,3 +1,4 @@
+
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { IoCloseCircle } from "react-icons/io5";
 import { deleteCategory } from "@/lib/utils/category";
@@ -70,3 +71,4 @@ export const DeleteOptionButton = ({ id }: { id: string }) => {
             </button> 
         </form>
     )}
+
