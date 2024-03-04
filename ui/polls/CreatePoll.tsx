@@ -8,9 +8,10 @@ const CreatePoll = async () => {
     const polls = await getPolls()
 
     const createPollsElements = () => {
+
         if(polls?.length! > 0){
             return polls?.map(poll => 
-            <div>
+            <div key={poll.id}>
                 <h2>title: {poll.title}</h2>
                 <h3>{poll.categories.name}</h3>
                 <p>starts at: {poll.starts_at}</p>

@@ -4,6 +4,14 @@ export interface AuthData {
 }
 export type actions = "signIn" | "signUp" | "signOut" 
 
+export interface PollBadgeParams {
+  starts: Date,
+  ends:Date,
+  finished: string,
+  label:string
+  userVote: boolean
+}
+
 export type Category ={
   id:string
   name:string,
@@ -166,12 +174,56 @@ export type Database = {
         }
         Relationships: []
       }
+      uservotes: {
+        Row: {
+          has_voted: boolean
+          poll_id: string
+          user_id: string
+        }
+        Insert: {
+          has_voted?: boolean
+          poll_id: string
+          user_id: string
+        }
+        Update: {
+          has_voted?: boolean
+          poll_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "uservotes_poll_id_fkey"
+            columns: ["poll_id"]
+            isOneToOne: false
+            referencedRelation: "polls"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "uservotes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "user"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_votes_count: {
+        Args: {
+          option_text_param: string
+        }
+        Returns: undefined
+      }
+      increment_votes_count_by_id: {
+        Args: {
+          option_id: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

@@ -1,0 +1,16 @@
+if the poll haven't started it will have a badge that the poll havent started yet
+    the user can see the options but he can't vote and in the options tab to we 
+    will tell the user that it havesent started yet and will start after { time }
+
+if the poll have started it will have badge started and it will let the user vote 
+    after the user votes the poll will be tell him that he already woted and i t will be closed  but with 
+    diffrent colors he cant click the button becouse it will disapiear and he will have to wait until the end
+
+if the poll has ended then we will give them a let say 2 days time to be able to se the results, 
+    it will have badge ended and have button see results wich will show the results in a statistic
+    after the 2 days ends it will be transformed to expired polls
+
+if there are polls with the same category there will be a place to see there options and resulets
+    in the current poll from the same category there will be a button if there used be a poll with the same name
+    "see older stats or something like that" and in the click it will show them older stats and then there will be a 
+    button to comeback 

@@ -12,6 +12,3 @@ const Test = ({ params }: { params: { id: string } }) => {
 
 export default Test
 
-// Todo make a way the user to be able to select only one option 
-// Todo after the user selects the option and clicks submit store the option text and make the count + 1 
-// Todo redirect them to a page that they have voted successfully

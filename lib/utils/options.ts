@@ -3,6 +3,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
+import { handleUserVote } from "./userVote"
 
 
 export const createOption = async (formData:FormData) : Promise<void> => {
@@ -76,15 +77,15 @@ export const getOptionsByFk = async (fk:string) => {
     return options
 }
 
-export const updateOptionCount = async (formData : FormData) => {
+export const updateOptionCount = async ( formData : FormData) => {
     const supabase = await createClient()
 
-    const option_text = formData.get("option_text")
+    const option_text = formData.get("option_text") as string
 
     const params = { option_text_param: option_text }
 
     const { error } = await supabase.rpc("increment_votes_count", params)
-    
+
     if(error){
         console.log(error)
     } 
