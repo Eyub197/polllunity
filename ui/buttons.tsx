@@ -1,4 +1,3 @@
-
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { IoCloseCircle } from "react-icons/io5";
 import { deleteCategory } from "@/lib/utils/category";
@@ -52,9 +51,11 @@ export const DeletePollButton = ({ id }: { id: string }) => {
     )}
 
 
-export const ChoosePollButton = (id:Id)  => {    
-    return(        
+export const ChoosePollButton = ({id} : Id)  => {    
+    return( 
+        <Link href={`anketi/${id}/opcii`}>
             <button>Click me </button>
+        </Link>       
         )
     }
 
@@ -82,4 +83,10 @@ export const DeleteOptionButton = ({ id }: { id: string }) => {
     )}
 
 
-    
+export const CheckResults = ({id}: Id) => {
+    return(
+    <Link href={`anketi/${id}/rezultati`}>
+        <button>Погледнете резултатите</button>
+    </Link>
+    )
+}
