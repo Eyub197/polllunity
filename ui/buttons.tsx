@@ -5,6 +5,7 @@ import { deleteCategory } from "@/lib/utils/category";
 import Link from "next/link";
 import { deletePoll } from "@/lib/utils/polls";
 import { deleteOption } from "@/lib/utils/options";
+import { Id } from "@/lib/types";
 
 // ** ===Category===
 
@@ -50,6 +51,14 @@ export const DeletePollButton = ({ id }: { id: string }) => {
         </form>
     )}
 
+
+export const ChoosePollButton = (id:Id)  => {    
+    return(        
+            <button>Click me </button>
+        )
+    }
+
+
 // ** ===Option===
 
 export const EditOptionButton = ({ id }: { id: string }) : JSX.Element => {
@@ -72,3 +81,5 @@ export const DeleteOptionButton = ({ id }: { id: string }) => {
         </form>
     )}
 
+
+    

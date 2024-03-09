@@ -1,5 +1,6 @@
 "use server"
 
+import { revalidatePath } from "next/cache"
 import { createClient } from "../supabase/server"
 
 export const  handleUserVote = async( userId:string, pollId:string ) => {
@@ -17,6 +18,8 @@ export const  handleUserVote = async( userId:string, pollId:string ) => {
     if(error){
         console.error(`Error updating vote: ${error}`)
     }
+    revalidatePath("/anketi", "page")
+
 }
 
 
@@ -29,8 +32,10 @@ export const getUserVote = async( userId:string, pollId:string ) => {
         .match({ user_id: userId, poll_id: pollId})
 
 
-    if(uservotes && uservotes.length > 0)
+    if(uservotes && uservotes.length > 0) {
+        revalidatePath("/anketi", "page")
         return uservotes[0].has_voted
+    }
     else if(error)
         throw new Error("failed to fetch user vote")
     else 
