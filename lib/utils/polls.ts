@@ -1,5 +1,6 @@
 "use server"
 
+
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
@@ -33,14 +34,15 @@ export const getPolls = async () : Promise<any[] | null> => {
     const { data:polls , error } = await supabase
    .from("polls")
    .select("*, categories(name, description)")
-
+   
     return polls
 }
+
 
 export const updatePollById = async (identity:string, formData: FormData) : Promise<any> => {
     const supabase = await createClient()
 
-    const pollData = {
+const pollData = {
         title : formData.get("title") as string,
         starts_at: formData.get("starts_at") as string,
         ends_at: formData.get("starts_at") as string,
@@ -69,6 +71,18 @@ export const getPollById = async (id:string) => {
     console.log(polls)
     
     return polls
+}
+
+export const getPollByFk = async (id:string) => {
+    const supabase = await createClient()
+
+    const {data: polls, error} = await supabase
+    .from("polls")
+    .select("id")
+    .eq("category_id", id)
+
+    return polls
+
 }
 
 export const deletePoll = async (id:string) : Promise<any> => {

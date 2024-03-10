@@ -9,7 +9,14 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
     return(
         <>       
             <p>{poll?.title}</p>
-            <UpdatePoll id={id}/>
+            <UpdatePoll 
+            id={id} 
+            title={poll?.title!}
+            ends_at={poll?.ends_at!}
+            starts_at={poll?.starts_at!}
+            category_id={poll?.category_id!}
+            description={poll?.description!}
+            />
         </>
     )
 }

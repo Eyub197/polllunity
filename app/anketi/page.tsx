@@ -1,5 +1,27 @@
-import PollsPage from "@/ui/polls/PollsPage"
+import styles from "@/ui/polls/PoolsPage.module.css"
+import Polls from "@/ui/polls/Poll/Polls"
+import FilterMenu from "@/ui/filterMenu/FilterMenu"
 
-const Polls = () => <PollsPage/>
+export type searchParamss = {
+    searchParams: {
+        categoriq : string
+    }
+}
 
-export default Polls
+const PollsPage = ({ searchParams, }: searchParamss) => {
+    const {categoriq} = searchParams
+
+    return(
+        <>
+            <h1 className={styles.page_title}>Изберете за какво да гласувате</h1>
+            <FilterMenu />
+            <main className={styles.main}>
+                    <Polls filter={categoriq}/>
+            </main>
+        </>
+    )
+
+
+}
+
+export default PollsPage

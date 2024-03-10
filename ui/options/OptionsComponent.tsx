@@ -1,15 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { getOptionsByFk, updateOptionCount } from '@/lib/utils/options'
 import { getUserVote, handleUserVote } from '@/lib/utils/userVote';
-import Link from 'next/link';
 import { VoteButton } from '../ClientButtons';
-
-interface Option {
-  id: string;
-  option_text: string;
-  poll_id: string;
-  votes_count: number | null;
-}
 
 export default async function OptionsComponent({ fk }: { fk: string }) {
 
@@ -22,7 +14,7 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
   const hasVoted = await getUserVote(userId, fk)
 
   const options = await getOptionsByFk(fk)
-
+    
   return (  
     <>
     {

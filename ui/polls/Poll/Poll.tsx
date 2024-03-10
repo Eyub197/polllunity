@@ -1,19 +1,18 @@
-
 import Link from "next/link";
 import React from "react";
 import styles from "@/ui/polls/PoolsPage.module.css";
 import { CheckResults, ChoosePollButton } from "@/ui/buttons";
 import { PollProps } from "@/lib/types";
-import { getUserVote } from "@/lib/utils/userVote";
-import { boolean } from "zod";
 
-const Poll: React.FC<PollProps> = ({poll, user}) => {
+const Poll: React.FC<PollProps> = ( {poll, user} ) => {
   const now = new Date()
+  const deleteTime = new Date().getMonth() 
   const startsAt = new Date(poll.starts_at)
   const endsAt = new Date(poll.ends_at)
-  const haveStarted = startsAt < now;
-  const haveEnded = endsAt < now;
-
+  const endDate = endsAt.getMonth()
+  const haveStarted = startsAt < now
+  const haveEnded = endsAt < now
+  
   const handleButtons = () => {
     if(user && haveEnded){
       return <CheckResults id={poll.id}/>
@@ -30,20 +29,22 @@ const Poll: React.FC<PollProps> = ({poll, user}) => {
     }
   }
 
-
   return (
-    <div 
+  <>
+    {
+      endDate - deleteTime < 0 ? "" 
+      : <div 
       className={`${styles._poll} ${haveStarted ? styles.started : ''} ${haveEnded ? styles.closed : ''}`}
       key={poll.id}
     >
-        <h2>{poll.title}</h2>
-        <h3>{poll?.categories?.name}</h3>
-        <p>започва: {poll.starts_at}</p>
-        <p>завършва: {poll.ends_at}</p>               
-        {handleButtons()}     
-
-        
-    </div> 
+      <h2>{poll.title}</h2>
+      <h3>{poll?.categories?.name}</h3>
+      <p>започва: {poll.starts_at}</p>
+      <p>завършва: {poll.ends_at}</p>               
+      {handleButtons()}     
+    </div>  
+      }
+  </>        
   )
 }
 

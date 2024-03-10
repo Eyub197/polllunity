@@ -19,19 +19,29 @@ const performAuthAction = async ( action : actions, formData: FormData) => {
   switch (action) {
     case "signIn":
       ({ error } = await supabase.auth.signInWithPassword(userData))
+      if(error){
+        return error.message
+      }
       break
     
     case "signUp":
        ({ error } = await supabase.auth.signUp(userData))
+       if(error){
+        return error.message
+      }
       break 
 
     case "signOut":
         ({error} = await supabase.auth.signOut())
+        if(error){
+          return error.message
+        }
       break
 
     default:
       throw new Error('Invalid action type')
 
+      
   }
 
   revalidatePath("/", "layout")

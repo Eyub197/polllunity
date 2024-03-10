@@ -75,6 +75,16 @@ export const deleteCategory = async (id:string) : Promise<any> => {
     redirect("/admin/categories")
 }
 
+export const updateFilters = async (formData: FormData) => {
+    const category = formData.get("category")
 
+    if(category !== "всички"){
+        const params = new URLSearchParams(`categoriq`)
+        redirect(`/anketi/?${params}${category}`)
+    }
+
+    redirect("/anketi")
+
+}
 
 

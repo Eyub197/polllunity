@@ -12,6 +12,14 @@ export interface PollBadgeParams {
   userVote: boolean
 }
 
+export interface Poll {
+    id: string;
+    title: string;
+    starts_at: string; 
+    ends_at: string;
+    category_id: string;
+    description: string
+  }
 export interface PollProps {
   poll: {
     id: string;
