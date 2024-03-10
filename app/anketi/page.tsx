@@ -4,17 +4,18 @@ import FilterMenu from "@/ui/filterMenu/FilterMenu"
 
 export type searchParamss = {
     searchParams: {
-        categoriq : string
+        categoriq : string,
+        status: string
     }
 }
 
 const PollsPage = ({ searchParams, }: searchParamss) => {
-    const {categoriq} = searchParams
+    const { categoriq, status} = searchParams
 
     return(
         <>
             <h1 className={styles.page_title}>Изберете за какво да гласувате</h1>
-            <FilterMenu />
+            <FilterMenu categoryParams={categoriq} statusParams={status}/>
             <main className={styles.main}>
                     <Polls filter={categoriq}/>
             </main>

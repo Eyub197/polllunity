@@ -1,5 +1,3 @@
-
-
 .link{
     color: var(--text-color);
     letter-spacing: 2px;
@@ -93,7 +91,9 @@
 }
 
 @media (min-width:700px) {
-
+    .header{
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    }
     .link{
         font-size: 1rem;
         font-weight: normal;

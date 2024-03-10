@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import styles from "@/ui/polls/PoolsPage.module.css";
 import { CheckResults, ChoosePollButton } from "@/ui/buttons";
@@ -14,36 +13,27 @@ const Poll: React.FC<PollProps> = ( {poll, user} ) => {
   const haveEnded = endsAt < now
   
   const handleButtons = () => {
-    if(user && haveEnded){
-      return <CheckResults id={poll.id}/>
-    }
-    else if(user) {
-      return  <ChoosePollButton id={poll.id}/>
-    }
-    else{
-      return(
-      <div>
-        <button>Регистрирай се</button>
-        <button>Влез</button>
-      </div>)
-    }
+    if(user && haveEnded) return <CheckResults id={poll.id}/>
+    else if(user) return <ChoosePollButton id={poll.id}/>
+    else return( <div> <button>Регистрирай се</button> <button>Влез</button> </div>)
   }
 
   return (
   <>
     {
       endDate - deleteTime < 0 ? "" 
-      : <div 
-      className={`${styles._poll} ${haveStarted ? styles.started : ''} ${haveEnded ? styles.closed : ''}`}
+      :
+      <div 
+      className={` ${styles._poll} ${haveStarted && styles.started} ${haveEnded && styles.closed} `}
       key={poll.id}
-    >
-      <h2>{poll.title}</h2>
-      <h3>{poll?.categories?.name}</h3>
-      <p>започва: {poll.starts_at}</p>
-      <p>завършва: {poll.ends_at}</p>               
-      {handleButtons()}     
-    </div>  
-      }
+      >
+        <h2>{poll.title}</h2>
+        <h3>{poll?.categories?.name}</h3>
+        <p>започва: {poll.starts_at}</p>
+        <p>завършва: {poll.ends_at}</p>               
+        {handleButtons()}     
+      </div>  
+    }
   </>        
   )
 }

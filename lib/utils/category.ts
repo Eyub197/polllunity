@@ -23,13 +23,13 @@ export const createCategory = async (formData:FormData) : Promise<void> => {
     }
 }
 
-export const getCategories = async () : Promise<any[] | null> => {
+export const getCategories = async () => {
     const supabase =  await createClient()
    const { data:categories , error } = await supabase
    .from("categories")
    .select("*")
 
-    return categories
+    return {categories, error}
 }
 
 export const updateCategoryById = async (identity:string, formData: FormData) : Promise<any> => {
@@ -60,13 +60,13 @@ export const getCategoryById = async (id:string) => {
 
     console.log(categories)
     
-    return categories
+    return categories 
 }
 
 export const deleteCategory = async (id:string) : Promise<any> => {
     const supabase = await createClient()
 
-    const { data, error } = await supabase
+    const { data, error } = await supabase 
     .from("categories")
     .delete()
     .eq("id", id)
@@ -75,16 +75,47 @@ export const deleteCategory = async (id:string) : Promise<any> => {
     redirect("/admin/categories")
 }
 
+// export const updateFilters = async (formData: FormData) => {
+//     const category = formData.get("category")
+//     const dateStatus = formData.get("status")
+//     const categoryParams = new URLSearchParams('categoriq')
+//     const statusParams = new URLSearchParams('status')
+//     let searchParamsUrl = "/anketi"
+    
+//     if(category !== "vsicki" && dateStatus !== "segashni") {
+//         searchParamsUrl = `?${categoryParams}${category}&${statusParams}${dateStatus}`        
+//         redirect(searchParamsUrl)
+//     }
+
+//     if(category !== "vsicki") {
+//         searchParamsUrl += `?${categoryParams}${category}`
+//         redirect(searchParamsUrl)    
+//     }
+
+//     if(dateStatus !== "segashni") {
+//         searchParamsUrl += `?${statusParams}${dateStatus}`
+//         redirect(searchParamsUrl)    
+//     }
+
+
+//         redirect("/anketi")
+// }
+
+
 export const updateFilters = async (formData: FormData) => {
-    const category = formData.get("category")
+    let searchParamsUrl = "/anketi"
+    const category = formData.get("category") as string
+    const dateStatus = formData.get("status") as string
+    
+    const searchParams = new URLSearchParams()
+        
+    category !== "vsicki" && searchParams.set("categoriq", category)
+    dateStatus !== "segashni" && searchParams.set("status", dateStatus)    
 
-    if(category !== "всички"){
-        const params = new URLSearchParams(`categoriq`)
-        redirect(`/anketi/?${params}${category}`)
-    }
-
-    redirect("/anketi")
-
+    if(searchParams.toString()) searchParamsUrl += `?${searchParams}`
+   
+    redirect(searchParamsUrl)
 }
+
 
 
