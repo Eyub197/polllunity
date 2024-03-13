@@ -11,7 +11,7 @@ export const createPoll = async (formData:FormData) : Promise<void> => {
     const pollData = {
         title : formData.get("title") as string,
         starts_at: formData.get("starts_at") as string,
-        ends_at: formData.get("starts_at") as string,
+        ends_at: formData.get("ends_at") as string,
         category_id: formData.get("category_id") as string,
         description : formData.get("description") as string,
     }
@@ -45,7 +45,7 @@ export const updatePollById = async (identity:string, formData: FormData) : Prom
 const pollData = {
         title : formData.get("title") as string,
         starts_at: formData.get("starts_at") as string,
-        ends_at: formData.get("starts_at") as string,
+        ends_at: formData.get("ends_at") as string,
         category_id: formData.get("category_id") as string,
         description : formData.get("description") as string,
     }

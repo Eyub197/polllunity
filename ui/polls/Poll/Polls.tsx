@@ -4,12 +4,14 @@ import Poll from "./Poll"
 import { createServerContext } from "react"
 
 interface Filter {
-   filter: string
+   filter: string,
+   status: string
 }
 
-const Polls = async ({filter} : Filter  ) => {
+const Polls = async ({filter, status} : Filter  ) => {
  
     const supabase = await createClient()
+
     const { data : { user }, error } = await supabase.auth.getUser()
     
     let polls = await getPolls() || []
@@ -18,7 +20,7 @@ const Polls = async ({filter} : Filter  ) => {
        polls = polls?.filter(poll =>  poll.category_id === filter )
          
     const pollsElement = () => {
-        return polls?.map(poll => <Poll key={poll.id} poll={poll} user={user}/>)
+        return polls?.map(poll => <Poll status={status  } key={poll.id} poll={poll} user={user}/>)
     }
     
     return <> {polls ?  pollsElement(): <p>Няма създадени анкети</p>} </>

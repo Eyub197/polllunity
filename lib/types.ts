@@ -20,6 +20,7 @@ export interface Poll {
     category_id: string;
     description: string
   }
+
 export interface PollProps {
   poll: {
     id: string;
@@ -28,7 +29,7 @@ export interface PollProps {
     ends_at: string;
     categories: Category
   };
-  
+  status:string
   // have_voted: boolean | null;
   user: { id: string } | null;
 }

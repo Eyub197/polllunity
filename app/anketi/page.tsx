@@ -17,7 +17,7 @@ const PollsPage = ({ searchParams, }: searchParamss) => {
             <h1 className={styles.page_title}>Изберете за какво да гласувате</h1>
             <FilterMenu categoryParams={categoriq} statusParams={status}/>
             <main className={styles.main}>
-                    <Polls filter={categoriq}/>
+                    <Polls status={status} filter={categoriq}/>
             </main>
         </>
     )

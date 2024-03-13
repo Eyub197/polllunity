@@ -15,11 +15,11 @@ const UpdatePoll = ({id, title, starts_at, ends_at, category_id, description}: P
             </div>
             <div>
                 <label htmlFor="starts_at">starts at</label>
-                <input type="datetime-local" id="starts_at" name="starts_at" defaultValue={starts_at} />
+                <input type="datetime-local" id="starts_at" name="starts_at"  />
             </div>
             <div>
                 <label htmlFor="ends_at">ends at</label>
-                <input type="datetime-local" id="ends_at" name="ends_at" defaultValue={ends_at}/>
+                <input type="datetime-local" id="ends_at" name="ends_at" />
             </div>
             <div>
                 <label htmlFor="category_id">category id</label>

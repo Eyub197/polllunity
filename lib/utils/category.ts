@@ -104,7 +104,7 @@ export const deleteCategory = async (id:string) : Promise<any> => {
 
 export const updateFilters = async (formData: FormData) => {
     let searchParamsUrl = "/anketi"
-    const category = formData.get("category") as string
+    const category = formData.get("category") as string || "vsicki"
     const dateStatus = formData.get("status") as string
     
     const searchParams = new URLSearchParams()
