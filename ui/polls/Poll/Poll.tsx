@@ -33,15 +33,13 @@ const Poll: React.FC<PollProps> = ( {poll, user, status} ) => {
     </div> 
 
   const handlePollDates = () => {
-    if(!status && differenceInDays < 2 ) return pollComponent
-
-    if(status === "predishni" && differenceInDays >= 2){
-     return pollComponent
-    }
-
-    if(status === "vsicki") return pollComponent
+    const isCurrent = !status && differenceInDays < 2 
+    const isOld = status === "predishni" && differenceInDays >= 2 
+    const showAll = status === "vsicki"
+    
+    if(isCurrent || isOld || showAll) return pollComponent
   }  
-  
+
   return (
   <>
     {handlePollDates()}
@@ -50,57 +48,3 @@ const Poll: React.FC<PollProps> = ( {poll, user, status} ) => {
 }
 
 export default Poll
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const handlePollDate = () => {
-    //   if(differenceInDays >= 2 && status === "vsicki") {
-    //     return (
-    //     <div 
-    //     className={` ${styles._poll} ${haveStarted && styles.started} ${haveEnded && styles.closed} `}
-    //     key={poll.id}
-    //     >
-    //       <h2>{poll.title}</h2>
-    //       <h3>{poll?.categories?.name}</h3>
-    //       <p>започва: {poll.starts_at}</p>
-    //       <p>завършва: {poll.ends_at}</p>               
-    //       {handleButtons()}     
-    //     </div>  
-    //   )}
-    //   else if (differenceInDays >= 2 && status === "predishni"){
-    //   return(
-    //     <>
-    //       {
-    //         differenceInDays >= 2 && <div 
-    //         className={` ${styles._poll} ${haveStarted && styles.started} ${haveEnded && styles.closed} `}
-    //         key={poll.id}
-    //         >
-    //           <h2>{poll.title}</h2>
-    //           <h3>{poll?.categories?.name}</h3>
-    //           <p>започва: {poll.starts_at}</p>
-    //           <p>завършва: {poll.ends_at}</p>               
-    //           {handleButtons()}     
-    //         </div>
-    //       }
-    //     </>
-          
-    //     )
-    //   } 
-    // }
