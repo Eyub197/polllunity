@@ -6,17 +6,13 @@ import { createClient } from '@/lib/supabase/server'
 import { signOut } from "@/lib/auth"
 
 export default async function Home() {
-  const supabase = await createClient()
-  const { data, error } = await supabase.auth.getUser()
+  
 
   return (
-    <>
-    <form>
-    <button formAction={signOut}>signout</button>
-
-    </form>
-     <p>Hello {data.user?.email || "none"}</p>
-  </>
+    <h1>
+    Landing page 
+     
+  </h1>
 
   )
 }

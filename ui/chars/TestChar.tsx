@@ -1,6 +1,5 @@
 "use client"
 import { Id, Option } from "@/lib/types"
-import { getOptionsByFk } from "@/lib/utils/options"
 import { Bar } from "react-chartjs-2"
 import { Suspense } from "react"
 import 'chart.js/auto';

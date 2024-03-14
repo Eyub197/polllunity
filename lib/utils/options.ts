@@ -77,7 +77,7 @@ export const getOptionsByFk = async (fk:string) => {
     return options
 }
 
-export const updateOptionCount = async ( formData : FormData) => {
+export const updateOptionCount = async (formData : FormData) => {
     const supabase = await createClient()
 
     const option_text = formData.get("option_text") as string
@@ -91,6 +91,7 @@ export const updateOptionCount = async ( formData : FormData) => {
     } 
     else{
         console.log("it worked")
+        revalidatePath("/")
         redirect("/")
     }
 }

@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { getPolls } from "@/lib/utils/polls"
 import Poll from "./Poll"
-import { createServerContext } from "react"
+import { motion } from "framer-motion"
 
 interface Filter {
    filter: string,
@@ -20,10 +20,14 @@ const Polls = async ({filter, status} : Filter  ) => {
        polls = polls?.filter(poll =>  poll.category_id === filter )
          
     const pollsElement = () => {
-        return polls?.map(poll => <Poll status={status  } key={poll.id} poll={poll} user={user}/>)
+        return (
+         
+            polls?.map(poll =>  <Poll status={status} key={poll.id} poll={poll} user={user}/>)
+            
+            )
     }
     
-    return <> {polls ?  pollsElement(): <p>Няма създадени анкети</p>} </>
+    return <> {polls ?  pollsElement() : <p>Няма създадени анкети</p>} </>
 
 }
 
