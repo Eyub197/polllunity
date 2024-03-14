@@ -1,17 +1,24 @@
 "use client"
-import { Id, Option } from "@/lib/types"
+
+import { Id, Option, Poll } from "@/lib/types"
 import { Bar } from "react-chartjs-2"
 import { Suspense } from "react"
 import 'chart.js/auto';
 
-const TestChart =  ({charData}:{ charData: Option[] } ) => {
+interface CharProps { 
+    charData: Option[];
+    pollData: any; 
+}
+
+const Char =  ({charData, pollData} :CharProps ) => {
     const data = charData
+    const pollArray = pollData || []
 
     const chartData = {
         labels: data?.map(option => option.option_text),
         datasets: [
             {
-                label: "Учителка на годиниата",
+                label: pollArray.title,
                 data : data?.map(option => option.votes_count),
                 backgroundColor: "#45DFC9",
                 borderWidth: 3,
@@ -24,7 +31,7 @@ const TestChart =  ({charData}:{ charData: Option[] } ) => {
 
     return (
         <div>
-            <h1>Test</h1>
+            <h1>{pollArray.title}</h1>
             <Suspense fallback={<p>Loading data...</p>}>
                 <Bar data={chartData}/>
             </Suspense>
@@ -33,4 +40,4 @@ const TestChart =  ({charData}:{ charData: Option[] } ) => {
 
 }
 
-export default TestChart
+export default Char 

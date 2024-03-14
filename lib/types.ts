@@ -29,7 +29,7 @@ export interface PollProps {
     ends_at: string;
     categories: Category
   };
-  status:string
+  status:string 
   // have_voted: boolean | null;
   user: { id: string } | null;
 }
