@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 import { createClient } from "../supabase/server"
+import { redirect } from "next/navigation"
 
 export const  handleUserVote = async( userId:string, pollId:string ) => {
     const supabase = await createClient()
@@ -18,8 +19,8 @@ export const  handleUserVote = async( userId:string, pollId:string ) => {
     if(error){
         console.error(`Error updating vote: ${error}`)
     }
-    revalidatePath("/anketi", "page")
 
+    revalidatePath("/anketi", "page")
 }
 
 

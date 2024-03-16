@@ -1,7 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import { getPolls } from "@/lib/utils/polls"
 import Poll from "./Poll"
-import { motion } from "framer-motion"
 
 interface Filter {
    filter: string,
