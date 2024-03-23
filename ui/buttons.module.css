@@ -6,13 +6,13 @@
 
 .edit_button{
     background-color: var(--accent-color-light);
-    padding: 0.1em 1.2em ;
+    padding: 0em 1.2em ;
     border-radius: 5pt;
 }
 
 .delete_button{
     border-radius: 5pt;
-    padding: 0.1em 1.2em ;
+    padding: 0em 1.2em ;
     font-size: 1rem;
     background-color: var(--error-color);   
 }

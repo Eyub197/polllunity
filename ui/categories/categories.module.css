@@ -77,3 +77,9 @@
     justify-content: space-around;
     gap: 1em;
 }
+
+@media (min-width: 680px) {
+    .categories_container{
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
