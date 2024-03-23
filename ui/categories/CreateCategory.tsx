@@ -14,8 +14,10 @@ const CreateCategory = async () => {
             <div className={styles.container} key={category.id}>
                 <h1>Име: {category.name}</h1>
                 <p>Описание: {category.description || "няма описание"}</p>
-                <EditCategoryButton id={category.id}/>
-                <DeleteCategoryButton id={category.id}/>
+                <section className={styles.actions_container}>
+                    <EditCategoryButton id={category.id}/>
+                    <DeleteCategoryButton id={category.id}/>
+                </section>
             </div>
 
         ))}

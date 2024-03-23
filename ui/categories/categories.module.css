@@ -65,3 +65,8 @@
     font-size: 1rem;
     background-color: var(--accent-color-light);
 }
+
+.actions_container{
+    display: flex ;
+    justify-content: space-around;
+}

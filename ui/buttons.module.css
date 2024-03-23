@@ -1,4 +1,4 @@
-.edit_button{
+.edit_button, .delete_button{
     display: flex;
     align-items: center;
     gap: .2em;

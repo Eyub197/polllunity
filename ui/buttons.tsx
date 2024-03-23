@@ -23,8 +23,9 @@ export const DeleteCategoryButton = ({ id }: { id: string }) => {
     const deleteCategoryWithId = deleteCategory.bind(null, id)
 
     return(
-        <form action={deleteCategoryWithId}>
-            <button type="submit">
+        <form className={styles.delete_button} action={deleteCategoryWithId}>
+            <button className={styles.delete_button} type="submit">
+                <p>изтрий</p>
                 <IoCloseCircle/>
             </button> 
         </form>
