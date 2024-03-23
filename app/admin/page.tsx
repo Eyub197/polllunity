@@ -1,20 +1,18 @@
-import { createClient } from "@/lib/supabase/server"
-import { redirect } from "next/navigation"
+import Image from "next/image";
+import styles from "./page.module.css";
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+import { signOut } from "@/lib/auth"
 
-const AdminPage = async () => {
+export default async function Home() {
+  
 
-    const supabase = await createClient()
+  return (
+    <h1>
+    Landing page 
+     
+  </h1>
 
-    const { data:user, error } = await supabase.from("user").select("role").single()
-
-    if (user?.role !== "admin") {
-        console.log(user)
-        redirect("/")
-    }
-
-    return(
-        <h1>Admins only</h1>
-    )
+  )
 }
-
-export default AdminPage
