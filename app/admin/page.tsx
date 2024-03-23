@@ -1,18 +1,20 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
-import { signOut } from "@/lib/auth"
+import { getCurrentUserRole } from "@/lib/utils/user"
+import AdminHomePage from "@/ui/admin/AdminHomePage"
+import { redirect } from "next/navigation"
 
-export default async function Home() {
-  
 
-  return (
-    <h1>
-    Landing page 
-     
-  </h1>
+const AdminPage = async () => {
+    const currentUserRole = await getCurrentUserRole()    
+    
+    if(currentUserRole !== "admin") {
+        redirect('/')
+    }
 
-  )
-}
+    return <AdminHomePage />
+    }
+
+export default AdminPage
+    
+
+
+
