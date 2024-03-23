@@ -12,8 +12,8 @@ const CreateCategory = async () => {
         return( categories?.map(category =>
 
             <div className={styles.container} key={category.id}>
-                <h2>Име: {category.name}</h2>
-                <p>Описание: {category.description || "няма описание"}</p>
+                <h2>Име: <span className={styles.normal}> {category.name}</span></h2>
+                <h3>Описание: <span className={styles.normal}> {category.description || "няма описание"}</span></h3>
                 <section className={styles.actions_container}>
                     <EditCategoryButton id={category.id}/>
                     <DeleteCategoryButton id={category.id}/>
@@ -49,7 +49,7 @@ const CreateCategory = async () => {
                     </div>
                     <button className={styles.btn} type="submit">Създай</button>
                 </form>
-                    <h2 className={styles.title_2}>Вичкин категории</h2>                    
+                    <h2 className={styles.title_2}>Висички категории</h2>                    
                 <section className={styles.categories_container}>
     
                     {createCategoriesElements() || <p>Няма създадени категории</p>}

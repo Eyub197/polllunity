@@ -16,11 +16,17 @@
     border-radius: 10pt;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.normal{
+    font-weight: normal;
 }
 
 .main{
     padding: 1em 2em;
 }
+
 .categories_container{
     margin-top: 1em;
     display: grid;
@@ -69,4 +75,5 @@
 .actions_container{
     display: flex ;
     justify-content: space-around;
+    gap: 1em;
 }
