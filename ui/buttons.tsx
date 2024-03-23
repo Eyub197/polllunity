@@ -1,7 +1,8 @@
+import Link from "next/link";
+import styles from "@/ui/buttons.module.css"
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { IoCloseCircle } from "react-icons/io5";
 import { deleteCategory } from "@/lib/utils/category";
-import Link from "next/link";
 import { deletePoll } from "@/lib/utils/polls";
 import { deleteOption } from "@/lib/utils/options";
 import { Id } from "@/lib/types";
@@ -11,7 +12,8 @@ import { Id } from "@/lib/types";
 export const EditCategoryButton = ({ id }: { id: string }) : JSX.Element => {
 
 return(
-    <Link href={`/admin/categories/${id}/edit`}  >
+    <Link className={styles.edit_button} href={`/admin/categories/${id}/edit`}  >
+        <p>Редактирай</p>
         <HiOutlinePencilAlt/>
     </Link>
 )}
@@ -90,3 +92,29 @@ export const CheckResults = ({id}: Id) => {
     </Link>
     )
 }
+
+
+export const SubmitRegisterFormButton = (action:any, state:any) => {
+    return (
+    <button formAction={action} aria-disabled={state}> 
+        {state ? "Регистирирай се": "....   "}            
+    </button>)
+}
+
+
+//** Admin link */
+// export const AdminPage = async (isActive: PropsAdmin) => {
+//     const currentUserRole = await getCurrentUserRole()
+
+//     if(currentUserRole === "admin") {
+//         return(
+//             <Link 
+//                 href="/admin"
+//                 className={`${styles.admin_link}  ${isActive && styles.admin_link_active}`}
+//                 >
+//                 Админ        
+//             </Link>
+//         )
+//     }
+
+// }

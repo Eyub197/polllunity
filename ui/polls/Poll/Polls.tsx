@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { getPolls } from "@/lib/utils/polls"
 import Poll from "./Poll"
+import { Suspense } from "react"
 
 interface Filter {
    filter: string,
@@ -26,7 +27,7 @@ const Polls = async ({filter, status} : Filter  ) => {
             )
     }
     
-    return <> {polls ?  pollsElement() : <p>Няма създадени анкети</p>} </>
+    return <Suspense fallback={<p>Loading...</p>}> {polls ?  pollsElement() : <p>Няма създадени анкети</p>} </Suspense>
 
 }
 

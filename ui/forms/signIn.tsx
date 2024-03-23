@@ -1,32 +1,81 @@
-import { signIn } from "@/lib/auth"; 
+"use client"
+
 import styles from "@/ui/forms/signIn.module.css"
+import { signIn } from "@/lib/auth"
+import { useFormState} from "react-dom"
+import { LoginButton } from "@/ui/ClientButtons"
+import Image from "next/image"
+import frame from '@/public/frame.png'
+import frame_2 from '@/public/frame-img.png'
+import { Suspense } from "react"
+import Link from "next/link"
 
 const SignInForm = () : JSX.Element => {
+    const [errorMessage, dispatch] = useFormState(signIn, undefined)
+    const checkEmail = () =>  errorMessage?.message.includes("email")
+    const checkPassword = () => errorMessage?.message.includes("парола")
 
-    return(
-    
+    return (
+        <Suspense fallback={<p>Loading...</p>}>
+
+
+
     <main className={styles.main}>
-        <form className={styles.form_styles} action="">
-            <p className={styles.text}>Добре дошли! Влезте в акаунта си</p>
+
+        <section className={styles.frame_container}>
+            <Image
+            alt="A frame with a text yes vote"
+            src={frame_2}
+            className={styles.frame_mobile}
+            />
+            <Image
+            alt="A frame with a text yes vote"
+            src={frame}
+            className={styles.frame_larger}
+
+            />
+            
+        </section>
+
+
+        <form className={styles.form_styles} action={dispatch}>
+            <section className={styles.text_container}>
+                <h1 className={styles.text}>Добре дошли! Влезте в акаунта си</h1>
+            </section>
 
             <div className={styles.email}>
-                <label className={styles.bold} htmlFor="email">email</label>
-                <input className={styles.input_style} name="email"  type="text" id="email" />
+                <label className={styles.bold} htmlFor="email">Email</label>
+                <input 
+                className={`${styles.input_style} ${checkEmail() && styles.input_error} `}
+                name="email"
+                type="text" 
+                id="email"
+                />
+                {checkEmail() && <div className={styles.error_container}> <p className={styles.error_message}>{errorMessage.message}</p> </div> }
             </div>
                           
             <div className={styles.password}>
-                <label className={styles.bold}  htmlFor="password">password</label>
-                <input className={styles.input_style} name="password"  type="text" id="password" />
+                <label className={styles.bold} htmlFor="password">Парола</label>
+                <input 
+                className={`${styles.input_style} ${checkPassword() && styles.input_error} `}
+                name="password"
+                type="text"
+                id="password" 
+                />
+                {checkPassword() && <div className={styles.error_container}> <p className={styles.error_message}>{errorMessage.message}</p> </div> }
+
             </div>
 
             <p className={styles.google}>Google</p>
             <p className={styles.apple}>Apple</p>
                         
-            <button formAction={signIn} className={styles.submit}>Submit</button>
+            <LoginButton/>
+
+            <p className={styles.register}>Нямате акаунт? <Link className={styles.register_link} href={"/register"}>Регистрирайте се</Link></p>
         </form>
     </main>
-    
 
+                </Suspense>
     )
     
 }

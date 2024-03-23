@@ -1,6 +1,6 @@
 "use client"
 
-import { Id, Option, Poll } from "@/lib/types"
+import { Option} from "@/lib/types"
 import { Bar } from "react-chartjs-2"
 import { Suspense } from "react"
 import 'chart.js/auto';

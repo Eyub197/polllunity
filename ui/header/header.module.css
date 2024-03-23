@@ -2,11 +2,7 @@
     color: var(--text-color);
     letter-spacing: 2px;
     transition: color 0.25s ease;
-    font-size: 0.75rem;
-}
-
-.link:hover, .link:focus {
-    color: var(--accent-color);
+    position: relative;
 }
 
 .register, .login{
@@ -27,8 +23,9 @@
 }
 
 .active{
-    color: #FEFBD8;
-    border-bottom: 3px solid #FEFBD8;
+    /* color: #FEFBD8; */
+    color: var(--text-color);
+    /* border-bottom: 5px solid #FEFBD8; */
 }
 
 .header, .nav_links_container, .nav{
@@ -45,6 +42,8 @@
 
 .header{
     padding: 1em 0.5em ;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
 }
 
 .menu {
@@ -53,7 +52,7 @@
     background-color: inherit;
     cursor: pointer;
     color:var(--text-color);
-    z-index: 1;
+    z-index: 2;
 }
 
 .nav{    
@@ -72,7 +71,7 @@
     transition: transform 0.5s ease;
     transform: translateX(0%);
     gap:3.125em;
-    z-index: 1;
+    z-index: 2;
 }
 
 .nav_open {
@@ -90,14 +89,62 @@
     gap: 2em;
 }
 
-@media (min-width:700px) {
+.link:hover::before, .link.active::before{
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: #FEFBD8;
+    animation: line 350ms ease 1 forwards;
+    opacity: 0.9;
+    z-index: -2;
+}
+
+.admin_link{
+    font-size: 1rem;
+}
+
+.admin_link_active{
+    font-weight: 900;
+}
+
+@media (min-width:768px) {
     .header{
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     }
     .link{
         font-size: 1rem;
-        font-weight: normal;
+       font-weight: normal;
     }
+
+    .link:hover{
+        font-weight: bold;
+    } 
+    
+    .active{
+        font-weight: bold;
+    }
+
+    .link:hover::before, .link.active::before{
+        content: "";
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background-color: red;
+        animation: line 350ms ease 1 forwards;
+        opacity: 0.4;
+        z-index: -1;
+
+    }
+
+/* 
+    .link:hover, .active{
+        border-bottom: 3.5px solid var(--accent-color);
+    } */
 
     .register, .login{
         padding: .7em 1.7em;
@@ -105,7 +152,7 @@
 
     .register{
         white-space: nowrap; 
-         margin-bottom: 0;
+        margin-bottom: 0;
     }
 
     .login {
@@ -113,8 +160,7 @@
     }
 
     .active{
-        color:unset;
-        border-bottom: 3px solid var(--accent-color);
+        color: var(--text-color);
     }
 
     .menu{
@@ -151,3 +197,7 @@
 }
 
 
+@keyframes line {
+    from{width: 0%; }
+    to{width: 100%; }
+}

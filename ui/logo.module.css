@@ -1,9 +1,10 @@
-.logo_container{
+    .logo_container{
     display: flex;
     align-items: center;  
 }
 
-.logo{ 
+.logo{
+    object-fit: cover; 
     animation: logo_rotate 40s infinite ease;
     transform:  rotate(0deg);
 }

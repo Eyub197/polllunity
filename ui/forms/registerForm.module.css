@@ -1,5 +1,6 @@
-.form_container, .inputs_container, .social {
+.inputs_container, .social {
     display: flex;
+    overflow: hidden;
 }
 
 .form_image, .input_style {
@@ -7,19 +8,25 @@
 }
 
 .form_container {
+    margin-top: 0.14em;
     flex-direction: column;
-    min-height: 100dvh;
-    min-height: 100vh;
-    background-color: var(--background-color);
+    min-height: 85dvh;
+    min-height: 85vh;
+    /* background-color: var(--background-color); */
     overflow: hidden;
+    display:  grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+        "image image"
+        "form form";
 }
 
 .inputs_container{
-    flex: 1 1 50%;
     flex-direction: column;
     padding: 0.5em;
     background-color: var(--secondary-color-light); 
     min-height: 50dvh;
+    grid-area: form;
 }
 
 .social{
@@ -29,8 +36,8 @@
 .form_image{
     display: block;
     height: 50vh;
-    flex: 1 1 50%;
     object-fit: cover;
+    grid-area: image;
 }
 
 .logo{
@@ -38,15 +45,30 @@
 }
 
 .email, .password{
+    position: relative;
     margin-bottom: 2em;
 }
 
 .input_style{
    margin-top: 0.4em;
-   padding: 0.7em;
+   padding: 1.2em;
+}
+
+.input_error {
+    border: 3.5px solid #FFB3B3;
+}
+
+.error_message{
+    background-color: #FFB3B3;
+    margin-top: 0em;
+    margin-left: 0.2em;
+    padding: 0.2rem;
+    display: inline-block;
+    font-size: 1rem;
 }
 
 .submit{
+    font-size: 1rem;
     margin-top: 2em;
     padding: 0.7em 2em;
     background-color: var(--secondary-color);
@@ -61,18 +83,47 @@
 }
 
 .bold{
+    letter-spacing: 1px;
     font-weight: bold;
 }
 
-@media (min-width: 600px) {
+.eye_open{
+    position: absolute;
+    cursor: pointer;
+    top: 41px;
+    right: 7px;
+    border: none;
+    background-color: inherit;
+    font-size: 1.1rem;
+}
+
+.text, .signIn{
+    text-align: center;
+}
+
+.signIn_link{
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+
+
+    .form_container{
+        grid-template-areas: 
+            "image form";
+        background-color: var(--accent-color );
+        min-height: 87.7dvh;
+        min-height: 87.7vh;
+        overflow: hidden;
+    }
 
     .form_container, .inputs_container{
         justify-content: center;
     }
 
     .inputs_container, .form_image{
-        min-height: 90dvh;
-        min-height: 90vh;
+        min-height: 80dvh;
+        min-height: 80vh;
     }
 
     .form_container{
@@ -81,18 +132,23 @@
         padding: 2em;
     }   
 
-    .inputs_container{
-     
+    .inputs_container{     
         padding: 1em;
-        border-radius: 0 5pt 5pt 0;
+        border-radius: 0 10pt 10pt 0;
         height: unset;
-        flex: 1 1 200%;
+        border-bottom: 5px solid black;
+        border-top: 5px solid black;
+        border-right: 5px solid black;
     }
 
     .form_image{
         height: unset;
         max-height: 90vh;
-        border-radius: 5pt 0 0 5pt;
+        border-radius: 10pt 0 0 10pt;
+        border-left:5px solid black ;
+        border-bottom: 5px solid black;
+        border-top: 5px solid black;
+  
     }
 
     .email {
@@ -106,15 +162,9 @@
     .submit{
         text-align: center;
         align-self: center;
-        padding: 1.5em 4.5em;
+        padding: 1em 4.5em;
         margin-bottom: 2em;
     }
-
-
-    .inputs_container{
-        flex:  1 1 80%;
-    }
-
 }
 
 @media (min-width: 1300px) {
@@ -131,3 +181,6 @@
 }
 
 
+@media (min-height: 1000px) {
+    .form_container { background-color: red;}
+}
