@@ -29,7 +29,7 @@ export const DeleteCategoryButton = ({ id }: { id: string }) => {
                 <IoCloseCircle/>
             </button> 
         </form>
-)}
+    )}
 
 // ** ===Poll===
 
