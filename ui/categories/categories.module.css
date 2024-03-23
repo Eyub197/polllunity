@@ -53,12 +53,13 @@
     margin-bottom: 1em;
 }
 
-.form{
+.form, ._form{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;    
 }   
+    
 
 .desc{
     margin-bottom: 1em;

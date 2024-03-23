@@ -1,3 +1,4 @@
+
 export interface AuthData {
     email : string,
     password: string
@@ -8,6 +9,12 @@ export interface NavProps {
   currentUserRole: string; 
   children: React.ReactNode; 
 }
+
+export interface UpdateCategoryProps {
+  id: string,
+  name: string,
+  description: string | null
+} 
 
 export interface PollBadgeParams {
   starts: Date,
