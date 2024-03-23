@@ -2,15 +2,26 @@
     display: flex;
     align-items: center;
     gap: .2em;
-    padding: 0em 1.2em ;
+    padding-inline:  1.2em ;
     border-radius: 5pt;
 }
 
 .edit_button{
+    transition: background-color 250ms ease ;
     background-color: var(--accent-color-light);
 }
 
 .delete_button{
+    transition: opacity 250ms ease;
     font-size: 1rem;
     background-color: var(--error-color);   
+}
+
+.edit_button:hover{
+    padding-inline:  1.2em ;
+    background-color: var(--accent-color);
+}
+
+.delete_button:hover {
+    opacity: 0.8;
 }
