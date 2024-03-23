@@ -9,6 +9,7 @@
     --accent-color-dark: #FF9D1B;
     --background-color: #F8F9FA;
     --text-color: #343A40;
+    --error-color: #FFB3B3
 }
 
 *{ box-sizing: border-box; }
