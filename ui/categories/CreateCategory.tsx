@@ -12,7 +12,7 @@ const CreateCategory = async () => {
         return( categories?.map(category =>
 
             <div className={styles.container} key={category.id}>
-                <h1>Име: {category.name}</h1>
+                <h2>Име: {category.name}</h2>
                 <p>Описание: {category.description || "няма описание"}</p>
                 <section className={styles.actions_container}>
                     <EditCategoryButton id={category.id}/>
