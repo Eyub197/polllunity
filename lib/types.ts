@@ -4,6 +4,11 @@ export interface AuthData {
 }
 export type actions = "signIn" | "signUp" | "signOut" 
 
+export interface NavProps {
+  currentUserRole: string; 
+  children: React.ReactNode; 
+}
+
 export interface PollBadgeParams {
   starts: Date,
   ends:Date,
@@ -45,11 +50,9 @@ export type Id = {
   id: string
 }
 
-export type Option = {
-  id: string;
-  option_text: string;
-  poll_id: string;
-  votes_count: number | null;
+export interface Option  {
+  id: string; 
+  option_text: string; poll_id: string; votes_count: number | null; 
 }
 
 

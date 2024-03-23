@@ -3,62 +3,122 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { AuthData, actions } from './types' 
+import { AuthData } from './types' 
 
-const performAuthAction = async ( action : actions, formData: FormData) => {
-
+export const signIn = async (previousState: any, formData: FormData) => {
   const supabase = await createClient()
 
   const userData : AuthData = {
     email: formData.get("email") as string,
-    password: formData.get("password") as string
+    password:formData.get("password") as string
   }
 
-  let error, user
-
-  switch (action) {
-    case "signIn":
-      ({ error } = await supabase.auth.signInWithPassword(userData))
-      if(error){
-        return error.message
-      }
-      break
+  
+  const {email, password} = userData
+  console.log(password)
+  try {
+    const {error} = await supabase.auth.signInWithPassword(userData)
+    const { data: {user} } = await supabase.auth.getUser()
+    console.log(user?.email)
+    if (error) throw error
+  } catch (error : any) {
+    console.error(error.message)
     
-    case "signUp":
-       ({ error } = await supabase.auth.signUp(userData))
-       if(error){
-        return error.message
-      }
-      break 
+    
+    if(email.length < 1){
+      return {message: "Моля, въведете email", status: 400}       
+    }
+    
+    if(password.length < 1) {
+      console.error("no password")
+      return {message: "Моля, въведете парола", status: 400} 
+    }
+    
+    if(error.message === "Invalid login credentials" && password.length > 0 && email.length > 0){
+      return {message: "Невалидни email или парола", status: 400} 
+    }
 
-    case "signOut":
-        ({error} = await supabase.auth.signOut())
-        if(error){
-          return error.message
-        }
-      break
+    return error.message
+    
+  }
+  
+  revalidatePath("/", "layout")
+  redirect("/")
+}
 
-    default:
-      throw new Error('Invalid action type')
 
-      
+export const signUp = async (previousState: any, formData: FormData) => {
+  const supabase = await createClient()
+  
+  const userData : AuthData = {
+    email:  formData.get("email") as string,
+    password: formData.get("password") as string
+  }
+  // const saltRounds = 10; 
+  // const passwordHash = await bcrypt.hash(userData.password, saltRounds);
+
+  // const saveUserData = {...userData, password: passwordHash}
+  
+  try {
+    const {error} = await supabase.auth.signUp(userData)
+    
+    if (error) throw error
+  } catch (error : any) {
+    console.error(error.message, error.status)
+    
+    if(error.message === "Signup requires a valid password" && error.status === 422) {
+      return {message: "Моля, въведете парола", status: 422}
+    }
+    if(error.message === "To signup, please provide your email" && error.status === 422){
+      return {message : "Моля, въведете email адрес", status : 422}
+    }
+    if(error.message === "Password should be at least 6 characters." && error.status === 422){
+      return {message: "Въведената парола трябва да е поне 6 символа дълга", status: 422}
+    }
+    if(error.message === "User already registered" && error.status === 400 ){
+      return {message: "Вече има потребител с този email адрес"}
+    }
+  }
+
+  revalidatePath("/", "layout")
+  redirect("/")
+
+}
+
+
+export const signOut = async () => {
+  const supabase = await createClient()
+  try {
+    const { error } = await supabase.auth.signOut()
+    if (error) throw error
+  } catch (error) {
+    if (typeof error === "object" && error !== null && 'message' in error) {
+      console.error((error as { message: string }).message);
+      return (error as { message: string }).message;
+    } else {
+      console.error('An unknown error occurred during sign out.');
+      return 'An unknown error occurred.';
+    }
   }
 
   revalidatePath("/", "layout")
   redirect("/")
 }
 
-export const signIn = async (formData: FormData) => {
-   await performAuthAction("signIn", formData)
-} 
-export const signUp = async (formData: FormData) => {
-   await performAuthAction("signUp", formData)
-}
-
-export const signOut = async () => await performAuthAction("signOut", new FormData)
-
-export const logWthGoogle = async () => {
+export const logInWithGoogle = async () => {
   const supabase = await createClient()
-  const { error } = await supabase.auth.signInWithOAuth({provider: "google"})
+  try {
+    const { error } = await supabase.auth.signInWithOAuth({provider: "google"})
+    if (error) throw error
+  } catch (error) {
+    if (typeof error === "object" && error !== null && 'message' in error) {
+      console.error((error as { message: string }).message);
+      return (error as { message: string }).message;
+    } else {
+      console.error('An unknown error occurred during login with Google.');
+      return 'An unknown error occurred.';
+    }
+  }
+
   revalidatePath("/", "layout")
-} 
+}

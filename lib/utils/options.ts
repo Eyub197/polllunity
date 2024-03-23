@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { handleUserVote } from "./userVote"
+import { Option } from "../types"
 
 
 export const createOption = async (formData:FormData) : Promise<void> => {
@@ -67,15 +68,15 @@ export const getOptionById = async (id:string) => {
     return options
 }
 
-export const getOptionsByFk = async (fk:string) => {
-    const supabase = await createClient()
-    const { data: options, error } = await supabase
-    .from("options")
-    .select("*")
-    .eq("poll_id", fk)
+    export const getOptionsByFk = async (fk:string) : Promise<Option[] | null>  => {
+        const supabase = await createClient()
+        const { data: options, error } = await supabase
+        .from("options")
+        .select("*")
+        .eq("poll_id", fk)
 
-    return options
-}
+        return options
+    }
 
 export const updateOptionCount = async (id :string, formData : FormData) => {
     const supabase = await createClient()
