@@ -7,12 +7,29 @@ import stylesRegister from "@/ui/forms/registerForm.module.css"
 import stylesSignIn from "@/ui/forms/signIn.module.css" 
 import { deleteCategory } from "@/lib/utils/category"
 import { IoCloseCircle } from "react-icons/io5"
+import buttonStyles from "@/ui/ClientButtons.module.css"
 
 export const VoteButton = ({userId, pollId} : any) => {
     return(
         <button onClick={()=> handleUserVote(userId, pollId)}>
             action
         </button>
+    )
+}
+
+export interface ButtonProps {
+    action: string,
+    inAction: string,
+    className: string
+}
+
+export const Button = ({action, inAction, className}: ButtonProps) => {
+    const { pending } = useFormStatus()
+    
+    return (
+    <button aria-disabled={pending}  className={buttonStyles[className]}>
+        {pending ? `${inAction}` : `${action}`}
+    </button>
     )
 }
 
@@ -26,11 +43,11 @@ export const RegisterButton = () => {
     )
 }
 
-export const LoginButton = () => {      
+export const LoginButton = ({className} : {className:String}) => {      
     const { pending } = useFormStatus()
     
     return (
-    <button aria-disabled={pending}  className={stylesSignIn.submit}>
+    <button aria-disabled={pending} className={`${stylesSignIn.submit}` }>
         {pending ? "Влизате... " : "Влез"}
     </button>
     )
@@ -41,7 +58,7 @@ export const DeleteCategoryButton = ({ id }: { id: string }) => {
     
     return(
         <form className={styles.delete_button} action={deleteCategoryWithId}>
-        <DeleteButton/>
+            <DeleteButton/>
         </form>
     )
 }

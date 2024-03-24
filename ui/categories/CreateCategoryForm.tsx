@@ -3,6 +3,7 @@
 import { createCategory } from "@/lib/utils/category"
 import { useFormState, useFormStatus } from "react-dom"
 import styles from "@/ui/categories/Categories.module.css"
+import { Button } from "../ClientButtons"
 
 const CreateCategoryForm = () => {
     const [errorMessage, dispatch] = useFormState(createCategory, undefined)
@@ -28,14 +29,10 @@ const CreateCategoryForm = () => {
                 className={styles.input}
                 />
             </div>
-            <CreateButton/>
+           <Button className="btn_category" action="създай" inAction="създава се..."/>
         </form>
     )
 }
 
 export default CreateCategoryForm
 
-function CreateButton() {
-    const { pending } = useFormStatus()
-    return <button className={styles.btn} type="submit">{pending ? "Създава се..." : "Създай"}</button>
-} 

@@ -39,12 +39,13 @@ a{
 
 button, input {
     font-family: inherit;
-    border-radius: 4pt;
+    border-radius: 5pt;
     cursor: pointer;
     border: none;
 }
 
 button{
+    font-size: 1rem;
     border: none;
     background-color: none;
     transition: opacity 250ms ease;

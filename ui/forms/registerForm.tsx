@@ -3,7 +3,7 @@
 import styles from "@/ui/forms/registerForm.module.css"
 import { useFormState} from 'react-dom';
 import { signUp, logInWithGoogle } from "@/lib/auth"
-import { RegisterButton } from "@/ui/ClientButtons";
+import { Button, RegisterButton } from "@/ui/ClientButtons";
 import { Suspense, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Image from "next/image"
@@ -37,7 +37,6 @@ const RegisterForm = () => {
                     type="text" 
                     id="email"  
                     placeholder="email@gmail.com"    
-                    required
                     />
                     {checkEmail() && <p className={styles.error_message}>{errorMessage?.message}</p> }
                 </div>
@@ -55,7 +54,6 @@ const RegisterForm = () => {
                     name="password"  
                     type={showPassword ? "text" : "password"}
                     id="password" 
-                    required
                     />
                     {checkPassword() && <p className={styles.error_message}> {errorMessage?.message} </p>}
                 </div>
@@ -63,7 +61,7 @@ const RegisterForm = () => {
                 <button formAction={logInWithGoogle} className={styles.google}>Google</button>
                 <p className={styles.apple}>Apple</p>
 
-                <RegisterButton/>
+                <Button className="btn_register"  action="Регистрирай се" inAction="Регистрираме те..."/>
                 <p className={styles.signIn}>Имате акаунт? <Link className={styles.signIn_link} href={"/register"}>Влезте</Link></p>
 
             </form>

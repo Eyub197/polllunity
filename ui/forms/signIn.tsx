@@ -3,7 +3,7 @@
 import styles from "@/ui/forms/signIn.module.css"
 import { signIn } from "@/lib/auth"
 import { useFormState} from "react-dom"
-import { LoginButton } from "@/ui/ClientButtons"
+import { Button, LoginButton } from "@/ui/ClientButtons"
 import Image from "next/image"
 import frame from '@/public/frame.png'
 import frame_2 from '@/public/frame-img.png'
@@ -69,13 +69,13 @@ const SignInForm = () : JSX.Element => {
             <p className={styles.google}>Google</p>
             <p className={styles.apple}>Apple</p>
                         
-            <LoginButton/>
+            <Button className={"btn_sign_in"} action="Влез" inAction="В лизате ..."/>
 
             <p className={styles.register}>Нямате акаунт? <Link className={styles.register_link} href={"/register"}>Регистрирайте се</Link></p>
         </form>
     </main>
 
-                </Suspense>
+        </Suspense>
     )
     
 }

@@ -68,7 +68,6 @@
 }
 
 .submit{
-    font-size: 1rem;
     margin-top: 2em;
     padding: 0.7em 2em;
     background-color: var(--secondary-color);
@@ -157,16 +156,6 @@
     }
 }
 
-@media (min-width: 960px) {
-
-    .submit{
-        text-align: center;
-        align-self: center;
-        padding: 1em 4.5em;
-        margin-bottom: 2em;
-    }
-}
-
 @media (min-width: 1300px) {
 
       .form_container{
@@ -179,7 +168,6 @@
     }
 
 }
-
 
 @media (min-height: 1000px) {
     .form_container { background-color: red;}
