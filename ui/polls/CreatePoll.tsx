@@ -2,6 +2,7 @@ import { createPoll } from "@/lib/utils/polls"
 import { getPolls } from "@/lib/utils/polls"
 import { DeletePollButton, EditPollButton } from "../buttons"
 import styles from "@/ui/categories/Categories.module.css"
+import ImagePicker from "../components/ImagePicker"
 
 const CreatePoll = async () => {
     
@@ -35,7 +36,6 @@ const CreatePoll = async () => {
                 name="title"
                 className={`${styles.input} ${false && `${styles.input_error}`  }`}
                 />
-                
             </div>
             <div className={styles.starts_at}>
                 <label className={styles.label} htmlFor="starts_at">Започва</label>
@@ -64,6 +64,7 @@ const CreatePoll = async () => {
                 className={`${styles.input} `}
                 />
             </div>
+           <ImagePicker name="image" label="ime"/>
             <div className={`${styles.desc} ${styles.desc_poll}`}>
                 <label className={styles.label} htmlFor="description">описание</label>
                 <textarea

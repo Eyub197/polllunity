@@ -12,6 +12,7 @@ export const createPoll = async (formData:FormData) : Promise<void> => {
         title : formData.get("title") as string,
         starts_at: formData.get("starts_at") as string,
         ends_at: formData.get("ends_at") as string,
+        image: formData.get("image") as string,
         category_id: formData.get("category_id") as string,
         description : formData.get("description") as string,
     }

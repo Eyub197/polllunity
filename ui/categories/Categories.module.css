@@ -103,7 +103,7 @@
 
 @media (min-width: 680px) {
     .categories_container{
-        grid-template-columns: repeat(auto-fit, minmax(0px, auto));
+        grid-template-columns: repeat(auto-fit, minmax(330px, auto));
     }
 }
 
@@ -115,15 +115,16 @@
     grid-template-areas: 
         "title category_id"
         "starts ends"
-        "description description"
+        "description image"
         "button .";
-    border: 10px solid black;
+    gap: 1em;
+    padding: 1em;
 }
 
 .name_poll { 
     grid-area: title;
 }
-.category_id { justify-self: start; grid-area: category_id; }
+.category_id { grid-area: category_id; }
 .starts_at { grid-area: starts; }
 .ends_at { grid-area: ends; }
 .desc_poll { grid-area: description; }
