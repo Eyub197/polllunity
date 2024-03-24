@@ -3,11 +3,10 @@
 import styles from "@/ui/buttons.module.css"
 import { handleUserVote } from "@/lib/utils/userVote"
 import { useFormStatus } from "react-dom"
-import stylesRegister from "@/ui/forms/registerForm.module.css"
-import stylesSignIn from "@/ui/forms/signIn.module.css" 
 import { deleteCategory } from "@/lib/utils/category"
 import { IoCloseCircle } from "react-icons/io5"
 import buttonStyles from "@/ui/ClientButtons.module.css"
+import { ButtonProps } from "@/lib/types"
 
 export const VoteButton = ({userId, pollId} : any) => {
     return(
@@ -15,12 +14,6 @@ export const VoteButton = ({userId, pollId} : any) => {
             action
         </button>
     )
-}
-
-export interface ButtonProps {
-    action: string,
-    inAction: string,
-    className: string
 }
 
 export const Button = ({action, inAction, className}: ButtonProps) => {

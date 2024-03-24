@@ -1,9 +1,14 @@
-
 export interface AuthData {
     email : string,
     password: string
 }
-export type actions = "signIn" | "signUp" | "signOut" 
+
+
+export interface ButtonProps {
+  action: string,
+  inAction: string,
+  className: string
+}
 
 export interface NavProps {
   currentUserRole: string; 
