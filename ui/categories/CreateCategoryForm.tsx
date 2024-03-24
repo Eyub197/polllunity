@@ -1,8 +1,8 @@
 "use client"
 
 import { createCategory } from "@/lib/utils/category"
-import { useFormState } from "react-dom"
-import styles from "@/ui/categories/categories.module.css"
+import { useFormState, useFormStatus } from "react-dom"
+import styles from "@/ui/categories/Categories.module.css"
 
 const CreateCategoryForm = () => {
     const [errorMessage, dispatch] = useFormState(createCategory, undefined)
@@ -28,9 +28,14 @@ const CreateCategoryForm = () => {
                 className={styles.input}
                 />
             </div>
-            <button className={styles.btn} type="submit">Създай</button>
+            <CreateButton/>
         </form>
     )
 }
 
 export default CreateCategoryForm
+
+function CreateButton() {
+    const { pending } = useFormStatus()
+    return <button className={styles.btn} type="submit">{pending ? "Създава се..." : "Създай"}</button>
+} 
