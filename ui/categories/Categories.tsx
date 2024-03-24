@@ -1,6 +1,6 @@
-import { createCategory, getCategories } from "@/lib/utils/category"
+import {  getCategories } from "@/lib/utils/category"
 import { EditCategoryButton} from "../buttons"
-import styles from "@/ui/categories/categories.module.css"
+import styles from "@/ui/categories/Categories.module.css"
 import { DeleteCategoryButton } from "../ClientButtons"
 import CreateCategoryForm from "./CreateCategoryForm"
 

@@ -3,7 +3,7 @@
 import { createCategory } from "@/lib/utils/category"
 import { useFormState } from "react-dom"
 import styles from "@/ui/categories/categories.module.css"
-import formStyles from "@/ui/forms/registerForm.module.css"
+
 const CreateCategoryForm = () => {
     const [errorMessage, dispatch] = useFormState(createCategory, undefined)
 

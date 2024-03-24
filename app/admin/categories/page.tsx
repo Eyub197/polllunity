@@ -1,4 +1,4 @@
-import CreateCategory from "@/ui/categories/CreateCategory"
+import CreateCategory from "@/ui/categories/Categories"
 
 const CategoryForm = () => <CreateCategory/>
   

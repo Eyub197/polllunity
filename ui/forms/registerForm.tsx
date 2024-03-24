@@ -1,7 +1,6 @@
 "use client"
 
 import styles from "@/ui/forms/registerForm.module.css"
-import Logo from "@/ui/logo"
 import { useFormState} from 'react-dom';
 import { signUp, logInWithGoogle } from "@/lib/auth"
 import { RegisterButton } from "@/ui/ClientButtons";
