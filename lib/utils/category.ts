@@ -4,23 +4,38 @@ import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
-export const createCategory = async (formData:FormData) : Promise<void> => {
-    const supabase =  await createClient()
-    const categoryData = {
-        name : formData.get("category_name") as string,
-        description : formData.get("description") as string
-    }
-
-    const { data, error } = await supabase
-    .from("categories")
-    .insert(categoryData)
-    console.log(categoryData)
+export const createCategory = async (previousState: any,formData:FormData) => {
     
-    if (error) {
-        throw error
-    } else {
+    
+    
+    try {        
+        const supabase =  await createClient()
+        const categoryData = {
+            name : formData.get("category_name") as string,
+            description : formData.get("description") as string
+        }
+        
+        const { name, description } = categoryData
+
+        const { data, error } = await supabase
+        .from("categories")
+        .insert(categoryData)    
+
+        if(error) throw error
+        console.log(error)      
         revalidatePath("/admin/categories")
-    }
+
+    } catch (error : any) {
+        console.log(error)
+        if(error.code === '23505') {
+            return { message: "Категорията вече съществува", status: 409 }
+        }
+        if(error.code === '23514')
+            return { message: "Моля, въведете име на кетегорията", status: 422 } 
+
+        return error.message
+    }       
+
 }
 
 export const getCategories = async () => {
@@ -44,7 +59,7 @@ export const updateCategoryById = async (identity:string, formData: FormData) : 
     .from("categories")
     .update(categoryData)
     .eq("id", identity)
-    
+    console.log(error?.message)
     revalidatePath("/admin/categories")
     redirect("/admin/categories")
 }

@@ -2,6 +2,7 @@ import { createCategory, getCategories } from "@/lib/utils/category"
 import { EditCategoryButton} from "../buttons"
 import styles from "@/ui/categories/categories.module.css"
 import { DeleteCategoryButton } from "../ClientButtons"
+import CreateCategoryForm from "./CreateCategoryForm"
 
 const CreateCategory = async () => {
     const { categories } = await getCategories()
@@ -27,28 +28,7 @@ const CreateCategory = async () => {
         <>
             <h1 className={styles.title}> Категории </h1>
             <main className={styles.main}>
-                <form className={styles.form} action={createCategory}>
-                    <div className={styles.name}>
-                        <label className={styles.label} htmlFor="name">Име</label>  
-                        <input 
-                        type="text" 
-                        name="category_name" 
-                        id="name"
-                        className={styles.input}
-                        />
-                    </div>
-                    <div className={styles.desc}>
-                        <label className={styles.label} htmlFor="description">Oписание</label>
-                        <input
-                        type="text"
-                        name="description"
-                        id="description"
-                        className={styles.input}
-                        />
-                    </div>
-                    <button className={styles.btn} type="submit">Създай</button>
-                </form>
-
+                <CreateCategoryForm/>
                 <h2 className={styles.title_2}>Висички категории</h2>     
 
                 <section className={styles.categories_container}>

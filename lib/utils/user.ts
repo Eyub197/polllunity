@@ -11,7 +11,6 @@ export const getCurrentUserRole = async () => {
         .eq("id", user?.id!)
         .single()
 
-    console.log(data?.role)
     return data?.role
 }
 
