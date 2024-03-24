@@ -3,7 +3,7 @@
 import styles from "@/ui/forms/registerForm.module.css"
 import { useFormState} from 'react-dom';
 import { signUp, logInWithGoogle } from "@/lib/auth"
-import { Button, RegisterButton } from "@/ui/ClientButtons";
+import { Button } from "@/ui/ClientButtons";
 import { Suspense, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Image from "next/image"

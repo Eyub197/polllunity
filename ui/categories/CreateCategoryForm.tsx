@@ -1,7 +1,7 @@
 "use client"
 
 import { createCategory } from "@/lib/utils/category"
-import { useFormState, useFormStatus } from "react-dom"
+import { useFormState } from "react-dom"
 import styles from "@/ui/categories/Categories.module.css"
 import { Button } from "../ClientButtons"
 
@@ -23,9 +23,10 @@ const CreateCategoryForm = () => {
             <div className={styles.desc}>
                 <label className={styles.label} htmlFor="description">Oписание</label>
                 <textarea
+                placeholder="Опционално описание..."
                 name="description"
                 id="description"
-                className={styles.input}
+                className={styles.input_description}
                 />
             </div>
            <Button className="btn_category" action="създай" inAction="създава се..."/>

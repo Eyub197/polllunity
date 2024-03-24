@@ -29,9 +29,10 @@ const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
             <div className={styles.desc}>
                 <label className={styles.label} htmlFor="description">Oписание</label>
                 <textarea
+                placeholder="Опционално описание..."    
                 name="description"
                 id="description"
-                className={styles.input}
+                className={styles.input_description}
                 defaultValue={description!}
                 />
             </div>

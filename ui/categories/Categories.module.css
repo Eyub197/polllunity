@@ -41,11 +41,17 @@
     color: var(--text-color);
 }
 
-.input{
-        padding: 1em 2em;
+.input, .input_description{
+    padding: 1em 2em;
     border: 4px solid black;
     background-color: var(--secondary-color);
     margin-bottom: 0;
+}
+
+.input_description{
+    resize: none;
+    width: 270px;
+    height: 150px;
 }
 
 .input_error{

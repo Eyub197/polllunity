@@ -37,7 +37,7 @@ a{
     color: inherit;
 }
 
-button, input {
+button, input, textarea {
     font-family: inherit;
     border-radius: 5pt;
     cursor: pointer;
