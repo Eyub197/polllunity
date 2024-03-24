@@ -33,26 +33,6 @@ export const Button = ({action, inAction, className}: ButtonProps) => {
     )
 }
 
-export const RegisterButton = () => {      
-    const { pending } = useFormStatus()
-    
-    return (
-    <button aria-disabled={pending}  className={stylesRegister.submit}>
-        {pending ? "Регистрираме те... " : " Регистрирай се"}
-    </button>
-    )
-}
-
-export const LoginButton = ({className} : {className:String}) => {      
-    const { pending } = useFormStatus()
-    
-    return (
-    <button aria-disabled={pending} className={`${stylesSignIn.submit}` }>
-        {pending ? "Влизате... " : "Влез"}
-    </button>
-    )
-}
-
 export const DeleteCategoryButton = ({ id }: { id: string }) => {
     const deleteCategoryWithId = deleteCategory.bind(null, id)
     
