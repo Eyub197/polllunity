@@ -6,17 +6,14 @@ import { redirect } from "next/navigation"
 
 export const createCategory = async (previousState: any,formData:FormData) => {
     
-    
-    
-    try {        
+    try {
+
         const supabase =  await createClient()
         const categoryData = {
             name : formData.get("category_name") as string,
             description : formData.get("description") as string
         }
         
-        const { name, description } = categoryData
-
         const { data, error } = await supabase
         .from("categories")
         .insert(categoryData)    
@@ -47,21 +44,29 @@ export const getCategories = async () => {
     return { categories, error }
 }
 
-export const updateCategoryById = async (identity:string, formData: FormData) : Promise<any> => {
-    const supabase = await createClient()
-
-    const categoryData = {
-        name : formData.get("category_name") as string,
-        description : formData.get("description") as string
+export const updateCategoryById = async (previousState: any, identity:string, formData: FormData) : Promise<any> => {
+    try{
+        const supabase = await createClient()
+    
+        const categoryData = {
+            name : formData.get("category_name") as string,
+            description : formData.get("description") as string
+        }
+    
+        const { data, error } = await supabase
+        .from("categories")
+        .update(categoryData)
+        .eq("id", identity)
+        
+        if(error) throw error
+        console.log(error)
+    } catch (error) {
+        return error
+    } 
+    finally{
+        revalidatePath("/admin/categories")
+        redirect("/admin/categories")   
     }
-
-    const {data, error} = await supabase
-    .from("categories")
-    .update(categoryData)
-    .eq("id", identity)
-    console.log(error?.message)
-    revalidatePath("/admin/categories")
-    redirect("/admin/categories")
 }
 
 export const getCategoryById = async (id:string) => {

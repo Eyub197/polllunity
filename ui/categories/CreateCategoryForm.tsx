@@ -22,8 +22,7 @@ const CreateCategoryForm = () => {
             </div>
             <div className={styles.desc}>
                 <label className={styles.label} htmlFor="description">Oписание</label>
-                <input
-                type="text"
+                <textarea
                 name="description"
                 id="description"
                 className={styles.input}

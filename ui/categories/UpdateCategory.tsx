@@ -1,4 +1,5 @@
 "use client"
+
 import { updateCategoryById } from "@/lib/utils/category"
 import { UpdateCategoryProps } from "@/lib/types"
 import styles from "@/ui/categories/Categories.module.css"
@@ -7,8 +8,8 @@ import { Button } from "../ClientButtons"
 
 const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
 
-    const updateCategory = updateCategoryById.bind(null, id)
-    const [errorMessage, dispatch] = useFormState(updateCategory, null)
+    const updateCategory = updateCategoryById.bind(id, null)
+    const [errorMessage, dispatch] = useFormState(updateCategory, id, "/amin/categories")
 
     return(
         <>
@@ -27,14 +28,14 @@ const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
             </div>
             <div className={styles.desc}>
                 <label className={styles.label} htmlFor="description">Oписание</label>
-                <input
-                type="text"
+                <textarea
                 name="description"
                 id="description"
                 className={styles.input}
                 defaultValue={description!}
                 />
             </div>
+            {errorMessage && <p>{errorMessage}</p>}
             <Button className="btn_category" action="редактирай" inAction="редактира се..." />
         </form>
         </main>

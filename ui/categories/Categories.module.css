@@ -42,8 +42,7 @@
 }
 
 .input{
-    border-radius: 5pt;
-    padding: 1em 2em;
+        padding: 1em 2em;
     border: 4px solid black;
     background-color: var(--secondary-color);
     margin-bottom: 0;
