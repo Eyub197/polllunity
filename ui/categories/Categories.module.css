@@ -46,6 +46,8 @@
     border: 4px solid black;
     background-color: var(--secondary-color);
     margin-bottom: 0;
+    width: 100% !important;
+    max-width: 400px;
 }
 
 .input_description{
@@ -101,6 +103,29 @@
 
 @media (min-width: 680px) {
     .categories_container{
-        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(0px, auto));
     }
 }
+
+/* will refactor later */
+
+.form_grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(1fr));
+    grid-template-areas: 
+        "title category_id"
+        "starts ends"
+        "description description"
+        "button .";
+    border: 10px solid black;
+}
+
+.name_poll { 
+    grid-area: title;
+}
+.category_id { justify-self: start; grid-area: category_id; }
+.starts_at { grid-area: starts; }
+.ends_at { grid-area: ends; }
+.desc_poll { grid-area: description; }
+.poll_btn { grid-area: button; }
+

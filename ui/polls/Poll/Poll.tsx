@@ -1,4 +1,5 @@
 "use client"
+
 import React from "react";
 import styles from "@/ui/polls/PoolsPage.module.css";
 import { CheckResults, ChoosePollButton } from "@/ui/buttons";

@@ -1,7 +1,7 @@
 import { createPoll } from "@/lib/utils/polls"
 import { getPolls } from "@/lib/utils/polls"
 import { DeletePollButton, EditPollButton } from "../buttons"
-
+import styles from "@/ui/categories/Categories.module.css"
 
 const CreatePoll = async () => {
     
@@ -24,32 +24,63 @@ const CreatePoll = async () => {
 
     return(
         <>
-        <form action={createPoll}>
-            <div>
-                <label htmlFor="title">title</label>
-                <input type="text" id="title" name="title" />
+        <h1 className={styles.title}>Анкети</h1>
+        <main>
+        <form className={`${styles.form} ${styles.form_grid}`} action={createPoll}>
+            <div className={`${styles.name} ${styles.name_poll}`}>
+                <label className={styles.label} htmlFor="title">Заглавие</label>
+                <input 
+                type="text"
+                id="title"
+                name="title"
+                className={`${styles.input} ${false && `${styles.input_error}`  }`}
+                />
+                
             </div>
-            <div>
-                <label htmlFor="starts_at">starts at</label>
-                <input type="datetime-local" id="starts_at" name="starts_at" />
+            <div className={styles.starts_at}>
+                <label className={styles.label} htmlFor="starts_at">Започва</label>
+                <input 
+                type="datetime-local"
+                id="starts_at"
+                name="starts_at"
+                className={`${styles.input} `}
+                />
             </div>
-            <div>
-                <label htmlFor="ends_at">ends at</label>
-                <input type="datetime-local" id="ends_at" name="ends_at" />
+            <div className={styles.ends_at}>
+                <label className={styles.label} htmlFor="ends_at">Завършва</label>
+                <input 
+                type="datetime-local"
+                id="ends_at"
+                name="ends_at"
+                className={`${styles.input} `}
+                />
             </div>
-            <div>
-                <label htmlFor="category_id">category id</label>
-                <input type="text" id="category_id" name="category_id" />
+            <div className={styles.category_id}>
+                <label className={styles.label} htmlFor="category_id">Id на категория</label>
+                <input
+                type="text"
+                id="category_id"
+                name="category_id"
+                className={`${styles.input} `}
+                />
             </div>
-            <div>
-                <label htmlFor="description">description</label>
-                <textarea name="description" id="description" placeholder="optional description..."></textarea>
+            <div className={`${styles.desc} ${styles.desc_poll}`}>
+                <label className={styles.label} htmlFor="description">описание</label>
+                <textarea
+                name="description"
+                id="description"
+                placeholder="опционално описание..."
+                className={styles.input_description}
+                > 
+                </textarea>
             </div>
 
-            <button>action</button>
+            <button className={styles.poll_btn}>action</button>
         </form>
-        <main>
+        <h2 className={styles.title_2}>Всички анкеети</h2>
+        <section>
             {createPollsElements()}
+        </section>
         </main>
         </>
     )
