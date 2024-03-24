@@ -1,6 +1,6 @@
 import { updateCategoryById } from "@/lib/utils/category"
 import { UpdateCategoryProps } from "@/lib/types"
-import styles from "@/ui/categories/categories.module.css"
+import styles from "@/ui/categories/Categories.module.css"
 
 const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
 
