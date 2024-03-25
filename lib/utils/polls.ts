@@ -6,23 +6,23 @@ import { redirect } from "next/navigation"
 import { manageImage } from "./helperFunctions"
 
 
-export const createPoll = async (formData:FormData) : Promise<void> => {
+export const createPoll = async (formData:FormData) => {
+    const supabase =  await createClient()
+    
+    const imageFile = formData.get("image")
+    
+    const pollData = {
+        title : formData.get("title") as string,
+        starts_at: formData.get("starts_at") as string,
+        ends_at: formData.get("ends_at") as string,        
+        category_id: formData.get("category_id") as string,
+        description : formData.get("description") as string,
+    }
+
+    const image = await manageImage(imageFile)
+
+    const pollDataWithImage = { ...pollData, image}
     try{
-        const supabase =  await createClient()
-        
-        let imageFile = formData.get("image")
-        
-        const pollData = {
-            title : formData.get("title") as string,
-            starts_at: formData.get("starts_at") as string,
-            ends_at: formData.get("ends_at") as string,        
-            category_id: formData.get("category_id") as string,
-            description : formData.get("description") as string,
-        }
-    
-        const image = await manageImage(imageFile)
-    
-        const pollDataWithImage = { ...pollData, image}
     
         const { data, error } = await supabase
         .from("polls")
@@ -31,8 +31,14 @@ export const createPoll = async (formData:FormData) : Promise<void> => {
          if(error) { throw error }
         
         revalidatePath("/admin/polls")        
-    }  catch (error) {
+    }  catch (error : any) {
 
+        if(error.code === '22P02'){
+            return {message: "Моля, въведете заглавие"}
+        }
+        if(error.code === '22007'){
+            return {message: "Неправилен формат на датата"}
+        }
     }
 }
 export const getPolls = async () : Promise<any[] | null> => {

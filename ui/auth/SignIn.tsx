@@ -1,6 +1,6 @@
 "use client"
 
-import styles from "@/ui/forms/SignIn.module.css"
+import styles from "@/ui/auth/SignIn.module.css"
 import { signIn } from "@/lib/auth"
 import { useFormState} from "react-dom"
 import { Button } from "@/ui/ClientButtons"

@@ -13,18 +13,16 @@ export const signIn = async (previousState: any, formData: FormData) => {
     password:formData.get("password") as string
   }
 
-  
   const {email, password} = userData
   console.log(password)
+
   try {
     const {error} = await supabase.auth.signInWithPassword(userData)
     const { data: {user} } = await supabase.auth.getUser()
-    console.log(user?.email)
     if (error) throw error
   } catch (error : any) {
     console.error(error.message)
-    
-    
+  
     if(email.length < 1){
       return {message: "Моля, въведете email", status: 400}       
     }
