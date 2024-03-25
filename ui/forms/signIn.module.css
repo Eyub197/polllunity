@@ -92,11 +92,7 @@
     font-weight: bold;
     letter-spacing: 1px;
 }
-
- .input_error {
-    border: 3.5px solid #FFB3B3;
-} 
-
+    
 .error_message{
     background-color: #FFB3B3;
     margin-top: 0em;

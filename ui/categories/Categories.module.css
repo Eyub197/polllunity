@@ -38,9 +38,6 @@
 }
 
 .input, .input_description{
-    padding: 1em 2em;
-    border: 4px solid black;
-    background-color: var(--secondary-color);
     margin-bottom: 0;
     width: 100% !important;
     max-width: 600px;
@@ -52,9 +49,6 @@
     height: 150px;
 }
 
-.input_error{
-    border-color:  var(--error-color);
-}
 
 .name{
     margin-bottom: 1em;

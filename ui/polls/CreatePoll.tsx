@@ -52,7 +52,7 @@ const CreatePoll = async () => {
                 type="text"
                 id="title"
                 name="title"
-                className={`${styles.input} ${false && `${styles.input_error}`  }`}
+                className={`admin_inputs ${styles.input} ${false && 'input_error'  }`}
                 />
             </div>
             <div className={styles.starts_at}>
@@ -61,7 +61,7 @@ const CreatePoll = async () => {
                 type="datetime-local"
                 id="starts_at"
                 name="starts_at"
-                className={`${styles.input} `}
+                className={`admin_inputs ${styles.input} `}
                 />
             </div>
             <div className={styles.ends_at}>
@@ -70,7 +70,7 @@ const CreatePoll = async () => {
                 type="datetime-local"
                 id="ends_at"
                 name="ends_at"
-                className={`${styles.input} `}
+                className={`admin_inputs ${styles.input} `}
                 />
             </div>
             <div className={styles.category_id}>
@@ -79,7 +79,7 @@ const CreatePoll = async () => {
                 type="text"
                 id="category_id"
                 name="category_id"
-                className={`${styles.input} `}
+                className={`admin_inputs ${styles.input} `}
                 />
             </div>
            <ImagePicker name="image" label="ime"/>
@@ -89,7 +89,7 @@ const CreatePoll = async () => {
                 name="description"
                 id="description"
                 placeholder="опционално описание..."
-                className={styles.input_description}
+                className={`admin_inputs ${styles.input_description}`}
                 > 
                 </textarea>
             </div>

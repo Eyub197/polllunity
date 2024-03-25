@@ -3,7 +3,7 @@
 import styles from "@/ui/forms/signIn.module.css"
 import { signIn } from "@/lib/auth"
 import { useFormState} from "react-dom"
-import { Button, LoginButton } from "@/ui/ClientButtons"
+import { Button } from "@/ui/ClientButtons"
 import Image from "next/image"
 import frame from '@/public/frame.png'
 import frame_2 from '@/public/frame-img.png'
@@ -34,7 +34,6 @@ const SignInForm = () : JSX.Element => {
             className={styles.frame_larger}
 
             />
-            
         </section>
 
 
@@ -44,9 +43,9 @@ const SignInForm = () : JSX.Element => {
             </section>
 
             <div className={styles.email}>
-                <label className={styles.bold} htmlFor="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input 
-                className={`${styles.input_style} ${checkEmail() && styles.input_error} `}
+                className={`${styles.input_style} ${checkEmail() && "input_error"} `}
                 name="email"
                 type="text" 
                 id="email"
@@ -55,7 +54,7 @@ const SignInForm = () : JSX.Element => {
             </div>
                           
             <div className={styles.password}>
-                <label className={styles.bold} htmlFor="password">Парола</label>
+                <label htmlFor="password">Парола</label>
                 <input 
                 className={`${styles.input_style} ${checkPassword() && styles.input_error} `}
                 name="password"

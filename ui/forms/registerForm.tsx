@@ -19,7 +19,6 @@ const RegisterForm = () => {
     return(
          <Suspense fallback={<p>Loading...</p>}>
         <main className={styles.form_container}>
-            
                 <Image
                 width={1000}
                 height={1000}
@@ -30,9 +29,9 @@ const RegisterForm = () => {
             <form className={styles.inputs_container} action={dispatch}>
             <h1 className={styles.text}>Добре дошли! Регистрирайте се</h1>
                 <div className={`${styles.email} `}>
-                    <label className={styles.bold} htmlFor="email">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input 
-                    className={`${styles.input_style} ${checkEmail() && styles.input_error}`} 
+                    className={`${styles.input_style} ${checkEmail() && "input_error    "}`} 
                     name="email" 
                     type="text" 
                     id="email"  
@@ -42,7 +41,7 @@ const RegisterForm = () => {
                 </div>
 
                 <div className={styles.password}>
-                    <label className={styles.bold}  htmlFor="password">Парола</label>
+                    <label htmlFor="password">Парола</label>
                     <button 
                     type="button" 
                     className={styles.eye_open}
@@ -50,7 +49,7 @@ const RegisterForm = () => {
                     >
                         { showPassword ? <FaRegEyeSlash/> : <FaRegEye/> }                  
                     </button>
-                    <input className={styles.input_style} 
+                    <input className={`${styles.input_style}  ${checkPassword() && "input_error"}`} 
                     name="password"  
                     type={showPassword ? "text" : "password"}
                     id="password" 

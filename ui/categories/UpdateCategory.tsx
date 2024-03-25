@@ -17,7 +17,7 @@ const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
         <main className={styles.main}>
         <form className={styles._form} action={dispatch}>
             <div className={styles.name}>
-                <label className={styles.label} htmlFor="name">Име</label>  
+                <label htmlFor="name">Име</label>  
                 <input 
                 type="text" 
                 name="category_name" 
@@ -27,7 +27,7 @@ const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
                 />
             </div>
             <div className={styles.desc}>
-                <label className={styles.label} htmlFor="description">Oписание</label>
+                <label htmlFor="description">Oписание</label>
                 <textarea
                 placeholder="Опционално описание..."    
                 name="description"
