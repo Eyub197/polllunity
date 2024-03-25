@@ -38,3 +38,17 @@
 .desc_poll { grid-area: description; }
 .poll_btn { grid-area: button; }
 
+@media (min-width: 768px) {
+    .main{
+        display: initial;
+    }
+    .form_grid{
+        padding: 2em;
+        grid-template-areas: 
+            "title category_id"
+            "starts ends"
+            "description image"
+            "button ."; 
+    }
+    
+}

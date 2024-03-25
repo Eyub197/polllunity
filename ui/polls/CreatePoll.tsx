@@ -56,7 +56,7 @@ const CreatePoll = async () => {
                 className={`admin_inputs ${pollStyles.input} ${false && 'input_error'  }`}
                 />
             </div>
-            <div className={styles.starts_at}>
+            <div className={pollStyles.starts_at}>
                 <label htmlFor="starts_at">Започва</label>
                 <input 
                 type="datetime-local"
@@ -65,26 +65,26 @@ const CreatePoll = async () => {
                 className={`admin_inputs ${pollStyles.input} `}
                 />
             </div>
-            <div className={styles.ends_at}>
+            <div className={pollStyles.ends_at}>
                 <label htmlFor="ends_at">Завършва</label>
                 <input 
                 type="datetime-local"
                 id="ends_at"
                 name="ends_at"
-                className={`admin_inputs ${styles.input} `}
+                className={`admin_inputs ${pollStyles.input} `}
                 />
             </div>
-            <div className={styles.category_id}>
+            <div className={pollStyles.category_id}>
                 <label htmlFor="category_id">Id на категория</label>
                 <input
                 type="text"
                 id="category_id"
                 name="category_id"
-                className={`admin_inputs ${styles.input} `}
+                className={`admin_inputs ${pollStyles.input} `}
                 />
             </div>
            <ImagePicker name="image" label="ime"/>
-            <div className={`${styles.desc} ${pollStyles.desc_poll}`}>
+            <div className={`${pollStyles.desc_poll}`}>
                 <label htmlFor="description">описание</label>
                 <textarea
                 name="description"
