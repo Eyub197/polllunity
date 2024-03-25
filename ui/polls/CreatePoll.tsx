@@ -2,6 +2,7 @@ import { createPoll } from "@/lib/utils/polls"
 import { getPolls } from "@/lib/utils/polls"
 import { DeletePollButton, EditPollButton } from "../Buttons"
 import styles from "@/ui/categories/Categories.module.css"
+import pollStyles from "@/ui/polls/PollForm.module.css"
 import ImagePicker from "../components/ImagePicker"
 import Image from "next/image"
 import { Button } from "../ClientButtons"
@@ -43,29 +44,29 @@ const CreatePoll = async () => {
 
     return(
         <>
-        <h1 className={styles.title}>Анкети</h1>
-        <main className={styles.main}>
-        <form className={`${styles.form} ${styles.form_grid}`} action={createPoll}>
+        <h1 className={"title"}>Анкети</h1>
+        <main className={pollStyles.main}>
+        <form className={`${styles.form} ${pollStyles.form_grid}`} action={createPoll}>
             <div className={`${styles.name} ${styles.name_poll}`}>
-                <label className={styles.label} htmlFor="title">Заглавие</label>
+                <label htmlFor="title">Заглавие</label>
                 <input 
                 type="text"
                 id="title"
                 name="title"
-                className={`admin_inputs ${styles.input} ${false && 'input_error'  }`}
+                className={`admin_inputs ${pollStyles.input} ${false && 'input_error'  }`}
                 />
             </div>
             <div className={styles.starts_at}>
-                <label className={styles.label} htmlFor="starts_at">Започва</label>
+                <label htmlFor="starts_at">Започва</label>
                 <input 
                 type="datetime-local"
                 id="starts_at"
                 name="starts_at"
-                className={`admin_inputs ${styles.input} `}
+                className={`admin_inputs ${pollStyles.input} `}
                 />
             </div>
             <div className={styles.ends_at}>
-                <label className={styles.label} htmlFor="ends_at">Завършва</label>
+                <label htmlFor="ends_at">Завършва</label>
                 <input 
                 type="datetime-local"
                 id="ends_at"
@@ -74,7 +75,7 @@ const CreatePoll = async () => {
                 />
             </div>
             <div className={styles.category_id}>
-                <label className={styles.label} htmlFor="category_id">Id на категория</label>
+                <label htmlFor="category_id">Id на категория</label>
                 <input
                 type="text"
                 id="category_id"
@@ -83,19 +84,19 @@ const CreatePoll = async () => {
                 />
             </div>
            <ImagePicker name="image" label="ime"/>
-            <div className={`${styles.desc} ${styles.desc_poll}`}>
-                <label className={styles.label} htmlFor="description">описание</label>
+            <div className={`${styles.desc} ${pollStyles.desc_poll}`}>
+                <label htmlFor="description">описание</label>
                 <textarea
                 name="description"
                 id="description"
                 placeholder="опционално описание..."
-                className={`admin_inputs ${styles.input_description}`}
+                className={`admin_inputs ${pollStyles.input_description} input_description`}
                 > 
                 </textarea>
             </div>
         <Button className="poll_btn" action="създай" inAction="създава се..."/>
         </form>
-        <h2 className={styles.title_2}>Всички анкети</h2>
+        <h2 className={"title_2"}>Всички анкети</h2>
         <section>
             {createPollsElements()}
         </section>

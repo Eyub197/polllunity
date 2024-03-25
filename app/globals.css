@@ -73,3 +73,21 @@ label{
 .input_error{    
     border: 3.5px solid #FFB3B3;
 }
+
+.title, .title_2{
+    text-align: center;
+}
+
+.title{
+    font-size: 3rem;
+}
+
+.title_2{
+    font-size: 2rem;
+}
+
+.input_description{
+    resize: none;
+    width: 274px;
+    height: 150px;
+}

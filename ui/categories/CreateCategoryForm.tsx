@@ -26,7 +26,7 @@ const CreateCategoryForm = () => {
                 placeholder="Опционално описание..."
                 name="description"
                 id="description"
-                className={`admin_inputs  ${styles.input_description}`}
+                className={`admin_inputs input_description}`}
                 />
             </div>
            <Button className="btn_category" action="създай" inAction="създава се..."/>
