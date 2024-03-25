@@ -1,4 +1,4 @@
-import SignInForm from "@/ui/forms/SignIn"
+import SignInForm from "@/ui/auth/SignIn"
 import { Suspense } from "react"
 import Loading from "./loading"
 

@@ -1,4 +1,4 @@
-import RegisterForm from "@/ui/forms/RegisterForm"
+import RegisterForm from "@/ui/auth/RegisterForm"
 import { Suspense } from "react"
 
 const RegisterFormPage = () => <Suspense fallback={<p>Loading...</p>}> <RegisterForm/> </Suspense>
