@@ -50,7 +50,6 @@
 }
 
 .input_style{
-   margin-top: 0.4em;
    padding: 1.2em;
 }
 
@@ -79,11 +78,6 @@
 
 .apple{
     margin-left: auto;
-}
-
-.bold{
-    letter-spacing: 1px;
-    font-weight: bold;
 }
 
 .eye_open{

@@ -4,6 +4,7 @@ import { DeletePollButton, EditPollButton } from "../buttons"
 import styles from "@/ui/categories/Categories.module.css"
 import ImagePicker from "../components/ImagePicker"
 import Image from "next/image"
+import { Button } from "../ClientButtons"
 
 const CreatePoll = async () => {
     const polls = await getPolls()
@@ -43,7 +44,7 @@ const CreatePoll = async () => {
     return(
         <>
         <h1 className={styles.title}>Анкети</h1>
-        <main>
+        <main className={styles.main}>
         <form className={`${styles.form} ${styles.form_grid}`} action={createPoll}>
             <div className={`${styles.name} ${styles.name_poll}`}>
                 <label className={styles.label} htmlFor="title">Заглавие</label>
@@ -92,8 +93,7 @@ const CreatePoll = async () => {
                 > 
                 </textarea>
             </div>
-
-            <button className={styles.poll_btn}>action</button>
+        <Button className="poll_btn" action="създай" inAction="създава се..."/>
         </form>
         <h2 className={styles.title_2}>Всички анкети</h2>
         <section>

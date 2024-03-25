@@ -1,7 +1,15 @@
-.btn_category{
-    padding: 0.7em 2.5em;
+.btn_category, .poll_btn{
     border: 5px solid black;
     background-color: var(--accent-color-light);
+}
+
+.btn_category{
+    padding: 0.7em 2.5em;
+}
+
+.poll_btn { 
+    grid-area: button; 
+    padding: 0.7em;
 }
 
 .btn_sign_in{

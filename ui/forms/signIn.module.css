@@ -32,12 +32,6 @@
     padding: 1em;
 }
 
-.bold{
-    letter-spacing: 1px;
-    display: block;
-    font-weight: bold;
-}
-
 .text_container { 
     grid-area: text;
     margin-top: 2em;
