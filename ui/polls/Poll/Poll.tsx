@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "@/ui/polls/PoolsPage.module.css";
-import { CheckResults, ChoosePollButton } from "@/ui/buttons";
+import { CheckResults, ChoosePollButton } from "@/ui/Buttons";
 import { PollProps } from "@/lib/types";
 import { motion, AnimatePresence } from "framer-motion"
 

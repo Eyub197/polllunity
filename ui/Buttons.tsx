@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/ui/buttons.module.css"
+import styles from "@/ui/Buttons.module.css"
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { IoCloseCircle } from "react-icons/io5";
 import { deleteCategory } from "@/lib/utils/category";

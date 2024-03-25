@@ -1,5 +1,5 @@
 import Image from "next/image"
-import styles from "@/ui/logo.module.css"
+import styles from "@/ui/Logo.module.css"
 import logoImage from "@/public/Logo.svg"
 import Link from "next/link"
 

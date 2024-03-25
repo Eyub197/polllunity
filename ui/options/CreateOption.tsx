@@ -1,6 +1,6 @@
 import { createOption, getOptions } from "@/lib/utils/options"
-import { DeleteOptionButton } from "../buttons"
-import { EditOptionButton } from "../buttons"
+import { DeleteOptionButton } from "../Buttons"
+import { EditOptionButton } from "../Buttons"
 
 const CreateOption = async () => {
     const options = await getOptions()

@@ -1,6 +1,6 @@
 import { createPoll } from "@/lib/utils/polls"
 import { getPolls } from "@/lib/utils/polls"
-import { DeletePollButton, EditPollButton } from "../buttons"
+import { DeletePollButton, EditPollButton } from "../Buttons"
 import styles from "@/ui/categories/Categories.module.css"
 import ImagePicker from "../components/ImagePicker"
 import Image from "next/image"

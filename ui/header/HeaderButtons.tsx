@@ -14,10 +14,10 @@ const HeaderButtons = async () => {
                 user ? <form> <p>{user.email}</p> <button formAction={signOut}>Излизане </button> </form>   
                 : 
                 <>
-                    <Link href="/register">
+                    <Link href="/registraciq">
                         <button className={styles.register}> Регистрирай се </button>
                     </Link>
-                    <Link href="/sign-in">
+                    <Link href="/vlez">
                         <button className={styles.login}> Вход </button>      
                     </Link>
                 </>
