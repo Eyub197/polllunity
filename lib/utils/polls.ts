@@ -8,36 +8,41 @@ import fs from "node:fs"
 export const createPoll = async (formData:FormData) : Promise<void> => {
     const supabase =  await createClient()
 
+    let imageFile = formData.get("image")
+    
     const pollData = {
         title : formData.get("title") as string,
         starts_at: formData.get("starts_at") as string,
-        ends_at: formData.get("ends_at") as string,
-        image: formData.get("image"),
+        ends_at: formData.get("ends_at") as string,        
         category_id: formData.get("category_id") as string,
         description : formData.get("description") as string,
     }
 
-    if(!pollData?.image) {
-        throw new Error("Image is null")
+    let filename
+
+    if(imageFile instanceof File) {
+        filename = imageFile?.name
+        console.log(`file name in if ${filename}`)
+        const stream = fs.createWriteStream(`public/uploads/${filename}`)
+        const bufferedImage = await imageFile.arrayBuffer()
+        
+        stream.write(Buffer.from(bufferedImage), error => {
+            if(error) throw new Error("Имаше грешка при качването на изображението")
+        })
     }
 
-    const filename = pollData?.image?.name
+    imageFile = `/uploads/${filename}` 
 
-    if(!filename) {
-        throw new Error("Image filename is null")
-    }
-
-    const stream = fs.createWriteStream(`public/${filename}`)
+    const pollDataWithImage = { ...pollData, image : imageFile }
 
     const { data, error } = await supabase
     .from("polls")
-    .insert(pollData)
+    .insert(pollDataWithImage)
 
     if(error) {
         throw error
     }
 
-    console.log(pollData)
     
     revalidatePath("/admin/polls")
 }
@@ -49,7 +54,6 @@ export const getPolls = async () : Promise<any[] | null> => {
    
     return polls
 }
-
 
 /**
  * Update a poll by id

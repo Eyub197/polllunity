@@ -3,7 +3,6 @@ export interface AuthData {
     password: string
 }
 
-
 export interface ButtonProps {
   action: string,
   inAction: string,
@@ -67,197 +66,201 @@ export interface Option  {
   option_text: string; poll_id: string; votes_count: number | null; 
 }
 
-
 export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[]
+| string
+| number
+| boolean
+| null
+| { [key: string]: Json | undefined }
+| Json[]
 
 export type Database = {
-  public: {
-    Tables: {
-      categories: {
-        Row: {
-          description: string | null
-          id: string
-          name: string
-        }
-        Insert: {
-          description?: string | null
-          id?: string
-          name: string
-        }
-        Update: {
-          description?: string | null
-          id?: string
-          name?: string
-        }
-        Relationships: []
+public: {
+  Tables: {
+    categories: {
+      Row: {
+        description: string | null
+        id: string
+        name: string
       }
-      options: {
-        Row: {
-          id: string
-          option_text: string
-          poll_id: string
-          votes_count: number | null
-        }
-        Insert: {
-          id?: string
-          option_text: string
-          poll_id: string
-          votes_count?: number | null
-        }
-        Update: {
-          id?: string
-          option_text?: string
-          poll_id?: string
-          votes_count?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "options_poll_id_fkey"
-            columns: ["poll_id"]
-            isOneToOne: false
-            referencedRelation: "polls"
-            referencedColumns: ["id"]
-          }
-        ]
+      Insert: {
+        description?: string | null
+        id?: string
+        name: string
       }
-      polls: {
-        Row: {
-          category_id: string | null
-          created_at: string | null
-          description: string | null
-          ends_at: string | null
-          id: string
-          starts_at: string
-          title: string
-        }
-        Insert: {
-          category_id?: string | null
-          created_at?: string | null
-          description?: string | null
-          ends_at?: string | null
-          id?: string
-          starts_at: string
-          title: string
-        }
-        Update: {
-          category_id?: string | null
-          created_at?: string | null
-          description?: string | null
-          ends_at?: string | null
-          id?: string
-          starts_at?: string
-          title?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "polls_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          }
-        ]
+      Update: {
+        description?: string | null
+        id?: string
+        name?: string
       }
-      user: {
-        Row: {
-          id: string
-          role: string | null
-        }
-        Insert: {
-          id?: string
-          role?: string | null
-        }
-        Update: {
-          id?: string
-          role?: string | null
-        }
-        Relationships: []
-      }
-      uservotes: {
-        Row: {
-          has_voted: boolean
-          poll_id: string
-          user_id: string
-        }
-        Insert: {
-          has_voted?: boolean
-          poll_id: string
-          user_id: string
-        }
-        Update: {
-          has_voted?: boolean
-          poll_id?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "uservotes_poll_id_fkey"
-            columns: ["poll_id"]
-            isOneToOne: false
-            referencedRelation: "polls"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "uservotes_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+      Relationships: []
     }
-    Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      increment_votes_count: {
-        Args: {
-          option_text_param: string
-        }
-        Returns: undefined
+    options: {
+      Row: {
+        id: string
+        option_text: string
+        poll_id: string
+        votes_count: number | null
       }
-      increment_votes_count_by_id: {
-        Args: {
-          option_id: string
-        }
-        Returns: undefined
+      Insert: {
+        id?: string
+        option_text: string
+        poll_id: string
+        votes_count?: number | null
       }
+      Update: {
+        id?: string
+        option_text?: string
+        poll_id?: string
+        votes_count?: number | null
+      }
+      Relationships: [
+        {
+          foreignKeyName: "options_poll_id_fkey"
+          columns: ["poll_id"]
+          isOneToOne: false
+          referencedRelation: "polls"
+          referencedColumns: ["id"]
+        },
+      ]
     }
-    Enums: {
-      [_ in never]: never
+    polls: {
+      Row: {
+        category_id: string | null
+        created_at: string | null
+        description: string | null
+        ends_at: string | null
+        id: string
+        image: string | null
+        starts_at: string
+        title: string
+      }
+      Insert: {
+        category_id?: string | null
+        created_at?: string | null
+        description?: string | null
+        ends_at?: string | null
+        id?: string
+        image?: string | null
+        starts_at: string
+        title: string
+      }
+      Update: {
+        category_id?: string | null
+        created_at?: string | null
+        description?: string | null
+        ends_at?: string | null
+        id?: string
+        image?: string | null
+        starts_at?: string
+        title?: string
+      }
+      Relationships: [
+        {
+          foreignKeyName: "polls_category_id_fkey"
+          columns: ["category_id"]
+          isOneToOne: false
+          referencedRelation: "categories"
+          referencedColumns: ["id"]
+        },
+      ]
     }
-    CompositeTypes: {
-      [_ in never]: never
+    user: {
+      Row: {
+        id: string
+        role: string | null
+      }
+      Insert: {
+        id?: string
+        role?: string | null
+      }
+      Update: {
+        id?: string
+        role?: string | null
+      }
+      Relationships: []
+    }
+    uservotes: {
+      Row: {
+        has_voted: boolean
+        poll_id: string
+        user_id: string
+      }
+      Insert: {
+        has_voted?: boolean
+        poll_id: string
+        user_id: string
+      }
+      Update: {
+        has_voted?: boolean
+        poll_id?: string
+        user_id?: string
+      }
+      Relationships: [
+        {
+          foreignKeyName: "uservotes_poll_id_fkey"
+          columns: ["poll_id"]
+          isOneToOne: false
+          referencedRelation: "polls"
+          referencedColumns: ["id"]
+        },
+        {
+          foreignKeyName: "uservotes_user_id_fkey"
+          columns: ["user_id"]
+          isOneToOne: false
+          referencedRelation: "user"
+          referencedColumns: ["id"]
+        },
+      ]
     }
   }
+  Views: {
+    [_ in never]: never
+  }
+  Functions: {
+    increment_votes_count: {
+      Args: {
+        option_text_param: string
+      }
+      Returns: undefined
+    }
+    increment_votes_count_by_id: {
+      Args: {
+        option_id: string
+      }
+      Returns: undefined
+    }
+  }
+  Enums: {
+    [_ in never]: never
+  }
+  CompositeTypes: {
+    [_ in never]: never
+  }
+}
 }
 
+type PublicSchema = Database[Extract<keyof Database, "public">]
+
 export type Tables<
-  PublicTableNameOrOptions extends
-    | keyof (Database["public"]["Tables"] & Database["public"]["Views"])
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
-    : never = never
+PublicTableNameOrOptions extends
+  | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
+  | { schema: keyof Database },
+TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+  ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+      Database[PublicTableNameOrOptions["schema"]]["Views"])
+  : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
-    }
-    ? R
-    : never
-  : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
-      Database["public"]["Views"])
-  ? (Database["public"]["Tables"] &
-      Database["public"]["Views"])[PublicTableNameOrOptions] extends {
+? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+    Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+    Row: infer R
+  }
+  ? R
+  : never
+: PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
+      PublicSchema["Views"])
+  ? (PublicSchema["Tables"] &
+      PublicSchema["Views"])[PublicTableNameOrOptions] extends {
       Row: infer R
     }
     ? R
@@ -265,20 +268,20 @@ export type Tables<
   : never
 
 export type TablesInsert<
-  PublicTableNameOrOptions extends
-    | keyof Database["public"]["Tables"]
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+PublicTableNameOrOptions extends
+  | keyof PublicSchema["Tables"]
+  | { schema: keyof Database },
+TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+  ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
-    }
-    ? I
-    : never
-  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
-  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+    Insert: infer I
+  }
+  ? I
+  : never
+: PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+  ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
       Insert: infer I
     }
     ? I
@@ -286,20 +289,20 @@ export type TablesInsert<
   : never
 
 export type TablesUpdate<
-  PublicTableNameOrOptions extends
-    | keyof Database["public"]["Tables"]
-    | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+PublicTableNameOrOptions extends
+  | keyof PublicSchema["Tables"]
+  | { schema: keyof Database },
+TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+  ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
-    }
-    ? U
-    : never
-  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
-  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+    Update: infer U
+  }
+  ? U
+  : never
+: PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
+  ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
       Update: infer U
     }
     ? U
@@ -307,14 +310,14 @@ export type TablesUpdate<
   : never
 
 export type Enums<
-  PublicEnumNameOrOptions extends
-    | keyof Database["public"]["Enums"]
-    | { schema: keyof Database },
-  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
-    : never = never
+PublicEnumNameOrOptions extends
+  | keyof PublicSchema["Enums"]
+  | { schema: keyof Database },
+EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
+  ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+  : never = never,
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
-  ? Database["public"]["Enums"][PublicEnumNameOrOptions]
+? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
+: PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
+  ? PublicSchema["Enums"][PublicEnumNameOrOptions]
   : never

@@ -3,6 +3,7 @@ import { getPolls } from "@/lib/utils/polls"
 import { DeletePollButton, EditPollButton } from "../buttons"
 import styles from "@/ui/categories/Categories.module.css"
 import ImagePicker from "../components/ImagePicker"
+import Image from "next/image"
 
 const CreatePoll = async () => {
     
@@ -13,6 +14,7 @@ const CreatePoll = async () => {
         if(polls?.length! > 0){
             return polls?.map(poll => 
             <div key={poll.id}>
+                {poll.image && <Image src={poll.image} width={200} height={200} alt={poll.title}/> }
                 <h2>title: {poll.title}</h2>
                 <h3>{poll.categories.name}</h3>
                 <p>starts at: {poll.starts_at}</p>
