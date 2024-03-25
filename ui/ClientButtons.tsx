@@ -1,6 +1,6 @@
 "use client"
 
-import styles from "@/ui/buttons.module.css"
+import styles from "@/ui/Buttons.module.css"
 import { handleUserVote } from "@/lib/utils/userVote"
 import { useFormStatus } from "react-dom"
 import { deleteCategory } from "@/lib/utils/category"

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css"
-import Header from "@/ui/header/header"
+import Header from "@/ui/header/Header"
 import { inter } from "@/lib/fonts"
 import { Suspense } from "react";
 import Loading from "./loading";

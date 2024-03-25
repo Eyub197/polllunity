@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import styles from '@/ui/header/header.module.css'
+import styles from '@/ui/header/Header.module.css'
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import {usePathname } from "next/navigation"

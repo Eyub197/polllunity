@@ -1,4 +1,4 @@
-import styles from "@/ui/header/header.module.css"
+import styles from "@/ui/header/Header.module.css"
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { signOut } from "@/lib/auth"

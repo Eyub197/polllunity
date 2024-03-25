@@ -1,0 +1,33 @@
+.form_grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(1fr));
+    /* grid-template-areas: 
+        "title category_id"
+        "starts ends"
+        "description image"
+        "button ."; */
+    grid-template-areas: 
+        "title title"
+        "category_id category_id"
+        "starts starts"
+        "ends ends"
+        "description description"
+        "image image"
+        "button .";
+    gap: 1em;
+}
+
+.name_poll { 
+    grid-area: title;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.category_id { grid-area: category_id; }
+.starts_at { grid-area: starts; }
+.ends_at { grid-area: ends; }
+.desc_poll { grid-area: description; }
+.poll_btn { grid-area: button; }
+
