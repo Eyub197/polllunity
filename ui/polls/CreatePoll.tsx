@@ -14,7 +14,7 @@ const CreatePoll = async () => {
         if(polls?.length! > 0){
             return polls?.map(poll => 
             <div key={poll.id}>
-                {poll.image && <Image src={poll.image} width={200} height={200} alt={poll.title}/> }
+                {poll.image && <Image src={poll.image} width={200} height={100} style={{objectFit: "cover"}} alt={"снимка на анкетата"}/> }
                 <h2>title: {poll.title}</h2>
                 <h3>{poll.categories.name}</h3>
                 <p>starts at: {poll.starts_at}</p>
@@ -80,7 +80,7 @@ const CreatePoll = async () => {
 
             <button className={styles.poll_btn}>action</button>
         </form>
-        <h2 className={styles.title_2}>Всички анкеети</h2>
+        <h2 className={styles.title_2}>Всички анкети</h2>
         <section>
             {createPollsElements()}
         </section>

@@ -5,6 +5,20 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import fs from "node:fs"
 
+const manageImage  = async (imageFile : any) => {
+    let filename
+    if(imageFile instanceof File) {
+        filename = imageFile?.name
+        const stream = fs.createWriteStream(`public/uploads/${filename}`)
+        const bufferedImage = await imageFile.arrayBuffer()
+        stream.write(Buffer.from(bufferedImage), error => {
+            if(error) throw new Error("Имаше грешка при качването на изображението")
+        })
+        return `/uploads/${filename}`
+    }
+    return null
+}
+
 export const createPoll = async (formData:FormData) : Promise<void> => {
     const supabase =  await createClient()
 
@@ -18,32 +32,31 @@ export const createPoll = async (formData:FormData) : Promise<void> => {
         description : formData.get("description") as string,
     }
 
-    let filename
+    // let filename
 
-    if(imageFile instanceof File) {
-        filename = imageFile?.name
-        console.log(`file name in if ${filename}`)
-        const stream = fs.createWriteStream(`public/uploads/${filename}`)
-        const bufferedImage = await imageFile.arrayBuffer()
+    // if(imageFile instanceof File) {
+    //     filename = imageFile?.name
+    //     console.log(`file name in if ${filename}`)
+    //     const stream = fs.createWriteStream(`public/uploads/${filename}`)
+    //     const bufferedImage = await imageFile.arrayBuffer()
         
-        stream.write(Buffer.from(bufferedImage), error => {
-            if(error) throw new Error("Имаше грешка при качването на изображението")
-        })
-    }
+    //     stream.write(Buffer.from(bufferedImage), error => {
+    //         if(error) throw new Error("Имаше грешка при качването на изображението")
+    //     })
+    // }
 
-    imageFile = `/uploads/${filename}` 
+    // imageFile = `/uploads/${filename}` 
 
-    const pollDataWithImage = { ...pollData, image : imageFile }
+    const image = await manageImage(imageFile)
+
+    const pollDataWithImage = { ...pollData, image}
 
     const { data, error } = await supabase
     .from("polls")
     .insert(pollDataWithImage)
 
-    if(error) {
-        throw error
-    }
+    if(error) { throw error }
 
-    
     revalidatePath("/admin/polls")
 }
 export const getPolls = async () : Promise<any[] | null> => {
