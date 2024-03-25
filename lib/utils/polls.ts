@@ -3,61 +3,55 @@
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-import fs from "node:fs"
+import fs from 'fs/promises'
 
-const manageImage  = async (imageFile : any) => {
-    let filename
-    if(imageFile instanceof File) {
-        filename = imageFile?.name
-        const stream = fs.createWriteStream(`public/uploads/${filename}`)
+const manageImage  = async (imageFile : any): Promise<string | null> => {
+    if(!(imageFile instanceof File) || imageFile.size < 1) {
+      return null  
+    } 
+
+    try{
+        const filename = imageFile?.name 
+        const filepath = `public/uploads/${filename}`
         const bufferedImage = await imageFile.arrayBuffer()
-        stream.write(Buffer.from(bufferedImage), error => {
-            if(error) throw new Error("Имаше грешка при качването на изображението")
-        })
-        return `/uploads/${filename}`
+        await fs.writeFile(filepath, Buffer.from(bufferedImage));
+            return `/uploads/${filename}`
+
+    } catch (error) {
+        console.error("Error uploading the image:", error);
+        throw new Error("Имаше грешка при качването на изображението");
     }
-    return null
+    
 }
 
 export const createPoll = async (formData:FormData) : Promise<void> => {
-    const supabase =  await createClient()
-
-    let imageFile = formData.get("image")
-    
-    const pollData = {
-        title : formData.get("title") as string,
-        starts_at: formData.get("starts_at") as string,
-        ends_at: formData.get("ends_at") as string,        
-        category_id: formData.get("category_id") as string,
-        description : formData.get("description") as string,
-    }
-
-    // let filename
-
-    // if(imageFile instanceof File) {
-    //     filename = imageFile?.name
-    //     console.log(`file name in if ${filename}`)
-    //     const stream = fs.createWriteStream(`public/uploads/${filename}`)
-    //     const bufferedImage = await imageFile.arrayBuffer()
+    try{
+        const supabase =  await createClient()
         
-    //     stream.write(Buffer.from(bufferedImage), error => {
-    //         if(error) throw new Error("Имаше грешка при качването на изображението")
-    //     })
-    // }
+        let imageFile = formData.get("image")
+        
+        const pollData = {
+            title : formData.get("title") as string,
+            starts_at: formData.get("starts_at") as string,
+            ends_at: formData.get("ends_at") as string,        
+            category_id: formData.get("category_id") as string,
+            description : formData.get("description") as string,
+        }
+    
+        const image = await manageImage(imageFile)
+    
+        const pollDataWithImage = { ...pollData, image}
+    
+        const { data, error } = await supabase
+        .from("polls")
+        .insert(pollDataWithImage)
+        console.log(error)
+         if(error) { throw error }
+        
+        revalidatePath("/admin/polls")        
+    }  catch (error) {
 
-    // imageFile = `/uploads/${filename}` 
-
-    const image = await manageImage(imageFile)
-
-    const pollDataWithImage = { ...pollData, image}
-
-    const { data, error } = await supabase
-    .from("polls")
-    .insert(pollDataWithImage)
-
-    if(error) { throw error }
-
-    revalidatePath("/admin/polls")
+    }
 }
 export const getPolls = async () : Promise<any[] | null> => {
     const supabase =  await createClient()

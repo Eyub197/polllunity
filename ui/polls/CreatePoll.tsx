@@ -6,22 +6,37 @@ import ImagePicker from "../components/ImagePicker"
 import Image from "next/image"
 
 const CreatePoll = async () => {
-    
     const polls = await getPolls()
 
     const createPollsElements = () => {
 
-        if(polls?.length! > 0){
-            return polls?.map(poll => 
-            <div key={poll.id}>
-                {poll.image && <Image src={poll.image} width={200} height={100} style={{objectFit: "cover"}} alt={"снимка на анкетата"}/> }
-                <h2>title: {poll.title}</h2>
-                <h3>{poll.categories.name}</h3>
-                <p>starts at: {poll.starts_at}</p>
-                <p>ends at :{poll.ends_at}</p>
-                <DeletePollButton id={poll.id}/>
-                <EditPollButton id= {poll.id}/>
+        if(polls?.length! > 0) {
+            return polls?.map(poll => {
+
+            const {id, title, starts_at, ends_at, categories, image, description} = poll
+                
+            return(
+                <div key={id}>
+                {
+                    image && image !== undefined && 
+                    <Image 
+                    src={image}
+                    width={200}
+                    height={100}
+                    style={{objectFit: "cover"}}
+                    alt={"снимка на анкетата"}
+                    />
+                  }
+                <h2>title: {title}</h2>
+                <h3>{categories.name}</h3>
+                <p>starts at: {starts_at}</p>
+                <p>ends at :{ends_at}</p>
+                <p>{description}</p>
+                <DeletePollButton id={id}/>
+                <EditPollButton id= {id}/>
             </div>)
+                      
+            })
         }
     }
 
