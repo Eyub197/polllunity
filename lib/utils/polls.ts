@@ -28,19 +28,26 @@ export const createPoll = async (formData:FormData) => {
         .from("polls")
         .insert(pollDataWithImage)
         console.log(error)
-         if(error) { throw error }
+        if(error) { throw error }
         
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
 
-        if(error.code === '22P02'){
+        if(error.code === '23514'){
             return {message: "Моля, въведете заглавие"}
+        }
+        if(error.code === '23505'){
+            return {message: "Вече съществува анкета с това име"}
         }
         if(error.code === '22007'){
             return {message: "Неправилен формат на датата"}
         }
+        if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
+            return { message: "Крайната дата трябва да е по-късна от стартиращата дата" }
+        }
     }
 }
+
 export const getPolls = async () : Promise<any[] | null> => {
     const supabase =  await createClient()
     const { data:polls , error } = await supabase

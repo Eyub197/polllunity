@@ -7,7 +7,7 @@ import ImagePicker from "../components/ImagePicker"
 import Image from "next/image"
 import { Button } from "../ClientButtons"
 
-const CreatePoll = async () => {
+const AdminPolls = async () => {
     const polls = await getPolls()
 
     const createPollsElements = () => {
@@ -35,7 +35,7 @@ const CreatePoll = async () => {
                 <p>ends at :{ends_at}</p>
                 <p>{description}</p>
                 <DeletePollButton id={id}/>
-                <EditPollButton id= {id}/>
+                <EditPollButton id={id}/>
             </div>)
                       
             })
@@ -105,4 +105,4 @@ const CreatePoll = async () => {
     )
 }
 
-export default CreatePoll
+export default AdminPolls

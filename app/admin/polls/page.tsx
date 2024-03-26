@@ -1,5 +1,5 @@
-import CreatePoll from "@/ui/polls/CreatePoll"
+import AdminPolls from "@/ui/polls/AdminPolls"
 
-const PollForm = () => <CreatePoll/>
+const PollForm = () => <AdminPolls/>
 
 export default PollForm
