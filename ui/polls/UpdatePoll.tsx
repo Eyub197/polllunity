@@ -1,14 +1,16 @@
-import { Id } from "@/lib/types"
 import { updatePollById } from "@/lib/utils/polls"
 import { Poll } from "@/lib/types"
+import ImagePicker from "../components/ImagePicker"
+import styles from "@/ui/categories/Categories.module.css"
+import pollStyles from "@/ui/polls/PollForm.module.css"
 
 const UpdatePoll = ({id, title, starts_at, ends_at, category_id, description}: Poll) => {
 
     const updatePoll = updatePollById.bind(null, id)
 
     return(
-        <>
-        <form action={updatePoll}>
+    <>
+        <form className={`${styles.form} ${pollStyles.form_grid}`} action={updatePoll}>
             <div>
                 <label htmlFor="title">title</label>
                 <input type="text" id="title" name="title" defaultValue={title} />
@@ -29,8 +31,8 @@ const UpdatePoll = ({id, title, starts_at, ends_at, category_id, description}: P
                 <label htmlFor="description">description</label>
                 <textarea name="description" id="description" placeholder="optional description..." defaultValue={description}></textarea>
             </div>
-
             <button>action</button>
+            <ImagePicker name="image" label="ime"/>
         </form>
     </>
     )
