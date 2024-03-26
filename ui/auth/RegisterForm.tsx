@@ -1,6 +1,6 @@
 "use client"
 
-import styles from "@/ui/forms/RegisterForm.module.css"
+import styles from "@/ui/auth/RegisterForm.module.css"
 import { useFormState} from 'react-dom';
 import { signUp, logInWithGoogle } from "@/lib/auth"
 import { Button } from "@/ui/ClientButtons";
@@ -33,7 +33,7 @@ const RegisterForm = () => {
                     <input 
                     className={`${styles.input_style} ${checkEmail() && "input_error    "}`} 
                     name="email" 
-                    type="text" 
+                    type="email" 
                     id="email"  
                     placeholder="email@gmail.com"    
                     />

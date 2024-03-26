@@ -9,8 +9,7 @@ import { useFormState } from "react-dom"
 
 const CreatePollForm = () => {
     const [errorMessage, dispatch] = useFormState(createPoll, null)
-
-
+    
     return(
         <form className={`${styles.form} ${pollStyles.form_grid}`} action={dispatch}>
         <div className={`${styles.name} ${styles.name_poll}`}>

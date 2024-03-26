@@ -47,7 +47,7 @@ const SignInForm = () : JSX.Element => {
                 <input 
                 className={`${styles.input_style} ${checkEmail() && "input_error"} `}
                 name="email"
-                type="text" 
+                type="email" 
                 id="email"
                 />
                 {checkEmail() && <div className={styles.error_container}> <p className={styles.error_message}>{errorMessage.message}</p> </div> }
