@@ -22,6 +22,7 @@ export const createPoll = async (previousState: any,formData:FormData) => {
     const image = await manageImage(imageFile)
 
     const pollDataWithImage = { ...pollData, image}
+    const  {ends_at, starts_at, title} = pollDataWithImage
     try{
     
         const { data, error } = await supabase
@@ -32,8 +33,11 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
-
-        if(error.code === '23514'){
+        
+        if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
+            return { message: "Крайната дата трябва да е по-късна от датата на започване" }
+        }
+        if(error.code === '23514' && title.length < 1){
             return {message: "Моля, въведете заглавие"}
         }
         if(error.code === '22P02'){
@@ -43,10 +47,13 @@ export const createPoll = async (previousState: any,formData:FormData) => {
             return {message: "Вече съществува анкета с това име"}
         }
         if(error.code === '22007'){
+            if(starts_at.length < 1){
+                return { message: "Моля въведете стартираща дата" }
+            }
+            if(ends_at.length < 1){
+                return { message: "Моля въведете крайна дата" }
+            }
             return {message: "Неправилен формат на датата"}
-        }
-        if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
-            return { message: "Крайната дата трябва да е по-късна от стартиращата дата" }
         }
     }
 }

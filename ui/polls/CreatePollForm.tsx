@@ -6,8 +6,15 @@ import ImagePicker from "../components/ImagePicker"
 import { createPoll } from "@/lib/utils/polls"
 import { Button } from "../ClientButtons"
 import { useFormState } from "react-dom"
+import ErrorMessage from "../components/ErrorMessage"
 
 const CreatePollForm = () => {
+
+    const checkEndDate = () => {
+         if(errorMessage?.message.includes("крайна")) return true
+        else if(errorMessage?.message.includes("трябва")) return true
+    }
+
     const [errorMessage, dispatch] = useFormState(createPoll, null)
     
     return(
@@ -20,6 +27,7 @@ const CreatePollForm = () => {
             name="title"
             className={`admin_inputs ${pollStyles.input} ${errorMessage?.message.includes('заглавие') && 'input_error'  }`}
             />
+        {errorMessage?.message.includes("заглавие") && <ErrorMessage className="error_message" errorText={errorMessage.message} />}
         </div>
         <div className={pollStyles.starts_at}>
             <label htmlFor="starts_at">Започва</label>
@@ -29,6 +37,7 @@ const CreatePollForm = () => {
             name="starts_at"
             className={`admin_inputs ${pollStyles.input} `}
             />
+            {errorMessage?.message.includes("стартираща") && <ErrorMessage className="error_message" errorText={errorMessage.message} />}
         </div>
         <div className={pollStyles.ends_at}>
             <label htmlFor="ends_at">Завършва</label>
@@ -38,6 +47,7 @@ const CreatePollForm = () => {
             name="ends_at"
             className={`admin_inputs ${pollStyles.input} `}
             />
+            {checkEndDate() && <ErrorMessage className="error_message" errorText={errorMessage?.message} />} 
         </div>
         <div className={pollStyles.category_id}>
             <label htmlFor="category_id">Id на категория</label>
@@ -47,6 +57,7 @@ const CreatePollForm = () => {
             name="category_id"
             className={`admin_inputs ${pollStyles.input} ${errorMessage?.message.includes("id") && 'input_error'}`}
             />
+            {errorMessage?.message.includes('id') && <ErrorMessage className="error_message" errorText={errorMessage.message} />}
         </div>
        <ImagePicker name="image" label="ime"/>
         <div className={`${pollStyles.desc_poll}`}>
