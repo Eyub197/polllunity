@@ -1,7 +1,7 @@
 import { Id } from "@/lib/types"
 import { getPollById } from "@/lib/utils/polls"
 import Link from "next/link"
-import styles from "@/ui/ThanksForVoting.module.css"
+import styles from "@/ui/thanksForVoting/ThanksForVoting.module.css"
 import { revalidatePath } from "next/cache"
 
 

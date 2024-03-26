@@ -1,5 +1,5 @@
 import styles from '@/ui/header/Header.module.css'
-import Logo from "../Logo"
+import Logo from "../logo/Logo"
 import Nav from './Nav';
 import HeaderButtons from "./HeaderButtons";
 import { getCurrentUserRole } from '@/lib/utils/user';

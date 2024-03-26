@@ -6,7 +6,6 @@ import { CheckResults, ChoosePollButton } from "@/ui/Buttons";
 import { PollProps } from "@/lib/types";
 import { motion, AnimatePresence } from "framer-motion"
 
-
 const Poll: React.FC<PollProps> = ( {poll, user, status} ) => {
   const now = new Date()
   const startsAt = new Date(poll.starts_at)
@@ -32,7 +31,6 @@ const Poll: React.FC<PollProps> = ( {poll, user, status} ) => {
     initial={{opacity: 0}}
     animate= {{opacity: 1}}
     exit={{opacity: 0}}
-
     layout
     >
          <h2>{poll.title}</h2>

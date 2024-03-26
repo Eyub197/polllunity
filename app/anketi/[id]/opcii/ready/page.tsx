@@ -1,4 +1,4 @@
-import ThanksForVoting from "@/ui/ThanksForVoting"
+import ThanksForVoting from "@/ui/thanksForVoting/ThanksForVoting"
 
 const ThanksPage = ({ params }: { params: { id: string } }) =>{
     const { id } = params
