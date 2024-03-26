@@ -6,7 +6,7 @@ import { redirect } from "next/navigation"
 import { manageImage } from "./helperFunctions"
 
 
-export const createPoll = async (formData:FormData) => {
+export const createPoll = async (previousState: any,formData:FormData) => {
     const supabase =  await createClient()
     
     const imageFile = formData.get("image")
@@ -35,6 +35,9 @@ export const createPoll = async (formData:FormData) => {
 
         if(error.code === '23514'){
             return {message: "Моля, въведете заглавие"}
+        }
+        if(error.code === '22P02'){
+            return {message: "Моля, въведете id на катеогория"}
         }
         if(error.code === '23505'){
             return {message: "Вече съществува анкета с това име"}

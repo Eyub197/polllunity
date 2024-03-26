@@ -17,3 +17,11 @@ export const manageImage  = async (imageFile : any): Promise<string | null> => {
         throw new Error("Имаше грешка при качването на изображението");
     }
 }
+
+// export interface IError {
+//         message: string
+// }
+
+// export const checkError = (error: IError | null | undefined, substring: string): boolean =>  {
+//     return !error?.message?.includes(substring)
+// }
