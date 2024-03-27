@@ -1,5 +1,5 @@
-import { getPollById } from "@/lib/utils/polls"
 import UpdatePoll from "@/ui/polls/UpdatePoll"
+import { getPollById } from "@/lib/utils/polls"
 
 
 const EditPoll = async ({ params }: { params: { id: string } }) => {
@@ -8,7 +8,6 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
 
     return(
         <>       
-            <p>{poll?.title}</p>
             <UpdatePoll 
             id={id} 
             title={poll?.title!}
