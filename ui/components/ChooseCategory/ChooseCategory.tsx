@@ -3,11 +3,11 @@ import styles from "@/ui/components/ChooseCategory/ChooseCategory.module.css"
 import { getCategories } from "@/lib/utils/category"
 
 export interface ChooseCategoryProps {
-    className: string,
+    selectedCategory: string
 
 }
 
-const ChooseCategory = async () => {
+const ChooseCategory = async ({selectedCategory} : ChooseCategoryProps) => {
     const { categories, error } = await getCategories()
     const createCategoryOptions = () => {
         return categories?.map(category => {
@@ -22,7 +22,7 @@ const ChooseCategory = async () => {
     return (
             <>
                 <label htmlFor="category_id">Id на категория</label>
-                <select  className="admin_inputs" name="category_id" id="category_id">
+                <select defaultValue={selectedCategory} className="admin_inputs" name="category_id" id="category_id">
                     {createCategoryOptions()}
                 </select>
                 {error && <ErrorMessage errorText={"Грешка в базата от данни"} className={""}/>} 

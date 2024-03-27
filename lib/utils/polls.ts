@@ -29,7 +29,7 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         .from("polls")
         .insert(pollDataWithImage)
         console.log(error)
-        if(error) { throw error }
+        if (error) { throw error }
         
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
@@ -67,7 +67,7 @@ export const getPolls = async () : Promise<any[] | null> => {
     return polls
 }
 
-export const updatePollById = async (previousState: any,identity:string, formData: FormData) : Promise<any> => {
+export const updatePollById = async (identity:string, previousState: any,  formData: FormData) : Promise<any> => {
     const supabase = await createClient()
     const imageFile = formData.get("image")
     
@@ -80,7 +80,7 @@ export const updatePollById = async (previousState: any,identity:string, formDat
     }
 
     const image = await manageImage(imageFile)
-
+    console.log(`id ${identity}`)
     const pollDataWithImage = { ...pollData, image}
     const  {ends_at, starts_at, title} = pollDataWithImage
     console.log("formData", pollDataWithImage)
@@ -91,37 +91,37 @@ export const updatePollById = async (previousState: any,identity:string, formDat
         .eq("id", identity)
 
         console.log(error)
-        if(error) throw error
+        // if(error) throw error
 
-        revalidatePath("/admin/polls")
-        redirect("/admin/polls")
         
     } catch (error : any) {
-        console.error("Update Error:", error.message);
-        if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
-            return { message: "Крайната дата трябва да е по-късна от датата на започване" }
-        }
-        if(error.code === '23514' && title.length < 1){
-            return {message: "Моля, въведете заглавие"}
-        }
-        if(error.code === '22P02'){
-            return {message: "Моля, въведете id на катеогория"}
-        }
-        if(error.code === '23505'){
-            return {message: "Вече съществува анкета с това име"}
-        }
-        if(error.code === '22007'){
-            if(starts_at.length < 1){
-                return { message: "Моля въведете стартираща дата" }
-            }
-            if(ends_at.length < 1){
-                return { message: "Моля въведете крайна дата" }
-            }
-            return {message: "Неправилен формат на датата"}
-        }
+        // console.error("Update Error:", error.message);
+        // if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
+        //     return { message: "Крайната дата трябва да е по-късна от датата на започване" }
+        // }
+        // if(error.code === '23514' && title.length < 1){
+        //     return {message: "Моля, въведете заглавие"}
+        // }
+        // if(error.code === '22P02'){
+        //     return {message: "Моля, въведете id на катеогория"}
+        // }
+        // if(error.code === '23505'){
+        //     return {message: "Вече съществува анкета с това име"}
+        // }
+        // if(error.code === '22007'){
+        //     if(starts_at.length < 1){
+        //         return { message: "Моля въведете стартираща дата" }
+        //     }
+        //     if(ends_at.length < 1){
+        //         return { message: "Моля въведете крайна дата" }
+        //     }
+        //     return {message: "Неправилен формат на датата"}
+        // }
+        
     }
+    revalidatePath("/admin/polls")
+    redirect("/admin/polls")
 }
-
 
 export const getPollById = async (id:string) => {
     const supabase = await createClient()

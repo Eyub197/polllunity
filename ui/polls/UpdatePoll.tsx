@@ -18,7 +18,7 @@ const UpdatePoll = ({id, title, starts_at, ends_at, category_id,children, descri
     }
 
     const updatePoll = updatePollById.bind(null, id)
-    const [errorMessage, dispatch] = useFormState(updatePoll, null, "/admin/polls")
+    const [errorMessage, dispatch] = useFormState(updatePoll, undefined, "/admin/polls")
     return(
     <main className={styles.main}>
         <form className={`${styles.form} ${pollStyles.form_grid}`} action={dispatch}>

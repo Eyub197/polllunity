@@ -17,7 +17,7 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
             category_id={poll?.category_id!}
             description={poll?.description!}
             >
-            <ChooseCategory  />
+            <ChooseCategory selectedCategory={poll?.category_id!} />
             </UpdatePoll>
         </>
     )

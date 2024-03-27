@@ -8,8 +8,8 @@ import { Button } from "../ClientButtons"
 
 const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
 
-    const updateCategory = updateCategoryById.bind(id, null)
-    const [errorMessage, dispatch] = useFormState(updateCategory, id, "/admin/categories")
+    const updateCategory = updateCategoryById.bind(null, id)
+    const [errorMessage, dispatch] = useFormState(updateCategory, "/admin/categories")
 
     return(
         <>
