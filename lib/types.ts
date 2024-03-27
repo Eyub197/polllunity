@@ -34,7 +34,8 @@ export interface Poll {
     starts_at: string; 
     ends_at: string;
     category_id: string;
-    description: string
+    description: string;
+    children: React.ReactNode
   }
 
 export interface PollProps {

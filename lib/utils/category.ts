@@ -60,8 +60,15 @@ export const updateCategoryById = async (previousState: any, identity:string, fo
         
         if(error) throw error
         console.log(error)
-    } catch (error) {
-        return error
+    } catch (error:any) {
+        if(error.code === '23505') {
+            return { message: "Категорията вече съществува", status: 409 }
+        }
+        if(error.code === '23514')
+            return { message: "Моля, въведете име на кетегорията", status: 422 } 
+
+        return error.message
+
     } 
     finally{
         revalidatePath("/admin/categories")

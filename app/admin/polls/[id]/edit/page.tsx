@@ -1,5 +1,6 @@
 import UpdatePoll from "@/ui/polls/UpdatePoll"
 import { getPollById } from "@/lib/utils/polls"
+import ChooseCategory from "@/ui/components/ChooseCategory/ChooseCategory"
 
 
 const EditPoll = async ({ params }: { params: { id: string } }) => {
@@ -15,7 +16,9 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
             starts_at={poll?.starts_at!}
             category_id={poll?.category_id!}
             description={poll?.description!}
-            />
+            >
+            <ChooseCategory  />
+            </UpdatePoll>
         </>
     )
 }

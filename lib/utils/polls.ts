@@ -67,38 +67,59 @@ export const getPolls = async () : Promise<any[] | null> => {
     return polls
 }
 
-/**
- * Update a poll by id
- * @param identity The id of the poll to update
- * @param formData The form data to update the poll with
- */
-export const updatePollById = async (identity:string, formData: FormData) : Promise<any> => {
+export const updatePollById = async (previousState: any,identity:string, formData: FormData) : Promise<any> => {
     const supabase = await createClient()
-
-    /**
-     * The data to update the poll with
-     */
+    const imageFile = formData.get("image")
+    
     const pollData = {
         title : formData.get("title") as string,
         starts_at: formData.get("starts_at") as string,
-        ends_at: formData.get("ends_at") as string,
+        ends_at: formData.get("ends_at") as string,        
         category_id: formData.get("category_id") as string,
         description : formData.get("description") as string,
     }
 
-    /**
-     * Update the poll in the database
-     */
-    const {data, error} = await supabase
-    .from("polls")
-    .update(pollData)
-    .eq("id", identity)
+    const image = await manageImage(imageFile)
 
-    /**
-     * Redirect to the polls page after updating
-     */
-    revalidatePath("/admin/polls")
-    redirect("/admin/polls")
+    const pollDataWithImage = { ...pollData, image}
+    const  {ends_at, starts_at, title} = pollDataWithImage
+    console.log("formData", pollDataWithImage)
+    try{
+        const {data, error} = await supabase
+        .from("polls")
+        .update(pollData)
+        .eq("id", identity)
+
+        console.log(error)
+        if(error) throw error
+
+        revalidatePath("/admin/polls")
+        redirect("/admin/polls")
+        
+    } catch (error : any) {
+        console.error("Update Error:", error.message);
+        if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
+            return { message: "Крайната дата трябва да е по-късна от датата на започване" }
+        }
+        if(error.code === '23514' && title.length < 1){
+            return {message: "Моля, въведете заглавие"}
+        }
+        if(error.code === '22P02'){
+            return {message: "Моля, въведете id на катеогория"}
+        }
+        if(error.code === '23505'){
+            return {message: "Вече съществува анкета с това име"}
+        }
+        if(error.code === '22007'){
+            if(starts_at.length < 1){
+                return { message: "Моля въведете стартираща дата" }
+            }
+            if(ends_at.length < 1){
+                return { message: "Моля въведете крайна дата" }
+            }
+            return {message: "Неправилен формат на датата"}
+        }
+    }
 }
 
 
