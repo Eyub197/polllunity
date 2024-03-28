@@ -3,17 +3,17 @@ import styles from "@/ui/components/ChooseCategory/ChooseCategory.module.css"
 import { getCategories } from "@/lib/utils/category"
 
 export interface ChooseCategoryProps {
-    selectedCategory: string
-
+    selectedCategory: string | undefined,
+    label: string
 }
 
-const ChooseCategory = async ({selectedCategory} : ChooseCategoryProps) => {
+const Dropdown = async ({selectedCategory, label} : ChooseCategoryProps) => {
     const { categories, error } = await getCategories()
     const createCategoryOptions = () => {
         return categories?.map(category => {
             return(
             <option value={category.id} key={category.id}>
-                {category.id}{category.name}
+                {category.name}
             </option>
             )
         })
@@ -21,8 +21,8 @@ const ChooseCategory = async ({selectedCategory} : ChooseCategoryProps) => {
 
     return (
             <>
-                <label htmlFor="category_id">Id на категория</label>
-                <select defaultValue={selectedCategory} className="admin_inputs" name="category_id" id="category_id">
+                <label htmlFor="category_id">{label}</label>
+                <select defaultValue={selectedCategory || undefined} className="admin_inputs" name="category_id" id="category_id">
                     {createCategoryOptions()}
                 </select>
                 {error && <ErrorMessage errorText={"Грешка в базата от данни"} className={""}/>} 
@@ -31,4 +31,4 @@ const ChooseCategory = async ({selectedCategory} : ChooseCategoryProps) => {
     )
 }
 
-export default ChooseCategory
+export default Dropdown

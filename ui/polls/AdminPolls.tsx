@@ -3,6 +3,7 @@ import { DeletePollButton, EditPollButton } from "../Buttons"
 import pollStyles from "@/ui/polls/PollForm.module.css"
 import Image from "next/image"
 import CreatePollForm from "./CreatePollForm"
+import Dropdown from "../components/dropdown/Dropdown"
 
 const AdminPolls = async () => {
     const polls = await getPolls()
@@ -43,7 +44,9 @@ const AdminPolls = async () => {
         <>
         <h1 className={"title"}>Анкети</h1>
         <main className={pollStyles.main}>
-        <CreatePollForm/>
+        <CreatePollForm>
+            <Dropdown label="Изберете категория" selectedCategory={undefined}/>
+        </CreatePollForm>
         <h2 className={"title_2"}>Всички анкети</h2>
         <section>
             {createPollsElements()}

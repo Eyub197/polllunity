@@ -8,10 +8,10 @@ import { Button } from "../ClientButtons"
 import { useFormState } from "react-dom"
 import ErrorMessage from "../components/ErrorMessage"
 
-const CreatePollForm = () => {
+const CreatePollForm = ({ children }:{ children: React.ReactNode}) => {
 
     const checkEndDate = () => {
-         if(errorMessage?.message.includes("крайна")) return true
+        if(errorMessage?.message.includes("крайна")) return true
         else if(errorMessage?.message.includes("трябва")) return true
     }
 
@@ -49,16 +49,7 @@ const CreatePollForm = () => {
             />
             {checkEndDate() && <ErrorMessage className="error_message" errorText={errorMessage?.message} />} 
         </div>
-        <div className={pollStyles.category_id}>
-            <label htmlFor="category_id">Id на категория</label>
-            <input
-            type="text"
-            id="category_id"
-            name="category_id"
-            className={`admin_inputs ${pollStyles.input} ${errorMessage?.message.includes("id") && 'input_error'}`}
-            />
-            {errorMessage?.message.includes('id') && <ErrorMessage className="error_message" errorText={errorMessage.message} />}
-        </div>
+        {children}
        <ImagePicker name="image" label="ime"/>
         <div className={`${pollStyles.desc_poll}`}>
             <label htmlFor="description">описание</label>

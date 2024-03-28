@@ -8,7 +8,6 @@ import { updatePollById } from "@/lib/utils/polls"
 import { Poll } from "@/lib/types"
 import { useFormState } from "react-dom"
 import { Button } from "../ClientButtons"
-import ChooseCategory from "../components/ChooseCategory/ChooseCategory"
 
 const UpdatePoll = ({id, title, starts_at, ends_at, category_id,children, description}: Poll) => {
     
@@ -60,7 +59,7 @@ const UpdatePoll = ({id, title, starts_at, ends_at, category_id,children, descri
         </div>
        <ImagePicker name="image" label="ime"/>
         <div className={`${pollStyles.desc_poll}`}>
-            <label htmlFor="description">описание</label>
+            <label htmlFor="description">Описание</label>
             <textarea
             name="description"
             id="description"
