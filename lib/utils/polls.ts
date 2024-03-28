@@ -3,7 +3,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-import { manageImage } from "./helperFunctions"
+import { errHandlingPolls, manageImage } from "./helperFunctions"
 
 
 export const createPoll = async (previousState: any,formData:FormData) => {
@@ -34,27 +34,15 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
         
-        if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
-            return { message: "Крайната дата трябва да е по-късна от датата на започване" }
+        const args = {
+            message: error.message,
+            code: error.code,
+            title,
+            starts_at,
+            ends_at
         }
-        if(error.code === '23514' && title.length < 1){
-            return {message: "Моля, въведете заглавие"}
-        }
-        if(error.code === '22P02'){
-            return {message: "Моля, въведете id на катеогория"}
-        }
-        if(error.code === '23505'){
-            return {message: "Вече съществува анкета с това име"}
-        }
-        if(error.code === '22007'){
-            if(starts_at.length < 1){
-                return { message: "Моля въведете стартираща дата" }
-            }
-            if(ends_at.length < 1){
-                return { message: "Моля въведете крайна дата" }
-            }
-            return {message: "Неправилен формат на датата"}
-        }
+
+      return  errHandlingPolls(args)
     }
 }
 
@@ -80,10 +68,9 @@ export const updatePollById = async (identity:string, previousState: any,  formD
     }
 
     const image = await manageImage(imageFile)
-    console.log(`id ${identity}`)
     const pollDataWithImage = { ...pollData, image}
     const  {ends_at, starts_at, title} = pollDataWithImage
-    console.log("formData", pollDataWithImage)
+
     try{
         const {data, error} = await supabase
         .from("polls")
@@ -92,31 +79,18 @@ export const updatePollById = async (identity:string, previousState: any,  formD
 
         console.log(error)
         if(error) throw error
-
         
     } catch (error : any) {
-        console.error("Update Error:", error.message);
-        if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
-            return { message: "Крайната дата трябва да е по-късна от датата на започване" }
+        
+        const args = {
+            message: error.message,
+            code: error.code,
+            title,
+            starts_at,
+            ends_at
         }
-        if(error.code === '23514' && title.length < 1){
-            return {message: "Моля, въведете заглавие"}
-        }
-        if(error.code === '22P02'){
-            return {message: "Моля, въведете id на катеогория"}
-        }
-        if(error.code === '23505'){
-            return {message: "Вече съществува анкета с това име"}
-        }
-        if(error.code === '22007'){
-            if(starts_at.length < 1){
-                return { message: "Моля въведете стартираща дата" }
-            }
-             if(ends_at.length < 1){
-                return { message: "Моля въведете крайна дата" }
-            }
-            return {message: "Неправилен формат на датата"}
-         }
+      
+        return errHandlingPolls(args)
     }
     revalidatePath("/admin/polls")
     redirect("/admin/polls")
