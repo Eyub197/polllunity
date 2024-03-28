@@ -91,33 +91,32 @@ export const updatePollById = async (identity:string, previousState: any,  formD
         .eq("id", identity)
 
         console.log(error)
-        // if(error) throw error
+        if(error) throw error
 
         
     } catch (error : any) {
-        // console.error("Update Error:", error.message);
-        // if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
-        //     return { message: "Крайната дата трябва да е по-късна от датата на започване" }
-        // }
-        // if(error.code === '23514' && title.length < 1){
-        //     return {message: "Моля, въведете заглавие"}
-        // }
-        // if(error.code === '22P02'){
-        //     return {message: "Моля, въведете id на катеогория"}
-        // }
-        // if(error.code === '23505'){
-        //     return {message: "Вече съществува анкета с това име"}
-        // }
-        // if(error.code === '22007'){
-        //     if(starts_at.length < 1){
-        //         return { message: "Моля въведете стартираща дата" }
-        //     }
-        //     if(ends_at.length < 1){
-        //         return { message: "Моля въведете крайна дата" }
-        //     }
-        //     return {message: "Неправилен формат на датата"}
-        // }
-        
+        console.error("Update Error:", error.message);
+        if(error.message === 'new row for relation "polls" violates check constraint "ends_at"'){
+            return { message: "Крайната дата трябва да е по-късна от датата на започване" }
+        }
+        if(error.code === '23514' && title.length < 1){
+            return {message: "Моля, въведете заглавие"}
+        }
+        if(error.code === '22P02'){
+            return {message: "Моля, въведете id на катеогория"}
+        }
+        if(error.code === '23505'){
+            return {message: "Вече съществува анкета с това име"}
+        }
+        if(error.code === '22007'){
+            if(starts_at.length < 1){
+                return { message: "Моля въведете стартираща дата" }
+            }
+             if(ends_at.length < 1){
+                return { message: "Моля въведете крайна дата" }
+            }
+            return {message: "Неправилен формат на датата"}
+         }
     }
     revalidatePath("/admin/polls")
     redirect("/admin/polls")
