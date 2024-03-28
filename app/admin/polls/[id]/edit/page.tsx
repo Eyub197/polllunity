@@ -17,7 +17,7 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
             category_id={poll?.category_id!}
             description={poll?.description!}
             >
-            <DropDown label="Изберете категория" selectedCategory={poll?.category_id!} />
+            <DropDown label="Изберете категория" selected={poll?.category_id!} />
             </UpdatePoll>
         </>
     )
