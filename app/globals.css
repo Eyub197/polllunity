@@ -37,7 +37,7 @@ a{
     color: inherit;
 }
 
-button, input, textarea {
+button, input, textarea, select, option {
     font-family: inherit;
     border-radius: 5pt;
     cursor: pointer;
@@ -64,15 +64,13 @@ label{
     color: var(--text-color);
 }
 
-.admin_inputs{
+.admin_inputs,
+.admin_inputs:focus {
     padding: 1em 2em;
     border: 4px solid black;
     background-color: var(--secondary-color);
 }
 
-.admin_inputs:focus{
-    border: 3.5px solid black
-}
 
 .input_error{    
     border: 3.5px solid #FFB3B3;
