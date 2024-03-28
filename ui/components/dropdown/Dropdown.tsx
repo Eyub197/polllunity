@@ -1,13 +1,14 @@
 import ErrorMessage from "../ErrorMessage"
-import styles from "@/ui/components/ChooseCategory/ChooseCategory.module.css"
+import styles from "@/ui/components/dropdown/Dropdown.module.css"
 import { getCategories } from "@/lib/utils/category"
 
 export interface ChooseCategoryProps {
     selected: string | undefined,
-    label: string
+    label: string,
+    className?: string | undefined | null
 }
 
-const Dropdown = async ({selected, label} : ChooseCategoryProps) => {
+const Dropdown = async ({selected, label, className} : ChooseCategoryProps) => {
     const { categories, error } = await getCategories()
     const createCategoryOptions = () => {
         return categories?.map(category => {
@@ -24,7 +25,7 @@ const Dropdown = async ({selected, label} : ChooseCategoryProps) => {
                 <label htmlFor="category_id">{label}</label>
                 <select 
                 defaultValue={selected || undefined} 
-                className="admin_inputs" 
+                className={`admin_inputs ${styles[className!]}`}  
                 name="category_id" 
                 id="category_id"
                 >

@@ -46,7 +46,7 @@ const AdminPolls = async () => {
         <main className={pollStyles.main}>
         <CreatePollForm>
             <div className={pollStyles.category_id}>
-                <Dropdown label="Изберете категория" selected={undefined}/>
+                <Dropdown className={"input"} label="Изберете категория" selected={undefined}/>
             </div>
         </CreatePollForm>
         <h2 className={"title_2"}>Всички анкети</h2>
