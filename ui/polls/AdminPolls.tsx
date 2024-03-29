@@ -4,6 +4,7 @@ import pollStyles from "@/ui/polls/PollForm.module.css"
 import Image from "next/image"
 import CreatePollForm from "./CreatePollForm"
 import Dropdown from "../components/dropdown/Dropdown"
+import styles from "@/ui/polls/Poll.module.css"
 
 const AdminPolls = async () => {
     const polls = await getPolls()
@@ -16,13 +17,13 @@ const AdminPolls = async () => {
             const {id, title, starts_at, ends_at, categories, image, description} = poll
                 
             return(
-                <div key={id}>
+                <div className={styles.poll} key={id}>
                 {
                     image && image !== undefined && 
                     <Image 
                     src={image}
-                    width={200}
-                    height={100}
+                    width={400}
+                    height={200}
                     style={{objectFit: "cover"}}
                     alt={"снимка на анкетата"}
                     />
@@ -50,7 +51,7 @@ const AdminPolls = async () => {
             </div>
         </CreatePollForm>
         <h2 className={"title_2"}>Всички анкети</h2>
-        <section>
+        <section className={styles.polls}>
             {createPollsElements()}
         </section>
         </main>

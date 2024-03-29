@@ -1,0 +1,11 @@
+.polls{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+
+.poll{
+    border: 4px solid brown;
+    padding: 1em;
+    border-radius: 7pt;
+}
