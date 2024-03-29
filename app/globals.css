@@ -84,9 +84,8 @@ label{
     background-color: var(--secondary-color);
 }
 
-
 .input_error{    
-    border: 3.5px solid #FFB3B3;
+    border: 4px solid #FFB3B3;
 }
 
 .title, .title_2{
