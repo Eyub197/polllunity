@@ -1,7 +1,7 @@
 "use client"
-import styles from "@/ui/components/moreInformation/MoreInformation.module.css";
-import { useState } from "react";
-import { FcInfo } from "react-icons/fc";
+import styles from "@/ui/components/moreInformation/MoreInformation.module.css"
+import { useState } from "react"
+import { FcInfo } from "react-icons/fc"
 
 export interface MoreInformationProps {
   description: string;
@@ -26,7 +26,7 @@ const MoreInformation = ({ description }: MoreInformationProps) => {
         <div className={styles.tail}></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default MoreInformation;
