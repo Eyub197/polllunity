@@ -5,6 +5,7 @@ import Image from "next/image"
 import CreatePollForm from "./CreatePollForm"
 import Dropdown from "../components/dropdown/Dropdown"
 import styles from "@/ui/polls/Poll.module.css"
+import MoreInformation from "../components/moreInformation/MoreInformation"
 
 const AdminPolls = async () => {
     const polls = await getPolls()
@@ -28,11 +29,11 @@ const AdminPolls = async () => {
                     className={styles.poll_image}
                     />
                 }
-                <h2>title: {title}</h2>
-                <h3>{categories.name}</h3>
-                <p>starts at: {starts_at}</p>
-                <p>ends at :{ends_at}</p>
-                <p>{description}</p>
+                <h2>{title}</h2>
+                <h3>Категория: {categories.name}</h3>
+                <p>започва на: {starts_at}</p>
+                <p>завършва на:{ends_at}</p>
+                <MoreInformation description={description}/>
                 <DeletePollButton id={id}/>
                 <EditPollButton id={id}/>
             </div>)

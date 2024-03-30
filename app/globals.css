@@ -77,6 +77,10 @@ label{
     color: var(--text-color);
 }
 
+.hidden{
+    display: none;
+}
+
 .admin_inputs,
 .admin_inputs:focus {
     padding: 1em 2em;

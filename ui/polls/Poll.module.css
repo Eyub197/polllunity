@@ -1,6 +1,7 @@
 .polls{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em
 }
 
 
@@ -13,6 +14,7 @@
 .poll_image{
     display: block;
     width: 100%;
+    max-width: 400px;
+    min-height: 100px;
     object-fit: cover;
-    height: auto;
 }
