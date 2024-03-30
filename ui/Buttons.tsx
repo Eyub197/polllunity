@@ -6,6 +6,23 @@ import { deleteCategory } from "@/lib/utils/category";
 import { deletePoll } from "@/lib/utils/polls";
 import { deleteOption } from "@/lib/utils/options";
 import { Id } from "@/lib/types";
+export interface DeleteButtonProps{
+    id: string,
+    helper: null
+    action: (id:string) => void
+}
+export const DeleteButton = ({id, action, helper}: DeleteButtonProps) => {
+
+    const deleteWithId = action.bind(helper, id)
+    return(
+        <form className={styles.delete_button} action={deleteWithId}>
+            <button className={styles.delete_button} type="submit">
+                <p>Изтрий</p>
+                <IoCloseCircle/>
+            </button> 
+        </form>
+    )
+}
 
 // ** ===Category===
 
@@ -93,15 +110,6 @@ export const CheckResults = ({id}: Id) => {
     </Link>
     )
 }
-
-
-export const SubmitRegisterFormButton = (action:any, state:any) => {
-    return (
-    <button formAction={action} aria-disabled={state}> 
-        {state ? "Регистирирай се": "....   "}            
-    </button>)
-}
-
 
 //** Admin link */
 // export const AdminPage = async (isActive: PropsAdmin) => {

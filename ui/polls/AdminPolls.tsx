@@ -31,10 +31,12 @@ const AdminPolls = async () => {
                 }
                 <div className={styles.bottom_part}>
                     <h2>{title}</h2>
-                    <h3>Категория: {categories.name}</h3>
+                    <div className={styles.info}>
+                        <h3>Категория: {categories.name}</h3>
+                        <MoreInformation description={description}/>
+                    </div>
                     <p>започва на: {starts_at}</p>
                     <p>завършва на:{ends_at}</p>
-                    <MoreInformation description={description}/>
                     <DeletePollButton id={id}/>
                     <EditPollButton id={id}/>
                 </div>
