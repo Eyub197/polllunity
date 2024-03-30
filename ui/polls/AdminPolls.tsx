@@ -37,8 +37,10 @@ const AdminPolls = async () => {
                     </div>
                     <p>започва на: {starts_at}</p>
                     <p>завършва на:{ends_at}</p>
-                    <DeleteButtonServer action={deleteFunction} id={id} helper={null}/>
-                    <EditButton id={id} toEdit="polls"/>
+                    <div className={styles.buttons}>
+                        <EditButton id={id} toEdit="polls"/>
+                        <DeleteButtonServer action={deleteFunction} id={id} helper={null}/>
+                    </div>
                 </div>
             </div>)
                       

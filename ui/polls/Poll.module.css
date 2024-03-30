@@ -27,7 +27,7 @@
    padding: 1em;
 }
 
-.info{
+.info, .buttons {
     display: flex;
     align-items: center;
     justify-content: space-between;
