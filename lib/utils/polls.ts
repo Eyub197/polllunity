@@ -55,7 +55,7 @@ export const getPolls = async () : Promise<any[] | null> => {
     return polls
 }
 
-export const updatePollById = async (identity:string, previousState: any,  formData: FormData) : Promise<any> => {
+export const updatePollById = async (id:string, previousState: any, formData: FormData) : Promise<any> => {
     const supabase = await createClient()
     const imageFile = formData.get("image")
     
@@ -75,7 +75,7 @@ export const updatePollById = async (identity:string, previousState: any,  formD
         const {data, error} = await supabase
         .from("polls")
         .update(pollData)
-        .eq("id", identity)
+        .eq("id", id)
 
         console.log(error)
         if(error) throw error

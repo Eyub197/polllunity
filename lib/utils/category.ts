@@ -44,7 +44,7 @@ export const getCategories = async () => {
     return { categories, error }
 }
 
-export const updateCategoryById = async (previousState: any, identity:string, formData: FormData) : Promise<any> => {
+export const updateCategoryById = async (id:string, previousState: any, formData: FormData) : Promise<any> => {
     try{
         const supabase = await createClient()
     
@@ -56,7 +56,7 @@ export const updateCategoryById = async (previousState: any, identity:string, fo
         const { data, error } = await supabase
         .from("categories")
         .update(categoryData)
-        .eq("id", identity)
+        .eq("id", id)
         
         if(error) throw error
         console.log(error)

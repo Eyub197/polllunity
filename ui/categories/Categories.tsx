@@ -20,9 +20,8 @@ const CreateCategory = async () => {
                         <DeleteButtonServer action={deleteFunction} id={category.id} helper={null}/>
                     </section>
                 </div>
-           ) 
-
-            }
+            ) 
+        }
 
         ))}
     }
@@ -33,7 +32,6 @@ const CreateCategory = async () => {
             <main className={styles.main}>
                 <CreateCategoryForm/>
                 <h2 className={styles.title_2}>Висички категории</h2>     
-
                 <section className={styles.categories_container}>
                     {createCategoriesElements() || <p>Няма създадени категории</p>}
                 </section> 
