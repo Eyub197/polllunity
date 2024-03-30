@@ -1,13 +1,20 @@
 .polls{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2em
+    grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+    gap: 2em;
+    padding-inline: 2em;
+    margin-bottom: 2em;
 }
 
-
 .poll{
-    padding: 1em;
-    border-radius: 7pt;
+    transition: transform 250ms ease, box-shadow 250ms ease, border-radius 250ms ease;
+}
+
+.poll:hover{
+    transform: translateY(-10px);
+    box-shadow: -13px 13px 0px rgba(0,0,0, 0.8);
+    border-radius: 0pt 0pt 10pt 10pt;
+
 }
 
 .poll_image{
@@ -17,14 +24,16 @@
     min-height: 100px;
     object-fit: cover;
     margin-bottom: 0;
+    border-radius: 10pt 10pt 0pt 0pt;
 }
 
 .bottom_part{
-   border-bottom: 3px solid black;
-   border-left: 3px solid black;
-   border-right: 3px solid black;
+   border: 5px solid var(--secondary-color);
+   border-top: none;
    margin-top: 0;
    padding: 1em;
+   border-radius: 0pt 0pt 10pt 10pt;
+
 }
 
 .info, .buttons {
