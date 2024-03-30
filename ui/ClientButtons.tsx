@@ -8,6 +8,10 @@ import { IoCloseCircle } from "react-icons/io5"
 import buttonStyles from "@/ui/ClientButtons.module.css"
 import { ButtonProps } from "@/lib/types"
 
+export interface DeleteButtonProps{
+    id: string,
+    action: (id:string) => void
+}
 export const VoteButton = ({userId, pollId} : any) => {
     return(
         <button onClick={()=> handleUserVote(userId, pollId)}>
@@ -26,24 +30,14 @@ export const Button = ({action, inAction, className}: ButtonProps) => {
     )
 }
 
-export const DeleteCategoryButton = ({ id }: { id: string }) => {
-    const deleteCategoryWithId = deleteCategory.bind(null, id)
+export const DeleteButtonClient = () => {
+    const { pending } = useFormStatus()
     
     return(
-        <form className={styles.delete_button} action={deleteCategoryWithId}>
-            <DeleteButton/>
-        </form>
+            <button className={styles.delete_button} type="submit">
+            <p>{pending ? "изтрива се..." : "изтрий"}</p>
+            <IoCloseCircle/>
+            </button> 
     )
 }
-
-export function DeleteButton () {
-    const { pending } = useFormStatus()
-    return(
-        <button className={styles.delete_button} type="submit">
-        <p>{pending ? "изтрива се..." : "изтрий"}</p>
-        <IoCloseCircle/>
-        </button> 
-    )
-}
-
 

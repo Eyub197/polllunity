@@ -1,8 +1,8 @@
 import {  deleteCategory, getCategories } from "@/lib/utils/category"
-import { EditCategoryButton} from "../Buttons"
+import { EditButton} from "../Buttons"
 import styles from "@/ui/categories/Categories.module.css"
-import { DeleteCategoryButton } from "../ClientButtons"
 import CreateCategoryForm from "./CreateCategoryForm"
+import { DeleteButtonServer } from "../Buttons"
 
 const CreateCategory = async () => {
     const { categories } = await getCategories()
@@ -16,8 +16,8 @@ const CreateCategory = async () => {
                     <h2>Име: <span className={styles.normal}> {category.name}</span></h2>
                     <h3>Описание: <span className={styles.normal}> {category.description || "няма описание"}</span></h3>
                     <section className={styles.actions_container}>
-                        <EditCategoryButton id={category.id}/>
-                        <DeleteCategoryButton id={category.id} />
+                        <EditButton id={category.id} toEdit="categories"/>
+                        <DeleteButtonServer action={deleteFunction} id={category.id} helper={null}/>
                     </section>
                 </div>
            ) 

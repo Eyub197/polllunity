@@ -1,5 +1,5 @@
-import { getPolls } from "@/lib/utils/polls"
-import { DeletePollButton, EditPollButton } from "../Buttons"
+import { deletePoll, getPolls } from "@/lib/utils/polls"
+import { DeleteButtonServer, EditButton, EditPollButton } from "../Buttons"
 import pollStyles from "@/ui/polls/PollForm.module.css"
 import Image from "next/image"
 import CreatePollForm from "./CreatePollForm"
@@ -13,10 +13,10 @@ const AdminPolls = async () => {
     const createPollsElements = () => {
 
         if(polls?.length! > 0) {
-            return polls?.map(poll => {
+            return polls?.map( poll => {
 
             const {id, title, starts_at, ends_at, categories, image, description} = poll
-                
+            const deleteFunction = deletePoll.bind(null, id)    
             return(
                 <div className={styles.poll} key={id}>
                 {
@@ -37,8 +37,8 @@ const AdminPolls = async () => {
                     </div>
                     <p>започва на: {starts_at}</p>
                     <p>завършва на:{ends_at}</p>
-                    <DeletePollButton id={id}/>
-                    <EditPollButton id={id}/>
+                    <DeleteButtonServer action={deleteFunction} id={id} helper={null}/>
+                    <EditButton id={id} toEdit="polls"/>
                 </div>
             </div>)
                       

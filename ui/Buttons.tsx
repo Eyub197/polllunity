@@ -1,76 +1,37 @@
 import Link from "next/link";
 import styles from "@/ui/Buttons.module.css"
 import { HiOutlinePencilAlt } from "react-icons/hi";
-import { IoCloseCircle } from "react-icons/io5";
-import { deleteCategory } from "@/lib/utils/category";
-import { deletePoll } from "@/lib/utils/polls";
-import { deleteOption } from "@/lib/utils/options";
 import { Id } from "@/lib/types";
+import { DeleteButtonClient } from "./ClientButtons";
 export interface DeleteButtonProps{
     id: string,
     helper: null
     action: (id:string) => void
 }
-export const DeleteButton = ({id, action, helper}: DeleteButtonProps) => {
+
+export interface EditButtonProps {
+    id: string,
+    toEdit: string
+}
+
+export const DeleteButtonServer = ({id, action, helper}: DeleteButtonProps) => {
 
     const deleteWithId = action.bind(helper, id)
     return(
         <form className={styles.delete_button} action={deleteWithId}>
-            <button className={styles.delete_button} type="submit">
-                <p>Изтрий</p>
-                <IoCloseCircle/>
-            </button> 
+            <DeleteButtonClient/> 
         </form>
     )
 }
 
-// ** ===Category===
-
-export const EditCategoryButton = ({ id }: { id: string }) : JSX.Element => {
-
-return(
-    <Link className={styles.edit_button} href={`/admin/categories/${id}/edit`}  >
+export const EditButton = ({id, toEdit}: EditButtonProps) => {
+    return(
+    <Link className={styles.edit_button} href={`/admin/${toEdit}/${id}/edit`}  >
         <p>Редактирай</p>
         <HiOutlinePencilAlt/>
     </Link>
-)}
-
-export const DeleteCategoryButton = ({ id }: { id: string }) => {
-
-    const deleteCategoryWithId = deleteCategory.bind(null, id)
-
-    return(
-        <form className={styles.delete_button} action={deleteCategoryWithId}>
-            <button className={styles.delete_button} type="submit">
-                <p>Изтрий</p>
-                <IoCloseCircle/>
-            </button> 
-        </form>
-    )}
-
-// ** ===Poll===
-
-export const EditPollButton = ({ id }: { id: string }) : JSX.Element => {
-
-    return(
-        <Link href={`/admin/polls/${id}/edit`}  >
-            <HiOutlinePencilAlt/>
-        </Link>
-    )}
-    
-export const DeletePollButton = ({ id }: { id: string }) => {
-    
-    const deletePollWithId = deletePoll.bind(null, id)
-    
-    return(
-        <form action={deletePollWithId}>
-            <button type="submit">
-                <IoCloseCircle/>
-            </button> 
-        </form>
-    )}
-
-
+    )
+}
 export const ChoosePollButton = ({id} : Id)  => {    
     return( 
         <Link href={`anketi/${id}/opcii`}>
@@ -78,29 +39,6 @@ export const ChoosePollButton = ({id} : Id)  => {
         </Link>       
         )
     }
-
-
-// ** ===Option===
-
-export const EditOptionButton = ({ id }: { id: string }) : JSX.Element => {
-
-    return(
-        <Link href={`/admin/options/${id}/edit`}  >
-            <HiOutlinePencilAlt/>
-        </Link>
-    )}
-    
-export const DeleteOptionButton = ({ id }: { id: string }) => {
-    
-    const deleteOptionWithId = deleteOption.bind(null, id)
-    
-    return(
-        <form action={deleteOptionWithId}>
-            <button type="submit">
-                <IoCloseCircle/>
-            </button> 
-        </form>
-    )}
 
 
 export const CheckResults = ({id}: Id) => {
