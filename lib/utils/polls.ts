@@ -28,7 +28,7 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         const { data, error } = await supabase
         .from("polls")
         .insert(pollDataWithImage)
-        if (error) { throw error }
+        if (error) throw error 
         console.log(error)
         
         revalidatePath("/admin/polls")        
