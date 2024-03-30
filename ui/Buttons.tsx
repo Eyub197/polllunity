@@ -18,7 +18,7 @@ export const DeleteButtonServer = ({id, action, helper}: DeleteButtonProps) => {
 
     const deleteWithId = action.bind(helper, id)
     return(
-        <form className={styles.delete_button} action={deleteWithId}>
+        <form  action={deleteWithId}>
             <DeleteButtonClient/> 
         </form>
     )

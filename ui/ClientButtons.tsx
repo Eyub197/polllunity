@@ -3,7 +3,6 @@
 import styles from "@/ui/Buttons.module.css"
 import { handleUserVote } from "@/lib/utils/userVote"
 import { useFormStatus } from "react-dom"
-import { deleteCategory } from "@/lib/utils/category"
 import { IoCloseCircle } from "react-icons/io5"
 import buttonStyles from "@/ui/ClientButtons.module.css"
 import { ButtonProps } from "@/lib/types"
@@ -34,9 +33,9 @@ export const DeleteButtonClient = () => {
     const { pending } = useFormStatus()
     
     return(
-            <button className={styles.delete_button} type="submit">
-            <p>{pending ? "изтрива се..." : "изтрий"}</p>
-            <IoCloseCircle/>
+            <button type="submit" className={styles.delete_button}>
+                <p>{pending ? "изтрива се..." : "изтрий"}</p>
+                <IoCloseCircle/>
             </button> 
     )
 }
