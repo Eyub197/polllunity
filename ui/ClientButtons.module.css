@@ -9,7 +9,8 @@
 
 .poll_btn { 
     grid-area: button; 
-    padding: 0.7em;
+    padding: 1em 7em;
+    justify-self: center;
 }
 
 .btn_sign_in{

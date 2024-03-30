@@ -41,3 +41,50 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.form_grid, .main{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_grid{
+    gap: 1.5em;
+}
+
+.name_poll { 
+    grid-area: title;
+}
+
+.main{
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+    margin: 0 auto;
+}
+
+.input, .input_description{
+    width: 100%;
+    max-width: 500px;
+}
+
+
+@media (min-width: 768px) {
+    .main{
+        display: initial;
+    }
+    .form_grid{
+        display: grid;     
+        grid-template-columns: repeat(2, minmax(200px, 500px));
+        padding: 2em;
+        grid-template-areas: 
+        "title category_id"
+        "starts ends"
+        "description image"    
+        "button ."; 
+    }
+    
+    .category_id { grid-area: category_id;}
+    .starts_at { grid-area: starts; }
+    .ends_at { grid-area: ends; }
+    .desc_poll { grid-area: description; }
+}
