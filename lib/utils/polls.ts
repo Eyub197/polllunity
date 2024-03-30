@@ -28,8 +28,8 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         const { data, error } = await supabase
         .from("polls")
         .insert(pollDataWithImage)
-        console.log(error)
         if (error) { throw error }
+        console.log(error)
         
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
@@ -42,17 +42,16 @@ export const createPoll = async (previousState: any,formData:FormData) => {
             ends_at
         }
 
-      return  errHandlingPolls(args)
+      return errHandlingPolls(args)
     }
 }
 
-export const getPolls = async () : Promise<any[] | null> => {
+export const getPolls = async () => {
     const supabase =  await createClient()
     const { data:polls , error } = await supabase
    .from("polls")
    .select("*, categories(name, description)")
-   
-    return polls
+    return { polls, error }
 }
 
 export const updatePollById = async (id:string, previousState: any, formData: FormData) : Promise<any> => {

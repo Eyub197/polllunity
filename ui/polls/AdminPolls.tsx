@@ -7,7 +7,7 @@ import pollStyles from "@/ui/polls/Poll.module.css"
 import MoreInformation from "../components/moreInformation/MoreInformation"
 
 const AdminPolls = async () => {
-    const polls = await getPolls()
+    const {polls} = await getPolls()
 
     const createPollsElements = () => {
 
@@ -31,8 +31,8 @@ const AdminPolls = async () => {
                 <div className={pollStyles.bottom_part}>
                     <h2>{title}</h2>
                     <div className={pollStyles.info}>
-                        <h3>Категория: {categories.name}</h3>
-                        <MoreInformation description={description}/>
+                        <h3>Категория: {categories?.name}</h3>
+                        <MoreInformation description={description || "няма допълнителна информация"}/>
                     </div>
                     <p>започва на: {starts_at}</p>
                     <p>завършва на:{ends_at}</p>
