@@ -7,10 +7,6 @@ import { errHandlingPolls, manageImage } from "./helperFunctions"
 
 
 export const createPoll = async (previousState: any,formData:FormData) => {
-    const supabase =  await createClient()
-    
-    const imageFile = formData.get("image")
-    
     const pollData = {
         title : formData.get("title") as string,
         starts_at: formData.get("starts_at") as string,
@@ -18,19 +14,20 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         category_id: formData.get("category_id") as string,
         description : formData.get("description") as string,
     }
-
+    const imageFile = formData.get("image")
     const image = await manageImage(imageFile)
-
     const pollDataWithImage = { ...pollData, image}
     const  {ends_at, starts_at, title} = pollDataWithImage
-    try{
     
+    try{
+        const supabase =  await createClient()
+        
         const { data, error } = await supabase
         .from("polls")
         .insert(pollDataWithImage)
+      
         if (error) throw error 
-        console.log(error)
-        
+        console.log(error)  
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
         
