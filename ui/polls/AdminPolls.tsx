@@ -20,14 +20,14 @@ const AdminPolls = async () => {
                 <div className={styles.poll} key={id}>
                 {
                     image && image !== undefined && 
-                    <Image 
-                    src={image}
+                    <Image
                     width={400}
-                    height={200}
-                    style={{objectFit: "cover"}}
+                    height={300} 
+                    src={image}
                     alt={"снимка на анкетата"}
+                    className={styles.poll_image}
                     />
-                  }
+                }
                 <h2>title: {title}</h2>
                 <h3>{categories.name}</h3>
                 <p>starts at: {starts_at}</p>

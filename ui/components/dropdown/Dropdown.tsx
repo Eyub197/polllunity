@@ -13,7 +13,7 @@ const Dropdown = async ({selected, label, className} : ChooseCategoryProps) => {
     const createCategoryOptions = () => {
         return categories?.map(category => {
             return(
-                <option className="test" key={category.id}>{category.name}</option>
+                <option className="test" key={category.id} value={category.id}>{category.name}</option>
             )
         })
     }
