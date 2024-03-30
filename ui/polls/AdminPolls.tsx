@@ -1,5 +1,5 @@
 import { deletePoll, getPolls } from "@/lib/utils/polls"
-import { DeleteButtonServer, EditButton, EditPollButton } from "../Buttons"
+import { DeleteButtonServer, EditButton } from "../Buttons"
 import pollStyles from "@/ui/polls/PollForm.module.css"
 import Image from "next/image"
 import CreatePollForm from "./CreatePollForm"
