@@ -50,7 +50,7 @@ export const getPolls = async () => {
     const supabase =  await createClient()
     const { data:polls , error } = await supabase
    .from("polls")
-   .select("*, categories(name, description)")
+   .select("*, categories(id, name, description)")
     return { polls, error }
 }
 

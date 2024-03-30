@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion"
 const Poll: React.FC<PollProps> = ( {poll, user, status} ) => {
   const now = new Date()
   const startsAt = new Date(poll.starts_at)
-  const endsAt = new Date(poll.ends_at)
+  const endsAt = new Date(poll.ends_at!)
   const difference =  now.getTime() - endsAt.getTime()
   const differenceInDays = difference / (1000 * 60 * 60 * 24) 
   console.log(`${poll.title} : ${differenceInDays}`)

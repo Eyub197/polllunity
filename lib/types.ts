@@ -43,8 +43,8 @@ export interface PollProps {
     id: string;
     title: string;
     starts_at: string; 
-    ends_at: string;
-    categories: Category
+    ends_at: string | null;
+    categories: Category | null;
   };
   status:string 
   // have_voted: boolean | null;
