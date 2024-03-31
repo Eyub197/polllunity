@@ -32,7 +32,7 @@ export const uploadImage = async(imageFile: File) => {
         .from("images")
         .upload(imageFile.name, imageFile)
         
-        console.log(error)
+        console.log(`upload error ${error}`)
         if(error) throw error
 
         const fileName = imageFile.name
@@ -40,7 +40,6 @@ export const uploadImage = async(imageFile: File) => {
 
         return filePath
     } catch (error : any) {
-        return error.message
     }   
 }
 

@@ -30,7 +30,7 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         .insert(pollDataWithImage)
       
         if (error) throw error 
-        console.log(error)  
+        console.log(`poll ${error}`)  
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
         args.message = error.message
