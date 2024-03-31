@@ -7,21 +7,30 @@ import { errHandlingPolls, manageImage } from "./helperFunctions"
 
 
 export const createPoll = async (previousState: any,formData:FormData) => {
-    const pollData = {
-        title : formData.get("title") as string,
-        starts_at: formData.get("starts_at") as string,
-        ends_at: formData.get("ends_at") as string,        
-        category_id: formData.get("category_id") as string,
-        description : formData.get("description") as string,
+    let args = {
+        message: "",
+        code: "",
+        ends_at: "",
+        starts_at: "",
+        title: "",
     }
-    const imageFile = formData.get("image")
-    const image = await manageImage(imageFile)
-    const pollDataWithImage = { ...pollData, image}
-    const  {ends_at, starts_at, title} = pollDataWithImage
-    
     try{
         const supabase =  await createClient()
         
+        const pollData = {
+            title : formData.get("title") as string,
+            starts_at: formData.get("starts_at") as string,
+            ends_at: formData.get("ends_at") as string,        
+            category_id: formData.get("category_id") as string,
+            description : formData.get("description") as string,
+        }
+        const image = await manageImage(formData.get("image"))
+        const pollDataWithImage = { ...pollData, image}
+        const  {ends_at, starts_at, title} = pollDataWithImage
+        
+        args.title = title
+        args.ends_at = ends_at
+        args.starts_at = starts_at
         const { data, error } = await supabase
         .from("polls")
         .insert(pollDataWithImage)
@@ -30,18 +39,14 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         console.log(error)  
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
-        
-        const args = {
-            message: error.message,
-            code: error.code,
-            title,
-            starts_at,
-            ends_at
-        }
+        args.message = error.message
+        args.code = error.code
 
       return errHandlingPolls(args)
     }
 }
+
+//TODO try wrapping everything in a try catch block and giving the title, starts_at, edns at previously in a global scoped args variable
 
 export const getPolls = async () => {
     const supabase =  await createClient()
