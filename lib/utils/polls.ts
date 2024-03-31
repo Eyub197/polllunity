@@ -18,17 +18,16 @@ export const createPoll = async (previousState: any,formData:FormData) => {
             category_id: formData.get("category_id") as string,
             description : formData.get("description") as string,
         }
-        const image = await manageImage(formData.get("image"))
-        const pollDataWithImage = { ...pollData, image}
-        const  {ends_at, starts_at, title} = pollDataWithImage
-        
+        // const image = await manageImage(formData.get("image"))
+        // const pollDataWithImage = { ...pollData, image}
+        const  {ends_at, starts_at, title} = pollData        
         args.title = title
         args.ends_at = ends_at
         args.starts_at = starts_at
 
         const { data, error } = await supabase
         .from("polls")
-        .insert(pollDataWithImage)
+        .insert(pollData)
       
         if (error) throw error 
         console.log(error)  

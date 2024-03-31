@@ -18,7 +18,7 @@ const CreatePollForm = ({ children }:{ children: React.ReactNode}) => {
     
     return(
         <form className={`${pollStyles.form} ${pollStyles.form_grid}`} action={dispatch}>
-        <div className={`${pollStyles.name} ${pollStyles    .name_poll}`}>
+        <div className={`${pollStyles.name} ${pollStyles.name_poll}`}>
             <label htmlFor="title">Заглавие</label>
             <input 
             type="text"
