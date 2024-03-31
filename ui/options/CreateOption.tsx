@@ -1,5 +1,6 @@
 import { createOption, deleteOption, getOptions } from "@/lib/utils/options"
 import { DeleteButtonServer, EditButton } from "../Buttons"
+import Option from "./Option"
 
 const CreateOption = async () => {
     const options = await getOptions()
@@ -11,13 +12,12 @@ const CreateOption = async () => {
                 const deleteFunction = deleteOption.bind(null, option.id)
                 
                 return(
-                <div key={option.id}>
-                    <p>{option.option_text}</p>
-                    <p>{option.polls.title}</p>
-                    <EditButton id={option.id} toEdit="options"/>
-                    <DeleteButtonServer action={deleteFunction} id={option.id} helper={null}/>
-                </div> )
-                
+                    <Option 
+                    key={option.id}
+                    option_text={option.option_text} 
+                    votes_count={option.votes_count} 
+                    image={option.image}
+                    />)
                 }
             ))}
             

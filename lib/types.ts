@@ -66,8 +66,10 @@ export type Id = {
 }
 
 export interface Option  {
-  id: string; 
-  option_text: string; poll_id: string; votes_count: number | null; 
+  option_text: string,
+  votes_count: number | null; 
+  image: string | File | null
+  key: string
 }
 
 export interface children {

@@ -11,9 +11,6 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
 
   const userId = user?.id as string
 
-  console.log(` userId : ${userId}`)
-  console.log(`pool_id : ${fk}`)
-
   const hasVoted = await getUserVote(userId, fk)
 
   const options = await getOptionsByFk(fk)

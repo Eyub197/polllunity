@@ -26,7 +26,7 @@ const Result = async ({ id }:Id) => {
             </section>
             <section>
                 {
-                    options!.map(option=> <p>{`${option.option_text} брой гласове ${option.votes_count} `}</p>)  
+                    options!.map(option=> <p key={option.id}>{`${option.option_text} брой гласове ${option.votes_count} `}</p>)  
                 }
             </section>
         </main>
