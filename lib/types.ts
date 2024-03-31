@@ -67,6 +67,17 @@ export interface Option  {
   option_text: string; poll_id: string; votes_count: number | null; 
 }
 
+
+export interface ErrHandlingPollsArguments {
+  message: string,
+  code: string,
+  title: string,
+  starts_at: string,
+  ends_at: string,
+  image: string | File
+}
+
+
 export type Json =
 | string
 | number

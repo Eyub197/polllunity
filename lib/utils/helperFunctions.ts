@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import { createClient } from '../supabase/server'
+import { ErrHandlingPollsArguments } from '../types'
 
 export const manageImage  = async (imageFile : any): Promise<string | null> => {
     if(!(imageFile instanceof File) || imageFile.size < 1) {
@@ -44,16 +45,8 @@ export const uploadImage = async(imageFile: any) => {
     }   
 }
 
-interface ErrHandlingPollsArguments {
-    message: string,
-    code: string,
-    title: string,
-    starts_at: string,
-    ends_at: string,
-}
-
 export const errHandlingPolls = (args: ErrHandlingPollsArguments) => {
-    const { title, message, code, starts_at, ends_at } = args
+    const { title, message, code, starts_at, ends_at, image } = args
 
     if(message === 'new row for relation "polls" violates check constraint "ends_at"'){
         return { message: "Крайната дата трябва да е по-късна от датата на започване" }
