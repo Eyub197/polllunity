@@ -7,13 +7,7 @@ import { errHandlingPolls, manageImage } from "./helperFunctions"
 
 
 export const createPoll = async (previousState: any,formData:FormData) => {
-    let args = {
-        message: "",
-        code: "",
-        ends_at: "",
-        starts_at: "",
-        title: "",
-    }
+    let args = { message: "", code: "", ends_at: "", starts_at: "", title: "",}
     try{
         const supabase =  await createClient()
         
@@ -31,6 +25,7 @@ export const createPoll = async (previousState: any,formData:FormData) => {
         args.title = title
         args.ends_at = ends_at
         args.starts_at = starts_at
+
         const { data, error } = await supabase
         .from("polls")
         .insert(pollDataWithImage)
@@ -41,12 +36,9 @@ export const createPoll = async (previousState: any,formData:FormData) => {
     }  catch (error : any) {
         args.message = error.message
         args.code = error.code
-
-      return errHandlingPolls(args)
+       return errHandlingPolls(args)
     }
 }
-
-//TODO try wrapping everything in a try catch block and giving the title, starts_at, edns at previously in a global scoped args variable
 
 export const getPolls = async () => {
     const supabase =  await createClient()

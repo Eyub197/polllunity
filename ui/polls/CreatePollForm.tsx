@@ -14,7 +14,7 @@ const CreatePollForm = ({ children }:{ children: React.ReactNode}) => {
         else if(errorMessage?.message.includes("трябва")) return true
     }
 
-    const [errorMessage, dispatch] = useFormState(createPoll, null)
+    const [errorMessage, dispatch] = useFormState(createPoll, undefined, "/admin/polls")
     
     return(
         <form className={`${pollStyles.form} ${pollStyles.form_grid}`} action={dispatch}>

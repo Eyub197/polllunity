@@ -23,7 +23,6 @@ export const createCategory = async (previousState: any,formData:FormData) => {
         revalidatePath("/admin/categories")
 
     } catch (error : any) {
-        console.log(error)
         if(error.code === '23505') {
             return { message: "Категорията вече съществува", status: 409 }
         }
