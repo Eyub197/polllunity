@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { errHandlingPolls, manageImage, uploadImage } from "./helperFunctions"
+import { poll_status } from "../types"
 
 
 export const createPoll = async (previousState: any, formData:FormData) => {
@@ -20,7 +21,6 @@ export const createPoll = async (previousState: any, formData:FormData) => {
         }
         console.log(image)
         const pollDataWithImage = { ...pollData, image}
-        const  {ends_at, starts_at, title} = pollData        
        
         const { data, error } = await supabase
         .from("polls")
@@ -45,11 +45,20 @@ export const createPoll = async (previousState: any, formData:FormData) => {
 export const getPolls = async () => {
     const supabase =  await createClient()
     const { data:polls , error } = await supabase
-   .from("polls")
-   .select("*, categories(id, name, description)")
+    .from("polls")
+    .select("*, categories(id, name, description)")
     return { polls, error }
 }
 
+export const getCurrentPolls = async () => {
+    const supabase =  await createClient()
+    const { data:polls , error } = await supabase
+    .from("polls")
+    .select("*, categories(id, name, description)")
+    .filter('status', 'in', '("open","not_started")')
+
+    return { polls, error }
+}
 
 export const updatePollById = async (id:string, previousState: any, formData: FormData) : Promise<any> => {
     const image = await uploadImage(formData.get("image") as string)
@@ -63,9 +72,6 @@ export const updatePollById = async (id:string, previousState: any, formData: Fo
             category_id: formData.get("category_id") as string,
             description : formData.get("description") as string,
         }
-        console.log(image)
-        const pollDataWithImage = { ...pollData, image}
-        const  {ends_at, starts_at, title} = pollData        
         
         const {data, error} = await supabase
         .from("polls")

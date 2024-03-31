@@ -55,6 +55,13 @@ export interface ImagePickerProps {
   name: string
 }
 
+export enum poll_status {
+  open = "open",
+  closed = "closed",
+  not_started = "not_started",
+  check_results = "check_results"
+}
+
 export type Category ={
   id:string
   name:string,

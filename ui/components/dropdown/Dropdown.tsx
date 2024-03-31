@@ -5,13 +5,21 @@ import { getCategories } from "@/lib/utils/category"
 export interface ChooseCategoryProps {
     selected: string | undefined,
     label: string,
-    className?: string | undefined | null
+    className?: string | undefined | null,
+    arrayData?: any[] | undefined,
+    table?: string
 }
 
-const Dropdown = async ({selected, label, className} : ChooseCategoryProps) => {
-    const { categories, error } = await getCategories()
+const Dropdown = async ({selected, label, className, arrayData} : ChooseCategoryProps) => {
+    const { categories, error } =   await getCategories()
     const createCategoryOptions = () => {
-        return categories?.map(category => {
+        if(arrayData) {
+            return arrayData?.map(data => {
+               return <option className="test" key={data.id} value={data.id}>{data.title}</option>
+            })
+        }
+
+        return categories?.map(category => {  
             return(
                 <option className="test" key={category.id} value={category.id}>{category.name}</option>
             )

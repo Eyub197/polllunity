@@ -1,7 +1,7 @@
 .polls{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
-    gap: 2em;
+    gap: 5em;
     padding-inline: 2em;
     margin-bottom: 2em;
 }
