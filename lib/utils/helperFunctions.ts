@@ -1,4 +1,5 @@
 import fs from 'fs/promises'
+import { createClient } from '../supabase/server'
 
 export const manageImage  = async (imageFile : any): Promise<string | null> => {
     if(!(imageFile instanceof File) || imageFile.size < 1) {
@@ -16,6 +17,31 @@ export const manageImage  = async (imageFile : any): Promise<string | null> => {
         console.error("Error uploading the image:", error);
         throw new Error("Имаше грешка при качването на изображението");
     }
+}
+
+export const uploadImage = async(imageFile: File) => {
+    const supabase = await createClient()
+    
+    if(!(imageFile instanceof File) || imageFile.size < 1) {
+        return null  
+    } 
+
+    try {
+        const {error} = await supabase
+        .storage
+        .from("images")
+        .upload(imageFile.name, imageFile)
+        
+        console.log(error)
+        if(error) throw error
+
+        const fileName = imageFile.name
+        const filePath = `images/${fileName}`
+
+        return filePath
+    } catch (error : any) {
+        return error.message
+    }   
 }
 
 interface ErrHandlingPollsArguments {

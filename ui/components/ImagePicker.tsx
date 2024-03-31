@@ -22,7 +22,7 @@ const ImagePicker = ({label, name}: ImagePickerProps) => {
             setPickedImage(null)
             return
         }
-
+        
       const fileReader =  new FileReader()
       fileReader.onload = () => {
         setPickedImage(fileReader.result as string)

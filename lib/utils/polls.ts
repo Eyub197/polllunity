@@ -3,7 +3,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-import { errHandlingPolls, manageImage } from "./helperFunctions"
+import { errHandlingPolls, manageImage, uploadImage } from "./helperFunctions"
 
 
 export const createPoll = async (previousState: any,formData:FormData) => {
@@ -18,8 +18,8 @@ export const createPoll = async (previousState: any,formData:FormData) => {
             category_id: formData.get("category_id") as string,
             description : formData.get("description") as string,
         }
-        // const image = await manageImage(formData.get("image"))
-        // const pollDataWithImage = { ...pollData, image}
+        const image = await uploadImage(formData.get("image") as File)
+        const pollDataWithImage = { ...pollData, image}
         const  {ends_at, starts_at, title} = pollData        
         args.title = title
         args.ends_at = ends_at
@@ -27,7 +27,7 @@ export const createPoll = async (previousState: any,formData:FormData) => {
 
         const { data, error } = await supabase
         .from("polls")
-        .insert(pollData)
+        .insert(pollDataWithImage)
       
         if (error) throw error 
         console.log(error)  
