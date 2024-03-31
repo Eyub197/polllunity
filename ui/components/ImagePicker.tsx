@@ -1,13 +1,11 @@
 "use client"
 
 import { useRef, useState } from "react"
+import { ImagePickerProps } from "@/lib/types"
 import styles from "@/ui/components/ImagePicker.module.css"
 import Image from "next/image"
 
-export interface ImagePickerProps {
-    label: string,
-    name: string
-}
+
 
 const ImagePicker = ({label, name}: ImagePickerProps) => {
     const [pickedImage, setPickedImage] = useState<string | null>(null)

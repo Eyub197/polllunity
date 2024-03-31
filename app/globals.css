@@ -88,9 +88,11 @@ label{
     background-color: var(--secondary-color);
 }
 
-.input_error{    
-    border: 4px solid #FFB3B3;
+.input_error, .input_error:focus {    
+    border: 4px solid var(--error-color);
+    outline: none;
 }
+
 
 .title, .title_2{
     text-align: center;

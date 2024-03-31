@@ -7,7 +7,7 @@ export interface ErrorMessageProps {
 
 const ErrorMessage = ({errorText, className}: ErrorMessageProps) => {
     return(
-        <p className={styles[className]}> {errorText} </p>
+        <p className={`${styles[className]} ${styles.error_message}`}> {errorText} </p>
     )
 }
 

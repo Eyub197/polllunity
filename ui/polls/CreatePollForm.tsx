@@ -6,15 +6,20 @@ import { createPoll } from "@/lib/utils/polls"
 import { Button } from "../ClientButtons"
 import { useFormState } from "react-dom"
 import ErrorMessage from "../components/ErrorMessage"
+import { children } from "@/lib/types"
 
-const CreatePollForm = ({ children }:{ children: React.ReactNode}) => {
+const CreatePollForm = ({ children }: children) => {
+    const [error, dispatch] = useFormState(createPoll, undefined, "/admin/polls")
 
     const checkEndDate = () => {
-        if(errorMessage?.message.includes("крайна")) return true
-        else if(errorMessage?.message.includes("трябва")) return true
+        if(error?.message.includes("крайна")) return true
+        else if(error?.message.includes("трябва")) return true
     }
 
-    const [errorMessage, dispatch] = useFormState(createPoll, undefined, "/admin/polls")
+    const checkTitle = () => {
+      if(error?.message.includes("заглавие")) return true  
+      else if(error?.message.includes("съществува")) return true      
+    }  
     
     return(
         <form className={`${pollStyles.form} ${pollStyles.form_grid}`} action={dispatch}>
@@ -24,9 +29,9 @@ const CreatePollForm = ({ children }:{ children: React.ReactNode}) => {
             type="text"
             id="title"
             name="title"
-            className={`admin_inputs ${pollStyles.input} ${errorMessage?.message.includes('заглавие') && 'input_error'  }`}
+            className={`admin_inputs ${pollStyles.input} ${error?.message.includes('заглавие') && 'input_error'  }`}
             />
-        {errorMessage?.message.includes("заглавие") && <ErrorMessage className="error_message" errorText={errorMessage.message} />}
+        {checkTitle() && <ErrorMessage className="error_message" errorText={error?.message} />}
         </div>
         <div className={pollStyles.starts_at}>
             <label htmlFor="starts_at">Започва</label>
@@ -34,9 +39,9 @@ const CreatePollForm = ({ children }:{ children: React.ReactNode}) => {
             type="datetime-local"
             id="starts_at"
             name="starts_at"
-            className={`admin_inputs ${pollStyles.input} `}
+            className={`admin_inputs ${pollStyles.input} ${error?.message.includes('стартираща') && 'input_error'  }`}
              />
-            {errorMessage?.message.includes("стартираща") && <ErrorMessage className="error_message" errorText={errorMessage.message} />}
+            {error?.message.includes("стартираща") && <ErrorMessage className="error_message" errorText={error.message} />}
         </div>
         <div className={pollStyles.ends_at}>
             <label htmlFor="ends_at">Завършва</label>
@@ -44,12 +49,13 @@ const CreatePollForm = ({ children }:{ children: React.ReactNode}) => {
             type="datetime-local"
             id="ends_at"
             name="ends_at"
-            className={`admin_inputs ${pollStyles.input} `}
+            className={`admin_inputs ${pollStyles.input} ${checkEndDate() && "input_error"}`}
             />
-            {checkEndDate() && <ErrorMessage className="error_message" errorText={errorMessage?.message} />} 
+            {checkEndDate() && <ErrorMessage className="error_message" errorText={error?.message} />} 
         </div>
-        {children}
        <ImagePicker name="image" label="ime"/>
+        {error?.message.includes("изображение") && <ErrorMessage className="error_message_image" errorText={error.message} />}
+        {children}
         <div className={`${pollStyles.desc_poll}`}>
             <label htmlFor="description">описание</label>
             <textarea
@@ -60,7 +66,7 @@ const CreatePollForm = ({ children }:{ children: React.ReactNode}) => {
             > 
             </textarea>
         </div>
-    <Button className="poll_btn" action="създай" inAction="създава се..."/>
+    <Button className="poll_btn" action="Създай" inAction="Създава се..."/>
     </form>
    
     )

@@ -50,7 +50,10 @@ export interface PollProps {
   // have_voted: boolean | null;
   user: { id: string } | null;
 }
-
+export interface ImagePickerProps {
+  label: string,
+  name: string
+}
 
 export type Category ={
   id:string
@@ -67,6 +70,9 @@ export interface Option  {
   option_text: string; poll_id: string; votes_count: number | null; 
 }
 
+export interface children {
+  children: React.ReactNode
+}
 
 export interface ErrHandlingPollsArguments {
   message: string,

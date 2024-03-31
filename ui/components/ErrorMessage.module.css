@@ -3,3 +3,7 @@
     margin-top: 0;
     background-color: var(--error-color);
 }
+
+.error_message_image{
+    text-align: center;
+}
