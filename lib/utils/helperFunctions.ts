@@ -19,7 +19,7 @@ export const manageImage  = async (imageFile : any): Promise<string | null> => {
     }
 }
 
-export const uploadImage = async(imageFile: File) => {
+export const uploadImage = async(imageFile: any) => {
     const supabase = await createClient()
     
     if(!(imageFile instanceof File) || imageFile.size < 1) {
@@ -36,10 +36,11 @@ export const uploadImage = async(imageFile: File) => {
         if(error) throw error
 
         const fileName = imageFile.name
-        const filePath = `images/${fileName}`
 
-        return filePath
+        return fileName
     } catch (error : any) {
+        console.log(`upload error ${error.message}`)
+        return error.message
     }   
 }
 

@@ -12,10 +12,11 @@ const AdminPolls = async () => {
     const createPollsElements = () => {
 
         if(polls?.length! > 0) {
-            return polls?.map( poll => {
+            return polls?.map(poll => {
 
             const {id, title, starts_at, ends_at, categories, image, description} = poll
             const deleteFunction = deletePoll.bind(null, id)    
+                console.log(`sniamkate e ${image}`)
             return(
                 <div className={pollStyles.poll} key={id}>
                 {
@@ -23,7 +24,7 @@ const AdminPolls = async () => {
                     <Image
                     width={400}
                     height={300} 
-                    src={image}
+                    src={`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${image}`}
                     alt={"снимка на анкетата"}
                     className={pollStyles.poll_image}
                     />

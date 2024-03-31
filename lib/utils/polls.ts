@@ -18,7 +18,8 @@ export const createPoll = async (previousState: any,formData:FormData) => {
             category_id: formData.get("category_id") as string,
             description : formData.get("description") as string,
         }
-        const image = await uploadImage(formData.get("image") as File)
+        const image = await uploadImage(formData.get("image") as string)
+        console.log(image)
         const pollDataWithImage = { ...pollData, image}
         const  {ends_at, starts_at, title} = pollData        
         args.title = title
