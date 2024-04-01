@@ -1,3 +1,4 @@
+import React from 'react';
 export interface AuthData {
     email : string,
     password: string
@@ -39,6 +40,14 @@ export interface Poll {
     children: React.ReactNode
   }
 
+export interface OptionFormProps {
+  children: React.ReactNode;
+  text?: string,
+  poll_id?: string,
+  image?: string
+}
+
+  
 export interface PollProps {
   poll: {
     id: string;

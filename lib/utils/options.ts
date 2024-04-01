@@ -6,7 +6,7 @@ import { redirect } from "next/navigation"
 import { uploadImage } from "./helperFunctions"
 
 
-export const createOption = async (formData:FormData) : Promise<void> => {
+export const createOption = async (previousState:any,formData:FormData) : Promise<void> => {
     try{
         const image = await uploadImage(formData.get("image") as string)
         const supabase =  await createClient()

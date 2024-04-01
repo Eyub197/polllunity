@@ -1,5 +1,5 @@
-import CreateOption from "@/ui/options/CreateOption";
+import AdminOptions from "@/ui/options/AdminOptions";
 
-const OptionsForm = () => <CreateOption/>
+const OptionsForm = () => <AdminOptions/>
     
 export default OptionsForm

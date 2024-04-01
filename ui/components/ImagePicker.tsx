@@ -11,7 +11,7 @@ const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
 
     useEffect(() => {
         if(picture !== null && picture !== undefined){
-            setPickedImage(picture)
+            setPickedImage(`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${picture}`)
         }
     },[picture])
 
@@ -40,7 +40,7 @@ const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
                     {!pickedImage && <p>няма избрана снимка</p>}
                     {pickedImage && (
                     <Image 
-                        src={`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${picture || pickedImage}`} 
+                        src={pickedImage} 
                         alt="избраната снимка"
                         fill
                     />
@@ -68,3 +68,5 @@ const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
 }
 
 export default ImagePicker
+
+// `https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${pickedImage}

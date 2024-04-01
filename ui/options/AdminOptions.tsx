@@ -1,15 +1,15 @@
-import { createOption, deleteOption, getOptions } from "@/lib/utils/options"
 import { DeleteButtonServer, EditButton } from "../Buttons"
 import Option from "./Option"
-import ImagePicker from "../components/ImagePicker"
-import { Button } from "../ClientButtons"
 import Dropdown from "../components/dropdown/Dropdown"
+import OptionForm from "./OptionForm"
+import { deleteOption, getOptions } from "@/lib/utils/options"
 import { getCurrentPolls } from "@/lib/utils/polls"
+import styles from "@/ui/options/OptionForm.module.css"
 
-const CreateOption = async () => {
+const AdminOptions = async () => {
     const options = await getOptions()
-    const {polls} = await getCurrentPolls()    
-    const createOptionElements = async () => {
+    const {polls} = await getCurrentPolls()
+    const createOptionElements = () => {
 
         if(options?.length! > 0){
             return (options?.map(option => {
@@ -35,30 +35,20 @@ const CreateOption = async () => {
 
     return(
         <>
-            <form action={createOption}>
+        <h1 className="title">Опции</h1>
+        <main className={styles.main}>
+            <OptionForm>
                 <div>
-                    <label htmlFor="option_text">Опция</label>  
-                    <input 
-                    type="text" 
-                    id="option_text" 
-                    name="option_text" 
-                    className={`admin_inputs`}
-                    />
+                    <Dropdown about="poll_id" arrayData={polls!} className={"input"} label="Изберете анкетата" selected={undefined}/>
                 </div>
-                <div>
-                    <Dropdown about={"poll_id"} arrayData={polls!} label="Изберете анкета" selected={undefined} className="option" />
-                </div>
-                <ImagePicker label={"снимка"} name={"image"}/>
-                <Button className="create_option" action={"Създай"} inAction={"Създава се..."}/>
-            </form>
+            </OptionForm>
+            <h2 className="title_2">Всички опции</h2>
             <section>
                 {createOptionElements() || <p>Не сте създали опции</p>}
             </section>
-            
+        </main>
         </>
     )
 }
 
-
-
-export default CreateOption
+export default AdminOptions

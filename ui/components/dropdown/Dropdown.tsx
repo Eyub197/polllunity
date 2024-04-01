@@ -31,7 +31,7 @@ const Dropdown = async ({selected, label, className, arrayData, about} : ChooseC
                 <label htmlFor={about}>{label}</label>
                 <select 
                 defaultValue={selected || undefined} 
-                className={`admin_inputs ${styles[className!]}`}  
+                className={`admin_inputs ${styles.select} ${styles[className!]} `}  
                 name={about}
                 id={about}
                 >

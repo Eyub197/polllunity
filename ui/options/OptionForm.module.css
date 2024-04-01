@@ -1,0 +1,18 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    gap:1.5em
+}
+
+.image_picker{
+    align-self: flex-start;
+}
+
+.input{
+    width: 100%;
+    max-width: 500px;
+}
+
+.main{
+    padding-inline: 2em 2em;
+}   
