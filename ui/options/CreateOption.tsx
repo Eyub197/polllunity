@@ -18,7 +18,6 @@ const CreateOption = async () => {
                 return(
                     <div key={option.id}>
                         <Option 
-                        key={option.id}
                         option_text={option.option_text} 
                         votes_count={option.votes_count} 
                         image={option.image}
@@ -47,7 +46,7 @@ const CreateOption = async () => {
                     />
                 </div>
                 <div>
-                    <Dropdown arrayData={polls!} label="Изберете анкета" selected={undefined} className="option" />
+                    <Dropdown about={"poll_id"} arrayData={polls!} label="Изберете анкета" selected={undefined} className="option" />
                 </div>
                 <ImagePicker label={"снимка"} name={"image"}/>
                 <Button className="create_option" action={"Създай"} inAction={"Създава се..."}/>

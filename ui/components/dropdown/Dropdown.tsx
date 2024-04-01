@@ -7,38 +7,36 @@ export interface ChooseCategoryProps {
     label: string,
     className?: string | undefined | null,
     arrayData?: any[] | undefined,
-    table?: string
+    about?: string
 }
 
-const Dropdown = async ({selected, label, className, arrayData} : ChooseCategoryProps) => {
-    const { categories, error } =   await getCategories()
-    const createCategoryOptions = () => {
+const Dropdown = async ({selected, label, className, arrayData, about} : ChooseCategoryProps) => {
+    const createOptions = () => {
         if(arrayData) {
             return arrayData?.map(data => {
                 console.log(data)
-               return <option className="test" key={data.title} value={data.id}>{data.title}</option>
+               return (
+                <option 
+                    key={data.title || data.name || data.text}
+                    value={data.id}>
+                    {data.title || data.name || data.text}
+                </option>
+                )
             })
         }
-
-        return categories?.map(category => {  
-            return(
-                <option className="test" key={category.id} value={category.id}>{category.name}</option>
-            )
-        })
     }
 
     return (
             <>
-                <label htmlFor="poll_id">{label}</label>
+                <label htmlFor={about}>{label}</label>
                 <select 
                 defaultValue={selected || undefined} 
                 className={`admin_inputs ${styles[className!]}`}  
-                name="poll_id" 
-                id="poll_id"
+                name={about}
+                id={about}
                 >
-                    {createCategoryOptions()}
+                    {createOptions()}
                 </select>
-                {error && <ErrorMessage errorText={"Грешка в базата от данни"} className={""}/>} 
             </>
     )
 }

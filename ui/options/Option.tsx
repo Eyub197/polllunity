@@ -1,8 +1,8 @@
 import { Option as OptionProps } from "@/lib/types"
 import Image from "next/image"
-const Option = ({key, image, option_text, votes_count}: OptionProps) => {
+const Option = ({ image, option_text, votes_count}: OptionProps) => {
     return(
-        <div key={key}>
+        <div>
             {image && (
                 <Image
                 src={`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${image}`}

@@ -76,7 +76,6 @@ export interface Option  {
   option_text: string,
   votes_count: number | null; 
   image: string | File | null
-  key: string
 }
 
 export interface children {

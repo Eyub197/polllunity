@@ -5,10 +5,11 @@ import CreatePollForm from "./CreatePollForm"
 import Dropdown from "../components/dropdown/Dropdown"
 import pollStyles from "@/ui/polls/Poll.module.css"
 import MoreInformation from "../components/moreInformation/MoreInformation"
+import { getCategories } from "@/lib/utils/category"
 
 const AdminPolls = async () => {
     const {polls} = await getPolls()
-
+    const {categories} = await getCategories()
     const createPollsElements = () => {
 
         if(polls?.length! > 0) {
@@ -54,7 +55,7 @@ const AdminPolls = async () => {
         <main className={pollStyles.main}>
             <CreatePollForm>
                 <div className={pollStyles.category_id}>
-                    <Dropdown className={"input"} label="Изберете категория" selected={undefined}/>
+                    <Dropdown about="category_id" arrayData={categories!} className={"input"} label="Изберете категория" selected={undefined}/>
                 </div>
             </CreatePollForm>
             <h2 className={"title_2"}>Всички анкети</h2>

@@ -24,12 +24,11 @@ export const createOption = async (formData:FormData) : Promise<void> => {
          .insert(optionData)
             
         if (error) throw error
-
+        revalidatePath("/admin/options")
     } catch(error : any) {
         if (error.message) {
             console.log(`Error: ${error.message}`);
         } else {
-            // If the error object doesn't have a message property, stringify it.
             console.log(`Error: ${JSON.stringify(error, null, 2)}`);
         }
     }
