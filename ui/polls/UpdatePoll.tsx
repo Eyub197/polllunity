@@ -9,7 +9,7 @@ import { Poll } from "@/lib/types"
 import { useFormState } from "react-dom"
 import { Button } from "../ClientButtons"
 
-const UpdatePoll = ({id, title, starts_at, ends_at, category_id,children, description}: Poll) => {
+const UpdatePoll = ({id, title, starts_at, ends_at,children, description, image }: Poll) => {
     
     const checkEndDate = () => {
         if(errorMessage?.message.includes("крайна")) return true
@@ -57,7 +57,7 @@ const UpdatePoll = ({id, title, starts_at, ends_at, category_id,children, descri
         <div className={pollStyles.category_id}>
             {children}
         </div>
-       <ImagePicker name="image" label="ime"/>
+       <ImagePicker name="image" label="ime" picture={image}/>
         <div className={`${pollStyles.desc_poll}`}>
             <label htmlFor="description">Описание</label>
             <textarea

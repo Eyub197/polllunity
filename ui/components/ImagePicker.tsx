@@ -1,15 +1,19 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { ImagePickerProps } from "@/lib/types"
 import styles from "@/ui/components/ImagePicker.module.css"
 import Image from "next/image"
 
-
-
-const ImagePicker = ({label, name}: ImagePickerProps) => {
+const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
     const [pickedImage, setPickedImage] = useState<string | null>(null)
     const imageInput = useRef<HTMLInputElement>(null)
+
+    useEffect(() => {
+        if(picture !== null && picture !== undefined){
+            setPickedImage(picture)
+        }
+    },[picture])
 
     const handlePictureClick = () => {  imageInput.current!?.click() }  
     
@@ -36,7 +40,7 @@ const ImagePicker = ({label, name}: ImagePickerProps) => {
                     {!pickedImage && <p>няма избрана снимка</p>}
                     {pickedImage && (
                     <Image 
-                        src={pickedImage} 
+                        src={`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${picture || pickedImage}`} 
                         alt="избраната снимка"
                         fill
                     />

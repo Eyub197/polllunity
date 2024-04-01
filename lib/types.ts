@@ -35,6 +35,7 @@ export interface Poll {
     ends_at: string;
     category_id: string;
     description: string;
+    image:string
     children: React.ReactNode
   }
 
@@ -53,6 +54,7 @@ export interface PollProps {
 export interface ImagePickerProps {
   label: string,
   name: string
+  picture?: string 
 }
 
 export enum poll_status {
