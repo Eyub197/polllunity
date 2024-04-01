@@ -16,12 +16,19 @@ const CreateOption = async () => {
                 const deleteFunction = deleteOption.bind(null, option.id)
                 
                 return(
-                    <Option 
-                    key={option.id}
-                    option_text={option.option_text} 
-                    votes_count={option.votes_count} 
-                    image={option.image}
-                    />)
+                    <div key={option.id}>
+                        <Option 
+                        key={option.id}
+                        option_text={option.option_text} 
+                        votes_count={option.votes_count} 
+                        image={option.image}
+                        />
+                        <div>
+                            <DeleteButtonServer id={option.id} helper={null} action={deleteFunction} />
+                            <EditButton id={option.id} toEdit={"options"} />
+                        </div>
+                    </div>
+                    )
                 })
             )
         }        
@@ -45,9 +52,10 @@ const CreateOption = async () => {
                 <ImagePicker label={"снимка"} name={"image"}/>
                 <Button className="create_option" action={"Създай"} inAction={"Създава се..."}/>
             </form>
-        <>
+            <section>
                 {createOptionElements() || <p>Не сте създали опции</p>}
-            </>
+            </section>
+            
         </>
     )
 }

@@ -15,7 +15,8 @@ const Dropdown = async ({selected, label, className, arrayData} : ChooseCategory
     const createCategoryOptions = () => {
         if(arrayData) {
             return arrayData?.map(data => {
-               return <option className="test" key={data.id} value={data.id}>{data.title}</option>
+                console.log(data)
+               return <option className="test" key={data.title} value={data.id}>{data.title}</option>
             })
         }
 
@@ -28,12 +29,12 @@ const Dropdown = async ({selected, label, className, arrayData} : ChooseCategory
 
     return (
             <>
-                <label htmlFor="category_id">{label}</label>
+                <label htmlFor="poll_id">{label}</label>
                 <select 
                 defaultValue={selected || undefined} 
                 className={`admin_inputs ${styles[className!]}`}  
-                name="category_id" 
-                id="category_id"
+                name="poll_id" 
+                id="poll_id"
                 >
                     {createCategoryOptions()}
                 </select>

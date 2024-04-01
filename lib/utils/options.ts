@@ -3,28 +3,35 @@
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-import { handleUserVote } from "./userVote"
-import { Option } from "../types"
+import { uploadImage } from "./helperFunctions"
 
 
 export const createOption = async (formData:FormData) : Promise<void> => {
-    const supabase =  await createClient()
-
-    const optionData = {
-        poll_id : formData.get("poll_id") as string,
-        option_text : formData.get("option_text") as string,
-    }
-
-    const { data:options , error } = await supabase
-        .from("options")
-        .insert(optionData)
-
-    console.log(optionData)
+    try{
+        const image = await uploadImage(formData.get("image") as string)
+        const supabase =  await createClient()
     
-    if (error) {
-        throw error
-    } else {
-        revalidatePath("/admin/options")
+        const optionData = {
+            poll_id : formData.get("poll_id") as string,
+            option_text : formData.get("option_text") as string,
+            image,
+            votes_count: 0 
+        }
+        console.log(optionData)
+    
+        const { data:options , error } = await supabase
+         .from("options")
+         .insert(optionData)
+            
+        if (error) throw error
+
+    } catch(error : any) {
+        if (error.message) {
+            console.log(`Error: ${error.message}`);
+        } else {
+            // If the error object doesn't have a message property, stringify it.
+            console.log(`Error: ${JSON.stringify(error, null, 2)}`);
+        }
     }
 }
 
@@ -37,7 +44,7 @@ export const getOptions = async () : Promise<any[] | null> => {
     return options
 }
 
-export const updateOptionById = async (identity:string, formData: FormData) : Promise<any> => {
+export const updateOptionById = async (id:string, formData: FormData) : Promise<any> => {
     const supabase = await createClient()
     
     const optionData = {
@@ -48,7 +55,7 @@ export const updateOptionById = async (identity:string, formData: FormData) : Pr
     const {data, error} = await supabase
     .from("options")
     .update(optionData)
-    .eq("id", identity)
+    .eq("id", id)
     
     revalidatePath("/admin/options")
     redirect("/admin/options")
@@ -68,7 +75,7 @@ export const getOptionById = async (id:string) => {
     return options
 }
 
-    export const getOptionsByFk = async (fk:string) : Promise<Option[] | null>  => {
+    export const getOptionsByFk = async (fk:string)  => {
         const supabase = await createClient()
         const { data: options, error } = await supabase
         .from("options")
