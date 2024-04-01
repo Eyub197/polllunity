@@ -1,12 +1,13 @@
 import UpdatePoll from "@/ui/polls/UpdatePoll"
 import { getPollById } from "@/lib/utils/polls"
 import Dropdown from "@/ui/components/dropdown/Dropdown"
+import { getCategories } from "@/lib/utils/category"
 
 
 const EditPoll = async ({ params }: { params: { id: string } }) => {
     const { id } = params    
     const  poll  = await getPollById(id)
-
+    const { categories } = await getCategories()
     return(
         <>       
             <UpdatePoll 
@@ -17,7 +18,7 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
             category_id={poll?.category_id!}
             description={poll?.description!}
             >
-            <Dropdown className={"input"} label="Изберете категория" selected={poll?.category_id!} />
+            <Dropdown arrayData={categories!} about="category_id" className={"input"} label="Изберете категория" selected={poll?.category_id!} />
             </UpdatePoll>
         </>
     )

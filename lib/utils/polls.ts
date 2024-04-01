@@ -70,6 +70,7 @@ export const updatePollById = async (id:string, previousState: any, formData: Fo
             ends_at: formData.get("ends_at") as string,        
             category_id: formData.get("category_id") as string,
             description : formData.get("description") as string,
+            image
         }
         
         const {data, error} = await supabase
@@ -124,11 +125,39 @@ export const getPollByFk = async (id:string) => {
 export const deletePoll = async (id:string) : Promise<any> => {
     const supabase = await createClient()
 
-    const { data, error } = await supabase
+    const {data: pollData, error: pollError} = await supabase
     .from("polls")
-    .delete()
-    .eq("id", id)
+    .select("image")
+    .eq('id', id)
+    .single()
+    
+    if(pollError){
+        throw new Error(`Не успяхме да намерим информация за анкетата ${pollError.message}`)
+    }
+
+    if (!pollData) throw new Error("Не успяхме да намерим анкетата")
+    
+    const image = pollData.image
+
+    const { error: deleteImageError } = await supabase
+        .storage
+        .from('images') 
+        .remove([image])
+
+        if (deleteImageError) {
+            throw new Error(`Неуспяхме да изтришме снимката: ${deleteImageError.message}`);
+        }
+
+    const { error } = await supabase
+        .from('polls')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        throw new Error(`Неуспяхме да изтришме анкетата: ${error.message}`);
+    }
 
     revalidatePath("/admin/polls")
     redirect("/admin/polls")
 }
+//!refactor it a bit with passing a hidden input with the image and and having to a one request less
