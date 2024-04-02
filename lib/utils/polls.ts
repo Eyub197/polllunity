@@ -122,22 +122,8 @@ export const getPollByFk = async (id:string) => {
 
 }
 
-export const deletePoll = async (id:string) : Promise<any> => {
+export const deletePoll = async (id:string, image:string) : Promise<any> => {
     const supabase = await createClient()
-
-    const {data: pollData, error: pollError} = await supabase
-    .from("polls")
-    .select("image")
-    .eq('id', id)
-    .single()
-    
-    if(pollError){
-        throw new Error(`Не успяхме да намерим информация за анкетата ${pollError.message}`)
-    }
-
-    if (!pollData) throw new Error("Не успяхме да намерим анкетата")
-    
-    const image = pollData.image
 
     const { error: deleteImageError } = await supabase
         .storage

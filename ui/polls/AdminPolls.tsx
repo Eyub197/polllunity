@@ -1,10 +1,10 @@
-import { deletePoll, getPolls } from "@/lib/utils/polls"
-import { DeleteButtonServer, EditButton } from "../Buttons"
 import Image from "next/image"
 import CreatePollForm from "./CreatePollForm"
 import Dropdown from "../components/dropdown/Dropdown"
 import pollStyles from "@/ui/polls/Poll.module.css"
 import MoreInformation from "../components/moreInformation/MoreInformation"
+import { deletePoll, getPolls } from "@/lib/utils/polls"
+import { DeleteButtonServer, EditButton } from "../Buttons"
 import { getCategories } from "@/lib/utils/category"
 
 const AdminPolls = async () => {
@@ -14,9 +14,8 @@ const AdminPolls = async () => {
 
         if(polls?.length! > 0) {
             return polls?.map(poll => {
-
             const {id, title, starts_at, ends_at, categories, image, description} = poll
-            const deleteFunction = deletePoll.bind(null, id)    
+            const deleteFunction = deletePoll.bind(null, id, image)    
                 console.log(`sniamkate e ${image}`)
             return(
                 <div className={pollStyles.poll} key={id}>

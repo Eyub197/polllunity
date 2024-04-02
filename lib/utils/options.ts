@@ -17,7 +17,6 @@ export const createOption = async (previousState:any,formData:FormData) : Promis
             image,
             votes_count: 0 
         }
-        console.log(optionData)
     
         const { data:options , error } = await supabase
          .from("options")
@@ -38,7 +37,7 @@ export const getOptions = async () : Promise<any[] | null> => {
     const supabase =  await createClient()
     const { data:options , error } = await supabase
         .from("options")
-        .select("*, polls(title)")
+        .select("*")
 
     return options
 }

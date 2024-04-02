@@ -14,7 +14,6 @@ const AdminOptions = async () => {
         if(options?.length! > 0){
             return (options?.map(option => {
                 const deleteFunction = deleteOption.bind(null, option.id, option.image)
-                
                 return(
                     <div key={option.id}>
                         <Option 
