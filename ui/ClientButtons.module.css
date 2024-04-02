@@ -10,6 +10,7 @@
 .create_option{
     align-self: flex-start;
     background-color:var(--accent-color);
+    border: 5px solid black;
     padding: 0.8em 3em ;
 }
 

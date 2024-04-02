@@ -13,7 +13,7 @@ const OptionForm = ({children,text, poll_id, image}: OptionFormProps ) => {
     return(
     <form className={styles.form} action={dispatch}>
         <div>
-            <label htmlFor="option_text">Опция</label>  
+            <label htmlFor="option_text">Текст на опция</label>  
             <input 
             type="text" 
             id="option_text" 

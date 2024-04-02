@@ -74,12 +74,6 @@ export const errHandlingPolls = (args: ErrHandlingPollsArguments) => {
     }
 }
 
-// {
-//     code: '23502',
-//     details: 'Failing row contains (d7b80fa1-9b82-4d59-b730-982e0ddb2d00, , 2024-03-31 10:29:45.335073+00, 2024-03-20 13:29:00+00, 2024-04-03 13:29:00+00, ca0ce6af-d774-4ae9-a7aa-829d78446bec, , null).',
-//     hint: null,
-//     message: 'null value in column "image" of relation "polls" violates not-null constraint'
-//   }
 
 
 

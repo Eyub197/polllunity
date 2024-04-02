@@ -8,7 +8,7 @@ import styles from "@/ui/options/OptionForm.module.css"
 
 const AdminOptions = async () => {
     const options = await getOptions()
-    const {polls} = await getCurrentPolls()
+    const { polls } = await getCurrentPolls()
     const createOptionElements = () => {
 
         if(options?.length! > 0){
@@ -18,14 +18,15 @@ const AdminOptions = async () => {
                 return(
                     <div key={option.id}>
                         <Option 
+                        image={option.image}
                         option_text={option.option_text} 
                         votes_count={option.votes_count} 
-                        image={option.image}
-                        />
-                        <div>
-                            <DeleteButtonServer id={option.id} helper={null} action={deleteFunction} />
+                        >
+                        <div className={styles.buttons}>
                             <EditButton id={option.id} toEdit={"options"} />
+                            <DeleteButtonServer id={option.id} helper={null} action={deleteFunction} />
                         </div>
+                        </Option>
                     </div>
                     )
                 })
@@ -43,7 +44,7 @@ const AdminOptions = async () => {
                 </div>
             </OptionForm>
             <h2 className="title_2">Всички опции</h2>
-            <section>
+            <section className={styles.options}>
                 {createOptionElements() || <p>Не сте създали опции</p>}
             </section>
         </main>
