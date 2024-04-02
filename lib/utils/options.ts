@@ -104,8 +104,13 @@ export const updateOptionCount = async (id :string, formData : FormData) => {
     }
 }
 
-export const deleteOption = async (id:string) : Promise<any> => {
+export const deleteOption = async (id:string, image:string) : Promise<any> => {
     const supabase = await createClient()
+
+    const {error: deleteImageError} = await supabase
+    .storage
+    .from('images')
+    .remove([image])
 
     const { data, error } = await supabase
     .from("options")
