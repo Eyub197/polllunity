@@ -6,7 +6,7 @@ import { redirect } from "next/navigation"
 import { uploadImage } from "./helperFunctions"
 
 
-export const createOption = async (previousState:any,formData:FormData) : Promise<void> => {
+export const createOption = async (previousState:any,formData:FormData) => {
     try{
         const image = await uploadImage(formData.get("image") as string)
         const supabase =  await createClient()
@@ -21,14 +21,16 @@ export const createOption = async (previousState:any,formData:FormData) : Promis
         const { data:options , error } = await supabase
          .from("options")
          .insert(optionData)
-            
+        
+        console.log(`option error ${error?.code, error?.message}`)
         if (error) throw error
         revalidatePath("/admin/options")
     } catch(error : any) {
-        if (error.message) {
-            console.log(`Error: ${error.message}`);
-        } else {
-            console.log(`Error: ${JSON.stringify(error, null, 2)}`);
+        if(error.message === `new row for relation "options" violates check constraint "options_option_text_check"`){
+            return { message: "Моля, въведете текст!" }
+        }
+        if(error.message ===  `duplicate key value violates unique constraint "options_option_text_key"`){
+            return { message: "Тази опция вече съществува!" }
         }
     }
 }
@@ -51,7 +53,6 @@ export const getOptionsAndPolls = async () => {
 
         return options
 } 
-//TODO the ideas is that this function will get the options and the poll id so i can make the sorting with one request
 
 export const updateOptionById = async (id:string, formData: FormData) : Promise<any> => {
     const supabase = await createClient()
@@ -84,15 +85,15 @@ export const getOptionById = async (id:string) => {
     return options
 }
 
-    export const getOptionsByFk = async (fk:string)  => {
-        const supabase = await createClient()
-        const { data: options, error } = await supabase
-        .from("options")
-        .select("*")
-        .eq("poll_id", fk)
+export const getOptionsByFk = async (fk:string)  => {
+    const supabase = await createClient()
+    const { data: options, error } = await supabase
+    .from("options")
+    .select("*")
+    .eq("poll_id", fk)
 
-        return options
-    }
+    return options
+}
 
 export const updateOptionCount = async (id :string, formData : FormData) => {
     const supabase = await createClient()
@@ -108,7 +109,6 @@ export const updateOptionCount = async (id :string, formData : FormData) => {
         return error
     } 
     else{
-        console.log("it worked")
         revalidatePath(`/anketi/${id}/opcii`)
         redirect(`/anketi/${id}/opcii/ready`)
     }

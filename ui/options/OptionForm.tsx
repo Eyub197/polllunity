@@ -7,7 +7,7 @@ import { useFormState } from "react-dom"
 import styles from "@/ui/options/OptionForm.module.css"
 import { OptionFormProps } from "@/lib/types"
 
-const OptionForm = ({children,text, poll_id, image}: OptionFormProps ) => {
+const OptionForm = ({children,text, image}: OptionFormProps ) => {
     const [error, dispatch] = useFormState(createOption, undefined)
 
     return(
@@ -18,12 +18,14 @@ const OptionForm = ({children,text, poll_id, image}: OptionFormProps ) => {
             type="text" 
             id="option_text" 
             name="option_text" 
-            className={`admin_inputs ${styles.input}`}
+            className={`admin_inputs ${styles.input} ${error?.message && 'input_error'} `}
+            defaultValue={text || ""}
             />
         </div>
+        {error?.message && <p>{error.message }</p>}
         {children}
         <div className={styles.image_picker}>
-            <ImagePicker  label={"снимка"} name={"image"}/>
+            <ImagePicker picture={image} label={"снимка"} name={"image"}/>
         </div>
         <Button className="create_option" action={"Създай"} inAction={"Създава се..."}/>
     </form>
