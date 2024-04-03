@@ -1,4 +1,3 @@
-import UpdatePoll from "@/ui/polls/UpdatePoll"
 import { getPollById } from "@/lib/utils/polls"
 import Dropdown from "@/ui/components/dropdown/Dropdown"
 import { getCategories } from "@/lib/utils/category"
@@ -9,14 +8,17 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
     const { id } = params    
     const  {polls}  = await getPollById(id)
     const { categories } = await getCategories()
-    console.log(`page ${polls?.image}`)
+
     return(
         <main className={styles.main}>       
             <PollForm
             action="update"
+            title={polls?.title}
+            image={polls?.image}
+
             >
             <div className={styles.category_id}>
-                    <Dropdown  about="category_id" arrayData={categories!} className={"input"} label="Изберете категория" selected={undefined}/>
+                <Dropdown  about="category_id" arrayData={categories!} className={"input"} label="Изберете категория" />
             </div>
             </PollForm>
         </main>

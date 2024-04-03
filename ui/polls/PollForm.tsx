@@ -16,12 +16,10 @@ export interface PollFormsProps {
     description?: string;
     starts_at?: string;
     ends_at?: string;
-    category_id?: string;    
-
 }   
 
 
-const PollForm = ({ children, title, image, description, starts_at, ends_at, category_id, action, id }: PollFormsProps,) => {
+const PollForm = ({ children, title, image, description, starts_at, ends_at, action, id }: PollFormsProps,) => {
 
     const update = updatePollById.bind(null, id!)
     const [errorUpdate, dispatchUpdate] = useFormState(update , undefined)

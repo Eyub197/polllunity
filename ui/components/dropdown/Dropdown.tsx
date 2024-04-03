@@ -3,7 +3,7 @@ import styles from "@/ui/components/dropdown/Dropdown.module.css"
 import { getCategories } from "@/lib/utils/category"
 
 export interface ChooseCategoryProps {
-    selected: string | undefined,
+    selected?: string | undefined,
     label: string,
     className?: string | undefined | null,
     arrayData?: any[] | undefined,

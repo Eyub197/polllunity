@@ -6,6 +6,8 @@ import MoreInformation from "../components/moreInformation/MoreInformation"
 import { deletePoll, getPolls } from "@/lib/utils/polls"
 import { DeleteButtonServer, EditButton } from "../Buttons"
 import { getCategories } from "@/lib/utils/category"
+import noImage from "@/public/no-image.webp"
+
 
 const AdminPolls = async () => {
     const {polls} = await getPolls()
@@ -20,7 +22,7 @@ const AdminPolls = async () => {
             return(
                 <div className={pollStyles.poll} key={id}>
                 {
-                    image && image !== undefined && 
+                    image && image !== undefined ? 
                     <Image
                     width={400}
                     height={300} 
@@ -28,6 +30,14 @@ const AdminPolls = async () => {
                     alt={"снимка на анкетата"}
                     className={pollStyles.poll_image}
                     />
+                    :
+                    <Image
+                    width={400}
+                    height={300} 
+                    src={noImage}
+                    alt={"снимка на анкетата"}
+                    className={pollStyles.poll_image} />
+
                 }
                 <div className={pollStyles.bottom_part}>
                     <h2>{title}</h2>
