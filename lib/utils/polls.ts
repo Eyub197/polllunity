@@ -146,4 +146,3 @@ export const deletePoll = async (id:string, image:string) : Promise<any> => {
     revalidatePath("/admin/polls")
     redirect("/admin/polls")
 }
-//!refactor it a bit with passing a hidden input with the image and and having to a one request less

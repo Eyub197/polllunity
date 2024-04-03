@@ -2,18 +2,19 @@ import { DeleteButtonServer, EditButton } from "../Buttons"
 import Option from "./Option"
 import Dropdown from "../components/dropdown/Dropdown"
 import OptionForm from "./OptionForm"
-import { deleteOption, getOptions } from "@/lib/utils/options"
-import { getCurrentPolls } from "@/lib/utils/polls"
+import { deleteOption, getOptionsAndPolls } from "@/lib/utils/options"
 import styles from "@/ui/options/OptionForm.module.css"
 
 const AdminOptions = async () => {
-    const options = await getOptions()
-    const { polls } = await getCurrentPolls()
+   
+    const optionsAndPolls = await getOptionsAndPolls()
+    const polls = optionsAndPolls?.map(({ polls }) => polls)
+
     const createOptionElements = () => {
 
-        if(options?.length! > 0){
-            return (options?.map(option => {
-                const deleteFunction = deleteOption.bind(null, option.id, option.image)
+        if(optionsAndPolls?.length! > 0){
+            return (optionsAndPolls?.map(option => {
+                const deleteFunction = deleteOption.bind(null, option.id, option.image!)
                 return(
                     <div key={option.id}>
                         <Option 
@@ -39,7 +40,7 @@ const AdminOptions = async () => {
         <main className={styles.main}>
             <OptionForm>
                 <div>
-                    <Dropdown about="poll_id" arrayData={polls!} className={"input"} label="Изберете анкетата" selected={undefined}/>
+                    <Dropdown about="poll_id" arrayData={polls} className={"input"} label="Изберете анкетата" selected={undefined}/>
                 </div>
             </OptionForm>
             <h2 className="title_2">Всички опции</h2>

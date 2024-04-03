@@ -42,6 +42,17 @@ export const getOptions = async () : Promise<any[] | null> => {
     return options
 }
 
+export const getOptionsAndPolls = async () => {
+    const supabase = await createClient()
+    const { data:options , error } = await supabase
+        .from("options")
+        .select(`*, polls (id, title)`)
+        .filter('polls.status', 'in', '(open,not_started)')
+
+        return options
+} 
+//TODO the ideas is that this function will get the options and the poll id so i can make the sorting with one request
+
 export const updateOptionById = async (id:string, formData: FormData) : Promise<any> => {
     const supabase = await createClient()
     
