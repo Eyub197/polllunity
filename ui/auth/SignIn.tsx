@@ -56,7 +56,7 @@ const SignInForm = () : JSX.Element => {
             <div className={styles.password}>
                 <label htmlFor="password">Парола</label>
                 <input 
-                className={`${styles.input_style} ${checkPassword() && styles.input_error} `}
+                className={`${styles.input_style} ${checkPassword() && "input_error"} `}
                 name="password"
                 type="text"
                 id="password" 

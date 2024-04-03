@@ -36,8 +36,9 @@ export const signIn = async (previousState: any, formData: FormData) => {
       return {message: "Невалидни email или парола", status: 400} 
     }
 
-    return error.message
-    
+    if(error.message === " Signup requires a valid password ") {
+      return error.message
+    } 
   }
   
   revalidatePath("/", "layout")
@@ -46,25 +47,20 @@ export const signIn = async (previousState: any, formData: FormData) => {
 
 
 export const signUp = async (previousState: any, formData: FormData) => {
+  try {
   const supabase = await createClient()
   
   const userData : AuthData = {
     email:  formData.get("email") as string,
     password: formData.get("password") as string
   }
-  // const saltRounds = 10; 
-  // const passwordHash = await bcrypt.hash(userData.password, saltRounds);
-
-  // const saveUserData = {...userData, password: passwordHash}
-  
-  try {
     const {error} = await supabase.auth.signUp(userData)
     
     if (error) throw error
   } catch (error : any) {
     console.error(error.message, error.status)
     
-    if(error.message === "Signup requires a valid password" && error.status === 422) {
+    if(error.message === "Signup requires a valid password" && error.status === 400) {
       return {message: "Моля, въведете парола", status: 422}
     }
     if(error.message === "To signup, please provide your email" && error.status === 422){
@@ -75,6 +71,9 @@ export const signUp = async (previousState: any, formData: FormData) => {
     }
     if(error.message === "User already registered" && error.status === 400 ){
       return {message: "Вече има потребител с този email адрес"}
+    }
+    if(error.message === "Anonymous sign-ins are disabled"){
+      return {message: "Моля, въведете email", status: 422}
     }
   }
 

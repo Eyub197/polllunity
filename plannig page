@@ -20,3 +20,11 @@ Eventually try adding again the poll voted thinks
 before giving it make the crud opereations all return error and if there are no anything put messaage
 loading state the logo how is roatating until its loads
 the serveraction froms make them reusable(create one with optionl props for defoutl values) will get the job thone
+
+
+PLAN OF ACTION 
+1. Fix the admin options
+2. Fix the polls, the styles, date styles by status the dropdowns there 
+3. fix the loading, error, not found,
+4. style the options for the poll, the thanks for voting page 
+5. landing page 
