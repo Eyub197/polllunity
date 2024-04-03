@@ -1,5 +1,5 @@
 import Image from "next/image"
-import CreatePollForm from "./CreatePollForm"
+import PollForm from "./PollForm"
 import Dropdown from "../components/dropdown/Dropdown"
 import pollStyles from "@/ui/polls/Poll.module.css"
 import MoreInformation from "../components/moreInformation/MoreInformation"
@@ -52,11 +52,13 @@ const AdminPolls = async () => {
         <>
         <h1 className={"title"}>Анкети</h1>
         <main className={pollStyles.main}>
-            <CreatePollForm>
+            <PollForm
+                action="create"
+            >
                 <div className={pollStyles.category_id}>
-                    <Dropdown about="category_id" arrayData={categories!} className={"input"} label="Изберете категория" selected={undefined}/>
+                    <Dropdown  about="category_id" arrayData={categories!} className={"input"} label="Изберете категория" selected={undefined}/>
                 </div>
-            </CreatePollForm>
+            </PollForm>
             <h2 className={"title_2"}>Всички анкети</h2>
             <section className={pollStyles.polls}>
                 {createPollsElements()}

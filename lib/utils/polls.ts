@@ -35,7 +35,7 @@ export const createPoll = async (previousState: any, formData:FormData) => {
            title: formData.get("title") as string,
            starts_at: formData.get("starts_at") as string,
            ends_at: formData.get("ends_at") as string,
-           image: image
+           image
        })
     }
 }
@@ -96,6 +96,7 @@ export const updatePollById = async (id:string, previousState: any, formData: Fo
 }
 
 export const getPollById = async (id:string) => {
+    
     const supabase = await createClient()
 
     const { data:polls, error } = await supabase
@@ -106,7 +107,7 @@ export const getPollById = async (id:string) => {
 
     console.log(polls)
     
-    return polls
+    return {polls}
 }
 
 export const getPollByFk = async (id:string) => {
