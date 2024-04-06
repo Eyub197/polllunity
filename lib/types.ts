@@ -4,6 +4,18 @@ export interface AuthData {
     password: string
 }
 
+export interface PollFormsProps {
+  children: React.ReactNode;
+  id?:string;
+  action : "update" | "create";
+  title?: string;
+  image?: string;
+  description?: string;
+  starts_at?: string;
+  ends_at?: string;
+}   
+
+
 export interface ButtonProps {
   action: string,
   inAction: string,
@@ -45,6 +57,9 @@ export interface OptionFormProps {
   text?: string,
   poll_id?: string,
   image?: string
+  id?:string
+  action : "update" | "create"
+
 }
 
   

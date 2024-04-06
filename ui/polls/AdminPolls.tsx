@@ -36,7 +36,6 @@ const AdminPolls = async () => {
                     src={noImage}
                     alt={"снимка на анкетата"}
                     className={pollStyles.poll_image} />
-
                 }
                 <div className={pollStyles.bottom_part}>
                     <h2>{title}</h2>
@@ -60,7 +59,7 @@ const AdminPolls = async () => {
     return(
         <>
         <h1 className={"title"}>Анкети</h1>
-        <main className={pollStyles.main}>
+          <main className={pollStyles.main}>
             <PollForm
             image={undefined}
                 action="create"

@@ -5,16 +5,34 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { uploadImage } from "./helperFunctions"
 
+interface Option {
+    id: string;
+    image: string | null;
+    option_text: string;
+    poll_id: string;
+    votes_count: number | null;
+}
+
+interface Poll {
+    id: string;
+    title: string;
+    options: Option[];
+}
 
 export const createOption = async (previousState:any,formData:FormData) => {
     try{
-        const image = await uploadImage(formData.get("image") as string)
+        const imageUploadResult = await uploadImage(formData.get("image") as string | File)
+        if (!imageUploadResult.success) {
+            console.error(imageUploadResult.error)
+            return { message: imageUploadResult.error.message }
+        }
+
         const supabase =  await createClient()
     
         const optionData = {
             poll_id : formData.get("poll_id") as string,
             option_text : formData.get("option_text") as string,
-            image: image.fileName,
+            image: imageUploadResult.fileName,
             votes_count: 0 
         }
     
@@ -44,42 +62,39 @@ export const getOptions = async () : Promise<any[] | null> => {
     return options
 }
 
-export const getOptionsAndPolls = async () => {
-    const client = await createClient();
-    const { data: optionsWithPolls, error } = await client
-      .from('options')
-      .select('*, polls (id, title)')
+export const getOptionsAndPolls = async (): Promise<Poll[] | null> => {
+    const supabase = await createClient();
+    const { data: optionsWithPolls, error } = await supabase
+      .from('polls')
+      .select('id, title, options(*)')
       .filter('polls.status', 'in', ['open', 'not_started'])
-
-      if (error) {
-        console.error('Error fetching options with polls:', error);
-        return [];
-    }
-
-    if (optionsWithPolls.length === 0) {
-        const { data: polls, error: pollsError } = await client
-            .from('polls')
-            .select('id, title')
-        
-        if (pollsError) {
-            console.error('Error fetching polls:', pollsError)
-            return []
-        }
-
-        return polls.map(poll => ({ ...poll, options: [] }))
-    }
-
+      
     return optionsWithPolls
 }
 
-
-
-export const updateOptionById = async (id:string, formData: FormData) : Promise<any> => {
+export const getPollDropDownInfo = async () => {
     const supabase = await createClient()
+    const {data: polls, error} = await supabase
+    .from("polls")
+    .select("id, title")
+
+    return polls
+}
+
+export const updateOptionById = async (id:string, prevImage:any, previousState: any, formData: FormData)  : Promise<any> => {
+    const supabase = await createClient()
+    const imageUploadResult = await uploadImage(formData.get("image") as string | File)
     
+    if (!imageUploadResult.success) {
+            console.error(imageUploadResult.error)
+            return { message: imageUploadResult.error.message }
+        }
+
+
     const optionData = {
         poll_id : formData.get("poll_id") as string,
         option_text : formData.get("option_text") as string,
+        image: imageUploadResult.fileName    
     }
 
     const {data, error} = await supabase

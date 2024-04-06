@@ -6,17 +6,7 @@ import { createPoll, updatePollById } from "@/lib/utils/polls"
 import { Button } from "../ClientButtons"
 import { useFormState } from "react-dom"
 import ErrorMessage from "../components/ErrorMessage"
-
-export interface PollFormsProps {
-    children: React.ReactNode;
-    id?:string;
-    action : "update" | "create";
-    title?: string;
-    image?: string;
-    description?: string;
-    starts_at?: string;
-    ends_at?: string;
-}   
+import { PollFormsProps } from "@/lib/types"
 
 
 const PollForm = ({ children, title, image, description, starts_at, ends_at, action, id }: PollFormsProps,) => {
@@ -28,7 +18,7 @@ const PollForm = ({ children, title, image, description, starts_at, ends_at, act
     const dispatch = action === "update"? dispatchUpdate : dispatchCreate
     const error = action === "update"? errorUpdate : errorCreate
     const buttonActionText = action === "update"? "Обнови" : "Създай"
-    const buttonInActionText = action === "update"? "Обновяване..." : "Създаване се..."   
+    const buttonInActionText = action === "update"? "Обновяване..." : "Създава се..."   
     const checkEndDate = () => {
         if(error?.message.includes("крайна")) return true
         else if(error?.message.includes("трябва")) return true

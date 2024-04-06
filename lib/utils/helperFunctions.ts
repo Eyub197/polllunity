@@ -1,8 +1,9 @@
 import fs from 'fs/promises'
 import { createClient } from '../supabase/server'
 import { ErrHandlingPollsArguments } from '../types'
+import noImage  from "@/public/no-image.webp"
 
-export const manageImage  = async (imageFile : any): Promise<string | null> => {
+export const manageImage  = async (imageFile  : any): Promise<string | null> => {
     if(!(imageFile instanceof File) || imageFile.size < 1) {
       return null  
     } 
@@ -22,9 +23,10 @@ export const manageImage  = async (imageFile : any): Promise<string | null> => {
 
 export const uploadImage = async (imageFile: string | File ): Promise<{ success: boolean, fileName?: string, error?: any }> => {
     const supabase = await createClient()
-
+    const defaultImageName = "no-image.webp"
+    
     if (!(imageFile instanceof File) || imageFile.size < 1) {
-        return { success: false, error: { message: "Invalid file." } }
+        return {success: true,  fileName: defaultImageName }
     }   
 
     
@@ -51,7 +53,7 @@ export const updateImage = async (imageFile: string | File, prevImage: any) => {
 
 
     if (!(imageFile instanceof File) || imageFile.size < 1) {
-        return { success: false, error: { message: "Invalid file." } }
+        return { success: true,  fileName: prevImage.name }
     }   
 
     const isImageNew = imageFile.name !== prevImage.name

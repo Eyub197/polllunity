@@ -11,6 +11,21 @@
 .input{
     width: 100%;
     max-width: 500px;
+    margin-bottom: 0;
+}
+
+.option_input{
+    margin-bottom: 0;
+}
+
+.error_container{
+    display: flex;
+}
+
+.error{
+    background-color: var(--error-color);
+    margin-top: 0;
+    padding: 0.2em 0.5em;
 }
 
 .main{
@@ -48,3 +63,4 @@
     box-shadow: -14px 14px 0px var(--secondary-color);
     border-radius: 4pt;
 }
+
