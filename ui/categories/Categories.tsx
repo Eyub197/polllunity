@@ -5,7 +5,7 @@ import CreateCategoryForm from "./CreateCategoryForm"
 import { DeleteButtonServer } from "../Buttons"
 
 const CreateCategory = async () => {
-    const { categories } = await getCategories()
+    const  {categories}  = await getCategories()
     const createCategoriesElements = () => {
         
         if(categories?.length! > 0){

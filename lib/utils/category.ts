@@ -40,7 +40,7 @@ export const getCategories = async () => {
    .from("categories")
    .select("*")
 
-    return { categories, error }
+    return {categories, error}
 }
 
 export const updateCategoryById = async (id:string, previousState: any, formData: FormData) : Promise<any> => {

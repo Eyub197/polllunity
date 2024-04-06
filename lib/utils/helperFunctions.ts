@@ -20,33 +20,72 @@ export const manageImage  = async (imageFile : any): Promise<string | null> => {
     }
 }
 
-export const uploadImage = async(imageFile: any) => {
+export const uploadImage = async (imageFile: string | File ): Promise<{ success: boolean, fileName?: string, error?: any }> => {
     const supabase = await createClient()
+
+    if (!(imageFile instanceof File) || imageFile.size < 1) {
+        return { success: false, error: { message: "Invalid file." } }
+    }   
+
     
-    if(!(imageFile instanceof File) || imageFile.size < 1) {
-        return null  
-    } 
+    try {
+        const { error } = await supabase
+            .storage
+            .from("images")
+            .upload(imageFile.name, imageFile)
+        console.log(error)
+        if (error) {
+            throw error
+        }
+
+        return { success: true, fileName: imageFile.name }
+    } catch (error: any) {
+        if (error.statusCode === '409' || error.message === 'The resource already exists' || error === 'Duplicate') {
+            error.message = "Не може да има 2 еднакви снимки"
+        }
+        return { success: false, error }
+    }
+}
+export const updateImage = async (imageFile: string | File, prevImage: any) => {
+    const supabase = await createClient()
+
+
+    if (!(imageFile instanceof File) || imageFile.size < 1) {
+        return { success: false, error: { message: "Invalid file." } }
+    }   
+
+    const isImageNew = imageFile.name !== prevImage.name
 
     try {
-        const {error} = await supabase
-        .storage
-        .from("images")
-        .upload(imageFile.name, imageFile)
+        if (!isImageNew) return { success: true, fileName: imageFile.name }
         
-        console.log(`upload error ${error}`)
-        if(error) throw error
 
-        const fileName = imageFile.name
+        const { data: deleteData, error: deletePrevImageError } = await supabase
+            .storage
+            .from("images")
+            .remove([prevImage])
 
-        return fileName
-    } catch (error : any) {
-        console.log(`upload error ${error.message}`)
-        return error.message
-    }   
+        if (deletePrevImageError) throw deletePrevImageError
+        
+        const { error: uploadImageError } = await supabase
+            .storage
+            .from("images")
+            .upload(imageFile.name, imageFile)
+
+        if (uploadImageError) throw uploadImageError
+        console.log(uploadImageError    )
+        return { success: true, fileName: imageFile.name }
+    } catch (error: any) {
+        if (error.code === 409 || error.message === 'The resource already exists') {
+            error.message = "Не може да има 2 еднакви снимки";
+        }
+        return { success: false, error }
+    }
 }
 
+
 export const errHandlingPolls = (args: ErrHandlingPollsArguments) => {
-    const { title, message, code, starts_at, ends_at, image } = args
+    const { title, message, code, starts_at, ends_at} = args
 
     if(message === 'new row for relation "polls" violates check constraint "ends_at"'){
         return { message: "Крайната дата трябва да е по-късна от датата на започване" }

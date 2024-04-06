@@ -1,25 +1,24 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
+import Image from "next/image"
 import { ImagePickerProps } from "@/lib/types"
 import styles from "@/ui/components/ImagePicker.module.css"
-import Image from "next/image"
 
 const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
-    const [pickedImage, setPickedImage] = useState<string | null>(null)
+    const [pickedImage, setPickedImage] = useState<any>(null)
     const imageInput = useRef<HTMLInputElement>(null)
-
     useEffect(() => {
-        if(picture !== null && picture !== undefined){
+        if(picture){
             setPickedImage(`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${picture}`)
         }
-    },[picture])
+    }, [picture])
 
     const handlePictureClick = () => {  imageInput.current!?.click() }  
     
     const handleImageChange = (event: any) => {
         const file = event.target.files[0]
-        
+
         if(!file) {
             setPickedImage(null)
             return
@@ -27,6 +26,7 @@ const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
         
       const fileReader =  new FileReader()
       fileReader.onload = () => {
+        
         setPickedImage(fileReader.result as string)
       }
       fileReader.readAsDataURL(file)
@@ -37,7 +37,7 @@ const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
             <label htmlFor={name}></label>
             <div className={styles.controls}>
                 <div className={styles.preview}>
-                    {!pickedImage && <p>няма избрана снимка</p>}
+                    {!pickedImage || !picture && <p>няма избрана снимка</p>}
                     {pickedImage && (
                     <Image 
                         src={pickedImage} 
@@ -48,7 +48,7 @@ const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
                 </div>
                 <input
                 className={styles.input}
-                type="file" 
+                type="file"     
                 id={name}
                 name={name} 
                 accept=".png, .jpeg, .jpg, .webp"

@@ -7,18 +7,19 @@ import styles from "@/ui/polls/Poll.module.css"
 const EditPoll = async ({ params }: { params: { id: string } }) => {
     const { id } = params    
     const  {polls}  = await getPollById(id)
-    const { categories } = await getCategories()
-
+    const  {categories}  = await getCategories()
+    console.log(polls?.image) 
     return(
         <main className={styles.main}>       
             <PollForm
             action="update"
             title={polls?.title}
             image={polls?.image}
-
+            id={id}
             >
+            
             <div className={styles.category_id}>
-                <Dropdown  about="category_id" arrayData={categories!} className={"input"} label="Изберете категория" />
+                <Dropdown  about="category_id" arrayData={categories!} className={"input"} label="Изберете категория" selected={undefined}/>
             </div>
             </PollForm>
         </main>

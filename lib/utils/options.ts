@@ -14,7 +14,7 @@ export const createOption = async (previousState:any,formData:FormData) => {
         const optionData = {
             poll_id : formData.get("poll_id") as string,
             option_text : formData.get("option_text") as string,
-            image,
+            image: image.fileName,
             votes_count: 0 
         }
     
@@ -45,14 +45,34 @@ export const getOptions = async () : Promise<any[] | null> => {
 }
 
 export const getOptionsAndPolls = async () => {
-    const supabase = await createClient()
-    const { data:options , error } = await supabase
-        .from("options")
-        .select(`*, polls (id, title)`)
-        .filter('polls.status', 'in', '(open,not_started)')
+    const client = await createClient();
+    const { data: optionsWithPolls, error } = await client
+      .from('options')
+      .select('*, polls (id, title)')
+      .filter('polls.status', 'in', ['open', 'not_started'])
 
-        return options
-} 
+      if (error) {
+        console.error('Error fetching options with polls:', error);
+        return [];
+    }
+
+    if (optionsWithPolls.length === 0) {
+        const { data: polls, error: pollsError } = await client
+            .from('polls')
+            .select('id, title')
+        
+        if (pollsError) {
+            console.error('Error fetching polls:', pollsError)
+            return []
+        }
+
+        return polls.map(poll => ({ ...poll, options: [] }))
+    }
+
+    return optionsWithPolls
+}
+
+
 
 export const updateOptionById = async (id:string, formData: FormData) : Promise<any> => {
     const supabase = await createClient()

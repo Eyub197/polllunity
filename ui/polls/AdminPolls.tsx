@@ -18,7 +18,6 @@ const AdminPolls = async () => {
             return polls?.map(poll => {
             const {id, title, starts_at, ends_at, categories, image, description} = poll
             const deleteFunction = deletePoll.bind(null, id, image)    
-                console.log(`sniamkate e ${image}`)
             return(
                 <div className={pollStyles.poll} key={id}>
                 {
@@ -63,6 +62,7 @@ const AdminPolls = async () => {
         <h1 className={"title"}>Анкети</h1>
         <main className={pollStyles.main}>
             <PollForm
+            image={undefined}
                 action="create"
             >
                 <div className={pollStyles.category_id}>

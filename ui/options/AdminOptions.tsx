@@ -4,11 +4,23 @@ import Dropdown from "../components/dropdown/Dropdown"
 import OptionForm from "./OptionForm"
 import { deleteOption, getOptionsAndPolls } from "@/lib/utils/options"
 import styles from "@/ui/options/OptionForm.module.css"
-
+interface Poll {
+    id: string;
+    title: string;
+  }
+  
+  interface Option {
+    id: string;
+    image: string | null;
+    option_text: string;
+    poll_id: string;
+    votes_count: number | null;
+    polls?: Poll;
+  }
 const AdminOptions = async () => {
    
     const optionsAndPolls = await getOptionsAndPolls()
-    const polls = optionsAndPolls?.map(({ polls }) => polls)
+
 
     const createOptionElements = () => {
 

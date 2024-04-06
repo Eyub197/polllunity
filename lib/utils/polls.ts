@@ -3,11 +3,17 @@
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-import { errHandlingPolls, manageImage, uploadImage } from "./helperFunctions"
+import { errHandlingPolls, updateImage, uploadImage } from "./helperFunctions"
 
 
 export const createPoll = async (previousState: any, formData:FormData) => {
-    const image = await uploadImage(formData.get("image") as string)
+    const imageUploadResult = await uploadImage(formData.get("image") as string | File) 
+    
+    if (!imageUploadResult.success) {
+        console.error(imageUploadResult.error)
+        return { message: imageUploadResult.error.message }
+    }
+    
     try{
         const supabase =  await createClient()
         
@@ -17,7 +23,7 @@ export const createPoll = async (previousState: any, formData:FormData) => {
             ends_at: formData.get("ends_at") as string,        
             category_id: formData.get("category_id") as string,
             description : formData.get("description") as string,
-            image
+            image: imageUploadResult.fileName as string
         }     
           
         const { data, error } = await supabase
@@ -28,6 +34,8 @@ export const createPoll = async (previousState: any, formData:FormData) => {
         console.log(`poll ${error}`)  
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
+
+    
         console.log(error)
        return errHandlingPolls({
            message: error.message,
@@ -35,7 +43,6 @@ export const createPoll = async (previousState: any, formData:FormData) => {
            title: formData.get("title") as string,
            starts_at: formData.get("starts_at") as string,
            ends_at: formData.get("ends_at") as string,
-           image
        })
     }
 }
@@ -45,7 +52,7 @@ export const getPolls = async () => {
     const { data:polls , error } = await supabase
     .from("polls")
     .select("*, categories(id, name, description)")
-    return { polls, error }
+    return { polls, error } 
 }
 
 export const getCurrentPolls = async () => {
@@ -54,12 +61,18 @@ export const getCurrentPolls = async () => {
     .from("polls")
     .select("*, categories(id, name, description)")
     .filter('status', 'in', '("open","not_started")')
-
+    
     return { polls, error }
 }
 
-export const updatePollById = async (id:string, previousState: any, formData: FormData) : Promise<any> => {
-    const image = await uploadImage(formData.get("image") as string)
+export const updatePollById = async (id:string, prevImage:any, previousState: any, formData: FormData) : Promise<any> => {
+    const imageUpdateResult = await updateImage(formData.get("image")! as File | string, prevImage)
+    
+    if (!imageUpdateResult.success) {
+        console.error(imageUpdateResult.error)
+        return { message: imageUpdateResult.error.message }
+    }
+    
     try{
         const supabase =  await createClient()
         
@@ -69,7 +82,7 @@ export const updatePollById = async (id:string, previousState: any, formData: Fo
             ends_at: formData.get("ends_at") as string,        
             category_id: formData.get("category_id") as string,
             description : formData.get("description") as string,
-            image
+            image: imageUpdateResult.fileName 
         }
         
         const {data, error} = await supabase
@@ -78,17 +91,15 @@ export const updatePollById = async (id:string, previousState: any, formData: Fo
         .eq("id", id)
       
         if (error) throw error 
-        console.log(`poll ${error}`)  
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
-        console.log(error)
-       return errHandlingPolls({
+
+        return errHandlingPolls({
            message: error.message,
            code: error.code,
            title: formData.get("title") as string,
            starts_at: formData.get("starts_at") as string,
            ends_at: formData.get("ends_at") as string,
-           image: image
        })
     }
     revalidatePath("/admin/polls")

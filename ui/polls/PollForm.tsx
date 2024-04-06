@@ -21,12 +21,14 @@ export interface PollFormsProps {
 
 const PollForm = ({ children, title, image, description, starts_at, ends_at, action, id }: PollFormsProps,) => {
 
-    const update = updatePollById.bind(null, id!)
-    const [errorUpdate, dispatchUpdate] = useFormState(update , undefined)
-    const [error, dispatch] = useFormState(createPoll , undefined)
+    const update = updatePollById.bind(null, id!, image)
+    const [errorUpdate, dispatchUpdate] = useFormState(update, undefined)
+    const [errorCreate, dispatchCreate] = useFormState(createPoll, undefined)
 
-    const chooseDispatch = action === "update"? dispatchUpdate : dispatch
-    
+    const dispatch = action === "update"? dispatchUpdate : dispatchCreate
+    const error = action === "update"? errorUpdate : errorCreate
+    const buttonActionText = action === "update"? "Обнови" : "Създай"
+    const buttonInActionText = action === "update"? "Обновяване..." : "Създаване се..."   
     const checkEndDate = () => {
         if(error?.message.includes("крайна")) return true
         else if(error?.message.includes("трябва")) return true
@@ -37,8 +39,13 @@ const PollForm = ({ children, title, image, description, starts_at, ends_at, act
       else if(error?.message.includes("съществува")) return true      
     }  
     
+    const checkImage = () => {
+        if(error?.message.includes("2")) return true
+    }
+
+
     return(
-        <form className={`${pollStyles.form} ${pollStyles.form_grid}`} action={chooseDispatch}>
+        <form className={`${pollStyles.form} ${pollStyles.form_grid}`} action={dispatch}>
         <div className={`${pollStyles.name} ${pollStyles.name_poll}`}>
             <label htmlFor="title">Заглавие</label>
             <input 
@@ -73,7 +80,7 @@ const PollForm = ({ children, title, image, description, starts_at, ends_at, act
             {checkEndDate() && <ErrorMessage className="error_message" errorText={error?.message} />} 
         </div>
        <ImagePicker picture={image} name="image" label="ime"/>
-        {error?.message.includes("изображение") && <ErrorMessage className="error_message_image" errorText={error.message} />}
+        {checkImage() && <ErrorMessage className="error_message_image" errorText={error?.message} />}
         {children}
         <div className={`${pollStyles.desc_poll}`}>
             <label htmlFor="description">описание</label>
@@ -81,12 +88,12 @@ const PollForm = ({ children, title, image, description, starts_at, ends_at, act
             name="description"
             id="description"
             placeholder="опционално описание..."
-            className={`admin_inputs ${pollStyles.input_description} input_description`}
+            className={`admin_inputs  ${pollStyles.input_description} input_description`}
             defaultValue={description && description}
             > 
             </textarea>
         </div>
-    <Button className="poll_btn" action="Създай" inAction="Създава се..."/>
+    <Button className="poll_btn" action={buttonActionText} inAction={buttonInActionText}/>
     </form>
     )
 }

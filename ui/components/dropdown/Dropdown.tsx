@@ -14,7 +14,7 @@ const Dropdown = async ({selected, label, className, arrayData, about} : ChooseC
     const createOptions = () => {
         if(arrayData) {
             return arrayData?.map(data => {
-               return (
+                return (
                 <option 
                     key={data.title || data.name || data.text}
                     value={data.id}>
