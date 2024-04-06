@@ -71,6 +71,7 @@
 @media (min-width: 680px) {
     .categories_container{
         grid-template-columns: repeat(auto-fit, minmax(330px, auto));
+        justify-content: space-evenly;
     }
 }
 

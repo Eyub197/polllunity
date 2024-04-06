@@ -4,9 +4,10 @@
 
 .main{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 500px));
+    grid-gap: 4em;
     padding: 2em;
+    justify-content: space-evenly;
 }
 
 ._poll{

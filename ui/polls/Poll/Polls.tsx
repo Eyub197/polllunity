@@ -29,9 +29,9 @@ const Polls = async ({filter, status} : Filter  ) => {
         
         return (
             polls?.map(poll => 
-                <div key={poll.id}> 
+                <div key={poll.id} className={styles.poll}> 
                     <section className={styles.image_container}>
-                    <Image
+                    <img
                     width={400}
                     height={200}
                     className={styles.image}
@@ -41,7 +41,7 @@ const Polls = async ({filter, status} : Filter  ) => {
                     />
 
                     </section>
-                    <section>
+                    <section className={styles.bottom_part}>
                         <h2>{poll.title}</h2>
                         <h3>{poll.description}</h3>
                         <p>{poll.starts_at}</p>

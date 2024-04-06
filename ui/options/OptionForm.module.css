@@ -43,6 +43,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
     padding-bottom: 4em;
     gap: 4em;
+    justify-content: space-evenly;  
 }
 
 .bottom_part{

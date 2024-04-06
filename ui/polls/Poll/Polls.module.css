@@ -1,6 +1,29 @@
 .image{
     width: 100%;
     object-fit: cover;
+    object-position: top bottom;
     height: auto;
-    max-height: 350px;
+    max-height: 300px;
+    display: block;
+    border-radius: 10pt 10pt 0pt 0pt;  
 }   
+
+.bottom_part{
+    padding: 1em;
+    border-radius: 0pt 0pt 10pt 10pt;
+    border: 6px solid var(--primary-color);
+    margin-top: 0;
+    border-top: 0;
+}   
+
+.poll{
+    transition: transform 250ms ease-in-out, box-shadow 250ms ease, border-radius 250ms ease;
+
+}
+
+.poll:hover{
+    transform: translateY(-20px);
+    box-shadow: -30px 25px 0px var(--accent-color);
+    border-radius: 10pt 0pt 10pt 10pt;
+
+}

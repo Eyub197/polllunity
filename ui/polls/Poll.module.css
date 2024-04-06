@@ -4,6 +4,7 @@
     gap: 5em;
     padding-inline: 2em;
     margin-bottom: 2em;
+    justify-content: space-evenly;
 }
 
 .poll{
