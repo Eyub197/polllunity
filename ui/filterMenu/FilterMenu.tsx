@@ -9,27 +9,25 @@ export interface SearchParams {
 const FilterMenu = async ({ categoryParams, statusParams } : SearchParams) => {
     const { categories } = await getCategories()
 
-    const isSelected = (formValue : string, paramsValue : string) => formValue === paramsValue
-
     return(
         <>
         <form action={updateFilters}>
-            <select name="category">
+            <select defaultValue={categoryParams} name="category">
                 <option value={"vsicki"}>всички</option>
                 {categories?.map(category => 
                 <option 
                     key={category.id}  
                     value={category.id}
-                    selected={isSelected(category.id, categoryParams)}
                     >
                     {category.name}
                 </option>
                 )}
             </select>
-            <select name="status">
-                <option selected={isSelected("segashni",statusParams)} value="segashni">Сегашни</option>
-                <option selected={isSelected("vsicki",statusParams)} value="vsicki">Всички</option>    
-                <option selected={isSelected("predishni",statusParams )} value="predishni">Предишни</option>
+            <select defaultValue={statusParams} name="status">
+                <option value="zapocnala">започнали</option>
+                <option value="vsicki">всички</option>    
+                <option value="zavarshena">завършени</option>
+                <option value="zatvorena">затворени</option>
             </select>
             <button>Action</button>
         </form>

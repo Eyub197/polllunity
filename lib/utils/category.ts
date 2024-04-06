@@ -130,13 +130,15 @@ export const deleteCategory = async (id:string) : Promise<any> => {
 
 export const updateFilters = async (formData: FormData) => {
     let searchParamsUrl = "/anketi"
-    const category = formData.get("category") as string || "vsicki"
+    const category = formData.get("category") as string 
     const dateStatus = formData.get("status") as string
     
     const searchParams = new URLSearchParams()
         
     category !== "vsicki" && searchParams.set("categoriq", category)
-    dateStatus !== "segashni" && searchParams.set("status", dateStatus)    
+
+    if(dateStatus)
+        searchParams.set("status", dateStatus)    
 
     if(searchParams.toString()) searchParamsUrl += `?${searchParams}`
    

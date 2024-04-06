@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { getPolls } from "@/lib/utils/polls"
-import Poll from "./Poll"
-import { Suspense } from "react"
+import Image from "next/image"
+import styles from "@/ui/polls/Poll/Polls.module.css"
 
 interface Filter {
    filter: string,
@@ -16,18 +16,45 @@ const Polls = async ({filter, status} : Filter  ) => {
     
     let { polls } = (await getPolls() || [])
 
-    if(filter && filter !== "vsicki") 
-       polls = (polls || []).filter(poll =>  poll.category_id === filter )
-         
+    if(filter && filter !== "vsicki") {
+        polls = (polls || []).filter(poll => poll.category_id === filter )
+    }
+    if(status && status !== "vsicki") {
+        polls = (polls || []).filter(poll => poll.status === status )
+    }
+             
     const pollsElement = () => {
+        if(!polls?.length || polls?.length < 1) return <p>Няма анкети с тези филтри</p>
+        
+        
         return (
-            polls?.map(poll =>  <Poll status={status} key={poll.id} poll={poll} user={user}/>)
+            polls?.map(poll => 
+                <div key={poll.id}> 
+                    <section className={styles.image_container}>
+                    <Image
+                    width={400}
+                    height={200}
+                    className={styles.image}
+                    src={`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${poll.image}`}
+                    alt={"снимка на анкетата"}
+                    style={{objectFit: "cover"}}
+                    />
+
+                    </section>
+                    <section>
+                        <h2>{poll.title}</h2>
+                        <h3>{poll.description}</h3>
+                        <p>{poll.starts_at}</p>
+                        <p>{poll.ends_at}</p>
+                        <p>{poll.categories?.name}</p>
+                    </section>
+                </div> 
             
+            )
         )
     }
     
-    return <Suspense fallback={<p>Loading...</p>}> {polls ?  pollsElement() : <p>Няма създадени анкети</p>} </Suspense>
-
+    return pollsElement()
 }
 
 export default Polls
