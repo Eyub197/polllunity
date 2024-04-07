@@ -1,93 +1,98 @@
-import { createClient } from "@/lib/supabase/server"
-import { getPolls } from "@/lib/utils/polls"
-import Image from "next/image"
-import styles from "@/ui/polls/Poll/Polls.module.css"
-import Link from "next/link"
-import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
+    import { createClient } from "@/lib/supabase/server"
+    import { getPolls } from "@/lib/utils/polls"
+    import Image from "next/image"
+    import styles from "@/ui/polls/Poll/Polls.module.css"
+    import Link from "next/link"
+    import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
+import { formatDate } from "@/lib/utils/helperFunctions"
 
-interface Filter {
-   filter: string,
-   status: string
-}
-
-const Polls = async ({filter, status} : Filter  ) => {
-    const supabase = await createClient()
-
-    const { data : { user }, error } = await supabase.auth.getUser()
-    const { polls } = (await getPolls() || [])
-    let filteredPolls
-    if(!status ) {
-        filteredPolls = polls?.filter(poll => poll.status === "zapocnala")
+    interface Filter {
+    filter: string,
+    status: string
     }
-    else{
-        filteredPolls = polls?.filter(poll =>
-            (!filter || filter === 'vsicki' || poll.category_id === filter) &&
-            (!status || status === 'vsicki' || poll.status === status)
-          )     
-    }
-    const manageButtons = (pollStatus: string, id:string) => {
-        if(!user) {
-          return  <div className="ds-f">
-          <ButtonLink className="register"to={"/registraciq"}>Регистрирайте се</ButtonLink> 
-          <ButtonLink to="/vlez" className="login">Вход</ButtonLink>
-           </div>                 
-        } 
-        if(pollStatus === "zapocnala" ) {
-            return <div className="tx-c">
-            <ButtonLink className="chose_vote" to={`anketi/${id}/opcii`}>
-                Гласувайте
-            </ButtonLink>
-            </div>
+
+    const Polls = async ({filter, status} : Filter  ) => {
+        const supabase = await createClient()
+
+        const { data : { user }, error } = await supabase.auth.getUser()
+        const { polls } = (await getPolls() || [])
+        
+
+
+        let filteredPolls
+        if(!status ) {
+            filteredPolls = polls?.filter(poll => poll.status === "zapocnala")
         }
-        if(pollStatus === "nazapocnala"){
-            return <Link href={`anketi/${id}/opcii`}>Погледнете опциите</Link>
-        } 
-        else {
-            return <div className="tx-c">
-                <ButtonLink to={`anketi/${id}/rezultati`} className="check_results">
-                    Погледнете резултатите
+        else{
+            filteredPolls = polls?.filter(poll =>
+                (!filter || filter === 'vsicki' || poll.category_id === filter) &&
+                (!status || status === 'vsicki' || poll.status === status)
+            )     
+        }
+        const manageButtons = (pollStatus: string, id:string) => {
+            if(!user) {
+            return  <div className="ds-f">
+            <ButtonLink className="register"to={"/registraciq"}>Регистрирайте се</ButtonLink> 
+            <ButtonLink to="/vlez" className="login">Вход</ButtonLink>
+            </div>                 
+            } 
+            if(pollStatus === "zapocnala" ) {
+                return <div className="tx-c">
+                <ButtonLink className="chose_vote" to={`anketi/${id}/opcii`}>
+                    Гласувайте
                 </ButtonLink>
                 </div>
+            }
+            if(pollStatus === "nezapocnala"){
+                return <div className="tx-c">
+                    <ButtonLink className="see_votes" to={`anketi/${id}/opcii`}>Погледнете опциите</ButtonLink>                
+                    </div>
+            } 
+            else {
+                return <div className="tx-c">
+                    <ButtonLink to={`anketi/${id}/rezultati`} className="check_results">
+                        Погледнете резултатите
+                    </ButtonLink>
+                    </div>
+                } 
+        }
 
-        } 
-    }
 
 
-
-     const pollsElement = () => {
-        if(!filteredPolls?.length || filteredPolls?.length < 1) return <p>Няма анкети с тези филтри</p>
-        
-        return (
-            filteredPolls?.map(poll => 
-                <div key={poll.id} className={styles.poll}> 
-                    <section className={styles.image_container}>
-                    <Image
-                    width={400}
-                    height={200}
-                    className={styles.image}
-                    src={`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${poll.image}`}
-                    alt={"снимка на анкетата"}
-                    style={{objectFit: "cover"}}
-                    />
-
-                    </section>
-                    <section className={styles.bottom_part}>
-                        <h2>{poll.title}</h2>
-                        <h3>{poll.description}</h3>
-                        <p>{poll.starts_at}</p>
-                        <p>{poll.ends_at}</p>
-                        <p>{poll.categories?.name}</p>
-                        {manageButtons(poll.status, poll.id)}
-                    </section>
-                </div> 
+        const pollsElement = () => {
+            if(!filteredPolls?.length || filteredPolls?.length < 1) return <p>Няма анкети с тези филтри</p>
             
-            )
-        )
-    }
-    
-    return pollsElement()
-}
+            return (
+                filteredPolls?.map(poll => 
+                    <div key={poll.id} className={styles.poll}> 
+                        <section className={styles.image_container}>
+                        <Image
+                        width={400}
+                        height={200}
+                        className={styles.image}
+                        src={`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${poll.image}`}
+                        alt={"снимка на анкетата"}
+                        style={{objectFit: "cover"}}
+                        />
 
-export default Polls
-    
-    
+                        </section>
+                        <section className={styles.bottom_part}>
+                            <h2>{poll.title}</h2>
+                            <h3>{poll.description}</h3>
+                            <p>Категория {poll.categories?.name}</p>
+                            <p>Започва на {formatDate(poll.starts_at)}</p>
+                            <p>Затваря на {formatDate(poll?.ends_at!)}</p>
+                            {manageButtons(poll.status, poll.id)}
+                        </section>
+                    </div> 
+                
+                )
+            )
+        }
+        
+        return pollsElement()
+    }
+
+    export default Polls
+        
+        

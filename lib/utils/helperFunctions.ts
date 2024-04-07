@@ -115,13 +115,12 @@ export const errHandlingPolls = (args: ErrHandlingPollsArguments) => {
     }
 }
 
+export const formatDate = (dateString: Date | string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('bg-BG', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
 
-
-
-// export interface IError {
-//         message: string
-// }
-
-// export const checkError = (error: IError | null | undefined, substring: string): boolean =>  {
-//     return !error?.message?.includes(substring)
-// }

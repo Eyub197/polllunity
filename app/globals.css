@@ -132,5 +132,11 @@ h2{
 }
 
 .tx-c{
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.ta-c{
     text-align: center;
 }
