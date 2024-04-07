@@ -137,8 +137,7 @@ export const updateFilters = async (formData: FormData) => {
         
     category !== "vsicki" && searchParams.set("categoriq", category)
 
-    if(dateStatus)
-        searchParams.set("status", dateStatus)    
+    dateStatus !== "zapocnala" && searchParams.set("status", dateStatus)    
 
     if(searchParams.toString()) searchParamsUrl += `?${searchParams}`
    

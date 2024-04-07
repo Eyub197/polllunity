@@ -3,6 +3,7 @@ import styles from "@/ui/Buttons.module.css"
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { Id } from "@/lib/types";
 import { DeleteButtonClient } from "./ClientButtons";
+import { link } from "fs";
 export interface DeleteButtonProps{
     id: string,
     helper: null
@@ -32,6 +33,14 @@ export const EditButton = ({id, toEdit}: EditButtonProps) => {
     </Link>
     )
 }
+// export const LinkButton = ({id} : Id) => {
+//     return(
+//         <Link href={}>
+
+//         </Link>
+//     )
+// }
+
 export const ChoosePollButton = ({id} : Id)  => {    
     return( 
         <Link href={`anketi/${id}/opcii`}>

@@ -35,7 +35,10 @@ ul, li {
 a{
     text-decoration: none;
     color: inherit;
+    transition: opacity 250ms ease;
 }
+
+
 
 button, input, textarea, select, option {
     font-family: inherit;
@@ -121,4 +124,13 @@ h2{
 
 .mb-0{
     margin-bottom: 0;
+}
+
+.ds-f{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tx-c{
+    text-align: center;
 }

@@ -1,7 +1,7 @@
 .link{
     color: var(--text-color);
     letter-spacing: 2px;
-    transition: color 0.25s ease;
+    transition: font-weight 250ms ease;
     position: relative;
 }
 
@@ -138,6 +138,7 @@
         animation: line 350ms ease 1 forwards;
         opacity: 0.4;
         z-index: -1;
+        transition: animation 250ms ease;
 
     }
 

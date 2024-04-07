@@ -2,6 +2,8 @@ import { createClient } from "@/lib/supabase/server"
 import { getPolls } from "@/lib/utils/polls"
 import Image from "next/image"
 import styles from "@/ui/polls/Poll/Polls.module.css"
+import Link from "next/link"
+import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
 
 interface Filter {
    filter: string,
@@ -9,29 +11,57 @@ interface Filter {
 }
 
 const Polls = async ({filter, status} : Filter  ) => {
- 
     const supabase = await createClient()
-
     const { data : { user }, error } = await supabase.auth.getUser()
-    
     let { polls } = (await getPolls() || [])
 
     if(filter && filter !== "vsicki") {
         polls = (polls || []).filter(poll => poll.category_id === filter )
     }
-    if(status && status !== "vsicki") {
+    
+    polls = (polls || []).filter(poll => poll.status === "zapocnala" || poll.status === "zavarshena")
+
+    if(status && status !== "zapocnala") {
         polls = (polls || []).filter(poll => poll.status === status )
     }
-             
-    const pollsElement = () => {
+   
+    const manageButtons = (pollStatus: string, id:string) => {
+        if(!user) {
+          return  <div className="ds-f">
+          <ButtonLink className="register"to={"/registraciq"}>Регистрирайте се</ButtonLink> 
+          <ButtonLink to="/vlez" className="login">Вход</ButtonLink>
+           </div>                 
+        } 
+        if(pollStatus === "zapocnala" ) {
+            return <div className="tx-c">
+            <ButtonLink className="chose_vote" to={`anketi/${id}/opcii`}>
+                Гласувайте
+            </ButtonLink>
+            </div>
+        }
+        if(pollStatus === "nazapocnala"){
+            return <Link href={`anketi/${id}/opcii`}>Погледнете опциите</Link>
+        } 
+        else {
+            return <div className="tx-c">
+                <ButtonLink to={`anketi/${id}/rezultati`} className="check_results">
+                    Погледнете резултатите
+                </ButtonLink>
+                </div>
+
+        } 
+    }
+
+
+
+     const pollsElement = () => {
         if(!polls?.length || polls?.length < 1) return <p>Няма анкети с тези филтри</p>
-        
         
         return (
             polls?.map(poll => 
                 <div key={poll.id} className={styles.poll}> 
                     <section className={styles.image_container}>
-                    <img
+                    <Image
                     width={400}
                     height={200}
                     className={styles.image}
@@ -47,6 +77,7 @@ const Polls = async ({filter, status} : Filter  ) => {
                         <p>{poll.starts_at}</p>
                         <p>{poll.ends_at}</p>
                         <p>{poll.categories?.name}</p>
+                        {manageButtons(poll.status, poll.id)}
                     </section>
                 </div> 
             

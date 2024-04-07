@@ -19,6 +19,8 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
 
   return (  
     <>
+    
+
     {
       hasVoted ? 
        <p>you have already voted</p>
