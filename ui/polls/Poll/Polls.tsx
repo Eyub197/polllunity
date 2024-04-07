@@ -12,19 +12,19 @@ interface Filter {
 
 const Polls = async ({filter, status} : Filter  ) => {
     const supabase = await createClient()
+
     const { data : { user }, error } = await supabase.auth.getUser()
-    let { polls } = (await getPolls() || [])
-
-    if(filter && filter !== "vsicki") {
-        polls = (polls || []).filter(poll => poll.category_id === filter )
+    const { polls } = (await getPolls() || [])
+    let filteredPolls
+    if(!status ) {
+        filteredPolls = polls?.filter(poll => poll.status === "zapocnala")
     }
-    
-    polls = (polls || []).filter(poll => poll.status === "zapocnala" || poll.status === "zavarshena")
-
-    if(status && status !== "zapocnala") {
-        polls = (polls || []).filter(poll => poll.status === status )
+    else{
+        filteredPolls = polls?.filter(poll =>
+            (!filter || filter === 'vsicki' || poll.category_id === filter) &&
+            (!status || status === 'vsicki' || poll.status === status)
+          )     
     }
-   
     const manageButtons = (pollStatus: string, id:string) => {
         if(!user) {
           return  <div className="ds-f">
@@ -55,10 +55,10 @@ const Polls = async ({filter, status} : Filter  ) => {
 
 
      const pollsElement = () => {
-        if(!polls?.length || polls?.length < 1) return <p>Няма анкети с тези филтри</p>
+        if(!filteredPolls?.length || filteredPolls?.length < 1) return <p>Няма анкети с тези филтри</p>
         
         return (
-            polls?.map(poll => 
+            filteredPolls?.map(poll => 
                 <div key={poll.id} className={styles.poll}> 
                     <section className={styles.image_container}>
                     <Image

@@ -26,10 +26,11 @@ const FilterMenu = async ({ categoryParams, statusParams } : SearchParams) => {
             <select defaultValue={statusParams} name="status">
                 <option value="zapocnala">започнали</option>
                 <option value="vsicki">всички</option>    
+                <option value="nezapocnala">незапочнали</option>
                 <option value="zavarshena">завършени</option>
                 <option value="zatvorena">затворени</option>
             </select>
-            <button>Action</button>
+            <button>Филтрирай</button>
         </form>
         </>
     )

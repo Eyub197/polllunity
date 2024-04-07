@@ -18,7 +18,6 @@
 
 .poll{
     transition: transform 250ms ease-in-out, box-shadow 250ms ease, border-radius 250ms ease;
-
 }
 
 .poll:hover{
