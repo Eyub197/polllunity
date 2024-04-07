@@ -3,7 +3,8 @@
     import Image from "next/image"
     import styles from "@/ui/polls/Poll/Polls.module.css"
     import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
-import { formatDate } from "@/lib/utils/helperFunctions"
+    import { formatDate } from "@/lib/utils/helperFunctions"
+    import FramerMotionDiv, { MotionDiv } from "@/ui/components/framerMotino/FramerMotionDiv"
 
     interface Filter {
     filter: string,
@@ -63,7 +64,9 @@ import { formatDate } from "@/lib/utils/helperFunctions"
             
             return (
                 filteredPolls?.map(poll => 
-                    <div key={poll.id} className={styles.poll}> 
+                    <MotionDiv key={poll.id}>
+                    <div className={styles.poll}> 
+                        
                         <section className={styles.image_container}>
                         <Image
                         width={400}
@@ -84,8 +87,10 @@ import { formatDate } from "@/lib/utils/helperFunctions"
                             {manageButtons(poll.status, poll.id)}
                         </section>
                     </div> 
-                
+                    </MotionDiv>
                 )
+
+
             )
         }
         

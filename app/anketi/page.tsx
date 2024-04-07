@@ -1,6 +1,7 @@
 import styles from "@/ui/polls/PoolsPage.module.css"
 import Polls from "@/ui/polls/Poll/Polls"
 import FilterMenu from "@/ui/filterMenu/FilterMenu"
+import FramerMotionDiv from "@/ui/components/framerMotino/FramerMotionDiv"
 
 export type searchParamss = {
     searchParams: {
@@ -16,9 +17,11 @@ const PollsPage = ({ searchParams, }: searchParamss) => {
         <>
             <h1 className={styles.page_title}>Изберете за какво да гласувате</h1>
             <FilterMenu categoryParams={categoriq} statusParams={status}/>
+            <FramerMotionDiv>
             <main className={styles.main}>
                     <Polls status={status} filter={categoriq}/>
-            </main>
+            </main>            
+            </FramerMotionDiv>
         </>
         
     )
