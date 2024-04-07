@@ -2,7 +2,6 @@
     import { getPolls } from "@/lib/utils/polls"
     import Image from "next/image"
     import styles from "@/ui/polls/Poll/Polls.module.css"
-    import Link from "next/link"
     import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
 import { formatDate } from "@/lib/utils/helperFunctions"
 
@@ -54,7 +53,7 @@ import { formatDate } from "@/lib/utils/helperFunctions"
                         Погледнете резултатите
                     </ButtonLink>
                     </div>
-                } 
+            } 
         }
 
 

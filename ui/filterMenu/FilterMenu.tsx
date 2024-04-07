@@ -1,6 +1,6 @@
 import { getCategories } from "@/lib/utils/category"
 import { updateFilters } from "@/lib/utils/category"
-
+import styles from "./FilterMenu.module.css"
 export interface SearchParams {
     categoryParams : string,
     statusParams : string
@@ -11,8 +11,10 @@ const FilterMenu = async ({ categoryParams, statusParams } : SearchParams) => {
 
     return(
         <>
-        <form action={updateFilters}>
-            <select defaultValue={categoryParams} name="category">
+        <form className={styles.dropdown_form} action={updateFilters}>
+            <div className={styles.categories}>
+            <label htmlFor="category">Категория</label>
+            <select className={styles.select} defaultValue={categoryParams} name="category">
                 <option value={"vsicki"}>всички</option>
                 {categories?.map(category => 
                 <option 
@@ -23,14 +25,18 @@ const FilterMenu = async ({ categoryParams, statusParams } : SearchParams) => {
                 </option>
                 )}
             </select>
-            <select defaultValue={statusParams} name="status">
+            </div>
+            <div className={styles.status}>
+            <label htmlFor="status">Статус на анкета</label>
+            <select className={`${styles.select} ${styles.select_b}`} defaultValue={statusParams} name="status">
                 <option value="zapocnala">започнали</option>
                 <option value="vsicki">всички</option>    
                 <option value="nezapocnala">незапочнали</option>
                 <option value="zavarshena">завършени</option>
                 <option value="zatvorena">затворени</option>
             </select>
-            <button>Филтрирай</button>
+            </div>
+            <button className={styles.button}>Филтрирай</button>
         </form>
         </>
     )

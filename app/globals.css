@@ -140,3 +140,7 @@ h2{
 .ta-c{
     text-align: center;
 }
+
+.d-i{
+    display: initial;
+}
