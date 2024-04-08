@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
-import { getOptionsByFk, updateOptionCount } from '@/lib/utils/options'
+import { getOptionsByFkAndPollInfo, updateOptionCount } from '@/lib/utils/options'
 import { getUserVote} from '@/lib/utils/userVote';
 import { VoteButton } from '../ClientButtons';
 
@@ -10,10 +10,10 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
   const { data : { user }, error } = await supabase.auth.getUser()
 
   const userId = user?.id as string
-
-  const hasVoted = await getUserVote(userId, fk)
-
-  const options = await getOptionsByFk(fk)
+  
+  const hasVoted = await getUserVote(userId, fk) 
+  const options = await getOptionsByFkAndPollInfo(fk)
+  const polls = options?.map(option => option.polls)
 
   const updateOptionCountAction = updateOptionCount.bind(null, fk)
 
@@ -41,7 +41,13 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
           </div>
           ))
           }
-          <VoteButton userId={userId} pollId={fk}/>  
+          {
+            polls?.map(poll => poll?.status === "nezapocnala" ? 
+              
+             <p key={poll?.id}>Анкетата не e започнала все още така, че не може да се гласува</p>
+             : <VoteButton key={poll?.id} pollId={fk} userId={userId}/>
+             )
+          }
         </form>
     }    
     </>

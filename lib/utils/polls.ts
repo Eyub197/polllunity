@@ -55,6 +55,16 @@ export const getPolls = async () => {
     return { polls, error } 
 }
 
+export const getPollStatusAndDate = async (id:string) => {
+    const supabase =  await createClient()
+    const { data:polls , error } = await supabase
+    .from("polls")
+    .select("status, starts_at, ends_at")
+    .eq("id", id)
+    .single()
+    return { polls, error }
+}
+
 export const getCurrentPolls = async () => {
     const supabase =  await createClient()
     const { data:polls , error } = await supabase

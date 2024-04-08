@@ -120,16 +120,20 @@ export const getOptionById = async (id:string) => {
     return options
 }
 
-export const getOptionsByFk = async (fk:string)  => {
+export const getOptionsByFkAndPollInfo = async (fk: string) => {
     const supabase = await createClient()
     const { data: options, error } = await supabase
-    .from("options")
-    .select("*")
-    .eq("poll_id", fk)
+        .from("options")
+        .select("*, polls(status, starts_at, ends_at, id)")
+        .eq("poll_id", fk)
 
+    if (error) {
+        console.error('Error fetching options:', error)
+        return 
+    }
+    
     return options
 }
-
 export const updateOptionCount = async (id :string, formData : FormData) => {
     const supabase = await createClient()
 
