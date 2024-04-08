@@ -8,7 +8,6 @@ import { DeleteButtonServer, EditButton } from "../Buttons"
 import { getCategories } from "@/lib/utils/category"
 import noImage from "@/public/no-image.webp"
 
-
 const AdminPolls = async () => {
     const {polls} = await getPolls()
     const {categories} = await getCategories()

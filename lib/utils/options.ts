@@ -81,6 +81,16 @@ export const getPollDropDownInfo = async () => {
     return polls
 }
 
+export const getOptionsByFk = async (fk: string) => {
+    const supabase =  await createClient()
+    const { data:options , error } = await supabase
+        .from("options")
+        .select("*")
+        .eq("poll_id", fk)
+
+    return options
+}
+
 export const updateOptionById = async (id:string, prevImage:any, previousState: any, formData: FormData)  : Promise<any> => {
     const supabase = await createClient()
     const imageUploadResult = await uploadImage(formData.get("image") as string | File)

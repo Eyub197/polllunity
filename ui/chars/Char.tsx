@@ -10,7 +10,7 @@ interface CharProps {
     pollData: any; 
 }
 
-const Char =  ({charData, pollData} :CharProps ) => {
+const Char =  ({charData, pollData} : CharProps ) => {
     const data = charData
     const pollArray = pollData || []
 

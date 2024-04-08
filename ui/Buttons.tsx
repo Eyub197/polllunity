@@ -4,6 +4,7 @@ import { HiOutlinePencilAlt } from "react-icons/hi";
 import { Id } from "@/lib/types";
 import { DeleteButtonClient } from "./ClientButtons";
 import { link } from "fs";
+import { handleUserVote } from "@/lib/utils/userVote";
 export interface DeleteButtonProps{
     id: string,
     helper: null
@@ -74,3 +75,6 @@ export const CheckResults = ({id}: Id) => {
 //     }
 
 // }
+
+
+//test

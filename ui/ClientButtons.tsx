@@ -13,8 +13,9 @@ export interface DeleteButtonProps{
 }
 export const VoteButton = ({userId, pollId} : any) => {
     return(
-        <button onClick={()=> handleUserVote(userId, pollId)}>
-            action
+        <button 
+        onClick={()=> handleUserVote(userId, pollId)}>
+            Гласувай
         </button>
     )
 }

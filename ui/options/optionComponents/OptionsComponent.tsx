@@ -55,8 +55,8 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
           {
             poll?.status === "nezapocnala" ? 
             <p>Анкетата не е започнала все още, заради това няма да може да гласувате</p>
-            : <VoteButton userId={userId} pollId={fk}/>
-            
+            : 
+            <VoteButton userId={userId} pollId={fk}/>  
           }
         </form>
     }    

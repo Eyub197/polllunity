@@ -6,6 +6,8 @@ import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
 import { formatDate } from "@/lib/utils/helperFunctions"
 import { MotionDiv } from "@/ui/components/framerMotino/FramerMotionDiv"
 import noPolls from "@/public/no-polls.webp"
+import { PollP } from "@/lib/types"
+
 interface Filter {
 filter: string,
 status: string
@@ -17,7 +19,7 @@ const Polls = async ({filter, status} : Filter  ) => {
     const { data : { user }, error } = await supabase.auth.getUser()
     const { polls } = (await getPolls() || [])
     
-    let filteredPolls
+    let filteredPolls : PollP[] | undefined
     if(!status ) {
         filteredPolls = polls?.filter(poll => poll.status === "zapocnala")
     }
@@ -73,7 +75,7 @@ const Polls = async ({filter, status} : Filter  ) => {
     )
         
         return (
-            filteredPolls?.map(poll => 
+            filteredPolls?.map!(poll => 
                 <MotionDiv   key={poll.id}>
                 <div className={styles.poll}> 
                     
@@ -91,7 +93,7 @@ const Polls = async ({filter, status} : Filter  ) => {
                     <section className={styles.bottom_part}>
                         <h2>{poll.title}</h2>
                         <h3>{poll.description}</h3>
-                        <p>Категория {poll.categories?.name}</p>
+                        <p>Категория {poll.category?.name}</p>
                         <p>Започва на {formatDate(poll.starts_at)}</p>
                         <p>Затваря на {formatDate(poll?.ends_at!)}</p>
                         {manageButtons(poll.status, poll.id)}

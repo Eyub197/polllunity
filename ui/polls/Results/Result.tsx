@@ -1,5 +1,5 @@
 import { Id } from "@/lib/types"
-import { getOptionsByFk } from "@/lib/utils/options"
+import { getOptionsByFkAndPollInfo, getOptionsByFk } from "@/lib/utils/options"
 import { Suspense } from "react";
 import Char from "@/ui/chars/Char"
 import 'chart.js/auto'
@@ -12,9 +12,9 @@ const Result = async ({ id }:Id) => {
     const options = await getOptionsByFk(id)
     const poll = await getPollById(id)
 
-    const top5options : Option[] = [
+    const top5options  = [
         ...options!?.slice(0, 5)
-        .sort( (a:Option, b: Option) => b.votes_count! - a.votes_count!) 
+        .sort((a, b) => b.votes_count! - a.votes_count!) 
     ]
 
     return (
