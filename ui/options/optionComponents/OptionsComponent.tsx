@@ -47,7 +47,7 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
             />
             <div className={styles.bottom_part}>
               <p className={styles.option_text}>{option.option_text}</p>
-              <RadioButton about={option.id} />
+              <RadioButton about={option.option_text} />
               <input type="hidden" name="option_id" value={option.id} /> 
             </div>
           </div>

@@ -10,9 +10,9 @@ const RadioButton = ({about} : RadioButtonProps) => {
             <input 
             type="radio" 
             id={about} 
-            name = "option_text"
+            name="option_text"
+            value={about}
             />        
-        
             <label htmlFor={about}></label>
         </div>
     )

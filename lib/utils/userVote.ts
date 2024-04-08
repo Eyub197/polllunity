@@ -26,8 +26,7 @@ export const getUserVote = async( userId:string, pollId:string ) => {
 }
 
 
-
-export const  handleUserVote = async( userId:string, pollId:string ) => {
+export const  handleUserVote = async(userId:string, pollId:string ) => {
     const supabase = await createClient()
     
     await supabase
@@ -39,12 +38,12 @@ export const  handleUserVote = async( userId:string, pollId:string ) => {
             .update({has_voted: true})
             .match({ user_id: userId, poll_id: pollId, has_voted: false })
     
-        if(error){
-            console.error(`Error updating vote: ${error}`)
-        }
+    if(error){
+        console.error(`Error updating vote: ${error}`)
+    }
         
-        revalidatePath("/anketi", "layout")
-      }
+    revalidatePath("/anketi", "layout")
+}
     
     // export const  handleUserVote = async(formData:FormData) => {
     //     const supabase = await createClient()
