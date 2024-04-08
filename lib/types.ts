@@ -101,7 +101,7 @@ export type Id = {
 export interface Option  {
   option_text: string,
   votes_count: number | null,
-  image: string | File | null,
+  image: string | undefined,
   children? : React.ReactNode;
   className? : string
 }

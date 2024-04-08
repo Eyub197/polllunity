@@ -2,6 +2,7 @@
 
 import { children } from "@/lib/types"
 import {motion, AnimatePresence} from "framer-motion"
+import React from "react"
 
 const FramerMotionDiv = ({children}: children) => {
     return( 
@@ -16,7 +17,12 @@ const FramerMotionDiv = ({children}: children) => {
 export default FramerMotionDiv
 
 
-export const MotionDiv = ({children}: children) => {
+interface motionDiv{
+    children : React.ReactNode,
+    id? : string
+}
+
+export const MotionDiv = ({children}: motionDiv, ) => {
     return (
         <motion.div 
         initial={{ opacity: 0 }}

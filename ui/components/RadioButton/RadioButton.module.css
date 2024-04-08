@@ -1,0 +1,37 @@
+.radio {
+    margin-top: 0.875em;
+}
+
+.radio input[type="radio"]{
+    opacity: 0;
+    position: fixed;
+    width: 0;
+    
+}
+
+.radio label{
+    display:  inline-block;
+    background-color:var(--accent-color); ;
+    padding: 0.7em 2em;
+    font-family: inherit;
+    border: 5px solid var(--text-color);
+    border-radius: 7pt;
+    transition: background-color 250ms ease;
+}
+
+.radio label:hover, .radio input[type="radio"]:focus + label{
+    background-color: var(--secondary-color);
+}
+
+
+
+.radio input[type="radio"]:checked + label::before, 
+.radio input[type="radio"]:checked + label{
+    content: "Избрано"; 
+    background-color:var(--secondary-color); ;
+}
+
+
+.radio input[type="radio"] + label::before {
+    content: "Изберете опцията"; 
+}

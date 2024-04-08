@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import OptionsComponent from "@/ui/options/OptionsComponent"
+import OptionsComponent from "@/ui/options/optionComponents/OptionsComponent"
 import Loading from "./loading"
 
 

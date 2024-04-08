@@ -124,7 +124,7 @@ export const getOptionsByFkAndPollInfo = async (fk: string) => {
     const supabase = await createClient()
     const { data: options, error } = await supabase
         .from("options")
-        .select("*, polls(status, starts_at, ends_at, id)")
+        .select("*, polls(status, starts_at, ends_at, id, title)")
         .eq("poll_id", fk)
 
     if (error) {

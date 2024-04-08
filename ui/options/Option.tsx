@@ -11,12 +11,11 @@ const Option = ({className ,children, image, option_text, votes_count}: OptionPr
                 <Image
                 src={`https://knefgqtvaywusxthuztg.supabase.co/storage/v1/object/public/images/${image}`}
                 alt="консепцуална снимка за избор на опцията"
-                width={250}
-                height={150}
+                width={500}
+                height={300}
                 style={{
                     objectFit: "cover",
                     objectPosition: "top",
-                    minHeight: "200px",
                     width: "100%",
                     borderRadius: "5.5pt 5.5pt 0pt 0pt",
                     display: "block",

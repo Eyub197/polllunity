@@ -74,7 +74,7 @@ const Polls = async ({filter, status} : Filter  ) => {
         
         return (
             filteredPolls?.map(poll => 
-                <MotionDiv key={poll.id}>
+                <MotionDiv   key={poll.id}>
                 <div className={styles.poll}> 
                     
                     <section className={styles.image_container}>

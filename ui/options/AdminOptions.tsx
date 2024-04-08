@@ -2,7 +2,7 @@ import { DeleteButtonServer, EditButton } from "../Buttons"
 import Option from "./Option"
 import Dropdown from "../components/dropdown/Dropdown"
 import OptionForm from "./OptionForm"
-import { deleteOption, getOptions, getOptionsAndPolls, getPollDropDownInfo } from "@/lib/utils/options"
+import { deleteOption, getOptions, getPollDropDownInfo } from "@/lib/utils/options"
 import styles from "@/ui/options/OptionForm.module.css"
 interface Poll {
     id: string;
@@ -28,7 +28,7 @@ const AdminOptions = async () => {
                 return(
                     <div key={option?.id}>
                         <Option 
-                        image={option?.image}
+                        image={option?.image || undefined}
                         option_text={option?.option_text} 
                         votes_count={option?.votes_count} 
                         >

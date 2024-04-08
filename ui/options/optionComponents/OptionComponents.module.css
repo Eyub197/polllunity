@@ -1,0 +1,22 @@
+.bottom_part{
+    margin-top: 0;
+    border: 5px solid var(--primary-color-light);
+    border-radius: 0pt 0pt 10pt 10pt;
+    border-top: 0;
+    padding: 1em 2em;
+    text-align: center;
+}
+
+.options{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,450px));
+    justify-content: space-around;
+    gap: 2em ;
+    padding: 1.6em;
+}
+
+
+.option_text{
+    margin-top: 0;
+    font-weight: bold;
+}
