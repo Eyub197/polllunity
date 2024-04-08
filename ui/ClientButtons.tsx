@@ -13,10 +13,13 @@ export interface DeleteButtonProps{
 }
 export const VoteButton = ({userId, pollId} : any) => {
     return(
-        <button 
-        onClick={()=> handleUserVote(userId, pollId)}>
-            Гласувай
-        </button>
+        <div className="ds-f">
+            <button
+            className={styles.vote_button} 
+            onClick={()=> handleUserVote(userId, pollId)}>
+                Гласувай
+            </button>            
+        </div>
     )
 }
 

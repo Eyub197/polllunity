@@ -29,3 +29,12 @@
 .delete_button:hover {
     opacity: 0.8;
 }
+
+.vote_button{
+    padding: 1em 4em;
+    background-color: var(--accent-color-light);
+    margin-inline: auto;
+    margin-bottom: 3em;
+    border-radius: 5pt;
+    font-size: 1.3rem;
+}

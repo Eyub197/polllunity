@@ -29,7 +29,8 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
       hasVoted ? 
        <p>you have already voted</p>
        : 
-       <form className={styles.options} action={updateOptionCountAction}>
+       <form className={styles.form} action={updateOptionCountAction}>
+        <div className={styles.options} >
         {
         options?.map((option) => ( 
           <div key={option.id}> 
@@ -52,11 +53,12 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
           </div>
           ))
           }
+        </div>
           {
             poll?.status === "nezapocnala" ? 
             <p>Анкетата не е започнала все още, заради това няма да може да гласувате</p>
             : 
-            <VoteButton userId={userId} pollId={fk}/>  
+           <VoteButton userId={userId} pollId={fk}/> 
           }
         </form>
     }    
