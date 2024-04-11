@@ -18,11 +18,18 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
 
   return (  
     <>
-    {!hasVoted &&
-    <h1 className='title'>Добре дошли! в анкетатa <span className='pc'>{poll?.title}</span> направете вашия избор</h1>}
     {
-      hasVoted === true && <VoteForm options={options!} poll={poll!} userId={userId} fk={fk} />
-    }    
+    hasVoted ? 
+    <h1 className='title'>Вече сте гласували за анкетата <span className='pc'>{poll?.title}</span> </h1>  
+    :
+    <>
+    <h1 className='title'>Добре дошли! в анкетатa <span className='pc'>{poll?.title}</span> направете вашия избор</h1>
+    <VoteForm options={options!} poll={poll!} userId={userId} fk={fk}/>
+    </>
+    }
+
+
+     
     </>
   )
   

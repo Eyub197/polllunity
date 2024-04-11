@@ -41,7 +41,7 @@ const VoteForm = ({options, poll, userId, fk }: VoteFormProps) => {
                   <p className={styles.option_text}>{option.option_text}</p>
                   <RadioButton about={option.option_text} />
                   <input type="hidden" name="option_id" value={option.id} />
-                  {error?.message && <p>{error.message}</p>}
+                  {error && <p>{error.message}</p>}
                 </div>
               </div>
             ))}

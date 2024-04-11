@@ -147,28 +147,30 @@ export const getOptionsByFkAndPollInfo = async (fk: string) => {
 export const updateOptionCount = async (id :string, prevState:any, formData : FormData) => {
     try{
         const supabase = await createClient()
-    
+
         const option_text = formData.get("option_text") as string
-    
+
         const params = { option_text_param: option_text }
         if(!option_text) {
             throw new Error("Изберете опция!")
         }
         const { error } = await supabase.rpc("increment_votes_count", params)
         if(error) throw error
-        revalidatePath(`/anketi/${id}/opcii`)
-        redirect(`/anketi/${id}/opcii/ready`)
-    
+
+        if(option_text){
+            revalidatePath(`/anketi/${id}/opcii`)
+            redirect(`/anketi/${id}/opcii/ready`)
+        }
+
     } catch(error  : any){
-        if(isRedirectError(error)) throw error
 
 
         if(error.message === "Изберете опция!"){
             return { message: "Изберете опция!" }
         }
+        else if(isRedirectError(error)) throw error
     }
 }
-
 export const deleteOption = async (id:string, image:string) : Promise<any> => {
     const supabase = await createClient()
 

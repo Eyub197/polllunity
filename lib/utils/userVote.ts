@@ -42,8 +42,7 @@ export const  handleUserVote = async(userId:string, pollId:string ) => {
         console.error(`Error updating vote: ${error}`)
     }
 
-        
-    revalidatePath("/anketi", "layout")
+    // revalidatePath("/anketi", "layout")
 }
     
     // export const  handleUserVote = async(formData:FormData) => {

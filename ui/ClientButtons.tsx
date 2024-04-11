@@ -12,12 +12,14 @@ export interface DeleteButtonProps{
     action: (id:string) => void
 }
 export const VoteButton = ({userId, pollId} : any) => {
+    const { pending } = useFormStatus()
+
     return(
         <div className="ds-f">
             <button
             className={styles.vote_button} 
             onClick={()=> handleUserVote(userId, pollId)}>
-                Гласувай
+                {pending ? "Обработваме..." : "Гласувайте"}
             </button>            
         </div>
     )
