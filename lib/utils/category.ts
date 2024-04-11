@@ -19,7 +19,6 @@ export const createCategory = async (previousState: any,formData:FormData) => {
         .insert(categoryData)    
 
         if(error) throw error
-        console.log(error)      
         revalidatePath("/admin/categories")
 
     } catch (error : any) {
@@ -58,7 +57,6 @@ export const updateCategoryById = async (id:string, previousState: any, formData
         .eq("id", id)
         
         if(error) throw error
-        console.log(error)
     } catch (error:any) {
         if(error.code === '23505') {
             return { message: "Категорията вече съществува", status: 409 }
@@ -84,7 +82,6 @@ export const getCategoryById = async (id:string) => {
     .eq("id", id)
     .single()
 
-    console.log(categories)
     
     return categories 
 }

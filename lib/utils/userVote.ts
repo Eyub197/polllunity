@@ -41,6 +41,7 @@ export const  handleUserVote = async(userId:string, pollId:string ) => {
     if(error){
         console.error(`Error updating vote: ${error}`)
     }
+
         
     revalidatePath("/anketi", "layout")
 }

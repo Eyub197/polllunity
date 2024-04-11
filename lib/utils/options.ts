@@ -3,7 +3,8 @@
 import { createClient } from "@/lib/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-import { uploadImage } from "./helperFunctions"
+import { updateImage, uploadImage } from "./helperFunctions"
+import { isRedirectError } from "next/dist/client/components/redirect"
 
 interface Option {
     id: string;
@@ -93,18 +94,18 @@ export const getOptionsByFk = async (fk: string) => {
 
 export const updateOptionById = async (id:string, prevImage:any, previousState: any, formData: FormData)  : Promise<any> => {
     const supabase = await createClient()
-    const imageUploadResult = await uploadImage(formData.get("image") as string | File)
+    const imageUpdateResult = await updateImage(formData.get("image")! as File | string, prevImage)
     
-    if (!imageUploadResult.success) {
-            console.error(imageUploadResult.error)
-            return { message: imageUploadResult.error.message }
+    if (!imageUpdateResult.success) {
+            console.error(imageUpdateResult.error)
+            return { message: imageUpdateResult.error.message }
         }
 
 
     const optionData = {
         poll_id : formData.get("poll_id") as string,
         option_text : formData.get("option_text") as string,
-        image: imageUploadResult.fileName    
+        image: imageUpdateResult.fileName    
     }
 
     const {data, error} = await supabase
@@ -125,7 +126,6 @@ export const getOptionById = async (id:string) => {
     .eq("id", id)
     .single()
 
-    console.log(options)
     
     return options
 }
@@ -144,23 +144,29 @@ export const getOptionsByFkAndPollInfo = async (fk: string) => {
     
     return options
 }
-export const updateOptionCount = async (id :string, formData : FormData) => {
+export const updateOptionCount = async (id :string, prevState:any, formData : FormData) => {
     try{
         const supabase = await createClient()
     
         const option_text = formData.get("option_text") as string
     
         const params = { option_text_param: option_text }
-    
+        if(!option_text) {
+            throw new Error("Изберете опция!")
+        }
         const { error } = await supabase.rpc("increment_votes_count", params)
+        if(error) throw error
+        revalidatePath(`/anketi/${id}/opcii`)
+        redirect(`/anketi/${id}/opcii/ready`)
+    
+    } catch(error  : any){
+        if(isRedirectError(error)) throw error
 
-        if(option_text.length < 0) throw error
-        console.log("run")
-    } catch(error){
-        console.log(error)
+
+        if(error.message === "Изберете опция!"){
+            return { message: "Изберете опция!" }
+        }
     }
-    revalidatePath(`/anketi/${id}/opcii`)
-    redirect(`/anketi/${id}/opcii/ready`)
 }
 
 export const deleteOption = async (id:string, image:string) : Promise<any> => {

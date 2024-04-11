@@ -52,7 +52,7 @@ export interface PollP {
   description?: string | null;
   ends_at: string | null;
   id: string;
-  image: string;
+  image?: string;
   starts_at: string;
   status: string;
   title: string;
@@ -115,6 +115,7 @@ export type Id = {
 }
 
 export interface Option  {
+  id?: string,
   option_text: string,
   votes_count: number | null,
   image: string |null|  undefined,

@@ -31,12 +31,10 @@ export const createPoll = async (previousState: any, formData:FormData) => {
         .insert(pollData)
       
         if (error) throw error 
-        console.log(`poll ${error}`)  
         revalidatePath("/admin/polls")        
     }  catch (error : any) {
 
     
-        console.log(error)
        return errHandlingPolls({
            message: error.message,
            code: error.code,
@@ -126,7 +124,6 @@ export const getPollById = async (id:string) => {
     .eq("id", id)
     .single()
 
-    console.log(polls)
     
     return {polls}
 }

@@ -8,7 +8,6 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
     const { id } = params    
     const  {polls}  = await getPollById(id)
     const  {categories}  = await getCategories()
-    console.log(polls?.image) 
     return(
         <main className={styles.main}>       
             <PollForm

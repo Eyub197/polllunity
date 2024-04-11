@@ -35,7 +35,6 @@ export const uploadImage = async (imageFile: string | File ): Promise<{ success:
             .storage
             .from("images")
             .upload(imageFile.name, imageFile)
-        console.log(error)
         if (error) {
             throw error
         }
@@ -75,7 +74,6 @@ export const updateImage = async (imageFile: string | File, prevImage: any) => {
             .upload(imageFile.name, imageFile)
 
         if (uploadImageError) throw uploadImageError
-        console.log(uploadImageError    )
         return { success: true, fileName: imageFile.name }
     } catch (error: any) {
         if (error.code === 409 || error.message === 'The resource already exists') {
