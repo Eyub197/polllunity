@@ -1,0 +1,58 @@
+.main{
+    padding: 0.5em;
+    overflow: hidden;
+}
+
+.landing_title{
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.5;
+}
+
+.image{
+    width: 100%;
+    object-fit: cover;
+    height: 500px;
+    padding: 1em;
+}
+
+.friend{
+    position: relative;
+    min-height: 50px;
+}
+
+.friend::after{
+    content: "";
+    position: absolute;
+    height: 6px;
+    width: 0%;
+    background-color: var(--secondary-color);
+    z-index: -2;
+    bottom: 0;
+    left: 0;
+    animation: line 1s ease 2s forwards ;
+}
+
+.name{
+    color: var(--primary-color);
+}
+
+
+@keyframes line {
+    from {width: 0%;}
+    to {width: 100%;}
+}
+
+@media (min-width:768px) {
+    .introduction{
+        display: flex;
+    }
+
+    .image{
+        width: 50%;
+    }
+
+    .landing_title{
+        width: 50%;
+    }
+}

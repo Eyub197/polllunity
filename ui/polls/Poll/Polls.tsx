@@ -4,7 +4,7 @@ import Image from "next/image"
 import styles from "@/ui/polls/Poll/Polls.module.css"
 import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
 import { formatDate } from "@/lib/utils/helperFunctions"
-import { MotionDiv } from "@/ui/components/framerMotino/FramerMotionDiv"
+import { MotionDiv } from "@/ui/components/framerMotion/FramerMotionDiv"
 import noPolls from "@/public/no-polls.webp"
 import { PollP } from "@/lib/types"
 

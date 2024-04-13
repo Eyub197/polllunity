@@ -1,7 +1,7 @@
 import styles from "@/ui/polls/PoolsPage.module.css"
 import Polls from "@/ui/polls/Poll/Polls"
 import FilterMenu from "@/ui/filterMenu/FilterMenu"
-import FramerMotionDiv from "@/ui/components/framerMotino/FramerMotionDiv"
+import FramerMotionDiv from "@/ui/components/framerMotion/FramerMotionDiv"
 
 export type searchParamss = {
     searchParams: {
