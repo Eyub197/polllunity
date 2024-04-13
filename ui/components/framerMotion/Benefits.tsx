@@ -3,35 +3,67 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import styles from "./Benefits.module.css";
+import Image from "next/image";
+import intuitiveDesign from "@/public/intuitiveDesign.webp"
+import secure from "@/public/secure.webp"
+import realTime2 from "@/public/realTime2.webp"
 
 const Benefits = () => {
     const ref = useRef(null);
     const ref2 = useRef(null);
-    const isInView = useInView(ref, { once: false, margin: "0px 0px -70px 0px" });
-    const isInView2 = useInView(ref2, { once: false, margin: "0px 0px -70px 0px" });
+    const ref3 = useRef(null);
+    const isInView = useInView(ref, { once: false, margin:"-300px"});
+    const isInView2 = useInView(ref2, { once: false, margin:"-300px"});
+    const isInView3 = useInView(ref3, { once: false, margin:"-200px"});
     return (
         <section
         >
             <motion.div
              ref={ref}
              className={styles.benefits}
-             initial={{ opacity: 0, x: -100 }}
-             animate={{ opacity: isInView ? 1 : 0.5, x: isInView ? 0 : -50 }}
-             transition={{ type: "spring", stiffness: 200, duration: 0.5 }}
+             initial={{ opacity: 0, x: "-300vw" }}  
+             animate={{ opacity: isInView ? 1 : 0.1, x: isInView ? 0 : -100 }}
+             transition={{ type: "spring", stiffness: 100, duration: 0.6 }}
             >
-            <h3>Интуитивен Дизайн</h3>
-            <p>Създавайте анкети с лекота благодарение  лесен за използване интерфейс.</p>
+                <Image className={styles.benefit_image} src={intuitiveDesign} alt="снимка на интуитивен дизайн" />
+                <div className={styles.bottom_part_benefit}>
+                    <h3>Интуитивен Дизайн</h3>
+                    <p>Създавайте анкети с лекота благодарение  лесен за използване интерфейс.</p>
+                </div>
             </motion.div>
             <motion.div
              ref={ref2}
              className={styles.benefits}
-             initial={{ opacity: 0, x: 100 }}
-             animate={{ opacity: isInView2 ? 1 : 0.5, x: isInView2 ? 0 : 200 }}
-             transition={{ type: "spring", stiffness: 200, duration: 0.5 }}
-            >
-            <p>SCROLL TEST</p>
-            <p>@scorlll tesjahfjkdshfjksnkfjd</p>
+             initial={{ opacity: 0, x: "200vw" }}
+             animate={{ opacity: isInView2 ? 1 : 0.1, x: isInView2 ? 0 : 200 }}
+             transition={{ type: "spring", stiffness: 100, duration: 0.6 }}
+             >
+            <Image src={secure} alt="снимка на катинар"  className={styles.benefit_image} />
+            <div className={styles.bottom_part_benefit}>
+                <h3>Защита на данни</h3>
+                <p>
+                    Ангажирани да предоставяме услуга, която 
+                    гарантира, че вашата информация е защитена с най-съвременни технологии за сигурност.
+                </p>
+            </div>
             </motion.div>
+
+
+            <motion.div
+             ref={ref3}
+             className={styles.benefits}
+             initial={{ opacity: 0, x: "-200vw" }}
+             animate={{ opacity: isInView3 ? 1 : 0.1, x: isInView3 ? 0 : -100 }}
+             transition={{ type: "spring", stiffness: 100, duration: 0.6 }}
+            >
+                <Image className={styles.benefit_image} src={realTime2} alt="снимка на интуитивен дизайн" />
+                <div className={styles.bottom_part_benefit}>
+                    <h3>Резултати в реално време </h3>
+                    <p>имате възможността да виждате и анализирате обратната връзка от вашите анкети мигновено.
+                </p>
+                </div>
+            </motion.div>
+            
         </section>
     );
 }
