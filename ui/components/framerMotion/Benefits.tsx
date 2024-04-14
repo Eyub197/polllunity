@@ -9,15 +9,14 @@ import secure from "@/public/secure.webp"
 import realTime2 from "@/public/realTime2.webp"
 
 const Benefits = () => {
-    const ref = useRef(null);
-    const ref2 = useRef(null);
-    const ref3 = useRef(null);
-    const isInView = useInView(ref, { once: false, margin:"-300px"});
-    const isInView2 = useInView(ref2, { once: false, margin:"-300px"});
-    const isInView3 = useInView(ref3, { once: false, margin:"-200px"});
+    const ref = useRef(null)
+    const ref2 = useRef(null)
+    const ref3 = useRef(null)
+    const isInView = useInView(ref, { once: false, margin:"-300px"})
+    const isInView2 = useInView(ref2, { once: false, margin:"-300px"})
+    const isInView3 = useInView(ref3, { once: false, margin:"-200px"})
     return (
-        <section
-        >
+        <section>
             <motion.div
              ref={ref}
              className={styles.benefits}
@@ -27,8 +26,8 @@ const Benefits = () => {
             >
                 <Image className={styles.benefit_image} src={intuitiveDesign} alt="снимка на интуитивен дизайн" />
                 <div className={styles.bottom_part_benefit}>
-                    <h3>Интуитивен Дизайн</h3>
-                    <p>Създавайте анкети с лекота благодарение  лесен за използване интерфейс.</p>
+                    <h3 className={styles.benefit_title}>Интуитивен Дизайн</h3>
+                    <p className={styles.benefit_text}>Създавайте анкети с лекота благодарение  лесен за използване интерфейс.</p>
                 </div>
             </motion.div>
             <motion.div
@@ -40,8 +39,8 @@ const Benefits = () => {
              >
             <Image src={secure} alt="снимка на катинар"  className={styles.benefit_image} />
             <div className={styles.bottom_part_benefit}>
-                <h3>Защита на данни</h3>
-                <p>
+                <h3 className={styles.benefit_title}>Защита на данни</h3>
+                <p className={styles.benefit_text}>
                     Ангажирани да предоставяме услуга, която 
                     гарантира, че вашата информация е защитена с най-съвременни технологии за сигурност.
                 </p>
@@ -58,14 +57,17 @@ const Benefits = () => {
             >
                 <Image className={styles.benefit_image} src={realTime2} alt="снимка на интуитивен дизайн" />
                 <div className={styles.bottom_part_benefit}>
-                    <h3>Резултати в реално време </h3>
-                    <p>имате възможността да виждате и анализирате обратната връзка от вашите анкети мигновено.
-                </p>
+                    <div className={styles.line_helper}>
+                        <h3 className={styles.benefit_title}>Резултати в реално време </h3>
+                    </div>
+                    <p className={styles.benefit_text}>
+                        Имате възможността да виждате и анализирате обратната връзка от вашите анкети мигновено.
+                    </p>
                 </div>
             </motion.div>
             
         </section>
-    );
+    )
 }
 
-export default Benefits;
+export default Benefits

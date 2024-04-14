@@ -13,7 +13,7 @@ export default async function Home() {
     </h1>
     <Image 
      src={landingImage} 
-     alt="Logo"
+     alt="снимка на хора поставящи анкети в кутия"
      className={styles.image}
      />    
     </section>
