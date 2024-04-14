@@ -1,12 +1,52 @@
+.question_mark{
+    text-align: center;
+    margin-left: 0.1em;
+    color: var(--secondary-color);
+}
+
+.hero_text{
+    text-align: center;
+    margin-inline: auto;
+    width: 70%;
+}
+
+.hero_title{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.question{
+    text-align: center;
+}
+
+.hero_btn{
+    margin-top: 1em;
+    background-color: var(--accent-color);
+    padding: 0.7em 3em;
+    border-radius: 4pt;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    transform: all 0.250ms ease;
+}
+
+.hero_btn:hover{
+    gap:1em
+}
+
+.hero_icon{
+    color: var(--text-color);
+}
+
 .main{
     padding: 0.5em;
     overflow: hidden;
 }
 
-.landing_title{
-    text-align: center;
-    font-size: 2rem;
-    line-height: 1.5;
+.hero{
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
 }
 
 .image{
@@ -14,7 +54,14 @@
     object-fit: cover;
     height: 500px;
     padding: 1em;
-    border-radius: 15pt;
+    border-radius: 20pt;
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .friend{
@@ -38,22 +85,63 @@
     color: var(--primary-color);
 }
 
+.footer{
+    text-align: center;
+    padding: 1em;
+    width: 100%;
+    background-color: var(--primary-color-light);
+}
 
 @keyframes line {
     from {width: 0%;}
     to {width: 100%;}
 }
 
-@media (min-width:768px) {
-    .introduction{
+@media (min-width: 768px) {
+    .main{
+        padding: 1em;
+    }
+    
+    .question{
+        margin-top: 2em;
+    }
+}
+
+
+@media (min-width:1200px) {
+    .hero{
+        padding: 5em 6em;
         display: flex;
+        flex-direction: row-reverse;
+        gap: 8em;
     }
 
     .image{
-        width: 50%;
+        width: 45%;
+        height: 700px;
     }
 
-    .landing_title{
-        width: 50%;
+    .hero_title{
+        margin-bottom: 0;
+        text-align: left;
+        width: 80%;
+        font-size: 2rem;
+        line-height: 1.5;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
+    
+    .hero_text{
+        margin: unset;
+        width: 70%;
+        text-align: left;
+    }
+    
+    .text{
+        margin-right: 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
 }

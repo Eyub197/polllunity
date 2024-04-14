@@ -145,5 +145,12 @@ h2{
 }
 
 .pc{
-    color: var(--accent-color-dark);
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.b{
+    font-weight: bold;
+    color: var(--primary-color);
+    letter-spacing: 1px;
 }

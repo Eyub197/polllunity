@@ -1,11 +1,8 @@
-
 .benefits{
     margin-top: 2em;
     overflow: hidden;
     padding: 0.5em;
-    display: flex;
-    flex-direction: column;
-
+    display: grid;
 }
 
 .benefit_image{
@@ -17,7 +14,6 @@
     border-radius: 50%;
     z-index: 2;
 }
-
 
 .benefit_title{
     margin-bottom: 0 ;
@@ -42,8 +38,27 @@
     text-align: center;
     background-color: white;
     box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
-    border-radius: 10pt;
+    border-radius: 10pt ;
     padding: 3em 2em;
     position: relative;
 }
 
+
+
+@media (min-width: 768px) {
+    .benefit_image{
+        width: 150px;
+        grid-area: image;
+        margin-left: 2em;
+        z-index: 2;
+    }
+    .bottom_part_benefit { 
+        grid-area: bottom_part;
+        border-radius: 10pt 10pt 10pt 10pt;
+        width: 100%;
+    }
+
+    .benefit_title{
+        margin-left: 2em;
+    }
+}

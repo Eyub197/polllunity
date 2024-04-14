@@ -27,7 +27,7 @@ const Benefits = () => {
                 <Image className={styles.benefit_image} src={intuitiveDesign} alt="снимка на интуитивен дизайн" />
                 <div className={styles.bottom_part_benefit}>
                     <h3 className={styles.benefit_title}>Интуитивен Дизайн</h3>
-                    <p className={styles.benefit_text}>Създавайте анкети с лекота благодарение  лесен за използване интерфейс.</p>
+                    <p className={styles.benefit_text}>Създавайте анкети с лекота благодарение  лесен за използване интерфейс<span className="pc">.</span></p>
                 </div>
             </motion.div>
             <motion.div
@@ -42,7 +42,7 @@ const Benefits = () => {
                 <h3 className={styles.benefit_title}>Защита на данни</h3>
                 <p className={styles.benefit_text}>
                     Ангажирани да предоставяме услуга, която 
-                    гарантира, че вашата информация е защитена с най-съвременни технологии за сигурност.
+                    гарантира, че вашата информация е защитена с най-съвременни технологии за сигурност<span className="pc">.</span>
                 </p>
             </div>
             </motion.div>
@@ -61,7 +61,7 @@ const Benefits = () => {
                         <h3 className={styles.benefit_title}>Резултати в реално време </h3>
                     </div>
                     <p className={styles.benefit_text}>
-                        Имате възможността да виждате и анализирате обратната връзка от вашите анкети мигновено.
+                        Имате възможността да виждате и анализирате обратната връзка от вашите анкети мигновено<span className="pc">.</span>
                     </p>
                 </div>
             </motion.div>
