@@ -1,8 +1,9 @@
-.benefits{
+.benefit{
     margin-top: 2em;
-    overflow: hidden;
     padding: 0.5em;
     display: grid;
+    margin-bottom: 11em;
+    position: relative;
 }
 
 .benefit_image{
@@ -13,6 +14,7 @@
     display: block;
     border-radius: 50%;
     z-index: 2;
+
 }
 
 .benefit_title{
@@ -38,27 +40,62 @@
     text-align: center;
     background-color: white;
     box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
-    border-radius: 10pt ;
     padding: 3em 2em;
     position: relative;
+    border-radius: 10pt 10pt 10pt 10pt;
+    border-collapse: separate; 
+    perspective: 1px;
+}
+
+@media (min-width: 768px) {
+    .benefit {
+        grid-template-columns: minmax(150px, 200px) 1fr;
+        grid-template-areas: 
+            "b_image b_card";
+        margin-right: 3em;
+        border-radius: 10pt;
+        margin-top: 6em;
+    }
+
+    .benefit_image{
+        grid-area: b_image;
+        margin-left: 9.2em;
+        width: 130px;
+        margin-top: -0.6em;
+    }
+
+
+
+    .bottom_part_benefit { 
+        grid-area: b_card;
+        border-collapse: separate; 
+
+    }
+
+    .benefit_title{
+        margin-left: 4em;
+    }
+
+    .benefit_text{
+        margin-left: 4em;
+    }
 }
 
 
 
-@media (min-width: 768px) {
-    .benefit_image{
-        width: 150px;
-        grid-area: image;
-        margin-left: 2em;
-        z-index: 2;
-    }
-    .bottom_part_benefit { 
-        grid-area: bottom_part;
-        border-radius: 10pt 10pt 10pt 10pt;
-        width: 100%;
+@media (min-width: 1200px) {
+    .benefit {
+        font-size: 1.2rem;
+        margin-bottom: 20em;
     }
 
-    .benefit_title{
-        margin-left: 2em;
+
+    .benefit_image{
+        margin-left: 7em;
     }
+
+    .benefit_title::after{ 
+        transform: translateX(600px);
+    }
+    
 }
