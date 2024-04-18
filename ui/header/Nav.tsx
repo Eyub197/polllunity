@@ -18,7 +18,7 @@ const Nav = ({ children, currentUserRole  } : NavProps) => {
     const [isAdminActive, setIsAdminActive] = useState(false)
     
     useEffect( ()=> { setIsOpen(false) } , [pathname])
-    // useEffect( () => {setIsAdminActive(currentUserRole === "admin")}, [currentUserRole] )  
+     useEffect( () => {setIsAdminActive(currentUserRole === "admin")}, [currentUserRole] )  
 
     return(
         <>
@@ -42,7 +42,7 @@ const Nav = ({ children, currentUserRole  } : NavProps) => {
                     </li>
                     <li>
                         {
-                        !isAdminActive &&
+                        isAdminActive &&
                             <Link 
                             href="/admin"
                             className={`${styles.admin_link}  ${pathname.startsWith("/admin") && styles.admin_link_active}`}

@@ -2,17 +2,21 @@
 
 import Image  from "next/image"
 import styles from "./OptionComponents.module.css"
-import { PollP, Option } from "@/lib/types";
+import { Option } from "@/lib/types";
 import { VoteButton } from "@/ui/ClientButtons";
 import RadioButton from "@/ui/components/RadioButton/RadioButton";
 import { updateOptionCount } from "@/lib/utils/options";
 import { useFormState } from "react-dom";
-import {motion} from "framer-motion"
-
 
 interface VoteFormProps {
   options: Option[];
-  poll: PollP;
+  poll: { 
+    status: string; 
+    starts_at: string;
+    ends_at: string | null; 
+    id: string; 
+    title: string; }
+  
   userId: string;
   fk: string;
 }

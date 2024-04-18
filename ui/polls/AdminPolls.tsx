@@ -16,7 +16,7 @@ const AdminPolls = async () => {
         if(polls?.length! > 0) {
             return polls?.map(poll => {
             const {id, title, starts_at, ends_at, categories, image, description} = poll
-            const deleteFunction = deletePoll.bind(null, id, image)    
+            const deleteFunction = deletePoll.bind(null, id, image!)    
             return(
                 <div className={pollStyles.poll} key={id}>
                 {

@@ -20,16 +20,14 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
     <>
     {
     hasVoted ? 
-    <h1 className='title'>Вече сте гласували за анкетата <span className='pc'>{poll?.title}</span> </h1>  
+    <h1 className='title'>Вече сте гласували за анкетата <span className='pc-c'>{poll?.title}</span> </h1>  
     :
     <>
-    <h1 className='title'>Добре дошли! в анкетатa <span className='pc'>{poll?.title}</span> направете вашия избор</h1>
+    <h1 className='title'>Добре дошли! в анкетатa <span className='pc-c'>{poll?.title}</span> направете вашия избор</h1>
     <VoteForm options={options!} poll={poll!} userId={userId} fk={fk}/>
     </>
     }
-
-
-     
+  
     </>
   )
   

@@ -149,6 +149,10 @@ h2{
     color: var(--primary-color);
 }
 
+.pc-c{
+    color: var(--primary-color);
+}
+
 .b{
     font-weight: bold;
     color: var(--primary-color);

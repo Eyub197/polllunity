@@ -47,10 +47,25 @@ export const createPoll = async (previousState: any, formData:FormData) => {
 
 export const getPolls = async () => {
     const supabase =  await createClient()
+    await supabase.rpc("update_poll_statuses")
     const { data:polls , error } = await supabase
     .from("polls")
     .select("*, categories(id, name, description)")
-    return { polls, error } 
+
+    if (error) {
+        console.error("Error fetching polls:", error);
+        return { polls: null, error };
+    }
+
+    const { error: rpcError } = await supabase.rpc("update_poll_statuses");
+
+    if (rpcError) {
+        console.error("Error updating poll statuses:", rpcError);
+        return { polls, error: rpcError };
+    }
+
+    return { polls, error: null }; 
+
 }
 
 export const getPollStatusAndDate = async (id:string) => {
@@ -117,7 +132,7 @@ export const updatePollById = async (id:string, prevImage:any, previousState: an
 export const getPollById = async (id:string) => {
     
     const supabase = await createClient()
-
+    await supabase.rpc("update_poll_status", {poll_id: id})
     const { data:polls, error } = await supabase
     .from("polls")
     .select("*")

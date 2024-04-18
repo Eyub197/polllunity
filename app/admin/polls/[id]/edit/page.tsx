@@ -13,7 +13,7 @@ const EditPoll = async ({ params }: { params: { id: string } }) => {
             <PollForm
             action="update"
             title={polls?.title}
-            image={polls?.image}
+            image={polls?.image!}
             id={id}
             >
             

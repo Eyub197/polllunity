@@ -29,7 +29,7 @@ export const MotionDiv = ({children}: motionDiv, ) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         layout
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.56 }}
         >
             {children}
         </motion.div>

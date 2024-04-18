@@ -8,7 +8,9 @@
     grid-gap: 4em;
     padding: 2em;
     justify-content: space-evenly;
+    overflow: hidden;
 }
+
 
 ._poll{
     display: flex;

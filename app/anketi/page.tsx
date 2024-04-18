@@ -19,7 +19,7 @@ const PollsPage = ({ searchParams, }: searchParamss) => {
             <FilterMenu categoryParams={categoriq} statusParams={status}/>
             <FramerMotionDiv>
             <main className={styles.main}>
-                    <Polls status={status} filter={categoriq}/>
+                <Polls status={status} filter={categoriq}/>
             </main>            
             </FramerMotionDiv>
         </>

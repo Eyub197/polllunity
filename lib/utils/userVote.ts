@@ -26,7 +26,7 @@ export const getUserVote = async( userId:string, pollId:string ) => {
 }
 
 
-export const  handleUserVote = async(userId:string, pollId:string ) => {
+export const  handleUserVote = async(userId:string, pollId:string) => {
     const supabase = await createClient()
     
     await supabase
@@ -34,9 +34,9 @@ export const  handleUserVote = async(userId:string, pollId:string ) => {
     .insert({user_id:userId, poll_id: pollId})
     
         const {data, error} = await supabase
-            .from("uservotes")
-            .update({has_voted: true})
-            .match({ user_id: userId, poll_id: pollId, has_voted: false })
+         .from("uservotes")
+         .update({has_voted: true})
+         .match({ user_id: userId, poll_id: pollId, has_voted: false })
     
     if(error){
         console.error(`Error updating vote: ${error}`)
