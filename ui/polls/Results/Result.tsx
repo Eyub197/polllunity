@@ -2,14 +2,15 @@ import 'chart.js/auto'
 import Char from "@/ui/chars/Char"
 import styles from "@/ui/polls/Results/Result.module.css"
 import Option from "@/ui/options/Option"; 
+import ScreenShotButton from './SreenShotBtn';
 import { Id } from "@/lib/types"
 import { getOptionsByFk } from "@/lib/utils/options"
 import { Suspense } from "react";
 import { getPollById } from "@/lib/utils/polls"    
 import { placements, placementsClasses } from '@/lib/utils/helperArrays';
 
-const Result = async ({ id }:Id) => {
 
+const Result = async ({ id }:Id) => {
     const options = await getOptionsByFk(id)
     const {polls} = await getPollById(id)
 
@@ -21,6 +22,7 @@ const Result = async ({ id }:Id) => {
 
     return (
         <main className={styles.main}>
+            <ScreenShotButton/>
             <h1 className='title'>Резулатаи на анкетатa {polls?.title}</h1>
             <section className={styles.top_3}>
                 {
@@ -46,7 +48,8 @@ const Result = async ({ id }:Id) => {
             </section>
             <section>
                 {
-                    options!.map(option=> <p key={option.id}>{`${option.option_text} брой гласове ${option.votes_count} `}</p>)  
+                    options!.map(option=> 
+                        <p key={option.id}>{`${option.option_text} брой гласове ${option.votes_count} `}</p>)  
                 }
             </section>
         </main>

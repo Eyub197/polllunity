@@ -1,6 +1,7 @@
 "use client"
 
-import 'chart.js/auto';
+import 'chart.js/auto'
+import styles from "@/ui/chars/Char.module.css"
 import { Bar, Doughnut, Pie } from "react-chartjs-2"
 import { Suspense } from "react"
 import { CharProps } from '@/lib/types';
@@ -42,7 +43,7 @@ const Char =  ({charData, pollData} : CharProps ) => {
         <>
         <form>
             <label htmlFor="char_type">Вид диеграма</label>
-            <select name="char_type" id="char_type" onChange={handleChange}>
+            <select className={styles.select} name="char_type" id="char_type" onChange={handleChange}>
                 <option value="bar" >Колонна диеграма</option>
                 <option value="doughnut">Кръгла диеаграма</option>
                 <option value="pie">Кръгла диеграма 2</option>
