@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import { createClient } from '../supabase/server'
 import { ErrHandlingPollsArguments } from '../types'
-import noImage  from "@/public/no-image.webp"
+import { redirect } from 'next/navigation'
 
 export const manageImage  = async (imageFile  : any): Promise<string | null> => {
     if(!(imageFile instanceof File) || imageFile.size < 1) {
@@ -120,5 +120,11 @@ export const formatDate = (dateString: Date | string) => {
       month: 'long',
       day: 'numeric'
     });
-  };
+}
 
+export const manageCharFilters = (formData: FormData) => {
+    const charType = formData.get("char_type") as string
+    const searchParams = new URLSearchParams()
+    charType && searchParams.set("char_type", charType)
+    redirect(`?${searchParams}`)
+}

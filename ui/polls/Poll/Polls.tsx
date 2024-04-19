@@ -5,7 +5,7 @@ import styles from "@/ui/polls/Poll/Polls.module.css"
 import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
 import { formatDate } from "@/lib/utils/helperFunctions"
 import { MotionDiv } from "@/ui/components/framerMotion/FramerMotionDiv"
-import noPolls2 from "@/public/noPollsImage.webp"
+import noPolls from "@/public/noPolls.webp"
 import { PollP } from "@/lib/types"
 
 interface Filter {
@@ -61,17 +61,18 @@ const Polls = async ({filter, status} : Filter  ) => {
         if(!filteredPolls?.length || filteredPolls?.length < 1) return (
         <>
         <Image 
-        src={noPolls2}
+        src={noPolls}
         alt="нема анкети с тези филтри"
         style={{
-            maxWidth: "300px",
+            maxWidth: "400px",
             height: "auto",
-            boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.5)",
+            marginLeft: "auto",
+            marginRight: "auto"
         }}
-        
         />
-        <p>Няма анкети с тези филтри</p>
-        
+
+        <p className={styles.no_polls}> Няма анкети с тези филтри</p>
+
         </>
     
     )

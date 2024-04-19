@@ -1,16 +1,14 @@
 "use client"
 
-import { Option} from "@/lib/types"
-import { Bar } from "react-chartjs-2"
-import { Suspense } from "react"
 import 'chart.js/auto';
-
-interface CharProps { 
-    charData: Option[];
-    pollData: any; 
-}
+import { Bar, Doughnut, Pie } from "react-chartjs-2"
+import { Suspense } from "react"
+import { CharProps } from '@/lib/types';
+import { useState } from 'react';
 
 const Char =  ({charData, pollData} : CharProps ) => {
+    const [charType, setCharType] = useState("bar")
+    
     const data = charData
     const pollArray = pollData || []
 
@@ -20,22 +18,41 @@ const Char =  ({charData, pollData} : CharProps ) => {
             {
                 label: pollArray.title,
                 data : data?.map(option => option.votes_count),
-                backgroundColor: "#45DFC9",
                 borderWidth: 3,
-                borderColor: "#45DFC9",
                 borderRadios: "3pt",
-                width: "40%"
             }
         ]
     }
 
+    const handleChange = (event: any) => setCharType(event.target.value)
+
+    const renderChart = () => {
+        switch (charType)
+        {
+            case 'doughnut':
+                return <Doughnut data={chartData}/>
+            case 'pie':
+                return <Pie data={chartData}/>
+            default:  
+                return <Bar data={chartData}/>  
+        }
+    }
+
     return (
-        <div>
-            <h1>{pollArray.title}</h1>
+        <>
+        <form>
+            <label htmlFor="char_type">Вид диеграма</label>
+            <select name="char_type" id="char_type" onChange={handleChange}>
+                <option value="bar" >Колонна диеграма</option>
+                <option value="doughnut">Кръгла диеаграма</option>
+                <option value="pie">Кръгла диеграма 2</option>
+            </select>
+        </form>
             <Suspense fallback={<p>Loading data...</p>}>
-                <Bar data={chartData}/>
+                {renderChart()}
             </Suspense>
-        </div>
+        </>
+        
     )
 
 }

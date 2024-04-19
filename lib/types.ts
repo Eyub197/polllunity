@@ -122,6 +122,12 @@ export interface Option  {
   image: string |null|  undefined,
   children? : React.ReactNode;
   className? : string
+  classNameContainer? : string
+}
+
+export interface CharProps { 
+  charData: Option[];
+  pollData: any; 
 }
 
 export interface children {

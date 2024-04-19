@@ -24,5 +24,8 @@
     transform: translateY(-20px);
     box-shadow: -20px 20px 0px var(--accent-color);
     border-radius: 10pt 0pt 10pt 10pt;
+}
 
+.no_polls{
+    text-align: center;
 }
