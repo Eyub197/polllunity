@@ -1,40 +1,11 @@
-.polls{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
-    gap: 5em;
-    padding-inline: 2em;
-    margin-bottom: 2em;
-    justify-content: space-evenly;
-}
+/* groups */
 
-.poll{
-    transition: transform 250ms ease, box-shadow 250ms ease, border-radius 250ms ease;
-}
-
-.poll:hover{
-    transform: translateY(-10px);
-    box-shadow: -13px 13px 0px rgba(0,0,0, 0.8);
-    border-radius: 0pt 0pt 10pt 10pt;
-
-}
-
-.poll_image{
-    display: block;
+.input, .input_description , .poll_image{
     width: 100%;
-    max-width: 500px;
-    min-height: 100px;
-    object-fit: cover;
-    margin-bottom: 0;
-    border-radius: 10pt 10pt 0pt 0pt;
 }
 
-.bottom_part{
-   border: 5px solid var(--secondary-color);
-   border-top: none;
-   margin-top: 0;
-   padding: 1em;
-   border-radius: 0pt 0pt 10pt 10pt;
-
+.input, .input_description{
+    max-width: 500px;
 }
 
 .info, .buttons {
@@ -48,13 +19,16 @@
     flex-direction: column;
 }
 
-.form_grid{
-    gap: 1.5em;
-}
+
+/* typography */
 
 .name_poll { 
     grid-area: title;
 }
+
+
+
+/* layout */
 
 .main{
     align-items: center;
@@ -63,16 +37,56 @@
     margin: 0 auto;
 }
 
-.input, .input_description{
+.polls{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+    justify-content: space-evenly;
+    margin-bottom: 2em;
+    padding-inline: 2em;
+    gap: 5em;
+}
+
+.poll{
+    transition: transform 250ms ease, box-shadow 250ms ease, border-radius 250ms ease;
+}
+
+.poll:hover{
+    transform: translateY(-10px);
+    box-shadow: -13px 13px 0px rgba(0,0,0, 0.8);
+    border-radius: 0pt 0pt 10pt 10pt;
+}
+
+.poll_image{
+    display: block;
     width: 100%;
     max-width: 500px;
+    min-height: 100px;
+    margin-bottom: 0;
+    object-fit: cover;
+    border-radius: 10pt 10pt 0pt 0pt;
 }
+
+.bottom_part{
+   padding: 1em;
+   margin-top: 0;
+   border: 5px solid var(--secondary-color);
+   border-top: none;
+   border-radius: 0pt 0pt 10pt 10pt;
+
+}
+
+.form_grid{
+    gap: 1.5em;
+}
+
+
 
 
 @media (min-width: 768px) {
     .main{
         display: initial;
     }
+    
     .form_grid{
         display: grid;     
         grid-template-columns: repeat(2, minmax(200px, 500px));

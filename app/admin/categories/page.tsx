@@ -1,6 +1,6 @@
-import CreateCategory from "@/ui/categories/Categories"
+import AdminCategories from "@/ui/categories/AdminCategories"
 
-const CategoryForm = () => <CreateCategory/>
+const CategoryForm = () => <AdminCategories/>
   
 
 export default CategoryForm

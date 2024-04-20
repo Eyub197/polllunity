@@ -1,11 +1,28 @@
+/* group */
+
+.input, .input_description{
+    width: 100% !important;
+    max-width: 600px;
+}
+
+
+/* typography */
+
+.name_poll { 
+    grid-area: title;
+}
+
+/* layout */
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .form_grid{
     display: grid;
     grid-template-columns: repeat(2, minmax(1fr));
-    /* grid-template-areas: 
-        "title category_id"
-        "starts ends"
-        "description image"
-        "button ."; */
     grid-template-areas: 
         "title title"
         "category_id category_id"
@@ -17,20 +34,7 @@
     gap: 1em;
 }
 
-.name_poll { 
-    grid-area: title;
-}
 
-.main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.input, .input_description{
-    width: 100% !important;
-    max-width: 600px;
-}
 
 .category_id { grid-area: category_id; }
 .starts_at { grid-area: starts; }

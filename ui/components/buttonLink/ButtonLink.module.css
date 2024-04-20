@@ -11,12 +11,8 @@
     background-color: var(--primary-color-light); 
 }
 
-.login{
+.login, .chose_vote{
     background-color: var(--accent-color);
-}
-
-.chose_vote{
-    background-color: var(--accent-color);   
 }
 
 .check_results{

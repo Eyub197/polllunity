@@ -1,40 +1,49 @@
-.benefit{
-    margin-top: 2em;
-    padding: 0.5em;
-    display: grid;
-    margin-bottom: 11em;
+/* groups */
+
+.benefit, .benefit_title {
     position: relative;
 }
 
-.benefit_image{
-    width: 120px;
-    object-fit: cover;
-    height: auto;
-    margin: 0 auto;
+.benefit_title::after, .benefit_image{
     display: block;
-    border-radius: 50%;
-    z-index: 2;
-
 }
+
+/* typography */
 
 .benefit_title{
-    margin-bottom: 0 ;
-    position: relative;
     align-self: center;
+    margin-bottom: 0 ;
     margin-inline: auto;
 }
 
 .benefit_title::after{ 
     content: "";
-    display: block;
     width: 50px;
     height: 6px;
     background-color: var(--primary-color);
-    opacity: 0.4;
     transition: animation 250ms ease;
     float: left bottom;
+    opacity: 0.4;
 }
 
+/* layout */
+
+.benefit{
+    display: grid;
+    margin-top: 2em;
+    margin-bottom: 11em;
+    padding: 0.5em;
+}
+
+.benefit_image{
+    width: 120px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 2;
+
+}
 
 @media (min-width: 768px) {
     .benefit {
@@ -42,24 +51,21 @@
         grid-template-areas: 
             "b_image b_card";
         margin-right: 3em;
-        border-radius: 10pt;
         margin-top: 6em;
+        border-radius: 10pt;
     }
 
     .benefit_image{
         grid-area: b_image;
-        margin-left: 9.2em;
         width: 130px;
+        margin-left: 9.2em;
         margin-top: -0.6em;
     }
 
-    .benefit_title{
+    .benefit_title, .benefit_text{
         margin-left: 4em;
     }
 
-    .benefit_text{
-        margin-left: 4em;
-    }
 }
 
 @media (min-width: 1200px) {
@@ -73,7 +79,7 @@
     }
 
     .benefit_title::after{ 
-        transform: translateX(600px);
+        transform: translateX(200px);
     }
     
 }

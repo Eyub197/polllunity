@@ -1,7 +1,15 @@
-.benefit_title{
-    margin-bottom: 0 ;
+/* groups */
+
+.benefit_title, .bottom_part_benefit{
     position: relative;
+}
+
+
+/* typography */
+
+.benefit_title{
     align-self: center;
+    margin-bottom: 0 ;
     margin-inline: auto;
 }
 
@@ -11,21 +19,21 @@
     width: 50px;
     height: 6px;
     background-color: var(--primary-color);
-    opacity: 0.4;
     transition: animation 250ms ease;
     float: left bottom;
+    opacity: 0.4;
+
 }
 
+/* layout */
+
 .bottom_part_benefit{
-    margin-top: -3em;
     text-align: center;
-    background-color: white;
-    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+    margin-top: -3em;
     padding: 3em 2em;
-    position: relative;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
     border-radius: 10pt 10pt 10pt 10pt;
-    border-collapse: separate; 
-    perspective: 1px;
+    background-color: white;
 }
 
 

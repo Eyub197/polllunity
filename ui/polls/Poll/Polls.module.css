@@ -1,19 +1,19 @@
 .image{
+    display: block;
     width: 100%;
-    object-fit: cover;
-    object-position: top bottom;
     height: auto;
     max-height: 300px;
-    display: block;
+    object-fit: cover;
+    object-position: top bottom;
     border-radius: 10pt 10pt 0pt 0pt;  
 }   
 
 .bottom_part{
+    margin-top: 0;
     padding: 1em;
     border-radius: 0pt 0pt 10pt 10pt;
     border: 6px solid var(--primary-color);
-    margin-top: 0;
-    border-top: 0;
+    border-top: none;
 }   
 
 .poll{

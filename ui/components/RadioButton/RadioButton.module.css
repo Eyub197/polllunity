@@ -3,28 +3,26 @@
 }
 
 .radio input[type="radio"]{
+    width: 0;
     opacity: 0;
     position: fixed;
-    width: 0;
     cursor: pointer;
 }
 
 .radio label{
-    cursor: pointer;
     display:  inline-block;
-    background-color:var(--accent-color); ;
     padding: 0.7em 2em;
     font-family: inherit;
     border: 5px solid var(--text-color);
+    cursor: pointer;
     border-radius: 7pt;
+    background-color:var(--accent-color); ;
     transition: background-color 250ms ease;
 }
 
 .radio label:hover, .radio input[type="radio"]:focus + label{
     background-color: var(--secondary-color);
 }
-
-
 
 .radio input[type="radio"]:checked + label::before, 
 .radio input[type="radio"]:checked + label{

@@ -1,9 +1,4 @@
-.input{
-    width: 100% !important;
-    max-width: 500px;
-}
-
-.select{
+.input, .select{
     width: 100% !important;
     max-width: 500px;
 }

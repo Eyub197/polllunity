@@ -4,7 +4,7 @@ import styles from "@/ui/categories/Categories.module.css"
 import CreateCategoryForm from "./CreateCategoryForm"
 import { DeleteButtonServer } from "../Buttons"
 
-const CreateCategory = async () => {
+const AdminCategories = async () => {
     const  {categories}  = await getCategories()
     const createCategoriesElements = () => {
         
@@ -28,10 +28,10 @@ const CreateCategory = async () => {
 
     return(
         <>
-            <h1 className={styles.title}> Категории </h1>
+            <h1 className="title"> Категории </h1>
             <main className={styles.main}>
                 <CreateCategoryForm/>
-                <h2 className={styles.title_2}>Висички категории</h2>     
+                <h2 className="title_2">Висички категории</h2>     
                 <section className={styles.categories_container}>
                     {createCategoriesElements() || <p>Няма създадени категории</p>}
                 </section> 
@@ -39,4 +39,4 @@ const CreateCategory = async () => {
         </> )
 }
 
-export default CreateCategory
+export default AdminCategories

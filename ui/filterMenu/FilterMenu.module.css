@@ -10,16 +10,16 @@
 }
 
 .select{
+    grid-area: select_s;
     padding: 0.6em 1em;
     border: 4px solid black;
     background-color: var(--primary-color);
-    grid-area: select_s;
 }
 
 
 .select_b{
-    padding-inline:  1.5em;
     grid-area: select_b;
+    padding-inline:  1.5em;
 }
 
 .categories, .status{
@@ -29,11 +29,11 @@
 }
 
 .button{
-    margin-top: 1.7em;
-    background-color: var(--accent-color);
-    padding: 0.7em 2em;
     grid-area: button;
     justify-self: center;
+    margin-top: 1.7em;
+    padding: 0.7em 2em;
+    background-color: var(--accent-color);
 }
 
 @media (min-width: 720px) {

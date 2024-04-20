@@ -1,3 +1,5 @@
+/* group */
+
 .inputs_container, .social {
     display: flex;
     overflow: hidden;
@@ -7,26 +9,44 @@
     width: 100%;
 }
 
+.text, .signIn{
+    text-align: center;
+}
+
+/* typography */
+
+
+.error_message{
+    display: inline-block;
+    margin-left: 0.2em;
+    margin-top: 0em;
+    padding: 0.2rem;
+    font-size: 1rem;
+    background-color: var(--error-color);
+}
+
+/* layout */
+
+
 .form_container {
-    margin-top: 0.14em;
-    flex-direction: column;
-    min-height: 85dvh;
-    min-height: 85vh;
-    /* background-color: var(--background-color); */
-    overflow: hidden;
     display:  grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 
         "image image"
         "form form";
+    flex-direction: column;
+    min-height: 85dvh;
+    min-height: 85vh;
+    margin-top: 0.14em;
+    overflow: hidden;
 }
 
 .inputs_container{
     flex-direction: column;
+    grid-area: form;
+    min-height: 50dvh;
     padding: 0.5em;
     background-color: var(--secondary-color-light); 
-    min-height: 50dvh;
-    grid-area: form;
 }
 
 .social{
@@ -35,9 +55,9 @@
 
 .form_image{
     display: block;
+    grid-area: image;
     height: 50vh;
     object-fit: cover;
-    grid-area: image;
 }
 
 .logo{
@@ -54,17 +74,9 @@
 }
 
 .input_error {
-    border: 3.5px solid #FFB3B3;
+    border: 3.5px solid var(--error-color);
 }
 
-.error_message{
-    background-color: #FFB3B3;
-    margin-top: 0em;
-    margin-left: 0.2em;
-    padding: 0.2rem;
-    display: inline-block;
-    font-size: 1rem;
-}
 
 .submit{
     margin-top: 2em;
@@ -82,17 +94,14 @@
 
 .eye_open{
     position: absolute;
-    cursor: pointer;
-    top: 41px;
+    font-size: 1.1rem;
+    top: 45px;
     right: 7px;
     border: none;
     background-color: inherit;
-    font-size: 1.1rem;
+    cursor: pointer;
 }
 
-.text, .signIn{
-    text-align: center;
-}
 
 .signIn_link{
     font-weight: bold;
@@ -100,13 +109,12 @@
 
 @media (min-width: 768px) {
 
-
     .form_container{
         grid-template-areas: 
             "image form";
-        background-color: var(--accent-color );
         min-height: 87.7dvh;
         min-height: 87.7vh;
+        background-color: var(--accent-color );
         overflow: hidden;
     }
 
@@ -126,22 +134,19 @@
     }   
 
     .inputs_container{     
+        height: unset;
         padding: 1em;
         border-radius: 0 10pt 10pt 0;
-        height: unset;
-        border-bottom: 5px solid black;
-        border-top: 5px solid black;
-        border-right: 5px solid black;
+        border: 5px solid black;
+        border-left: none;
     }
 
     .form_image{
         height: unset;
         max-height: 90vh;
         border-radius: 10pt 0 0 10pt;
-        border-left:5px solid black ;
-        border-bottom: 5px solid black;
-        border-top: 5px solid black;
-  
+        border: 5px solid black;;
+        border-radius: none;
     }
 
     .email {
@@ -157,12 +162,8 @@
     }
 
     .inputs_container{
-        padding-inline: 7em;
         max-height: 70vh;
+        padding-inline: 7em;
     }
 
-}
-
-@media (min-height: 1000px) {
-    .form_container { background-color: red;}
 }

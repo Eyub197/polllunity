@@ -1,13 +1,13 @@
 "use client"
 
 import styles from "@/ui/auth/RegisterForm.module.css"
-import { useFormState} from 'react-dom';
+import { useFormState} from 'react-dom'
 import { signUp, logInWithGoogle } from "@/lib/auth"
-import { Button } from "@/ui/ClientButtons";
-import { Suspense, useState } from "react";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { Button } from "@/ui/ClientButtons"
+import { Suspense, useState } from "react"
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 import Image from "next/image"
-import Link from "next/link";
+import Link from "next/link"
 
 const RegisterForm = () => {
     const [errorMessage, dispatch] = useFormState(signUp, undefined)

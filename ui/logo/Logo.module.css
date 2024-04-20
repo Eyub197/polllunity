@@ -1,4 +1,4 @@
-    .logo_container{
+.logo_container{
     display: flex;
     align-items: center;  
 }
@@ -10,9 +10,9 @@
 }
 
 .logo_text{
-    line-height: none;
     width: 30px;
     margin-right: 1.4em;
+    line-height: none;
 }
 
 .logo_text_detail{
