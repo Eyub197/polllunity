@@ -22,35 +22,45 @@ const Result = async ({ id }:Id) => {
 
     return (
         <main className={styles.main}>
-            <ScreenShotButton/>
             <h1 className='title'>Резулатаи на анкетатa {polls?.title}</h1>
+            <ScreenShotButton/>
             <section className={styles.top_3}>
                 {
                     top3options.map((option, index) => 
-                        <>
-                        <h2 className={styles.placement} key={index}>{placements[index]}</h2>
-                        <Option
-                         classNameContainer={placementsClasses[index]}
-                         key={option.id} 
-                         option_text={option.option_text}
-                         votes_count={option.votes_count}
-                         image={option.image}
-                         />
-                        
-                        </>
+                        <div className={styles.placement_container}  key={index}>
+                            <h2 className={styles.placement} key={index}>{placements[index]}</h2>
+                            <Option
+                            className='placement_color'
+                            classNameContainer={placementsClasses[index]}
+                            key={option.id} 
+                            option_text={option.option_text}
+                            votes_count={option.votes_count}
+                            image={option.image}
+                            />    
+                        </div>
                     )
                 }
             </section>
             <section className={styles.char}>
                 <Suspense fallback={<p>Loading char...</p>}>
+                    <h2 className='title_2'>Статистика</h2>
                     <Char pollData={polls!} charData={top5options!}/>
                 </Suspense>
             </section>
-            <section>
+            <section className={styles.all_options}>
+                <h2 className='title_2'>Всички опции</h2>
+                <div className={styles.all_options_wrapper}>
                 {
                     options!.map(option=> 
-                        <p key={option.id}>{`${option.option_text} брой гласове ${option.votes_count} `}</p>)  
+                        <Option
+                        key={option.id} 
+                        option_text={option.option_text}
+                        votes_count={option.votes_count}
+                        image={option.image}
+                        />    
+                    )  
                 }
+                </div>
             </section>
         </main>
     )
