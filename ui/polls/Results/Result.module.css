@@ -35,7 +35,12 @@
     margin-bottom: 3em;
 }
 
-@media (min-width: 768px) {
+.all_options_title{
+    margin-block: 3em;
+}
+
+
+@media (min-width: 976px) {
     .main{
         padding: 2em;
     }
@@ -58,6 +63,12 @@
 }
 
 @media (min-width:1489px) {
+    .char{  
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
     .placement_container:nth-of-type(1){
         order: 1;
         margin-bottom: 15em;

@@ -31,11 +31,24 @@ const Char =  ({charData, pollData} : CharProps ) => {
         switch (charType)
         {
             case 'doughnut':
-                return <Doughnut data={chartData}/>
+                return (
+                    <section className={styles.char_circle}>
+                        <Doughnut data={chartData}/>
+                    </section>
+                )
             case 'pie':
-                return <Pie data={chartData}/>
+                return (
+                <section className={styles.char_circle}>
+                    <Pie data={chartData}/>
+                </section>
+                )
+                   
             default:  
-                return <Bar data={chartData}/>  
+                return(
+            <section className={styles.char}>
+                 <Bar data={chartData}/>  
+            </section>
+                )
         }
     }
 

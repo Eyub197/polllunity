@@ -3,3 +3,22 @@
     padding: .3em .5em;
     margin-bottom: 2em;
 }
+
+.char, .char_circle{
+    width: 100%;
+    margin: 5em auto 3em;
+}
+
+@media (min-width: 976px) {
+    .char_circle{
+        margin-bottom: 3em;
+        width: 50%;
+    }
+}
+
+@media (min-width:1489px) {
+    .char{
+        width: 90%;
+       
+    }
+}

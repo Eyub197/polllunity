@@ -41,17 +41,15 @@ const Result = async ({ id }:Id) => {
                     )
                 }
             </section>
-            <section className={styles.char}>
                 <Suspense fallback={<p>Loading char...</p>}>
-                    <h2 className='title_2'>Статистика</h2>
-                    <Char pollData={polls!} charData={top5options!}/>
+                    <h2 className="title_2 mt-3">Статистика</h2>
+                    <Char  pollData={polls!} charData={top5options!}/>
                 </Suspense>
-            </section>
             <section className={styles.all_options}>
-                <h2 className='title_2'>Всички опции</h2>
+                <h2 className={`title_2 ${styles.all_options_title}`} >Всички опции</h2>
                 <div className={styles.all_options_wrapper}>
                 {
-                    options!.map(option=> 
+                    options!.map(option => 
                         <Option
                         key={option.id} 
                         option_text={option.option_text}
