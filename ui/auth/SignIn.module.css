@@ -1,34 +1,91 @@
-.main{
-    display: grid;
-    min-height: 80dvh;
-    min-height: 80vh;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 
-        "image image"
-        "form form";
+/* group  */
+
+.form_styles,
+.input_style,
+.text_container,
+.text,
+.text::after,
+.frame_container{
+    width: 100%;
 }
 
-.form_styles{
+.text,
+.text_container, 
+.frame_larger,
+.frame_container{
+    position: relative;
+}
+
+.text,
+.text_container,
+.register{
+    text-align: center;
+}
+
+.frame_mobile, .text::after{
+    position: absolute;
+}
+
+
+/* typography */
+
+.text{
+    font-size: 2rem;
+    text-align: center;
+    margin-inline: auto;
+}
+
+.text::after {
+    content: "";
+    height: 15px;
+    bottom: -2px;
+    left: 1px;
+    border-top-left-radius: 20pt;
+    border-bottom-right-radius: 20pt;
+    background-color:var(--accent-color);
+    z-index: -1;
+}
+
+.error_message{
+    margin-top: 0em;
+    margin-left: 0.2em;
+    padding: 0.2em;
+    background-color: var(--error-color);
+}
+
+/* layout */
+
+.main, .form_styles{
     display: grid;
-    width: 100%;
+}
+
+.main{
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+    "image image"
+    "form form";
+    min-height: 80dvh;
+    min-height: 80vh;
+} 
+
+.form_styles{
     grid-template-columns: 1.5em repeat(4, 1fr) 1.5em;
+    grid-template-areas: 
+    ". text text text text ."
+    ". email email email email."
+    ". password password password password ."
+    ". google google apple apple ."
+    ". button button button button ."
+    ". register register register register .";
+    justify-content: center;
+    grid-area: form;
+    z-index: 1;
     background-color: var(--primary-color);
     padding-bottom: 1em;
-    justify-content: center;
-      grid-template-areas: 
-        ". text text text text ."
-        ". email email email email."
-        ". password password password password ."
-        ". google google apple apple ."
-        ". button button button button ."
-        ". register register register register .";
-    z-index: 1;
-    grid-area: form;
-    }
+}
 
 .input_style{
     margin-top: 0.5em;
-    width: 100%;
     padding: 1em;
 }
 
@@ -36,41 +93,19 @@
     grid-area: text;
     margin-top: 2em;
     margin-bottom: 3em;
-    width: 100%;
     margin-inline: auto;
-    text-align: center;
-    position: relative;
 }
 
-.text{
-    position: relative;
-    width: 100%;
-    text-align: center;
-    margin-inline: auto;
-    font-size: 2rem;
-}
-
-.text::after {
-    position: absolute;
-    content: "";
-    background-color:var(--accent-color);
-    height: 15px;
-    width: 100%;
-    bottom: -2px;
-    left: 1px;
-    border-top-left-radius: 20pt;
-    border-bottom-right-radius: 20pt;
-    z-index: -1;
+.email, .password{
+    margin-bottom: 3em;
 }
 
 .email { 
     grid-area: email;
-    margin-bottom: 3em;
  }
 
 .password { 
     grid-area: password; 
-    margin-bottom: 3em;
  }
 
 .google { grid-area: google; }
@@ -78,45 +113,32 @@
 .submit { 
     font-size: 1rem;
     grid-area: button; 
-    background-color:var(--accent-color);
     padding: 0.8em;
     margin-bottom: 1em;
+    background-color:var(--accent-color);
 }
 .register{
     grid-area: register;
-    text-align: center;
 }
 
 .register_link{
-    color: var(--text-color);
     font-weight: bold;
     letter-spacing: 1px;
 }
     
-.error_message{
-    background-color: #FFB3B3;
-    margin-top: 0em;
-    margin-left: 0.2em;
-    padding: 0.2em;
-    font-size: 1rem;
-    color: var(--text-color);
-}
 
 .error_container {
     display: flex;
 }
 
 .frame_container {
-    position: relative; 
-    width: 100%; 
     grid-area: image;
-    background-color: var(--accent-color);
     height: 43.8vh;
     border: 5px solid black;
+    background-color: var(--accent-color);
 }
 
 .frame_mobile {
-    position: absolute;
     width: 88.6%;
     height: 100%;
     object-fit: cover;
@@ -125,30 +147,27 @@
 
 .frame_larger{
     display: none;
-    position: relative;
 }
 
 @media (min-width: 768px) {
     .main{
-        height: 87.9vh;
-        padding: 2em;
         grid-template-columns: repeat(6, 1fr);
         grid-template-areas: 
         "image image image form form form";
+        height: 87.9vh;
+        padding: 2em;
         background-color: var(--secondary-color);    
     }
     
     .frame_container, .form_styles{
+        height: 100%;
         border-bottom: 5px solid black;
         border-top: 5px solid black;
-        height: 100%;
     }
     
     .frame_container{
-        border: none;
-        border-left:5px solid black ;
-        border-bottom: 5px solid black;
-        border-top: 5px solid black;
+        border: 5px solid black ;
+        border-right: none;
         border-radius: 10pt 0pt 0pt 10pt;   
     }
     
@@ -162,10 +181,10 @@
     }
     
     .frame_larger{
+        display: block;
         position: absolute;
         top:100px;
         right: 0;
-        display: block;
     }
     
     .submit{
@@ -184,7 +203,7 @@
    }
  
    .password{
-    margin-bottom: 2em;
+        margin-bottom: 2em;
    }
 }
 @media (min-width:1200px) {
