@@ -1,9 +1,9 @@
 .edit_button, .delete_button{
     display: flex;
     align-items: center;
-    gap: .2em;
     padding-inline:  1.2em;
     border-radius: 5pt;
+    gap: .2em;
 }
 
 .delete_button{
@@ -17,7 +17,6 @@
 
 .delete_button{
     transition: opacity 250ms ease;
-    font-size: 1rem;
     background-color: var(--error-color);   
 }
 
@@ -31,10 +30,10 @@
 }
 
 .vote_button{
-    padding: 1em 4em;
-    background-color: var(--accent-color-light);
+    font-size: 1.3rem;
     margin-inline: auto;
     margin-bottom: 3em;
+    padding: 1em 4em;
     border-radius: 5pt;
-    font-size: 1.3remnene;
+    background-color: var(--accent-color-light);
 }
