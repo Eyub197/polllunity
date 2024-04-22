@@ -110,11 +110,11 @@
 @media (min-width: 768px) {
 
     .form_container{
-        grid-template-areas: 
+        grid-template-areas:    
             "image form";
-        min-height: 87.7dvh;
-        min-height: 87.7vh;
         background-color: var(--accent-color );
+        min-height: 87.7vh;
+        min-height: 87.7vh;
         overflow: hidden;
     }
 
@@ -142,11 +142,11 @@
     }
 
     .form_image{
-        height: unset;
         max-height: 90vh;
         border-radius: 10pt 0 0 10pt;
         border: 5px solid black;;
         border-radius: none;
+        border-right: none;
     }
 
     .email {

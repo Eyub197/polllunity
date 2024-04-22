@@ -1,0 +1,59 @@
+/* group */
+
+.main, .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+/* typography */
+
+.title{
+    text-align: center;
+}
+
+.link{
+    padding: 1em  3em;
+    border-radius: 5pt;
+    background-color: var(--accent-color);
+    transition: transform 250ms ease;
+}    
+
+.link:hover{
+    transform: scale(1.1);
+}    
+
+.image{
+    display: block;
+    width: 500px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+
+/* layout */
+
+
+.main{
+    padding: 2em;
+    overflow: hidden;
+}    
+
+@media (min-width: 817px) {
+    .container{
+        flex-direction: row;
+    }
+
+    .title{
+        width: 80%;
+    }
+
+    .main{
+        margin-top: 2em;
+    }
+}

@@ -4,7 +4,7 @@
     display: flex;
 }
 
-.nav, .buttons_container{
+.nav, .nav_links_container{
     flex-direction: column;
 }
 
@@ -120,6 +120,12 @@
 }
 
 @media (min-width:768px) {
+    .buttons_container {
+        display: flex;
+        flex-direction: row;  /* Ensures items are in a row */       
+    }
+    
+    
     .header{
         padding-inline: 2em;
     }
@@ -190,11 +196,7 @@
         margin-right: 0.5em;
     }
 
-    .buttons_container{
-        display: flex;
-    }
 }
-
 
 @keyframes line {
     from{width: 0%; }
