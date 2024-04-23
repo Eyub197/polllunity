@@ -18,7 +18,7 @@ const PollForm = ({ children, title, image, description, starts_at, ends_at, act
     const dispatch = action === "update"? dispatchUpdate : dispatchCreate
     const error = action === "update"? errorUpdate : errorCreate
     const buttonActionText = action === "update"? "Обнови" : "Създай"
-    const buttonInActionText = action === "update"? "Обновяване..." : "Създава се..."   
+    const buttonInActionText = action === "update"? "Обновяване" : "Създава се"   
     const checkEndDate = () => {
         if(error?.message.includes("крайна")) return true
         else if(error?.message.includes("трябва")) return true

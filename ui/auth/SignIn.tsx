@@ -68,7 +68,7 @@ const SignInForm = () : JSX.Element => {
             <p className={styles.google}>Google</p>
             <p className={styles.apple}>Apple</p>
                         
-            <Button className={"btn_sign_in"} action="Влез" inAction="В лизате ..."/>
+            <Button className={"btn_sign_in"} action="Влез" inAction="Влизате"/>
 
             <p className={styles.register}>Нямате акаунт? <Link className={styles.register_link} href={"/register"}>Регистрирайте се</Link></p>
         </form>

@@ -60,9 +60,8 @@ const RegisterForm = () => {
                 <button formAction={logInWithGoogle} className={styles.google}>Google</button>
                 <p className={styles.apple}>Apple</p>
 
-                <Button className="btn_register"  action="Регистрирай се" inAction="Регистрираме те..."/>
+                <Button className="btn_register"  action="Регистрирай се" inAction="Регистрираме те"/>
                 <p className={styles.signIn}>Имате акаунт? <Link className={styles.signIn_link} href={"/register"}>Влезте</Link></p>
-
             </form>
         </main> 
          </Suspense>

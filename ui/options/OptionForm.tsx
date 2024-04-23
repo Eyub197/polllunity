@@ -16,7 +16,7 @@ const OptionForm = ({children,text, image, id, action}: OptionFormProps ) => {
     const dispatch = action === "update"? dispatchUpdate : dispatchCreate
     const error = action === "update"? errorUpdate : errorCreate
     const buttonActionText = action === "update"? "Обнови" : "Създай"
-    const buttonInActionText = action === "update"? "Обновяване..." : "Създава се..."
+    const buttonInActionText = action === "update"? "Обновяване" : "Създава се"
 
 
     const checkText = () => {

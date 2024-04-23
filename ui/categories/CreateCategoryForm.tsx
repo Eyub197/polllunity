@@ -29,7 +29,7 @@ const CreateCategoryForm = () => {
                 className={`${"admin_inputs"} ${"input_description"}`}
                 />
             </div>
-           <Button className="btn_category" action="създай" inAction="създава се..."/>
+           <Button className="btn_category" action="създай" inAction="създава се"/>
         </form>
     )
 }

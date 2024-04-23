@@ -1,0 +1,50 @@
+.skeleton {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 100%;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  /* Skeleton classes for various elements */
+  .skeleton-text {
+    height: 20px;
+    margin: 10px 0;
+    border-radius: 4px;
+  }
+  
+  .skeleton-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 10pt 10pt 0pt 0pt;
+  }
+  
+  /* Apply the skeleton classes to your elements before they are loaded */
+  .poll .image_container:before {
+    content: "";
+    display: block;
+    height: 200px;
+    background-color: #ccc;
+    border-radius: 10pt 10pt 0pt 0pt;
+    /* Use this class to show the loading effect */
+  }
+  
+  .poll .bottom_part h2:before,
+  .poll .bottom_part h3:before,
+  .poll .bottom_part p:before {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 70%;
+    background-color: #ccc;
+    margin-bottom: 5px;
+    /* Use this class to show the loading effect */
+
+  }

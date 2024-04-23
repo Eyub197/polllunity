@@ -37,7 +37,7 @@ const UpdateCategory = ({id, name, description}: UpdateCategoryProps) => {
                 defaultValue={description || "няма описание"}
                 />
             </div>
-            <Button className="btn_category" action="редактирай" inAction="редактира се..." />
+            <Button className="btn_category" action="редактирай" inAction="редактира се" />
         </form>
             {errorMessage && <p>{errorMessage}</p>}
         </main>

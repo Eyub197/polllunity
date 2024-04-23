@@ -1,10 +1,11 @@
 "use client"
 
 import styles from "@/ui/Buttons.module.css"
+import buttonStyles from "@/ui/ClientButtons.module.css"
+import AnimatedDots from "./components/AnimatedDots/AnimatedDots"
 import { handleUserVote } from "@/lib/utils/userVote"
 import { useFormStatus } from "react-dom"
 import { IoCloseCircle } from "react-icons/io5"
-import buttonStyles from "@/ui/ClientButtons.module.css"
 import { ButtonProps } from "@/lib/types"
 
 export interface DeleteButtonProps{
@@ -30,7 +31,8 @@ export const Button = ({action, inAction, className}: ButtonProps) => {
     
     return (
     <button aria-disabled={pending}  className={buttonStyles[className]}>
-        {pending ? `${inAction}` : `${action}`}
+        {pending ? `${inAction}`  : `${action}`}
+        {pending && <AnimatedDots/>}
     </button>
     )
 }
@@ -40,7 +42,8 @@ export const DeleteButtonClient = () => {
     
     return(
             <button type="submit" className={styles.delete_button}>
-                <p>{pending ? "изтрива се..." : "изтрий"}</p>
+                <p>{pending ? "изтрива се" : "изтрий"}</p>
+                {pending && <AnimatedDots/>}
                 <IoCloseCircle/>
             </button> 
     )

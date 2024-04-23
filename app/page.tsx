@@ -22,6 +22,7 @@ export default async function Home() {
     href="/registraciq">Регистрирай се <FaArrowRight className={styles.hero_icon}/> </Link>
     </div>
     <Image 
+     priority
      src={landingImage} 
      alt="снимка на хора поставящи анкети в кутия"
      className={styles.image}

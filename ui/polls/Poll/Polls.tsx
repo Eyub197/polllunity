@@ -7,6 +7,8 @@ import { formatDate } from "@/lib/utils/helperFunctions"
 import { MotionDiv } from "@/ui/components/framerMotion/FramerMotionDiv"
 import noPolls from "@/public/noPolls.webp"
 import { PollP } from "@/lib/types"
+import { Suspense } from "react"
+import Loader from "@/ui/skeletons/PollCardSkeleton"
 
 interface Filter {
 filter: string,
@@ -59,7 +61,7 @@ const Polls = async ({filter, status} : Filter  ) => {
 
     const pollsElement = () => {
         if(!filteredPolls?.length || filteredPolls?.length < 1) return (
-        <>
+        <section className={styles.no_polls_container}>
         <Image 
         src={noPolls}
         alt="нема анкети с тези филтри"
@@ -73,7 +75,7 @@ const Polls = async ({filter, status} : Filter  ) => {
 
         <p className={styles.no_polls}> Няма анкети с тези филтри</p>
 
-        </>
+        </section>
     
     )
         
@@ -104,9 +106,11 @@ const Polls = async ({filter, status} : Filter  ) => {
                 </div> 
                 </MotionDiv>
             )
+        
+        
         )
     }
-    return pollsElement()
+    return <Suspense fallback={<Loader/>}> {pollsElement()} </Suspense> 
 }
 
 export default Polls
