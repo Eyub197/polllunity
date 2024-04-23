@@ -29,3 +29,60 @@
 .no_polls{
     text-align: center;
 }
+
+
+/* Loaders */
+
+.main_loading{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
+    padding: 2em;
+    
+}
+
+/* coll animation */
+
+/* @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db; 
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+  } */
+
+  .shimmer {
+    /* background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); */
+    background: linear-gradient(to right, #d4d4d4 8%, #c0c0c0 18%, #d4d4d4 33%);
+
+    position: relative;
+    overflow: hidden;
+}
+  
+  .shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, transparent, rgba(200, 200, 200, 0.8), transparent);
+    /* background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent); */
+    animation: shimmer 2s infinite linear;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  

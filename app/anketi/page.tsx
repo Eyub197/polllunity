@@ -4,7 +4,6 @@ import FilterMenu from "@/ui/filterMenu/FilterMenu"
 import FramerMotionDiv from "@/ui/components/framerMotion/FramerMotionDiv"
 import { Suspense } from "react"
 import Loader from "@/ui/skeletons/PollCardSkeleton"
-
 export type searchParamss = {
     searchParams: {
         categoriq : string,
@@ -20,11 +19,12 @@ const PollsPage = ({ searchParams, }: searchParamss) => {
             <h1 className={styles.page_title}>Изберете за какво да гласувате</h1>
             <FilterMenu categoryParams={categoriq} statusParams={status}/>
             <FramerMotionDiv>
-            <Suspense fallback={<Loader/>}>
+            
             <main className={styles.main}>
+                <Suspense fallback={<Loader count={3}/>}>
                 <Polls status={status} filter={categoriq}/>
+                </Suspense>
             </main>            
-            </Suspense>
             </FramerMotionDiv>
         </>
         

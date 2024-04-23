@@ -13,7 +13,6 @@
     }
   }
   
-  /* Skeleton classes for various elements */
   .skeleton-text {
     height: 20px;
     margin: 10px 0;
@@ -26,14 +25,12 @@
     border-radius: 10pt 10pt 0pt 0pt;
   }
   
-  /* Apply the skeleton classes to your elements before they are loaded */
   .poll .image_container:before {
     content: "";
     display: block;
     height: 200px;
     background-color: #ccc;
     border-radius: 10pt 10pt 0pt 0pt;
-    /* Use this class to show the loading effect */
   }
   
   .poll .bottom_part h2:before,
@@ -45,6 +42,4 @@
     width: 70%;
     background-color: #ccc;
     margin-bottom: 5px;
-    /* Use this class to show the loading effect */
-
   }

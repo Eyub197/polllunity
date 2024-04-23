@@ -142,6 +142,9 @@ export interface ErrHandlingPollsArguments {
   ends_at: string,
 }
 
+export interface LoadingPropsPolls{
+  count: number
+}
 
 export type Json =
   | string

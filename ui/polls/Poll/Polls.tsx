@@ -1,11 +1,11 @@
-import { createClient } from "@/lib/supabase/server"
-import { getPolls } from "@/lib/utils/polls"
 import Image from "next/image"
+import noPolls from "@/public/noPolls.webp"
 import styles from "@/ui/polls/Poll/Polls.module.css"
 import ButtonLink from "@/ui/components/buttonLink/ButtonLink"
+import { createClient } from "@/lib/supabase/server"
+import { getPolls } from "@/lib/utils/polls"
 import { formatDate } from "@/lib/utils/helperFunctions"
 import { MotionDiv } from "@/ui/components/framerMotion/FramerMotionDiv"
-import noPolls from "@/public/noPolls.webp"
 import { PollP } from "@/lib/types"
 import { Suspense } from "react"
 import Loader from "@/ui/skeletons/PollCardSkeleton"
@@ -77,7 +77,7 @@ const Polls = async ({filter, status} : Filter  ) => {
 
         </section>
     
-    )
+        )
         
         return (
             filteredPolls?.map!(poll => 
@@ -110,7 +110,7 @@ const Polls = async ({filter, status} : Filter  ) => {
         
         )
     }
-    return <Suspense fallback={<Loader/>}> {pollsElement()} </Suspense> 
+    return pollsElement()
 }
 
 export default Polls
