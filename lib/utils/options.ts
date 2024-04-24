@@ -84,6 +84,7 @@ export const getPollDropDownInfo = async () => {
 
 export const getOptionsByFk = async (fk: string) => {
     const supabase =  await createClient()
+        
     const { data:options , error } = await supabase
         .from("options")
         .select("*")

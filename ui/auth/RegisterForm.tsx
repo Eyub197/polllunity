@@ -17,7 +17,7 @@ const RegisterForm = () => {
     const [showPassword, setShowPassword] = useState(false)
     const checkEmail = () =>  errorMessage?.message.includes("email")
     const checkPassword = () => errorMessage?.message.includes("парола")
-
+    
     return(
          <Suspense fallback={<p>Loading...</p>}>
         <main className={styles.form_container}>

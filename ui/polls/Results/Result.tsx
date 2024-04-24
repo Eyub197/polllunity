@@ -25,42 +25,10 @@ const Result = async ({ id }:Id) => {
         <main className={styles.main}>
             <h1 className='title'>Резулатаи на анкетатa {polls?.title}</h1>
             <ScreenShotButton/>
-            <section className={styles.top_3}>
-                {
-                    top3options.map((option, index) => 
-                        <div className={styles.placement_container}  key={index}>
-                            <h2 className={styles.placement} key={index}>{placements[index]}</h2>
-                            <Option
-                            className='placement_color'
-                            classNameContainer={placementsClasses[index]}
-                            key={option.id} 
-                            option_text={option.option_text}
-                            votes_count={option.votes_count}
-                            image={option.image}
-                            />    
-                        </div>
-                    )
-                }
-            </section>
                 <Suspense fallback={<p>Loading char...</p>}>
                     <h2 className="title_2 mt-3">Статистика</h2>
-                    <Char  pollData={polls!} charData={top5options!}/>
+                    <Char top3Data={top3options}  pollData={polls!} charData={top5options!}/>
                 </Suspense>
-            <section className={styles.all_options}>
-                <h2 className={`title_2 ${styles.all_options_title}`} >Всички опции</h2>
-                <div className={styles.all_options_wrapper}>
-                {
-                    options!.map(option => 
-                        <Option
-                        key={option.id} 
-                        option_text={option.option_text}
-                        votes_count={option.votes_count}
-                        image={option.image}
-                        />    
-                    )  
-                }
-                </div>
-            </section>
             <Link href={"/anketi"}>Назад</Link>
         </main>
     )

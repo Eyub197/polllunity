@@ -7,6 +7,7 @@ import { deletePoll, getPolls } from "@/lib/utils/polls"
 import { DeleteButtonServer, EditButton } from "../Buttons"
 import { getCategories } from "@/lib/utils/category"
 import noImage from "@/public/no-image.webp"
+import Link from "next/link"
 
 const AdminPolls = async () => {
     const {polls} = await getPolls()
@@ -47,6 +48,7 @@ const AdminPolls = async () => {
                     <div className={pollStyles.buttons}>
                         <EditButton id={id} toEdit="polls"/>
                         <DeleteButtonServer action={deleteFunction} id={id} helper={null}/>
+                        <Link href={`/anketi/${id}/rezultati`}>Резултати</Link>
                     </div>
                 </div>
             </div>)

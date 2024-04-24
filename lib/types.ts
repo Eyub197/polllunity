@@ -128,6 +128,8 @@ export interface Option  {
 export interface CharProps { 
   charData: Option[];
   pollData: any; 
+  top3Data: any[];
+
 }
 
 export interface children {
