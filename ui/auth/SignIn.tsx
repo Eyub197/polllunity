@@ -9,19 +9,22 @@ import frame from '@/public/frame.png'
 import frame_2 from '@/public/frame-img.png'
 import { Suspense } from "react"
 import Link from "next/link"
+import { useState } from "react"
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 
 const SignInForm = () : JSX.Element => {
     const [errorMessage, dispatch] = useFormState(signIn, undefined)
+    const [showPassword, setShowPassword] = useState(false)
+
     const checkEmail = () =>  errorMessage?.message.includes("email")
     const checkPassword = () => errorMessage?.message.includes("парола")
 
+
     return (
-        <Suspense fallback={<p>Loading...</p>}>
 
 
 
     <main className={styles.main}>
-
         <section className={styles.frame_container}>
             <Image
             alt="A frame with a text yes vote"
@@ -32,7 +35,6 @@ const SignInForm = () : JSX.Element => {
             alt="A frame with a text yes vote"
             src={frame}
             className={styles.frame_larger}
-
             />
         </section>
 
@@ -55,10 +57,17 @@ const SignInForm = () : JSX.Element => {
                           
             <div className={styles.password}>
                 <label htmlFor="password">Парола</label>
+                <button 
+                    type="button" 
+                    className={styles.eye_open}
+                    onClick={() => setShowPassword(prevShowPassword => !prevShowPassword)}
+                    >
+                        {showPassword ? <FaRegEyeSlash/> : <FaRegEye/> }                  
+                </button>
                 <input 
                 className={`${styles.input_style} ${checkPassword() && "input_error"} `}
                 name="password"
-                type="text"
+                type={showPassword ? "text" : "password"}
                 id="password" 
                 />
                 {checkPassword() && <div className={styles.error_container}> <p className={styles.error_message}>{errorMessage.message}</p> </div> }
@@ -74,7 +83,6 @@ const SignInForm = () : JSX.Element => {
         </form>
     </main>
 
-        </Suspense>
     )
     
 }

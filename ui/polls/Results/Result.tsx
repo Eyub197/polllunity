@@ -26,8 +26,7 @@ const Result = async ({ id }:Id) => {
             <h1 className='title'>Резулатаи на анкетатa {polls?.title}</h1>
             <ScreenShotButton/>
                 <Suspense fallback={<p>Loading char...</p>}>
-                    <h2 className="title_2 mt-3">Статистика</h2>
-                    <Char top3Data={top3options}  pollData={polls!} charData={top5options!}/>
+]                    <Char top3Data={top3options}  pollData={polls!} charData={top5options!}/>
                 </Suspense>
             <Link href={"/anketi"}>Назад</Link>
         </main>

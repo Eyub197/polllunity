@@ -130,6 +130,7 @@ h2{
 }
 
 .ds-f{
+    margin-top: 2em;
     display: flex;
     justify-content: space-between;
 }

@@ -7,8 +7,6 @@ import { getPolls } from "@/lib/utils/polls"
 import { formatDate } from "@/lib/utils/helperFunctions"
 import { MotionDiv } from "@/ui/components/framerMotion/FramerMotionDiv"
 import { PollP } from "@/lib/types"
-import { Suspense } from "react"
-import Loader from "@/ui/skeletons/PollCardSkeleton"
 
 interface Filter {
 filter: string,
@@ -98,7 +96,7 @@ const Polls = async ({filter, status} : Filter  ) => {
                     <section className={styles.bottom_part}>
                         <h2>{poll.title}</h2>
                         <h3>{poll.description}</h3>
-                        <p>Категория {poll.category?.name}</p>
+                        <p>Категория : {poll.categories?.name}</p>
                         <p>Започва на {formatDate(poll.starts_at)}</p>
                         <p>Затваря на {formatDate(poll?.ends_at!)}</p>
                         {manageButtons(poll.status, poll.id)}

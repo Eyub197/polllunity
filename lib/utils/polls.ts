@@ -46,8 +46,7 @@ export const createPoll = async (previousState: any, formData:FormData) => {
 }
 
 export const getPolls = async () => {
-   
-     
+
         const supabase =  await createClient()
         await supabase.rpc("update_poll_statuses")
         const { data:polls , error } = await supabase

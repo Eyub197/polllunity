@@ -18,7 +18,7 @@ const Nav = ({ children, currentUserRole  } : NavProps) => {
     const [isAdminActive, setIsAdminActive] = useState(false)
     
     useEffect( ()=> { setIsOpen(false) } , [pathname])
-     useEffect( () => {setIsAdminActive(currentUserRole === "admin")}, [currentUserRole] )  
+    useEffect( () => {setIsAdminActive(currentUserRole === "admin")}, [currentUserRole] )  
 
     return(
         <>

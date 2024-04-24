@@ -10,7 +10,7 @@ import Link from "next/link"
 const AdminHomePage = () => {
     return (
         <>
-        <h1 className={styles.title}> Администраторксо табло </h1>
+        <h1 className={styles.title}> Администраторско табло </h1>
         <main className={styles.admin_option_container}>
             <section className={styles.admin_option}>
                 <Image 

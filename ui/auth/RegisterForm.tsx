@@ -11,15 +11,13 @@ import { Suspense, useState } from "react"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 
 const RegisterForm = () => {
-    const prevPath = ""
-    const singUpR = signUp.bind(null, prevPath)
-    const [errorMessage, dispatch] = useFormState(singUpR, undefined)
+   
+    const [errorMessage, dispatch] = useFormState(signUp, undefined)
     const [showPassword, setShowPassword] = useState(false)
     const checkEmail = () =>  errorMessage?.message.includes("email")
     const checkPassword = () => errorMessage?.message.includes("парола")
     
     return(
-         <Suspense fallback={<p>Loading...</p>}>
         <main className={styles.form_container}>
                 <Image
                 width={1000}
@@ -37,7 +35,7 @@ const RegisterForm = () => {
                     name="email" 
                     type="email" 
                     id="email"  
-                    placeholder="email@gmail.com"    
+                    placeholder="email@gmail.com"   
                     />
                     {checkEmail() && <p className={styles.error_message}>{errorMessage?.message}</p> }
                 </div>
@@ -61,13 +59,11 @@ const RegisterForm = () => {
 
                 <button formAction={logInWithGoogle} className={styles.google}>Google</button>
                 <p className={styles.apple}>Apple</p>
-
-                <Button  className="btn_register" action="Регистрирай се" inAction="Регистрираме те"/>
+                
+                <Button className="btn_register" action="Регистрирай се" inAction="Регистрираме те"/>
                 <p className={styles.signIn}>Имате акаунт? <Link className={styles.signIn_link} href={"/vlez"}>Влезте</Link></p>
             </form>
-        </main> 
-         </Suspense>
-         
+        </main>          
     )
 }
 

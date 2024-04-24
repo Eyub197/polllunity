@@ -21,7 +21,8 @@ export const VoteButton = ({userId, pollId} : any) => {
             <button
             className={styles.vote_button} 
             onClick={()=> handleUserVote(userId, pollId)}>
-                {pending ? "Обработваме..." : "Гласувайте"}
+                {pending ? "Обработваме" : "Гласувайте"}
+                {pending && <AnimatedDots/>}
             </button>            
         </div>
     )
@@ -32,7 +33,7 @@ export const Button = ({action, inAction, className}: ButtonProps) => {
     const { pending } = useFormStatus()
     
     return (
-    <button  aria-disabled={pending}  className={buttonStyles[className]}>
+    <button  aria-disabled={pending} className={buttonStyles[className]}>
         {pending ? `${inAction}`  : `${action}`}
         {pending && <AnimatedDots/>}
     </button>

@@ -105,6 +105,7 @@
  }
 
 .password { 
+    position: relative;
     grid-area: password; 
  }
 
@@ -241,3 +242,15 @@
         top: 50px;
     }
 }
+
+
+.eye_open{
+    position: absolute;
+    font-size: 1.1rem;
+    top: 50px;
+    right: 7px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+

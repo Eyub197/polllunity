@@ -83,7 +83,6 @@ export const updateImage = async (imageFile: string | File, prevImage: any) => {
     }
 }
 
-
 export const errHandlingPolls = (args: ErrHandlingPollsArguments) => {
     const { title, message, code, starts_at, ends_at} = args
 

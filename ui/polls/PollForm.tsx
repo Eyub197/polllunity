@@ -33,7 +33,6 @@ const PollForm = ({ children, title, image, description, starts_at, ends_at, act
         if(error?.message.includes("2")) return true
     }
 
-
     return(
         <form className={`${pollStyles.form} ${pollStyles.form_grid}`} action={dispatch}>
         <div className={`${pollStyles.name} ${pollStyles.name_poll}`}>

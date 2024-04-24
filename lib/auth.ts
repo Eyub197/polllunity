@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { AuthData } from './types' 
 
-export const signUp = async (prevLocation: string, previousState: any, formData: FormData) => {
+export const signUp = async ( previousState: any, formData: FormData) => {
   try {
   const supabase = await createClient()
   
@@ -28,7 +28,7 @@ export const signUp = async (prevLocation: string, previousState: any, formData:
     if(error.message === "Password should be at least 6 characters." && error.status === 422){
       return {message: "Въведената парола трябва да е поне 6 символа дълга", status: 422}
     }
-    if(error.message === "User already registered" && error.status === 400 ){
+    if(error.message === "User already registered" && error.status === 422 ){
       return {message: "Вече има потребител с този email адрес"}
     }
     if(error.message === "Anonymous sign-ins are disabled"){
@@ -70,7 +70,7 @@ export const signIn = async (previousState: any, formData: FormData) => {
       return {message: "Невалидни email или парола", status: 400} 
     }
 
-    if(error.message === " Signup requires a valid password ") {
+    if(error.message === "Signup requires a valid password ") {
       return error.message
     } 
   }

@@ -11,7 +11,7 @@ const HeaderButtons = async () => {
 
         <div className={styles.buttons_container}>
             {
-                user ? <form> <p>{user.email}</p> <button formAction={signOut}>Излизане </button> </form>   
+                user ? <form><button formAction={signOut}>Излизане </button> </form>   
                 : 
                 <>
                     <Link href="/registraciq">
