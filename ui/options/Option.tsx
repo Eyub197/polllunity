@@ -15,6 +15,7 @@ const Option = ({className, classNameContainer, children, image, option_text, vo
                 style={{
                     objectFit: "cover",
                     height: "auto",
+                    maxHeight: "300px",
                     width: "100%",
                     borderRadius: "5.5pt 5.5pt 0pt 0pt",
                     display: "block",

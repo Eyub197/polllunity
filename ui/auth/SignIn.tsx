@@ -70,7 +70,7 @@ const SignInForm = () : JSX.Element => {
                         
             <Button className={"btn_sign_in"} action="Влез" inAction="Влизате"/>
 
-            <p className={styles.register}>Нямате акаунт? <Link className={styles.register_link} href={"/register"}>Регистрирайте се</Link></p>
+            <p className={styles.register}>Нямате акаунт? <Link className={styles.register_link} href={"/registraciq"}>Регистрирайте се</Link></p>
         </form>
     </main>
 

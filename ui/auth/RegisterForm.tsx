@@ -63,7 +63,7 @@ const RegisterForm = () => {
                 <p className={styles.apple}>Apple</p>
 
                 <Button  className="btn_register" action="Регистрирай се" inAction="Регистрираме те"/>
-                <p className={styles.signIn}>Имате акаунт? <Link className={styles.signIn_link} href={"/register"}>Влезте</Link></p>
+                <p className={styles.signIn}>Имате акаунт? <Link className={styles.signIn_link} href={"/vlez"}>Влезте</Link></p>
             </form>
         </main> 
          </Suspense>

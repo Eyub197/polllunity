@@ -40,7 +40,7 @@ const Char =  ({charData, pollData, top3Data} : CharProps ) => {
             table: "options",
         }, () => {router.refresh()}).subscribe()
 
-        return ()=> supabase.removeChannel(channel)
+        return () => { supabase.removeChannel(channel) }
     }, [supabase, router])
 
     const handleChange = (event: any) => setCharType(event.target.value)
