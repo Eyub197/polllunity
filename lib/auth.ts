@@ -5,6 +5,41 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { AuthData } from './types' 
 
+export const signUp = async (prevLocation: string, previousState: any, formData: FormData) => {
+  try {
+  const supabase = await createClient()
+  
+  const userData : AuthData = {
+    email:  formData.get("email") as string,
+    password: formData.get("password") as string
+  }
+    const {error} = await supabase.auth.signUp(userData)
+    
+    if (error) throw error
+  } catch (error : any) {
+    console.error(error.message, error.status)
+    
+    if(error.message === "Signup requires a valid password" && error.status === 400) {
+      return {message: "Моля, въведете парола", status: 422}
+    }
+    if(error.message === "To signup, please provide your email" && error.status === 422){
+      return {message : "Моля, въведете email адрес", status : 422}
+    }
+    if(error.message === "Password should be at least 6 characters." && error.status === 422){
+      return {message: "Въведената парола трябва да е поне 6 символа дълга", status: 422}
+    }
+    if(error.message === "User already registered" && error.status === 400 ){
+      return {message: "Вече има потребител с този email адрес"}
+    }
+    if(error.message === "Anonymous sign-ins are disabled"){
+      return {message: "Моля, въведете email", status: 422}
+    }
+  }
+
+  revalidatePath("/anketi", "layout")
+  redirect("/anketi")
+
+}
 export const signIn = async (previousState: any, formData: FormData) => {
   const supabase = await createClient()
 
@@ -40,46 +75,11 @@ export const signIn = async (previousState: any, formData: FormData) => {
     } 
   }
   
-  revalidatePath("/", "layout")
-  redirect("/")
+  revalidatePath("/anketi", "layout")
+  redirect("/anketi")
 }
 
 
-export const signUp = async (previousState: any, formData: FormData) => {
-  try {
-  const supabase = await createClient()
-  
-  const userData : AuthData = {
-    email:  formData.get("email") as string,
-    password: formData.get("password") as string
-  }
-    const {error} = await supabase.auth.signUp(userData)
-    
-    if (error) throw error
-  } catch (error : any) {
-    console.error(error.message, error.status)
-    
-    if(error.message === "Signup requires a valid password" && error.status === 400) {
-      return {message: "Моля, въведете парола", status: 422}
-    }
-    if(error.message === "To signup, please provide your email" && error.status === 422){
-      return {message : "Моля, въведете email адрес", status : 422}
-    }
-    if(error.message === "Password should be at least 6 characters." && error.status === 422){
-      return {message: "Въведената парола трябва да е поне 6 символа дълга", status: 422}
-    }
-    if(error.message === "User already registered" && error.status === 400 ){
-      return {message: "Вече има потребител с този email адрес"}
-    }
-    if(error.message === "Anonymous sign-ins are disabled"){
-      return {message: "Моля, въведете email", status: 422}
-    }
-  }
-
-  revalidatePath("/", "layout")
-  redirect("/")
-
-}
 
 
 export const signOut = async () => {

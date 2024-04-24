@@ -8,6 +8,7 @@ import { getOptionsByFk } from "@/lib/utils/options"
 import { Suspense } from "react";
 import { getPollById } from "@/lib/utils/polls"    
 import { placements, placementsClasses } from '@/lib/utils/helperArrays';
+import Link from 'next/link';
 
 
 const Result = async ({ id }:Id) => {
@@ -60,6 +61,7 @@ const Result = async ({ id }:Id) => {
                 }
                 </div>
             </section>
+            <Link href={"/anketi"}>Назад</Link>
         </main>
     )
 }

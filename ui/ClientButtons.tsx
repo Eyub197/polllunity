@@ -7,6 +7,7 @@ import { handleUserVote } from "@/lib/utils/userVote"
 import { useFormStatus } from "react-dom"
 import { IoCloseCircle } from "react-icons/io5"
 import { ButtonProps } from "@/lib/types"
+import { useRouter } from "next/navigation"
 
 export interface DeleteButtonProps{
     id: string,
@@ -27,10 +28,11 @@ export const VoteButton = ({userId, pollId} : any) => {
 }
 
 export const Button = ({action, inAction, className}: ButtonProps) => {
+    
     const { pending } = useFormStatus()
     
     return (
-    <button aria-disabled={pending}  className={buttonStyles[className]}>
+    <button  aria-disabled={pending}  className={buttonStyles[className]}>
         {pending ? `${inAction}`  : `${action}`}
         {pending && <AnimatedDots/>}
     </button>

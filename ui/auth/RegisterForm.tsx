@@ -1,21 +1,23 @@
 "use client"
 
 import styles from "@/ui/auth/RegisterForm.module.css"
+import Link from "next/link"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useFormState} from 'react-dom'
 import { signUp, logInWithGoogle } from "@/lib/auth"
 import { Button } from "@/ui/ClientButtons"
 import { Suspense, useState } from "react"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
-import Image from "next/image"
-import Link from "next/link"
 
 const RegisterForm = () => {
-    const [errorMessage, dispatch] = useFormState(signUp, undefined)
+    const prevPath = ""
+    const singUpR = signUp.bind(null, prevPath)
+    const [errorMessage, dispatch] = useFormState(singUpR, undefined)
     const [showPassword, setShowPassword] = useState(false)
-
     const checkEmail = () =>  errorMessage?.message.includes("email")
     const checkPassword = () => errorMessage?.message.includes("парола")
-    
+
     return(
          <Suspense fallback={<p>Loading...</p>}>
         <main className={styles.form_container}>
@@ -60,11 +62,12 @@ const RegisterForm = () => {
                 <button formAction={logInWithGoogle} className={styles.google}>Google</button>
                 <p className={styles.apple}>Apple</p>
 
-                <Button className="btn_register"  action="Регистрирай се" inAction="Регистрираме те"/>
+                <Button  className="btn_register" action="Регистрирай се" inAction="Регистрираме те"/>
                 <p className={styles.signIn}>Имате акаунт? <Link className={styles.signIn_link} href={"/register"}>Влезте</Link></p>
             </form>
         </main> 
          </Suspense>
+         
     )
 }
 
