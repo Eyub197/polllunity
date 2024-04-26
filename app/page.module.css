@@ -86,6 +86,7 @@
 }
 
 .footer{
+    padding: 1.5em;
     background-color: var(--primary-color-light);
 }
 

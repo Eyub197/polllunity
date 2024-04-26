@@ -4,6 +4,8 @@ import Dropdown from "../components/dropdown/Dropdown"
 import OptionForm from "./OptionForm"
 import { deleteOption, getOptions, getPollDropDownInfo } from "@/lib/utils/options"
 import styles from "@/ui/options/OptionForm.module.css"
+import Search from "../components/Search/Search"
+
 interface Poll {
     id: string;
     title: string;
@@ -17,8 +19,9 @@ interface Poll {
     votes_count: number | null;
     polls?: Poll;
   }
-const AdminOptions = async () => {
-   
+
+  const AdminOptions = async ({query} : {query : string}) => {
+   console.log(`console.logged ${query}`)
    const options = await getOptions()
    const polls = await getPollDropDownInfo()
     const createOptionElements = () => {
@@ -57,6 +60,7 @@ const AdminOptions = async () => {
                 </div>
             </OptionForm>
             <h2 className="title_2">Всички опции</h2>
+        <Search placeholder="Търси опция"/>
             <section className={styles.options}>
                 {createOptionElements() || <p>Не сте създали опции</p>}
             </section>

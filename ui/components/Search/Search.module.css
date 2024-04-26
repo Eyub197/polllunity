@@ -1,0 +1,28 @@
+.search_container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    transition: box-shadow 0.3s;
+    max-width: 400px;
+    margin-bottom: 3em;  
+}
+
+.search_container:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.search {
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+.magnifying_glass {
+    color: #555;
+    cursor: pointer;
+}
