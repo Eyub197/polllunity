@@ -13,7 +13,7 @@ const Search = ({ placeholder } : { placeholder: string }) => {
     const handleSearch = useDebouncedCallback((term : string) => {
         const params = new URLSearchParams(searchParams)
         term ? params.set('query', term) : params.delete('query')
-        replace(`${pathname}?${params.toString()}`)
+        replace(`${pathname}?${params.toString()}`,{scroll : false})
         console.log(params.toString())
     }, 300) 
 

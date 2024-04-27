@@ -6,7 +6,6 @@ import { createClient } from "@/lib/supabase/server"
 import { getPolls } from "@/lib/utils/polls"
 import { formatDate } from "@/lib/utils/helperFunctions"
 import { MotionDiv } from "@/ui/components/framerMotion/FramerMotionDiv"
-import { PollP } from "@/lib/types"
 
 interface Filter {
     filter: string,
@@ -19,16 +18,6 @@ const Polls = async ({filter, status} : Filter  ) => {
     const { data : { user }, error } = await supabase.auth.getUser()
     const { polls } = (await getPolls(undefined, status, filter) || [])
     
-    // let filteredPolls : PollP[] | undefined
-    // if(!status ) {
-    //     filteredPolls = polls?.filter(poll => poll.status === "zapocnala")
-    // }
-    // else{
-    //     filteredPolls = polls?.filter(poll =>
-    //         (!filter || filter === 'vsicki' || poll.category_id === filter) &&
-    //         (!status || status === 'vsicki' || poll.status === status)
-    //     )     
-    // }
     const manageButtons = (pollStatus: string, id:string) => {
         if(!user) {
         return  <div className="ds-f">

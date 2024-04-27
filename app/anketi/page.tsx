@@ -19,12 +19,11 @@ const PollsPage = ({ searchParams, }: searchParamss) => {
             <h1 className={styles.page_title}>Изберете за какво да гласувате</h1>
             <FilterMenu categoryParams={categoriq} statusParams={status}/>
             <FramerMotionDiv>
-            
-            <main className={styles.main}>
-                <Suspense fallback={<Loader count={3}/>}>
-                <Polls status={status} filter={categoriq}/>
-                </Suspense>
-            </main>            
+                <main className={styles.main}>
+                    <Suspense fallback={<Loader count={3}/>}>
+                    <Polls status={status} filter={categoriq}/>
+                    </Suspense>
+                </main>             
             </FramerMotionDiv>
         </>
         

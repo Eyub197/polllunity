@@ -55,7 +55,6 @@ export const getPolls = async (query?: string, status?:string, filter?:string) =
         .select("*, categories(id, name, description)")
     
     query && queryBuilder.ilike("title", `%${query}%`)
-    
     status && queryBuilder.eq("status", status)
     filter && queryBuilder.eq("category_id", filter)
 
