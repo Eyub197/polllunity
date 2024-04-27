@@ -75,10 +75,11 @@ export const getOptionsAndPolls = async (): Promise<Poll[] | null> => {
 
 export const getPollDropDownInfo = async () => {
     const supabase = await createClient()
+    
     const {data: polls, error} = await supabase
     .from("polls")
-    .select("id, title")
-
+    .select("id, title, status")
+    .or('status.eq.zapocnala,status.eq.nezapocnala')
     return polls
 }
 
