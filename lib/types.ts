@@ -47,7 +47,7 @@ export interface CategoryDetails {
 }
 
 export interface PollP {
-  category?: CategoryDetails; // Now 'category' instead of 'category_id'
+  categories?: Category; // Now 'category' instead of 'category_id'
   category_id: string
           created_at: string | null
           description: string | null

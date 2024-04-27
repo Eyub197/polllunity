@@ -45,25 +45,36 @@ export const createPoll = async (previousState: any, formData:FormData) => {
     }
 }
 
-export const getPolls = async () => {
+export const getPolls = async (query?: string, status?:string, filter?:string) => {
 
-        const supabase =  await createClient()
-        await supabase.rpc("update_poll_statuses")
-        const { data:polls , error } = await supabase
+    const supabase =  await createClient()
+    await supabase.rpc("update_poll_statuses")
+
+    let queryBuilder = supabase
         .from("polls")
         .select("*, categories(id, name, description)")
-        if (error) {
-            console.error("Error fetching polls:", error);
-            return { polls: null, error };
-        }
     
-        const { error: rpcError } = await supabase.rpc("update_poll_statuses");
+    query && queryBuilder.ilike("title", `%${query}%`)
     
-        if (rpcError) {
-            console.error("Error updating poll statuses:", rpcError);
-            return { polls, error: rpcError };
-        }
-        return { polls, error: null }; 
+    status && queryBuilder.eq("status", status)
+    filter && queryBuilder.eq("category_id", filter)
+
+
+    const { data: polls, error } = await queryBuilder
+    
+    
+    if (error) {
+        console.error("Error fetching polls:", error);
+        return { polls: null, error }
+    }
+
+    const { error: rpcError } = await supabase.rpc("update_poll_statuses");
+
+    if (rpcError) {
+        console.error("Error updating poll statuses:", rpcError)
+        return { polls, error: rpcError }
+    }
+    return { polls, error: null };
         
 }
 

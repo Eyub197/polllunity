@@ -9,26 +9,26 @@ import { MotionDiv } from "@/ui/components/framerMotion/FramerMotionDiv"
 import { PollP } from "@/lib/types"
 
 interface Filter {
-filter: string,
-status: string
+    filter: string,
+    status: string
 }
 
 const Polls = async ({filter, status} : Filter  ) => {
     const supabase = await createClient()
 
     const { data : { user }, error } = await supabase.auth.getUser()
-    const { polls } = (await getPolls() || [])
+    const { polls } = (await getPolls(undefined, status, filter) || [])
     
-    let filteredPolls : PollP[] | undefined
-    if(!status ) {
-        filteredPolls = polls?.filter(poll => poll.status === "zapocnala")
-    }
-    else{
-        filteredPolls = polls?.filter(poll =>
-            (!filter || filter === 'vsicki' || poll.category_id === filter) &&
-            (!status || status === 'vsicki' || poll.status === status)
-        )     
-    }
+    // let filteredPolls : PollP[] | undefined
+    // if(!status ) {
+    //     filteredPolls = polls?.filter(poll => poll.status === "zapocnala")
+    // }
+    // else{
+    //     filteredPolls = polls?.filter(poll =>
+    //         (!filter || filter === 'vsicki' || poll.category_id === filter) &&
+    //         (!status || status === 'vsicki' || poll.status === status)
+    //     )     
+    // }
     const manageButtons = (pollStatus: string, id:string) => {
         if(!user) {
         return  <div className="ds-f">
@@ -58,7 +58,7 @@ const Polls = async ({filter, status} : Filter  ) => {
     }
 
     const pollsElement = () => {
-        if(!filteredPolls?.length || filteredPolls?.length < 1) return (
+        if(!polls?.length || polls?.length < 1) return (
         <section className={styles.no_polls_container}>
         <Image 
         src={noPolls}
@@ -78,7 +78,7 @@ const Polls = async ({filter, status} : Filter  ) => {
         )
         
         return (
-            filteredPolls?.map!(poll => 
+            polls?.map!(poll => 
                 <MotionDiv key={poll.id}>
                 <div className={styles.poll}> 
                     

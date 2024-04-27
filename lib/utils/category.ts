@@ -98,32 +98,6 @@ export const deleteCategory = async (id:string) : Promise<any> => {
     redirect("/admin/categories")
 }
 
-// export const updateFilters = async (formData: FormData) => {
-//     const category = formData.get("category")
-//     const dateStatus = formData.get("status")
-//     const categoryParams = new URLSearchParams('categoriq')
-//     const statusParams = new URLSearchParams('status')
-//     let searchParamsUrl = "/anketi"
-    
-//     if(category !== "vsicki" && dateStatus !== "segashni") {
-//         searchParamsUrl = `?${categoryParams}${category}&${statusParams}${dateStatus}`        
-//         redirect(searchParamsUrl)
-//     }
-
-//     if(category !== "vsicki") {
-//         searchParamsUrl += `?${categoryParams}${category}`
-//         redirect(searchParamsUrl)    
-//     }
-
-//     if(dateStatus !== "segashni") {
-//         searchParamsUrl += `?${statusParams}${dateStatus}`
-//         redirect(searchParamsUrl)    
-//     }
-
-
-//         redirect("/anketi")
-// }
-
 
 export const updateFilters = async (formData: FormData) => {
     let searchParamsUrl = "/anketi"
@@ -134,7 +108,7 @@ export const updateFilters = async (formData: FormData) => {
         
     category !== "vsicki" && searchParams.set("categoriq", category)
 
-    dateStatus !== "viscki" && searchParams.set("status", dateStatus)    
+    dateStatus !== "vsicki" && searchParams.set("status", dateStatus)    
 
     if(searchParams.toString()) searchParamsUrl += `?${searchParams}`
    

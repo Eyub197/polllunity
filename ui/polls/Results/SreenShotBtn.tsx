@@ -1,6 +1,10 @@
 "use client"
 
+import styles from "@/ui/polls/Results/ScreenShotButton.module.css"
 import html2canvas  from "html2canvas"
+import { createPortal } from "react-dom"
+import { FaCamera } from "react-icons/fa";
+
 
 const ScreenShotButton = () => {
     const takeScreenShot = () => {
@@ -13,7 +17,19 @@ const ScreenShotButton = () => {
         }) 
     }
 
-    return <button onClick={takeScreenShot}>Запазете резултат</button>
+    return (
+        <>
+        { 
+        createPortal(
+        <button className={styles.button} onClick={takeScreenShot}> 
+            <FaCamera className={styles.iconв}/> 
+        </button>,
+        document.body 
+        )
+        }
+    </>
+
+    )
 }
 
 export default ScreenShotButton

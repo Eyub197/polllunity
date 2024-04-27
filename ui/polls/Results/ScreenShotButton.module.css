@@ -1,0 +1,15 @@
+.button{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1.7em;
+    border-radius: 50%;
+    margin-bottom: 0.7em;
+    margin-right: 0.7em;
+    background-color: var(--secondary-color);
+    z-index: 2;
+}
+
+.icon{
+    font-size: 1.7rem;
+}

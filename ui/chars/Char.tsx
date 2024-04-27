@@ -75,7 +75,7 @@ const Char =  ({charData, pollData, top3Data} : CharProps ) => {
          <section className={styles_2.top_3}>
                 {
                     top3Data.map((option, index) => 
-                        <div className={styles_2.placement_container}  key={index}>
+                    <div className={styles_2.placement_container}  key={index}>
                             <h2 className={styles_2.placement} key={index}>{placements[index]}</h2>
                             <Option
                             className='placement_color'
