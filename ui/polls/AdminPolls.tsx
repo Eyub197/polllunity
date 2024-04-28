@@ -79,7 +79,7 @@ const AdminPolls = async ({query}: {query : string}) => {
                 </div>
             </PollForm>
             <h2 className={"title_2"}>Всички анкети</h2>
-            <Search placeholder="Търси анкета"/>
+            <Search  placeholder=" анкета"/>
             <section className={pollStyles.polls}>
                 {createPollsElements() || <NotFound text="анкети"/>}
             </section>

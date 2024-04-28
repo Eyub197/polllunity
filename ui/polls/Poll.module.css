@@ -42,7 +42,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
     justify-content: space-evenly;
     margin-bottom: 2em;
-    padding-inline: 2em;
+    padding: 2em;
     gap: 5em;
 }
 

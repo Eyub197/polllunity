@@ -58,6 +58,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
     justify-content: space-evenly;  
+    margin-top: 2em;
     padding-bottom: 4em;
     gap: 4em;
 }
