@@ -44,27 +44,3 @@ export const  handleUserVote = async(userId:string, pollId:string) => {
 
     // revalidatePath("/anketi", "layout")
 }
-    
-    // export const  handleUserVote = async(formData:FormData) => {
-    //     const supabase = await createClient()
-    
-    //     const userId = formData.get("user_id") as string
-    //     const pollId = formData.get("poll_id") as string
-    
-    //      await supabase
-    //         .from("uservotes")
-    //         .insert({user_id:userId, poll_id: pollId})
-    
-    //     const {data, error} = await supabase
-    //         .from("uservotes")
-    //         .update({has_voted: true})
-    //         .match({ user_id: userId, poll_id: pollId, has_voted: false })
-    
-    //     if(error){
-    //         console.error(`Error updating vote: ${error}`)
-    //     }
-    
-    //     revalidatePath("/anketi", "page")
-    // }
-    
-    

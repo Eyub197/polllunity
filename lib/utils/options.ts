@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { updateImage, uploadImage } from "./helperFunctions"
 import { isRedirectError } from "next/dist/client/components/redirect"
+import { handleUserVote } from "./userVote"
 
 interface Option {
     id: string;
@@ -151,18 +152,17 @@ export const getOptionsByFkAndPollInfo = async (fk: string) => {
     
     return options
 }
-export const updateOptionCount = async (id :string, prevState:any, formData : FormData) => {
+export const updateOptionCount = async (id :string, user_id:string,  prevState:any, formData : FormData) => {
     try{
         const supabase = await createClient()
-
         const option_text = formData.get("option_text") as string
-
         const params = { option_text_param: option_text }
         if(!option_text) {
             throw new Error("Изберете опция!")
         }
         const { error } = await supabase.rpc("increment_votes_count", params)
         if(error) throw error
+        handleUserVote(user_id, id)
 
         if(option_text){
             revalidatePath(`/anketi/${id}/opcii`)

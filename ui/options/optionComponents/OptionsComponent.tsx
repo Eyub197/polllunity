@@ -15,7 +15,6 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
   const options = await getOptionsByFkAndPollInfo(fk)
   const poll = options?.[0]?.polls
 
-
   return (  
     <>
     {
@@ -27,11 +26,8 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
     <VoteForm options={options!} poll={poll!} userId={userId} fk={fk}/>
     </>
     }
-  
     </>
-  )
-  
+  )  
 }
 
 
-//take the form to its own component and add use from state and stuff so they cant vote without choosing a option

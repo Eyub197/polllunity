@@ -22,7 +22,7 @@ interface VoteFormProps {
 }
 
 const VoteForm = ({options, poll, userId, fk }: VoteFormProps) => {
-    const updateOptionCountAction = updateOptionCount.bind(null, fk)
+    const updateOptionCountAction = updateOptionCount.bind(null, fk, userId)
     const [error, dispatch] = useFormState(updateOptionCountAction, undefined)
     return (
         <form 
@@ -61,7 +61,7 @@ const VoteForm = ({options, poll, userId, fk }: VoteFormProps) => {
             poll?.status === "nezapocnala" ? (
               <p>Анкетата не е започнала все още, заради това няма да може да гласувате</p>
             ) : (
-              <VoteButton userId={userId} pollId={fk} />
+              <VoteButton/>
             )
           }
         </form>    
