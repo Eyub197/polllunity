@@ -7,7 +7,6 @@
     padding: 8px;
     transition: box-shadow 0.3s;
     max-width: 400px;
-    margin-bottom: 3em;  
 }
 
 .search_container:hover {
@@ -17,8 +16,8 @@
 .search {
     border: none;
     outline: none;
-    padding: 8px;
-    font-size: 16px;
+    padding: 0.75em;
+    font-size: 1rem;
     flex-grow: 1;
 }
 

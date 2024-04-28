@@ -28,3 +28,10 @@
     width: 100%;
     padding: 1em 2.5em;
 }
+
+.filters{
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    margin-bottom: 1.5em;
+}

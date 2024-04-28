@@ -9,14 +9,15 @@ import { MotionDiv } from "@/ui/components/framerMotion/FramerMotionDiv"
 
 interface Filter {
     filter: string,
-    status: string
+    status: string,
+    query?: string
 }
 
-const Polls = async ({filter, status} : Filter  ) => {
+const Polls = async ({query,filter, status} : Filter  ) => {
     const supabase = await createClient()
 
     const { data : { user }, error } = await supabase.auth.getUser()
-    const { polls } = (await getPolls(undefined, status, filter) || [])
+    const { polls } = (await getPolls(query, status, filter) || [])
     
     const manageButtons = (pollStatus: string, id:string) => {
         if(!user) {
