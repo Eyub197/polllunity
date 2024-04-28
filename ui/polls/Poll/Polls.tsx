@@ -82,7 +82,6 @@ const Polls = async ({filter, status} : Filter  ) => {
                     </section>
                     <section className={styles.bottom_part}>
                         <h2>{poll.title}</h2>
-                        <h3>{poll.description}</h3>
                         <p>Категория : {poll.categories?.name}</p>
                         <p>Започва на {formatDate(poll.starts_at)}</p>
                         <p>Затваря на {formatDate(poll?.ends_at!)}</p>
