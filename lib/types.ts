@@ -46,6 +46,14 @@ export interface CategoryDetails {
   name: string;
 }
 
+export interface NavigationButtonProps {
+  to: string,
+  back?: boolean,
+  className?: string,
+  text: string
+}
+
+
 export interface PollP {
   categories?: Category; // Now 'category' instead of 'category_id'
   category_id: string

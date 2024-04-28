@@ -25,8 +25,8 @@ const Benefits = () => {
             <motion.div
              ref={ref}
              className={styles.benefit}
-             initial={{ opacity: 0, x: "-100vw" }}  
-             animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -100 }}
+             initial={{ opacity: 0, x: "-100vw"}}  
+             animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -100}}
              transition={{ type: "spring", stiffness: 100, duration: 0.6 }}
             >
                 <Image className={styles.benefit_image} src={intuitiveDesign} alt="снимка на интуитивен дизайн" />

@@ -20,7 +20,7 @@ const AdminHomePage = () => {
                 />
                 <div className={styles.admin_option_desc}>
                     <h2>Категории</h2>
-                    <Link className={styles.action} href={"/admin/categories"}>Дейстивя</Link>
+                    <Link className={styles.action} href={"/admin/kategorii"}>Дейстивя</Link>
                 </div>
             </section>
 
@@ -32,7 +32,7 @@ const AdminHomePage = () => {
                 />
                 <div className={styles.admin_option_desc}>
                     <h2>Анкети</h2>
-                    <Link className={styles.action} href={"/admin/polls"}>Дейстивя</Link>
+                    <Link className={styles.action} href={"/admin/anketi"}>Дейстивя</Link>
                 </div>
             </section>
 
@@ -44,7 +44,7 @@ const AdminHomePage = () => {
                 />
                 <div className={styles.admin_option_desc}>
                     <h2>Опции</h2>
-                    <Link className={styles.action} href={"/admin/options"}>Дейстивя</Link>
+                    <Link className={styles.action} href={"/admin/opcii"}>Дейстивя</Link>
                 </div>
             </section>
 

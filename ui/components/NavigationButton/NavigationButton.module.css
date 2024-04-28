@@ -1,0 +1,21 @@
+.link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 180px  ;
+    padding: 1em 3em;
+    gap: 0.3em;
+    font-weight: bold;
+    background-color: var(--primary-color-light);
+    border-radius: 5pt;
+}
+
+.arrow{
+    font-size: 1rem;
+}
+
+.helper{
+    margin-bottom: 2em;
+    margin-left: 2em;
+    max-width: 230px;
+}

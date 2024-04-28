@@ -3,6 +3,7 @@ import { EditButton} from "../Buttons"
 import styles from "@/ui/categories/Categories.module.css"
 import CreateCategoryForm from "./CreateCategoryForm"
 import { DeleteButtonServer } from "../Buttons"
+import NavigationButton from "../components/NavigationButton/NavigationButton"
 
 const AdminCategories = async () => {
     const  {categories}  = await getCategories()
@@ -29,6 +30,11 @@ const AdminCategories = async () => {
     return(
         <>
             <h1 className="title"> Категории </h1>
+            <section className="navigation">
+                <NavigationButton to="/admin" className="helper" text="табло" back={true}/>
+                <NavigationButton to="opcii" className="helper" text="опции" back={false}/>
+                <NavigationButton to="anketi" className="helper" text="анкети" back={false}/>
+            </section>
             <main className={styles.main}>
                 <CreateCategoryForm/>
                 <h2 className="title_2">Висички категории</h2>     

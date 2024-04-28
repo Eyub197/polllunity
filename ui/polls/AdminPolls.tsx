@@ -9,6 +9,7 @@ import { getCategories } from "@/lib/utils/category"
 import noImage from "@/public/no-image.webp"
 import Link from "next/link"
 import Search from "../components/Search/Search"
+import NavigationButton from "../components/NavigationButton/NavigationButton"
 
 const AdminPolls = async ({query}: {query : string}) => {
     const {polls} = await getPolls(query)
@@ -61,6 +62,12 @@ const AdminPolls = async ({query}: {query : string}) => {
     return(
         <>
         <h1 className={"title"}>Анкети</h1>
+        <section className="navigation">
+            <NavigationButton to="/admin" className="helper" text="табло" back={true}/>
+            <NavigationButton to="opcii" className="helper" text="опции" back={false}/>
+            <NavigationButton to="kategorii" className="helper" text="категории" back={false}/>
+        </section>
+
           <main className={pollStyles.main}>
             <PollForm
             image={undefined}

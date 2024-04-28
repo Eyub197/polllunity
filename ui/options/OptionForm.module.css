@@ -31,6 +31,11 @@
     padding-inline: 2em 2em;
 }   
 
+.navigation{
+    display: flex;
+    justify-content: center;
+}
+
 .form{    
     flex-direction: column;
     gap:1.5em

@@ -7,16 +7,14 @@ import { useRouter } from "next/navigation"
 import { useFormState} from 'react-dom'
 import { signUp, logInWithGoogle } from "@/lib/auth"
 import { Button } from "@/ui/ClientButtons"
-import { Suspense, useState } from "react"
+import { useState } from "react"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 
 const RegisterForm = () => {
-   
     const [errorMessage, dispatch] = useFormState(signUp, undefined)
     const [showPassword, setShowPassword] = useState(false)
     const checkEmail = () =>  errorMessage?.message.includes("email")
     const checkPassword = () => errorMessage?.message.includes("парола")
-    
     return(
         <main className={styles.form_container}>
                 <Image

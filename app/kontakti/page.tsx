@@ -1,8 +1,11 @@
+import NavigationButton from "@/ui/components/NavigationButton/NavigationButton"
+
 const Contact = () => {
   return (
-    <div>
-      <h1>Kontakt</h1>
-    </div>
+    <main>
+      <NavigationButton to="/kontakti" text="Назад" back={true}/>
+      <NavigationButton to="/kontakti" text="Назад" back={false}/>
+    </main>
   ) 
 }
 export default Contact

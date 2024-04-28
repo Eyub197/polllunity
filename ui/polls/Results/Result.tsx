@@ -3,12 +3,11 @@ import Char from "@/ui/chars/Char"
 import styles from "@/ui/polls/Results/Result.module.css"
 import Option from "@/ui/options/Option"; 
 import ScreenShotButton from './SreenShotBtn';
+import NavigationButton from '@/ui/components/NavigationButton/NavigationButton';
 import { Id } from "@/lib/types"
 import { getOptionsByFk } from "@/lib/utils/options"
 import { Suspense } from "react";
 import { getPollById } from "@/lib/utils/polls"    
-import { placements, placementsClasses } from '@/lib/utils/helperArrays';
-import Link from 'next/link';
 
 
 const Result = async ({ id }:Id) => {
@@ -28,7 +27,7 @@ const Result = async ({ id }:Id) => {
                 <Suspense fallback={<p>Loading char...</p>}>
                     <Char top3Data={top3options}  pollData={polls!} charData={top5options!}/>
                 </Suspense>
-            <Link href={"/anketi"}>Назад</Link>
+            <NavigationButton to={"/anketi"} back={true} text='Назад'/>
         </main>
     )
 }

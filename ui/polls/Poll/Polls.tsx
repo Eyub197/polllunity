@@ -61,9 +61,7 @@ const Polls = async ({filter, status} : Filter  ) => {
         />
 
         <p className={styles.no_polls}> Няма анкети с тези филтри</p>
-
         </section>
-    
         )
         
         return (

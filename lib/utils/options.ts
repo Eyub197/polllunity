@@ -54,11 +54,15 @@ export const createOption = async (previousState:any,formData:FormData) => {
     }
 }
 
-export const getOptions = async () : Promise<any[] | null> => {
+export const getOptions = async (query?:string) : Promise<any[] | null> => {
     const supabase =  await createClient()
-    const { data:options , error } = await supabase
+
+    const queryBuilder = supabase
         .from("options")
         .select("*")
+    query && queryBuilder.ilike("option_text", `%${query}%`)
+    const {data: options} = await queryBuilder
+
 
     return options
 }

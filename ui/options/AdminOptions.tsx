@@ -1,28 +1,28 @@
-import { DeleteButtonServer, EditButton } from "../Buttons"
 import Option from "./Option"
 import Dropdown from "../components/dropdown/Dropdown"
 import OptionForm from "./OptionForm"
-import { deleteOption, getOptions, getPollDropDownInfo } from "@/lib/utils/options"
-import styles from "@/ui/options/OptionForm.module.css"
 import Search from "../components/Search/Search"
+import styles from "@/ui/options/OptionForm.module.css"
+import NavigationButton from "../components/NavigationButton/NavigationButton"
+import { deleteOption, getOptions, getPollDropDownInfo } from "@/lib/utils/options"
+import { DeleteButtonServer, EditButton } from "../Buttons"
 
 interface Poll {
     id: string;
     title: string;
-  }
+}
   
-  interface Option {
+interface Option {
     id: string;
     image: string | null;
     option_text: string;
     poll_id: string;
     votes_count: number | null;
     polls?: Poll;
-  }
+}
 
   const AdminOptions = async ({query} : {query : string}) => {
-   console.log(`console.logged ${query}`)
-   const options = await getOptions()
+   const options = await getOptions(query)
    const polls = await getPollDropDownInfo()
     const createOptionElements = () => {
         if(options?.length! > 0){
@@ -35,10 +35,10 @@ interface Poll {
                         option_text={option?.option_text} 
                         votes_count={option?.votes_count} 
                         >
-                        <div className={styles.buttons}>
+                    <div className={styles.buttons}>
                             <EditButton id={option?.id} toEdit={"options"} />
                             <DeleteButtonServer id={option?.id} helper={null} action={deleteFunction} />
-                        </div>
+                    </div>
                         </Option>
                     </div>
                     )
@@ -50,6 +50,12 @@ interface Poll {
     return(
         <>
         <h1 className="title">Опции</h1>
+        <section className={styles.navigation}>
+            <NavigationButton to="/admin" className="helper" text="табло" back={true}/>
+            <NavigationButton to="anketi" className="helper" text="анкети" back={false}/>
+            <NavigationButton to="kategorii" className="helper" text="категории" back={false}/>
+        </section>
+
         <main className={styles.main}>
             <OptionForm
             action="create"
@@ -60,7 +66,7 @@ interface Poll {
                 </div>
             </OptionForm>
             <h2 className="title_2">Всички опции</h2>
-        <Search placeholder="Търси опция"/>
+            <Search placeholder="опция..."/>
             <section className={styles.options}>
                 {createOptionElements() || <p>Не сте създали опции</p>}
             </section>
