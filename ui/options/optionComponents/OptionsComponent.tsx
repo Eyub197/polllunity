@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getOptionsByFkAndPollInfo} from '@/lib/utils/options'
 import { getUserVote} from '@/lib/utils/userVote';
 import VoteForm from './VoteForm';
+import NavigationButton from '@/ui/components/NavigationButton/NavigationButton';
 
 export default async function OptionsComponent({ fk }: { fk: string }) {
 
@@ -19,7 +20,11 @@ export default async function OptionsComponent({ fk }: { fk: string }) {
     <>
     {
     hasVoted ? 
-    <h1 className='title'>Вече сте гласували за анкетата <span className='pc-c'>{poll?.title}</span> </h1>  
+    <>
+      <h1 className='title'>Вече сте гласували за анкетата <span className='pc-c'>{poll?.title}</span> </h1>  
+      <NavigationButton to={"/anketi"} back={true} text='Назад' className='centeri'/>
+    </>
+
     :
     <>
     <h1 className='title'>Добре дошли! в анкетатa <span className='pc-c'>{poll?.title}</span> направете вашия избор</h1>

@@ -8,6 +8,12 @@
     font-weight: bold;
     background-color: var(--primary-color-light);
     border-radius: 5pt;
+    transition: opacity 250ms ease, letter-spacing 250ms ease;
+}
+
+.link:hover{
+    opacity: 0.8;   
+    letter-spacing: 1px;
 }
 
 .arrow{
@@ -18,4 +24,9 @@
     margin-bottom: 2em;
     margin-left: 2em;
     max-width: 230px;
+}
+
+.center{
+    margin: 1em auto;
+    text-align: center;
 }
