@@ -3,13 +3,14 @@ import PollForm from "./PollForm"
 import Dropdown from "../components/dropdown/Dropdown"
 import pollStyles from "@/ui/polls/Poll.module.css"
 import MoreInformation from "../components/moreInformation/MoreInformation"
-import { deletePoll, getPolls } from "@/lib/utils/polls"
-import { DeleteButtonServer, EditButton } from "../Buttons"
-import { getCategories } from "@/lib/utils/category"
 import noImage from "@/public/no-image.webp"
 import Link from "next/link"
 import Search from "../components/Search/Search"
 import NavigationButton from "../components/NavigationButton/NavigationButton"
+import NotFound from "../components/NotFound/NotFound"
+import { deletePoll, getPolls } from "@/lib/utils/polls"
+import { DeleteButtonServer, EditButton } from "../Buttons"
+import { getCategories } from "@/lib/utils/category"
 
 const AdminPolls = async ({query}: {query : string}) => {
     const {polls} = await getPolls(query)
@@ -80,7 +81,7 @@ const AdminPolls = async ({query}: {query : string}) => {
             <h2 className={"title_2"}>Всички анкети</h2>
             <Search placeholder="Търси анкета"/>
             <section className={pollStyles.polls}>
-                {createPollsElements()}
+                {createPollsElements() || <NotFound text="анкети"/>}
             </section>
         </main>
         </>

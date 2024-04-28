@@ -90,7 +90,6 @@ const Char =  ({charData, pollData, top3Data} : CharProps ) => {
                 }
             </section>
         <form>
-                <option value="bar" >Колонна диеграма</option>
             <label htmlFor="char_type">Вид диеграма</label>
             <select className={styles.select} name="char_type" id="char_type" onChange={handleChange}>
                 <option value="bar">Колонна диаграма</option>

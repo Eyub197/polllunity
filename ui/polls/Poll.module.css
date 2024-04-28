@@ -47,6 +47,7 @@
 }
 
 .poll{
+    margin-top: 3em;
     transition: transform 250ms ease, box-shadow 250ms ease, border-radius 250ms ease;
 }
 
@@ -100,3 +101,4 @@
     .ends_at { grid-area: ends; }
     .desc_poll { grid-area: description; }
 }
+

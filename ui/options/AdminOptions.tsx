@@ -6,6 +6,7 @@ import styles from "@/ui/options/OptionForm.module.css"
 import NavigationButton from "../components/NavigationButton/NavigationButton"
 import { deleteOption, getOptions, getPollDropDownInfo } from "@/lib/utils/options"
 import { DeleteButtonServer, EditButton } from "../Buttons"
+import NotFound from "../components/NotFound/NotFound"
 
 interface Poll {
     id: string;
@@ -50,7 +51,7 @@ interface Option {
     return(
         <>
         <h1 className="title">Опции</h1>
-        <section className={styles.navigation}>
+        <section className="navigation  ">
             <NavigationButton to="/admin" className="helper" text="табло" back={true}/>
             <NavigationButton to="anketi" className="helper" text="анкети" back={false}/>
             <NavigationButton to="kategorii" className="helper" text="категории" back={false}/>
@@ -62,13 +63,13 @@ interface Option {
             image={undefined}
             >
                 <div>
-                    <Dropdown about="poll_id" arrayData={polls!} className={"input"} label="Изберете анкетата" selected={undefined}/>
+                    <Dropdown about="poll_id" arrayData={polls!} className={"input"} label="Изберете анкетата"/>
                 </div>
             </OptionForm>
             <h2 className="title_2">Всички опции</h2>
             <Search placeholder="опция..."/>
             <section className={styles.options}>
-                {createOptionElements() || <p>Не сте създали опции</p>}
+                {createOptionElements() || <NotFound text="опции"/>}
             </section>
         </main>
         </>

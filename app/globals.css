@@ -104,6 +104,7 @@ label{
 }
 
 .title_2{
+    margin-top: 2em;
     font-size: 2rem;
 }
 
@@ -167,4 +168,5 @@ h2{
 .navigation{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
