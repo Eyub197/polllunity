@@ -28,9 +28,11 @@ export interface NavProps {
 }
 
 export interface UpdateCategoryProps {
-  id: string,
-  name: string,
-  description: string | null
+  id?: string,
+  name?: string,
+  description?: string | null,
+  action: string,
+
 } 
 
 export interface PollBadgeParams {

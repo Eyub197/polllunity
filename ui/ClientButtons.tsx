@@ -34,7 +34,7 @@ export const Button = ({action, inAction, className}: ButtonProps) => {
     
     return (
     <button  aria-disabled={pending} className={buttonStyles[className]}>
-        {pending ? `${inAction}`  : `${action}`}
+        {pending ? `${inAction}` : `${action}`}
         {pending && <AnimatedDots/>}
     </button>
     )

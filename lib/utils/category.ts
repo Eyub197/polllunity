@@ -30,7 +30,7 @@ export const createCategory = async (previousState: any,formData:FormData) => {
 
         return error.message
     }       
-
+    revalidatePath("/admin/kategorii")
 }
 
 export const getCategories = async () => {
@@ -68,8 +68,8 @@ export const updateCategoryById = async (id:string, previousState: any, formData
 
     } 
     finally{
-        revalidatePath("/admin/categories")
-        redirect("/admin/categories")   
+        revalidatePath("/admin/kategorii")
+        redirect("/admin/kategorii")   
     }
 }
 

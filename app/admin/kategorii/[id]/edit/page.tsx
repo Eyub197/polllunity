@@ -1,6 +1,5 @@
 import { getCategoryById} from "@/lib/utils/category"
-import UpdateCategory from "@/ui/categories/UpdateCategory"
-
+import CategoryForm from "@/ui/categories/CategoryForm"
 
 const EditCategory = async ({ params }: { params: { id: string } }) => {
     const { id } = params    
@@ -8,10 +7,12 @@ const EditCategory = async ({ params }: { params: { id: string } }) => {
 
     return(
         <>
-            <UpdateCategory 
+            <CategoryForm 
             id={id} 
             name={category?.name!} 
-            description = {category?.description!}/>
+            description = {category?.description!}
+            action="update"
+            />
         </>
     ) 
 }

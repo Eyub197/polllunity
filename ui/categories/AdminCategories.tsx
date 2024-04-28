@@ -1,9 +1,9 @@
+import styles from "@/ui/categories/Categories.module.css"
+import CategoryForm from "./CategoryForm"
+import NavigationButton from "../components/NavigationButton/NavigationButton"
 import {  deleteCategory, getCategories } from "@/lib/utils/category"
 import { EditButton} from "../Buttons"
-import styles from "@/ui/categories/Categories.module.css"
-import CreateCategoryForm from "./CreateCategoryForm"
 import { DeleteButtonServer } from "../Buttons"
-import NavigationButton from "../components/NavigationButton/NavigationButton"
 
 const AdminCategories = async () => {
     const  {categories}  = await getCategories()
@@ -17,7 +17,7 @@ const AdminCategories = async () => {
                     <h2>Име: <span className={styles.normal}> {category.name}</span></h2>
                     <h3>Описание: <span className={styles.normal}> {category.description || "няма описание"}</span></h3>
                     <section className={styles.actions_container}>
-                        <EditButton id={category.id} toEdit="categories"/>
+                        <EditButton id={category.id} toEdit="kategorii"/>
                         <DeleteButtonServer action={deleteFunction} id={category.id} helper={null}/>
                     </section>
                 </div>
@@ -36,7 +36,7 @@ const AdminCategories = async () => {
                 <NavigationButton to="anketi" className="helper" text="анкети" back={false}/>
             </section>
             <main className={styles.main}>
-                <CreateCategoryForm/>
+                <CategoryForm action={"create"}/>
                 <h2 className="title_2">Висички категории</h2>     
                 <section className={styles.categories_container}>
                     {createCategoriesElements() || <p>Няма създадени категории</p>}

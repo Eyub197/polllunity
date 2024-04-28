@@ -2,12 +2,11 @@
 
 import pollStyles from "@/ui/polls/Poll.module.css"
 import ImagePicker from "../components/ImagePicker"
+import ErrorMessage from "../components/ErrorMessage"
 import { createPoll, updatePollById } from "@/lib/utils/polls"
 import { Button } from "../ClientButtons"
 import { useFormState } from "react-dom"
-import ErrorMessage from "../components/ErrorMessage"
 import { PollFormsProps } from "@/lib/types"
-
 
 const PollForm = ({ children, title, image, description, starts_at, ends_at, action, id }: PollFormsProps,) => {
 
@@ -19,6 +18,7 @@ const PollForm = ({ children, title, image, description, starts_at, ends_at, act
     const error = action === "update"? errorUpdate : errorCreate
     const buttonActionText = action === "update"? "Обнови" : "Създай"
     const buttonInActionText = action === "update"? "Обновяване" : "Създава се"   
+    
     const checkEndDate = () => {
         if(error?.message.includes("крайна")) return true
         else if(error?.message.includes("трябва")) return true

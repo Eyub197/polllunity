@@ -31,7 +31,7 @@ export const createPoll = async (previousState: any, formData:FormData) => {
         .insert(pollData)
       
         if (error) throw error 
-        revalidatePath("/admin/polls")        
+        revalidatePath("/admin/anketi")        
     }  catch (error : any) {
 
     
@@ -134,8 +134,8 @@ export const updatePollById = async (id:string, prevImage:any, previousState: an
            ends_at: formData.get("ends_at") as string,
        })
     }
-    revalidatePath("/admin/polls")
-    redirect("/admin/polls")
+    revalidatePath("/admin/anketi")
+    redirect("/admin/anketi")
 }
 
 export const getPollById = async (id:string) => {

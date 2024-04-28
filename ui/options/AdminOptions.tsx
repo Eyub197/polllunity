@@ -36,7 +36,7 @@ interface Option {
                         votes_count={option?.votes_count} 
                         >
                     <div className={styles.buttons}>
-                            <EditButton id={option?.id} toEdit={"options"} />
+                            <EditButton id={option?.id} toEdit={"opcii"} />
                             <DeleteButtonServer id={option?.id} helper={null} action={deleteFunction} />
                     </div>
                         </Option>

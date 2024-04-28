@@ -48,7 +48,7 @@ const AdminPolls = async ({query}: {query : string}) => {
                     <p>започва на: {starts_at}</p>
                     <p>завършва на:{ends_at}</p>
                     <div className={pollStyles.buttons}>
-                        <EditButton id={id} toEdit="polls"/>
+                        <EditButton id={id} toEdit="anketi"/>
                         <DeleteButtonServer action={deleteFunction} id={id} helper={null}/>
                         <Link href={`/anketi/${id}/rezultati`}>Резултати</Link>
                     </div>
@@ -71,7 +71,7 @@ const AdminPolls = async ({query}: {query : string}) => {
           <main className={pollStyles.main}>
             <PollForm
             image={undefined}
-                action="create"
+            action="create"
             >
                 <div className={pollStyles.category_id}>
                     <Dropdown  about="category_id" arrayData={categories!} className={"input"} label="Изберете категория" selected={undefined}/>

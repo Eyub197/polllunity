@@ -43,8 +43,9 @@ export const createOption = async (previousState:any,formData:FormData) => {
         
         console.log(`option error ${error?.code, error?.message}`)
         if (error) throw error
-        revalidatePath("/admin/options")
-    } catch(error : any) {
+        revalidatePath("/admin/opcii")
+        }
+        catch(error : any) {
         if(error.message === `new row for relation "options" violates check constraint "options_option_text_check"`){
             return { message: "Моля, въведете текст!" }
         }
@@ -60,9 +61,10 @@ export const getOptions = async (query?:string) : Promise<any[] | null> => {
     const queryBuilder = supabase
         .from("options")
         .select("*")
+    
     query && queryBuilder.ilike("option_text", `%${query}%`)
-    const {data: options} = await queryBuilder
 
+    const {data: options} = await queryBuilder
 
     return options
 }
@@ -107,7 +109,6 @@ export const updateOptionById = async (id:string, prevImage:any, previousState: 
             return { message: imageUpdateResult.error.message }
         }
 
-
     const optionData = {
         poll_id : formData.get("poll_id") as string,
         option_text : formData.get("option_text") as string,
@@ -119,8 +120,8 @@ export const updateOptionById = async (id:string, prevImage:any, previousState: 
     .update(optionData)
     .eq("id", id)
     
-    revalidatePath("/admin/options")
-    redirect("/admin/options")
+    revalidatePath("/admin/opcii")
+    redirect("/admin/opcii")
 }
 
 export const getOptionById = async (id:string) => {
