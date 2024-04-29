@@ -3,37 +3,22 @@
 import styles from "@/ui/auth/RegisterForm.module.css"
 import Link from "next/link"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
 import { useFormState} from 'react-dom'
 import { signUp, logInWithGoogle } from "@/lib/auth"
 import { Button } from "@/ui/ClientButtons"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { createUser } from "@/lib/utils/user"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
-import { getCurrentUserRole } from "@/lib/utils/user"
 
-const RegisterForm = () => {
-    const [errorMessage, dispatch] = useFormState(signUp, undefined)
+const CreateUser = () => {
+    const [errorMessage, dispatch] = useFormState(createUser, undefined)
     const [showPassword, setShowPassword] = useState(false)
-    const [role, setRole] = useState("")
+
     const checkEmail = () =>  errorMessage?.message.includes("email")
     const checkPassword = () => errorMessage?.message.includes("парола")
-    const router = useRouter()
-
-    useEffect(() => {
-        getCurrentUserRole().then(role => {
-            if(role) {
-                setRole(role)
-               router.back()
-            }
-        })
-    }, [router])
-
-    if(role){
-       return  <h1 className="title">Регистриранин сте</h1>
-    }
+    const checkAll = () => errorMessage?.message.includes("вече") 
 
     return(
- 
         <main className={styles.form_container}>
                 <Image
                 width={1000}
@@ -43,17 +28,19 @@ const RegisterForm = () => {
                 alt="cool poll image stuff" /> 
 
             <form className={styles.inputs_container} action={dispatch}>
-            <h1 className={styles.text}>Добре дошли! Регистрирайте се</h1>
+            <h1 className={styles.text}>Създайте нов потребител</h1>
                 <div className={`${styles.email} `}>
                     <label htmlFor="email">Email</label>
                     <input 
-                    className={`${styles.input_style} ${checkEmail() && "input_error"}`} 
+                    className={`${styles.input_style} ${checkEmail() || checkAll() && "input_error"}`} 
                     name="email" 
                     type="email" 
                     id="email"  
                     placeholder="email@gmail.com"   
                     />
                     {checkEmail() && <p className={styles.error_message}>{errorMessage?.message}</p> }
+                    {checkAll() && <p className={styles.error_message}>{errorMessage?.message}</p> }
+
                 </div>
 
                 <div className={styles.password}>
@@ -65,19 +52,19 @@ const RegisterForm = () => {
                     >
                         { showPassword ? <FaRegEyeSlash/> : <FaRegEye/> }                  
                     </button>
-                    <input className={`${styles.input_style}  ${checkPassword() && "input_error"}`} 
+                    <input className={`${styles.input_style}  ${checkPassword() || checkAll() && "input_error"}`} 
                     name="password"  
                     type={showPassword ? "text" : "password"}
                     id="password" 
                     />
                     {checkPassword() && <p className={styles.error_message}> {errorMessage?.message} </p>}
+                    {checkAll() && <p className={styles.error_message}>{errorMessage?.message}</p> }
+
                 </div>
-                
-                <Button className="btn_register" action="Регистрирай се" inAction="Регистрираме те"/>
-                <p className={styles.signIn}>Имате акаунт? <Link className={styles.signIn_link} href={"/vlez"}>Влезте</Link></p>
+                <Button className="btn_register" action="Създайте" inAction="Създава се"/>
             </form>
         </main>          
     )
 }
 
-export default RegisterForm 
+export default CreateUser 

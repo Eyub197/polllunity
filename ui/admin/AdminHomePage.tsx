@@ -4,7 +4,8 @@ import categoryImage from "@/public/category-img.webp"
 import pollImage from "@/public/poll-image.webp"
 import pollOptionImage from "@/public/poll-option-image.webp"
 import Link from "next/link"
-
+import createUserImage from "@/public/createUser.webp"
+import deleteUser from "@/public/deleteUser.webp"
 
 
 const AdminHomePage = () => {
@@ -28,7 +29,7 @@ const AdminHomePage = () => {
                 <Image
                     className={styles.admin_image}
                     src={pollImage}
-                    alt="консепцуална снимка за избор на амкети за и за взаимодейстивие с тях"
+                    alt="консепцуална снимка за избор на анкети за и за взаимодейстивие с тях"
                 />
                 <div className={styles.admin_option_desc}>
                     <h2>Анкети</h2>
@@ -40,11 +41,33 @@ const AdminHomePage = () => {
                 <Image
                     className={styles.admin_image}
                     src={pollOptionImage}
-                    alt="консепцуална снимка за избор на категории за и за взаимодейстивие с тях"
+                    alt="консепцуална снимка за избор на опции за анкети  и за взаимодейстивие с тях"
                 />
                 <div className={styles.admin_option_desc}>
                     <h2>Опции</h2>
                     <Link className={styles.action} href={"/admin/opcii"}>Дейстивя</Link>
+                </div>
+            </section>
+            <section className={styles.admin_option}>
+                <Image
+                    className={styles.admin_image}
+                    src={createUserImage}
+                    alt="консепцуална снимка за избор на категории за и за взаимодейстивие с тях"
+                />
+                <div className={styles.admin_option_desc}>
+                    <h2>Потребител +</h2>
+                    <Link className={styles.action} href={"/admin/potrebiteli"}>Дейстивя</Link>
+                </div>
+            </section>
+            <section className={styles.admin_option}>
+                <Image
+                    className={styles.admin_image}
+                    src={deleteUser}
+                    alt="консепцуална снимка за избор на категории за и за взаимодейстивие с тях"
+                />
+                <div className={styles.admin_option_desc}>
+                    <h2>Потребител -</h2>
+                    <Link className={styles.action} href={"/admin/premahni-potrebiteli"}>Дейстивя</Link>
                 </div>
             </section>
 
@@ -54,8 +77,3 @@ const AdminHomePage = () => {
 }
 
 export default AdminHomePage
-
-
-// each think will have A image
-// there would be like table name, add, seeAll, create, delete
-// or just a see all with all of the options and thinks for delete, edit, in the card it self

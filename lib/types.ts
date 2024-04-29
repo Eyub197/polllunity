@@ -265,14 +265,17 @@ export type Database = {
       }
       user: {
         Row: {
+          email: string | null
           id: string
           role: string | null
         }
         Insert: {
+          email?: string | null
           id?: string
           role?: string | null
         }
         Update: {
+          email?: string | null
           id?: string
           role?: string | null
         }

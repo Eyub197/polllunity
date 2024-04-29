@@ -170,3 +170,7 @@ h2{
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.bold{
+    font-weight: bold;
+}
