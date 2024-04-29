@@ -12,11 +12,28 @@ import Link from "next/link"
 import { useState } from "react"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 
+/**
+ * Component for the sign in form.
+ * Displays a form for the user to input their email and password,
+ * and a button to sign in.
+ * On successful sign in, user is redirected to the home page.
+ */
 const SignInForm = () : JSX.Element => {
+    // The error message from the server when submitting the form
     const [errorMessage, dispatch] = useFormState(signIn, undefined)
+    // Whether or not the password is shown
     const [showPassword, setShowPassword] = useState(false)
-    const checkEmail = () =>  errorMessage?.message.includes("email")
-    const checkPassword = () => errorMessage?.message.includes("парола")
+    const checkEmail = () : boolean =>  Boolean(errorMessage?.message?.includes("email"))
+    /**
+     * Returns whether or not the email input has an error.
+     * @returns {boolean} Whether or not the email input has an error
+     */
+
+    /**
+     * Returns whether or not the password input has an error.
+     * @returns {boolean} Whether or not the password input has an error
+     */
+    const checkPassword = () : boolean => Boolean(errorMessage?.message?.includes("парола"))
 
 
     return (
@@ -48,7 +65,7 @@ const SignInForm = () : JSX.Element => {
                 type="email" 
                 id="email"
                 />
-                {checkEmail() && <div className={styles.error_container}> <p className={styles.error_message}>{errorMessage.message}</p> </div> }
+                {checkEmail() && <div className={styles.error_container}> <p className={styles.error_message}>{errorMessage?.message}</p> </div> }
             </div>
                           
             <div className={styles.password}>
@@ -66,7 +83,7 @@ const SignInForm = () : JSX.Element => {
                 type={showPassword ? "text" : "password"}
                 id="password" 
                 />
-                {checkPassword() && <div className={styles.error_container}> <p className={styles.error_message}>{errorMessage.message}</p> </div> }
+                {checkPassword() && <div className={styles.error_container}> <p className={styles.error_message}>{errorMessage?.message}</p> </div> }
 
             </div>
 
@@ -80,5 +97,8 @@ const SignInForm = () : JSX.Element => {
     )
     
 }
+
+
+
 
 export default SignInForm

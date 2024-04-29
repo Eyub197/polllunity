@@ -1,3 +1,4 @@
+// array for making the filter component clear
 export const filterArray = [
     {
         id: 1,

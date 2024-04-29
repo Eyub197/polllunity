@@ -1,6 +1,4 @@
-import ErrorMessage from "../ErrorMessage"
 import styles from "@/ui/components/dropdown/Dropdown.module.css"
-import { getCategories } from "@/lib/utils/category"
 
 export interface ChooseCategoryProps {
     selected?: string | undefined,
@@ -10,34 +8,46 @@ export interface ChooseCategoryProps {
     about?: string
 }
 
-const Dropdown = async ({selected, label, className, arrayData, about} : ChooseCategoryProps) => {
+
+const Dropdown = async ({ selected, label, className, arrayData, about }: ChooseCategoryProps) => {
+    // Creates the options for the dropdown based on the array data.
     const createOptions = () => {
-        if(arrayData) {
+        if (arrayData) {
             return arrayData?.map(data => {
+                // Creates an option element for each piece of data.
                 return (
-                <option 
-                    key={data.title || data.name || data.text}
-                    value={data.id}>
-                    {data.title || data.name || data.text}
-                </option>
+                    <option
+                        // Sets the key to a unique value based on the data.
+                        key={data.title || data.name || data.text}
+                        // Sets the value of the option to the id of the data.
+                        value={data.id}
+                    >
+                        {/* Sets the text of the option to the title, name, or text of the data. */}
+                        {data.title || data.name || data.text}
+                    </option>
                 )
             })
         }
     }
 
     return (
-            <>
-                <label htmlFor={about}>{label}</label>
-                <select 
-                defaultValue={selected || undefined} 
-                className={`admin_inputs ${styles.select} ${styles[className!]} `}  
+        <>
+            {/* The label for the dropdown */}
+            <label htmlFor={about}>{label}</label>
+            <select
+                // Sets the default value of the select to the selected value.
+                defaultValue={selected || undefined}
+                // Adds the class names for the dropdown.
+                className={`admin_inputs ${styles.select} ${styles[className!]} `}
+                // Sets the name of the field to the about parameter.
                 name={about}
+                // Sets the id of the field to the about parameter.
                 id={about}
-                >
-                    {createOptions()}
-                </select>
-            </>
+            >
+                {/* Creates the options for the dropdown */}
+                {createOptions()}
+            </select>
+        </>
     )
 }
-
 export default Dropdown

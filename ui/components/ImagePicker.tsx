@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ImagePickerProps } from "@/lib/types"
 import styles from "@/ui/components/ImagePicker.module.css"
 
+// Image picker component for better ux and ui design
 const ImagePicker = ({label, name, picture}: ImagePickerProps) => {
     const [pickedImage, setPickedImage] = useState<any>(null)
     const imageInput = useRef<HTMLInputElement>(null)

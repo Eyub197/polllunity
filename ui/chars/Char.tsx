@@ -12,20 +12,27 @@ import { placements, placementsClasses } from '@/lib/utils/helperArrays'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
+/**
+ * Char component is responsible for rendering chart of poll results.
+ * This component is rendered inside of the poll component.
+ * @param charData - data about the poll options and their votes count.
+ * @param pollData - data about the poll, used for the chart title.
+ * @param top3Data - data about the top 3 options in the poll.
+ */
 const Char =  ({charData, pollData, top3Data} : CharProps ) => {
     const supabase = createClient()
     const router = useRouter()
-    const [charType, setCharType] = useState("bar")
+    const [charType, setCharType] = useState("bar") // used for handling the chart type change
     
     const data = charData
     const pollArray = pollData || []
 
-    const chartData = {
+    const chartData = { // data used for the chart
         labels: data?.map(option => option.option_text),
         datasets: [
             {
-                label: pollArray.title,
-                data : data?.map(option => option.votes_count),
+                label: pollArray.title, // chart title
+                data : data?.map(option => option.votes_count), // data for the chart bars
                 borderWidth: 3,
                 borderRadios: "3pt",
             }
@@ -34,18 +41,28 @@ const Char =  ({charData, pollData, top3Data} : CharProps ) => {
 
 
     useEffect(() => {
+        /**
+         * UseEffect hook is used here for handling the realtime updates of the chart.
+         * It subscribes to the "charts_info" channel of the supabase database.
+         * This channel is used for the realtime updates of the votes count.
+         * When new data is received, the component is reloaded using the useRouter().refresh() function.
+         */
         const channel = supabase.channel("charts_info").on("postgres_changes",{
             event: "*",
             schema: "public",
             table: "options",
         }, () => {router.refresh()}).subscribe()
 
-        return () => { supabase.removeChannel(channel) }
+        return () => { supabase.removeChannel(channel) } // remove the subscription when component is unmounted
     }, [supabase, router])
 
-    const handleChange = (event: any) => setCharType(event.target.value)
+    const handleChange = (event: any) => setCharType(event.target.value) // handle the chart type change
 
     const renderChart = () => {
+        /**
+         * RenderChart function is used for rendering the chart based on the charType state.
+         * The chart type can be changed using the select element in the form above the chart.
+         */
         switch (charType)
         {
             case 'doughnut':

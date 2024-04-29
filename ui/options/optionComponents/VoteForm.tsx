@@ -21,6 +21,9 @@ interface VoteFormProps {
   fk: string;
 }
 
+
+// Vote form the component displaying the poll options and a button to vote
+
 const VoteForm = ({options, poll, userId, fk }: VoteFormProps) => {
     const updateOptionCountAction = updateOptionCount.bind(null, fk, userId)
     const [error, dispatch] = useFormState(updateOptionCountAction, undefined)

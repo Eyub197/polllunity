@@ -10,23 +10,31 @@ import { Suspense } from "react";
 import { getPollById } from "@/lib/utils/polls"    
 
 
+/**
+ * Result component for a single poll
+ * @param id {Id} - poll id
+ * @returns {JSX.Element} - result page
+ */
 const Result = async ({ id }:Id) => {
+    // fetch poll options for given poll id
     const options = await getOptionsByFk(id)
+    // fetch poll information for given poll id
     const {polls} = await getPollById(id)
 
+    // sort all poll options by votes count in descending order
     const top5options  = [
-        ...options!?.sort((a, b) => b.votes_count! - a.votes_count!)
+        ...options!.sort((a, b) => b.votes_count! - a.votes_count!)
     ]
-
+    // slice first 3 options for the Char component
     const top3options = top5options?.slice(0, 3)
 
     return (
         <main className={styles.main}>
             <h1 className='title'>Резулатаи на анкетатa {polls?.title}</h1>
             <ScreenShotButton/>
-                <Suspense fallback={<p>Loading char...</p>}>
-                    <Char top3Data={top3options}  pollData={polls!} charData={top5options!}/>
-                </Suspense>
+            {/* pass poll, options and top 3 options to Char component */}
+            <Char top3Data={top3options}  pollData={polls!} charData={top5options!}/>
+            {/* back button */}
             <NavigationButton to={"/anketi"} back={true} text='Назад'/>
         </main>
     )

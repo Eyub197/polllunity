@@ -1,5 +1,6 @@
 import styles from "@/ui/components/AnimatedDots/AnimatedDots.module.css"
 
+// reusable animated dots   
 const AnimatedDots = () => {
     return(
         <>

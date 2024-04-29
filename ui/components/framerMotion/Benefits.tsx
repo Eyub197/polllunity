@@ -9,7 +9,7 @@ import secure from "@/public/secure.webp"
 import realTime2 from "@/public/realTime2.webp"
 import { Animatedh3, Animatedp, AnimatedDiv } from "./AnimatedComponets";
 
-
+// a comoponent that renders the benefits of the app with declerative animations
 const Benefits = () => {
  
     const ref = useRef(null)

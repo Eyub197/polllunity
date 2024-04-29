@@ -3,8 +3,12 @@ import styles from "@/ui/Buttons.module.css"
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { Id } from "@/lib/types";
 import { DeleteButtonClient } from "./ClientButtons";
-import { link } from "fs";
-import { handleUserVote } from "@/lib/utils/userVote";
+
+
+
+
+
+// dif types reusable buttons
 export interface DeleteButtonProps{
     id: string,
     helper: null
@@ -34,13 +38,7 @@ export const EditButton = ({id, toEdit}: EditButtonProps) => {
     </Link>
     )
 }
-// export const LinkButton = ({id} : Id) => {
-//     return(
-//         <Link href={}>
 
-//         </Link>
-//     )
-// }
 
 export const ChoosePollButton = ({id} : Id)  => {    
     return( 
@@ -59,22 +57,3 @@ export const CheckResults = ({id}: Id) => {
     )
 }
 
-//** Admin link */
-// export const AdminPage = async (isActive: PropsAdmin) => {
-//     const currentUserRole = await getCurrentUserRole()
-
-//     if(currentUserRole === "admin") {
-//         return(
-//             <Link 
-//                 href="/admin"
-//                 className={`${styles.admin_link}  ${isActive && styles.admin_link_active}`}
-//                 >
-//                 Админ        
-//             </Link>
-//         )
-//     }
-
-// }
-
-
-//test

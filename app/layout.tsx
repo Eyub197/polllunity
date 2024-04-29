@@ -27,17 +27,8 @@ export default function RootLayout({
     <html lang="bg">
       {/*
        * The root <html> element. This is where we set some global styles
-       * using CSS modules and pass thelang attribute.
+       * using CSS modules and pass the lang attribute.
        */}
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body className={inter.className}>
         {/*
          * Render the header component at the top of the page.

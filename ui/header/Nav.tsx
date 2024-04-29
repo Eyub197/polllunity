@@ -8,6 +8,8 @@ import {usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { NavProps } from "@/lib/types";
 
+
+// main nav wrapper for the header
 const Nav = ({ children, currentUserRole  } : NavProps) => {
     const [isOpen, setIsOpen] = useState(false)
     const pathname = usePathname()

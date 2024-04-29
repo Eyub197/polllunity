@@ -13,6 +13,10 @@ interface Filter {
     query?: string
 }
 
+
+
+// polls page component with logic for handling statuses
+
 const Polls = async ({query,filter, status} : Filter  ) => {
     const supabase = await createClient()
 

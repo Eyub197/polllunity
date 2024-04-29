@@ -7,6 +7,9 @@ import { useFormStatus } from "react-dom"
 import { IoCloseCircle } from "react-icons/io5"
 import { ButtonProps } from "@/lib/types"
 
+
+// div types of reusable client buttons
+
 export interface DeleteButtonProps{
     id: string,
     action: (id:string) => void

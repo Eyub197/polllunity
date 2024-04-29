@@ -1,15 +1,16 @@
 "use client"
 
 import styles from "@/ui/auth/RegisterForm.module.css"
-import Link from "next/link"
 import Image from "next/image"
 import { useFormState} from 'react-dom'
-import { signUp, logInWithGoogle } from "@/lib/auth"
 import { Button } from "@/ui/ClientButtons"
 import { useState } from "react"
 import { createUser } from "@/lib/utils/user"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 
+
+
+//Like the register form but for creating a user
 const CreateUser = () => {
     const [errorMessage, dispatch] = useFormState(createUser, undefined)
     const [showPassword, setShowPassword] = useState(false)
