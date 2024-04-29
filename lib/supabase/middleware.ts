@@ -1,6 +1,8 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+
+// middleware handling the cookies
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({
     request: {

@@ -1,21 +1,26 @@
 import ThanksForVoting from "@/ui/thanksForVoting/ThanksForVoting"
 
-const ThanksPage = ({ params }: { params: { id: string } }) =>{
+/**
+ * The thanks page for when the user has voted.
+ *
+ * @param {Object} params The route parameters, with the poll id in `params.id`
+ * @returns {JSX.Element} The thanks page
+ */
+const ThanksPage = ({ params }: { params: { id: string } }) => {
     const { id } = params
-    return(<ThanksForVoting id={id}/>)
-} 
+
+    /**
+     * Renders the thanks page with the given poll id.
+     *
+     * @param {string} id The id of the poll the user has voted for
+     * @returns {JSX.Element} The thanks page
+     */
+    const renderThanksPage = (id: string): JSX.Element => (
+        <ThanksForVoting id={id} />
+    )
+
+    return renderThanksPage(id)
+}
 
 export default ThanksPage
 
-
-//how we can make a user vote only ones?
-//1. solution make a userVote table 
-// user id and hasVoted and poll_id,
-/*
- after the user haas voted we should change something in his properties for the current poll
-    in the user vote table we can check thee pollId and then after the click make the hasVoted to true
-    if hasVoted true then show page you have already voted here wait for the results
-        step 1 make the use vote table
-        step 2 make the think work
-
-*/

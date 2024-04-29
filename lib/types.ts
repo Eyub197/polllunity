@@ -158,6 +158,8 @@ export interface LoadingPropsPolls{
   count: number
 }
 
+// supabase types
+
 export type Json =
   | string
   | number

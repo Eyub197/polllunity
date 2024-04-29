@@ -2,6 +2,8 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { Database } from '../types'
 import { cookies } from 'next/headers'
 
+
+// server client
 export async function createClient(){
   const cookieStore = cookies()
 
@@ -31,6 +33,9 @@ export async function createClient(){
     }
   )
 }
+
+
+// server admin client
 
 export async function createAdminClient(){
   const cookieStore = cookies()

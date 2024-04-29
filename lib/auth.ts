@@ -5,6 +5,9 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { AuthData } from './types' 
 
+
+
+//sign up function fir registering a new user
 export const signUp = async ( previousState: any, formData: FormData) => {
   try {
   const supabase = await createClient()
@@ -40,6 +43,9 @@ export const signUp = async ( previousState: any, formData: FormData) => {
   redirect("/anketi")
 
 }
+
+
+// sign in function for signing in already existing account
 export const signIn = async (previousState: any, formData: FormData) => {
   const supabase = await createClient()
 
@@ -80,7 +86,7 @@ export const signIn = async (previousState: any, formData: FormData) => {
 }
 
 
-
+// sign out to sign out user from the application
 
 export const signOut = async () => {
   const supabase = await createClient()

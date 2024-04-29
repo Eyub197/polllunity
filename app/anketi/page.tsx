@@ -14,28 +14,42 @@ export type searchParamss = {
     }
 }
 
+/**
+ * This is the main component for the polls page.
+ * It renders the polls page title, the search and filter menu,
+ * and the actual polls based on the search and filter parameters.
+ */
 const PollsPage = ({ searchParams }: searchParamss) => {
-    const { categoriq, status, query} = searchParams
+    // destructure the search and filter parameters from the prop
+    const { categoriq, status, query } = searchParams
 
-    return(
-        <>
-            <h1 className={styles.page_title}>Изберете за какво да гласувате</h1>
-            <section className={styles.filters}>
-                <FilterMenu categoryParams={categoriq} statusParams={status}/>
-                <Search placeholder="анкета..."/>            
-            </section>
-            <FramerMotionDiv>
-                <main className={styles.main}>
-                    <Suspense fallback={<Loader count={3}/>}>
-                    <Polls query={query} status={status} filter={categoriq}/>
-                    </Suspense>
-                </main>             
-            </FramerMotionDiv>
+    return (
+        // return a fragment and add the page title
+        <><h1 className={styles.page_title}>Изберете за какво да гласувате</h1>
+        {/* add a section for the search and filter menu */}
+        <section className={styles.filters}>
+            {/* render the filter menu component and pass in the category and status parameters */}
+            <FilterMenu categoryParams={categoriq} statusParams={status}/>
+            {/* render the search component with a placeholder for the input */}
+            <Search placeholder="анкета..."/>
+        </section>
+        {/* render the framer motion div */}
+        <FramerMotionDiv>
+            {/* add a main tag and render the polls component inside it */}
+            <main className={styles.main}>
+                {/* wrap the polls component in a suspense component for lazy loading */}
+                <Suspense fallback={<Loader count={3}/>}>
+                    <Polls 
+                        // pass in the query and filter parameters to the polls component
+                        query={query} status={status} filter={categoriq}
+                    />
+                </Suspense>
+            </main>
+        </FramerMotionDiv>
         </>
-        
     )
-
-
 }
+
+
 
 export default PollsPage
