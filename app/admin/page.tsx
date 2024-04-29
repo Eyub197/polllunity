@@ -6,9 +6,9 @@ import { redirect } from "next/navigation"
 const AdminPage = async () => {
     const currentUserRole = await getCurrentUserRole()    
     
-    // if(currentUserRole !== "admin") {
-    //     redirect('/')
-    // }
+    if(currentUserRole !== "admin") {
+        redirect('/')
+    }
 
     return <AdminHomePage />
     }

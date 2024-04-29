@@ -3,11 +3,18 @@ import { getUsers } from "@/lib/utils/user"
 import { deleteUser } from "@/lib/utils/user"
 import { DeleteButtonServer } from "@/ui/Buttons"
 import Search from "@/ui/components/Search/Search"
+import { getCurrentUserRole } from "@/lib/utils/user"
+import { redirect } from "next/navigation"
 const RemoveUser = async ({searchParams} : { searchParams?: {query?: string} }) => {
     const query = searchParams?.query
 
     const users = await getUsers(query)
-
+    const currentUserRole = await getCurrentUserRole()    
+    
+    if(currentUserRole !== "admin") {
+        redirect('/')
+    }
+    
     return(
         <>
             <h1 className="title">Премахни потребител</h1>

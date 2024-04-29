@@ -2,11 +2,21 @@ import { getOptionById, getPollDropDownInfo } from "@/lib/utils/options"
 import Dropdown from "@/ui/components/dropdown/Dropdown"
 import OptionForm from "@/ui/options/OptionForm"
 import styles from "@/ui/options/OptionHelper.module.css"
+import { getCurrentUserRole } from "@/lib/utils/user"
+import { redirect } from "next/navigation"
+
 
 const EditOption = async ({ params }: { params: { id: string } }) => {
     const { id } = params
     const option = await getOptionById(id)
     const polls = await getPollDropDownInfo()
+    const currentUserRole = await getCurrentUserRole()    
+    
+    if(currentUserRole !== "admin") {
+        redirect('/')
+    }
+
+
     return(
         <main className={styles.main}>
             <section className={styles.edit_option}>

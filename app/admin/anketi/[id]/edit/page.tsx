@@ -3,11 +3,20 @@ import Dropdown from "@/ui/components/dropdown/Dropdown"
 import { getCategories } from "@/lib/utils/category"
 import PollForm from "@/ui/polls/PollForm"
 import styles from "@/ui/polls/Poll.module.css"
+import { getCurrentUserRole } from "@/lib/utils/user"
+import { redirect } from "next/navigation"
 
 const EditPoll = async ({ params }: { params: { id: string } }) => {
     const { id } = params    
     const  {polls}  = await getPollById(id)
     const  {categories}  = await getCategories()
+
+    const currentUserRole = await getCurrentUserRole()    
+    
+    if(currentUserRole !== "admin") {
+        redirect('/')
+    }
+
     return(
         <main className={styles.main}>       
             <PollForm

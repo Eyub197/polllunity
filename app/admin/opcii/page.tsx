@@ -1,5 +1,17 @@
 import AdminOptions from "@/ui/options/AdminOptions";
+import { getCurrentUserRole } from "@/lib/utils/user"
+import { redirect } from "next/navigation"
 
-const OptionsForm = ({searchParams} : { searchParams?: {query?: string} }) => <AdminOptions query={searchParams?.query!}/>
+const OptionsForm = async ({searchParams} : { searchParams?: {query?: string} }) => {
+    const currentUserRole = await getCurrentUserRole()    
+    
+    if(currentUserRole !== "admin") {
+        redirect('/')
+    }
+    
+    return <AdminOptions query={searchParams?.query!}/>
+}
+
+
     
 export default OptionsForm
