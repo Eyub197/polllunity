@@ -74,6 +74,10 @@
     background-color: #FEFBD8;
 }
 
+.sign_out {
+    background-color: var(--error-color);
+    padding: 0.6em 3em;
+}
 
 /* layout */
 

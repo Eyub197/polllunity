@@ -20,7 +20,7 @@ const HeaderButtons = async () => {
             {/* If user is authenticated, display logout button */}
             {user ? (
                 <form>
-                    <button formAction={signOut}>Излизане</button>
+                    <button className={styles.sign_out} formAction={signOut}>Излизане</button>
                 </form>
             ) : (
                 /* Else, display login and register buttons */
