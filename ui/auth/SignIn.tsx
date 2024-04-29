@@ -9,33 +9,17 @@ import Image from "next/image"
 import frame from '@/public/frame.png'
 import frame_2 from '@/public/frame-img.png'
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
-import { getCurrentUserRole } from "@/lib/utils/user"
 
 const SignInForm = () : JSX.Element => {
     const [errorMessage, dispatch] = useFormState(signIn, undefined)
     const [showPassword, setShowPassword] = useState(false)
-    const [role, setRole] = useState("")
-    const router = useRouter()
     const checkEmail = () =>  errorMessage?.message.includes("email")
     const checkPassword = () => errorMessage?.message.includes("парола")
 
-    useEffect(() => {
-        getCurrentUserRole().then(role => {
-            if(role) {
-                setRole(role)
-               router.back()
-            }
-        })
-    }, [router])
-
-    if(role){ return <h1 className="title">Регистриранин сте</h1> }
 
     return (
-
-
-
     <main className={styles.main}>
         <section className={styles.frame_container}>
             <Image
