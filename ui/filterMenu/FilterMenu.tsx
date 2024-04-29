@@ -42,6 +42,5 @@ const FilterMenu = async ({ categoryParams, statusParams } : SearchParams) => {
     )
 }
 
-//make a array with data to pass is to the custom dropdown 
 
 export default FilterMenu

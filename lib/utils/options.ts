@@ -56,15 +56,16 @@ export const createOption = async (previousState:any,formData:FormData) => {
     }
 }
 
-export const getOptions = async (query?:string) : Promise<any[] | null> => {
+export const getOptions = async (filter?:string, query?:string) : Promise<any[] | null> => {
     const supabase =  await createClient()
 
     const queryBuilder = supabase
         .from("options")
-        .select("*")
+        .select("*, polls(id, title)")
     
     query && queryBuilder.ilike("option_text", `%${query}%`)
-
+    filter && queryBuilder.eq("poll_id", filter)
+    
     const {data: options} = await queryBuilder
 
     return options
@@ -195,3 +196,17 @@ export const deleteOption = async (id:string, image:string) : Promise<any> => {
     redirect("/admin/options")
 }
 
+
+export const handleOptionFilter = (formData: FormData) => {
+    let searchParamsUrl = "/admin/opcii"
+    const poll = formData.get("poll") as string 
+    
+    const searchParams = new URLSearchParams()
+        
+    poll !== "vsicki" && searchParams.set("anketa", poll)
+
+    if(searchParams.toString()) searchParamsUrl += `?${searchParams}`
+   
+    redirect(searchParamsUrl)
+
+}

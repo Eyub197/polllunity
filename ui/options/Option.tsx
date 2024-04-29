@@ -2,7 +2,7 @@ import { Option as OptionProps } from "@/lib/types"
 import styles from "@/ui/options/OptionForm.module.css"
 import Image from "next/image"
 
-const Option = ({className, classNameContainer, children, image, option_text, votes_count}: OptionProps) => {
+const Option = ({className, classNameContainer, children, image, option_text, votes_count, poll_id}: any) => {
     return(
         <div className={`${styles.option} ${styles[classNameContainer!]}`}>
             {image && image !== undefined &&
@@ -26,7 +26,8 @@ const Option = ({className, classNameContainer, children, image, option_text, vo
         }
             <div className={`${styles[className!]} ${styles.bottom_part}` }>
                 <p className="mt-0">Брой гласове: {votes_count}</p>
-                <p>Текст на опцията: {option_text}</p>            
+                <p>Текст на опцията: {option_text}</p> 
+                <p>На анкета: {poll_id}</p>           
                 {children}
             </div>
         </div>

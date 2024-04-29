@@ -1,6 +1,6 @@
 /* groups */
 
-.form, .error_container, .buttons{
+.form, .error_container, .buttons, .filters{
     display: flex;
 }
 
@@ -70,6 +70,12 @@
     border-top: none;
     border-radius: 0 0 5.5pt 5.5pt ;
   
+}
+
+.filters{
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .option{

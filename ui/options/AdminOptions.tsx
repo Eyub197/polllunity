@@ -7,6 +7,7 @@ import NavigationButton from "../components/NavigationButton/NavigationButton"
 import { deleteOption, getOptions, getPollDropDownInfo } from "@/lib/utils/options"
 import { DeleteButtonServer, EditButton } from "../Buttons"
 import NotFound from "../components/NotFound/NotFound"
+import Filter from "../components/Filter/Filter"
 
 interface Poll {
     id: string;
@@ -22,8 +23,9 @@ interface Option {
     polls?: Poll;
 }
 
-  const AdminOptions = async ({query} : {query : string}) => {
-   const options = await getOptions(query)
+  const AdminOptions = async ({query, anketa} : {query : string, anketa?: string}) => {
+    console.log("anketa", anketa);
+   const options = await getOptions(anketa, query)
    const polls = await getPollDropDownInfo()
     const createOptionElements = () => {
         if(options?.length! > 0){
@@ -35,6 +37,7 @@ interface Option {
                         image={option?.image || undefined}
                         option_text={option?.option_text} 
                         votes_count={option?.votes_count} 
+                        poll_id={option?.polls.title}
                         >
                     <div className={styles.buttons}>
                             <EditButton id={option?.id} toEdit={"opcii"} />
@@ -67,11 +70,14 @@ interface Option {
                 </div>
             </OptionForm>
             <h2 className="title_2">Всички опции</h2>
-            <Search placeholder="опция..."/>
+            <section className={styles.filters}>
+                <Search placeholder="опция..."/>
+                <Filter pollParams={anketa!} />
+            </section>
             <section className={styles.options}>
                 {createOptionElements() || <NotFound text="опции"/>}
             </section>
-        </main>
+        </main> 
         </>
     )
 }

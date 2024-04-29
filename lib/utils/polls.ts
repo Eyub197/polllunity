@@ -92,7 +92,7 @@ export const getCurrentPolls = async () => {
     const { data:polls , error } = await supabase
     .from("polls")
     .select("*, categories(id, name, description)")
-    .filter('status', 'in', '("open","not_started")')
+    .filter('status', 'in', '("zapocnala","nezapocnala")')
     
     return { polls, error }
 }
