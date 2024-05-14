@@ -30,7 +30,7 @@ const Result = async ({ id }:Id) => {
 
     return (
         <main className={styles.main}>
-            <h1 className='title'>Резулатаи на анкетатa {polls?.title}</h1>
+            <h1 className='title'>Резултати  на анкетатa {polls?.title}</h1>
             <ScreenShotButton/>
             {/* pass poll, options and top 3 options to Char component */}
             <Char top3Data={top3options}  pollData={polls!} charData={top5options!}/>
